@@ -41,4 +41,8 @@
 ## 6. Tự đánh giá
 
 - Tự giải thích được: vì sao tử số tính mọi lần chạy (lần lỗi vẫn tốn token, tool) còn mẫu số chỉ đếm việc thành công; vì sao chia theo cụm thì cỡ mẫu hiệu dụng bị giới hạn bởi c ÷ ICC nên số cụm quyết định chứ không phải tổng số yêu cầu; vì sao đề xuất Go có điều kiện thay vì Go.
-- Điểm cần cải thiện: ...
+- Điểm cần cải thiện:
+  - Gắn nhãn còn lẫn hai cặp loại: ca 8 tôi gắn Ngầm vì số tiền vẫn đúng, nhưng trích dẫn sai đã hiện ra trước mắt khách nên là Hệ thống; ca 13 tôi gắn theo chỗ cần sửa (trợ lý trả lời lan man) thay vì nguyên nhân gốc (ngoài phạm vi). Lần sau hỏi trước "có ai nhìn thấy lỗi không" và "gốc lỗi ở đâu" rồi mới gắn.
+  - Bản đầu của `pilot_plan.yaml` chưa kiểm giả định 40 nhân viên (dữ liệu chỉ có 20) và chưa có lịch thu mẫu; phải nhờ Phụng soát mới thấy. Lần sau đối chiếu mọi giả định với CSV trước khi chọn cách chia.
+  - Luật dừng ban đầu áp dụng như nhau cho mọi bước rollout và cộng cả 40 triệu cố định vào ngưỡng 8.000 đ, nên sẽ dừng nhầm ở bước 4 người (≈ 15.300 đ/việc). Tôi cần tự thử luật dừng với số của từng bước thay vì chỉ kiểm đủ bốn vế.
+  - Còn dựa nhiều vào AI để soạn nháp và tính số; tôi cần tự tính tay nhiều hơn, nhất là D1 và hệ số thiết kế, để tự trả lời được khi hội đồng hỏi.

@@ -46,7 +46,7 @@ pilot:
   owner: "Giám đốc vận hành LogiX-VN"
   scope: "Chỉ noi_dia và hang_nang (A3: 0,22× và 0,69× so với 12.000 đ, simulated), 40 nhân viên CSKH ở 12 depot; loại quoc_te (1,88×, thành công 27,3%) và doi_tac (0,85×, điều khoản riêng)"
   preconditions:
-    - "Giám đốc vận hành xác nhận đủ 40 nhân viên đủ điều kiện trước ngày bắt đầu; nếu chỉ 20 người thì chia 10 + 10, MDE 8 điểm và ghi rõ dưới 20 cụm"
+    - "Giám đốc vận hành xác nhận đủ 40 nhân viên đủ điều kiện trước ngày bắt đầu; nếu chỉ 20 người thì 10 + 10 dưới 20 cụm (power 0,51 ở 6 điểm, 0,38 ở 5 điểm): chuyển thành No-go cho pilot đo tác động, quay lại Gate 2a khi đủ 40 người"
     - "Giám đốc vận hành ký chấp nhận MDE 6 điểm (power 0,64 nếu tác động thật là 5 điểm)"
     - "Kỹ sư trưởng agent bật khoá chống trùng và đối soát sổ cái trước ngày bắt đầu"
   timeline:
