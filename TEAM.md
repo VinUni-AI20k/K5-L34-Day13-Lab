@@ -202,8 +202,9 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Đóng góp cụ thể
 
-- CP1: Viết các câu trả lời phân tích A2 (so sánh 4.472 đ gấp 16,3× hoá đơn 274,7 đ; tỉ trọng làm lại 51,8%, xem lại 40,7%; chi phí cả hệ thống 5.865 đ = 0,49× của 12.000 đ), A3 (loại `quoc_te` 22.515 đ = 1,88× vì chạy lại 3 lần tỉ lệ ok giảm 30,0% → 11,4% → 2,2%; loại `doi_tac` 0,85×) và A4 (cộng cố định 40 triệu đ/tháng cho `noi_dia` + `hang_nang`: 4.599 đ = 0,38× ở 45.000 yc/tháng; 5.784 đ = 0,48× ở 22.500 yc/tháng) trong `report/team/bang_chi_phi.md`.
-- CP1–CP2: Dựng khung 7 mục và điền hoàn chỉnh Mục 1 (Chi phí mỗi việc thành công), Mục 2 (Ba yếu tố nhạy nhất) và Mục 3 (So với nhân viên tự làm) vào `report/team/ho_so_launch_v0.md` kèm nhãn `simulated`, trạng thái `Giả lập` và vai trò phụ trách; soạn bảng rủi ro kinh tế (E2) trong `report/team/chi_so.md`.
+- CP1: Viết các câu trả lời phân tích A2 (so sánh 4.472 đ gấp 16,3× hoá đơn 274,7 đ; tỉ trọng làm lại 51,8%, xem lại 40,7%; chi phí cả hệ thống 5.865 đ = 0,49× của 12.000 đ), A3 (loại `quoc_te` 22.515 đ = 1,88× vì chạy lại 3 lần tỉ lệ ok giảm 30,0% → 11,4% → 2,2%; loại `doi_tac` 0,85×) và A4 (cộng cố định 40 triệu đ/tháng cho `noi_dia` + `hang_nang`: 4.599 đ = 0,38× ở 45.000 yc/tháng; 5.784 đ = 0,48× ở 22.500 yc/tháng) trong `report/team/bang_chi_phi.md`. Dựng khung 7 mục và điền Mục 1, Mục 3 vào `report/team/ho_so_launch_v0.md`.
+- CP2: Điền hoàn chỉnh Mục 2 (Ba yếu tố nhạy nhất: 1. Số ca làm lại +51,8% · 2. Tỉ lệ xem lại +40,7% · 3. Lương nhân viên +23,1%; kiểm chứng cộng tuyến tính cặp token ×2 + xem lại ×2 = +46,3%) và cập nhật giới hạn 2 lần chạy (chi phí hệ thống rẻ nhất 6.901.220 đ) vào `report/team/ho_so_launch_v0.md`. Soạn 3 dòng rủi ro kinh tế (làm lại ×2 lên 6.787 đ; xem lại 100% kéo dài lên 11.743 đ = 0,98× hoặc 12.415 đ = 1,03×; khối lượng giảm một nửa làm cố định/việc tăng gấp đôi) trong `report/team/chi_so.md` (mục E2).
+- CP3: Gắn nhãn độc lập 20 ca lỗi (Người gắn nhãn 2), đối chiếu với Huy đạt đồng thuận 18/20 ca (90%), thống nhất và viết quy tắc phân biệt nguyên nhân gốc cho 2 ca lệch (Ca 6 → Do người dùng; Ca 13 → Giới hạn hệ thống); điền phương án phát hiện và khắc phục cho Ca 4 (Giới hạn hệ thống) và Ca 17 (Ngầm) trong `report/team/bang_loi.md`; cập nhật Mục 5 vào `report/team/ho_so_launch_v0.md`.
 
 ### Bằng chứng
 
