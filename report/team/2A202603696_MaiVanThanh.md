@@ -17,7 +17,7 @@
 ## 3. Đóng góp cụ thể
 
 - **Bảng A2, A3** (`bang_chi_phi.md`): chi phí mỗi việc thành công 4.472 đ [simulated], gấp 16,3 lần hoá đơn token + tool chia số yêu cầu (274,7 đ); làm lại chiếm 51,8%. Tách theo loại: noi_dia 0,22×, hang_nang 0,69×, quoc_te 1,88×, doi_tac 0,85× so với 12.000 đ [simulated]. Kết luận loại quoc_te khỏi phạm vi vì chạy lại không giúp (lần 1 đúng 30%, lần 2 11,4%, lần 3 2,2%).
-- **pilot_plan.yaml**: tính năm câu D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299) trước khi chọn cách chia. Chọn chia theo nhân viên 20 + 20 vì đủ 20 cụm và tách được tác động; chấp nhận mức chênh 6 điểm (859 yêu cầu/nhóm, DE 6,96) và ghi rõ power chỉ còn 0,64 nếu tác động thật là 5 điểm. Đặt luật an toàn theo tỉ lệ mở lại hiện tại 4,25% (3,97% trong phạm vi), so với đối chứng +2 điểm kèm trần 6%, thay vì ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu.
+- **pilot_plan.yaml**: tính năm câu D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299) trước khi chọn cách chia. Chọn chia theo nhân viên 20 + 20 vì đủ 20 cụm và tách được tác động; chấp nhận mức chênh 6 điểm (859 yêu cầu/nhóm, DE 6,96) và ghi rõ power chỉ còn 0,64 nếu tác động thật là 5 điểm. Đặt luật an toàn theo tỉ lệ mở lại hiện tại 4,25% (3,97% trong phạm vi), so với đối chứng +2 điểm kèm trần 6%, thay vì ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu. Sau góp ý của Phụng: thêm điều kiện đủ 40 nhân viên (nếu chỉ 20 người thì 10 + 10, MDE 8 điểm), lịch thu mẫu ≥ 5.980 yêu cầu/nhóm cộng 7 ngày theo dõi, tách luật hoàn trùng thành luật dừng ngay (tổng 4 luật dừng).
 - **ho_so_launch_v0.md**: soạn trang hồ sơ bảy mục, đề xuất Go có điều kiện cho pilot noi_dia + hang_nang.
 - **TEAM.md**: điền thông tin nhóm, phân vai, phần việc của từng người.
 - **bang_loi.md**: ... (bổ sung sau CP3: nhãn của tôi, tỉ lệ đồng thuận với người gắn nhãn 1)
@@ -25,7 +25,7 @@
 ## 4. Bằng chứng
 
 - File: `report/team/bang_chi_phi.md` (A2, A3), `report/team/pilot_plan.yaml`, `report/team/ho_so_launch_v0.md`, `report/team/bang_loi.md`, `TEAM.md`.
-- Kiểm tra: `yaml.safe_load` đọc được `pilot_plan.yaml`; ngoài dòng chú thích không còn dấu `?`; `grep -rni production report/team` không in gì.
+- Kiểm tra: `yaml.safe_load` đọc được `pilot_plan.yaml`; ngoài dòng chú thích không còn dấu `?`; lệnh tìm từ cấm theo `SUBMISSION.md` trong `report/team` không in gì.
 - Commit: ...
 
 ## 5. Công cụ AI đã dùng

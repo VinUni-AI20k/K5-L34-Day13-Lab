@@ -12,7 +12,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Bùi Anh Dũng | 2A202603687 | 26ai.dungba2@vinuni.edu.vn | buianhdung2kar5 | Người viết code (trước giải lao) → Người kiểm số (sau giải lao) |
-|   2 | ... Phụng | ... | ... | ... | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
+|   2 | Lê Minh Phụng | 2A202603693 | ... | ... | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
 |   3 | Mai Văn Thanh | 2A202603696 | maivanthanh36tb@gmail.com | ... | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Nhóm 3 người nên một người giữ hai vai (Phụng: gắn nhãn 1 và kiểm số). Đổi người viết code sau giờ giải lao: Dũng chuyển sang kiểm số, Phụng chuyển sang viết code, để ít nhất hai người tự tay tính được chi phí.
@@ -29,7 +29,7 @@ Bốn vai của lab:
 Mỗi thành viên có báo cáo riêng trong `report/team/MSSV_HoTen.md`:
 
 - Bùi Anh Dũng: `report/team/2A202603687_BuiAnhDung.md`
-- Phụng: `report/team/..._....md`
+- Lê Minh Phụng: `report/team/2A202603693_LeMinhPhung.md`
 - Mai Văn Thanh: `report/team/2A202603696_MaiVanThanh.md`
 
 ## BuiAnhDung-2A202603687
@@ -48,7 +48,7 @@ Mỗi thành viên có báo cáo riêng trong `report/team/MSSV_HoTen.md`:
 
 - ...
 
-## ...Phụng-...
+## LeMinhPhung-2A202603693
 
 ### Phần việc phụ trách
 

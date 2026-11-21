@@ -21,6 +21,13 @@
 #   Nhóm chấp nhận mức chênh phát hiện được là 6 điểm (cần m ≥ 299 yêu cầu/người, khoảng 3 tuần).
 #   Con số bất lợi: nếu tác động thật chỉ 5 điểm thì power chỉ còn khoảng 0,64 với n = 859 mỗi nhóm.
 #   Giám đốc vận hành phải ký chấp nhận đánh đổi này trước ngày bắt đầu.
+#   Điều kiện đủ cụm: CSV chạy thử chỉ có 20 staff_id ở 6 depot, nên chia 20 + 20 cần đủ 40 nhân viên CSKH
+#   ở cả 12 depot. Nếu chỉ có 20 người (10 + 10 cụm), n hiệu dụng tối đa < 10 / 0,02 = 500: mức chênh 6 điểm
+#   không đạt; chỉ thấy được 8 điểm (471/nhóm, cần m ≥ 796, khoảng 26 ngày làm việc) và phải ghi rõ dưới 20 cụm.
+#
+# Thời gian thu mẫu: phạm vi noi_dia + hang_nang ≈ 1.500/ngày × 982/1.200 ÷ 40 người ≈ 30,7 yêu cầu/người/ngày,
+#   nên 299 yêu cầu/người cần khoảng 10 ngày làm việc. Mỗi nhóm cần ít nhất 20 × 299 = 5.980 yêu cầu thực tế.
+#   Chỉ đếm mẫu từ bước rollout 0.50, sau đó chờ đủ 7 ngày theo dõi mở lại rồi mới chốt số cho cả hai nhóm.
 #
 # Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn:
 #   Toàn mẫu 4,25% (51/1.200); trong phạm vi noi_dia + hang_nang 3,97% (39/982).
@@ -28,7 +35,17 @@
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
-  scope: "Chỉ noi_dia và hang_nang ở 6 depot đợt chạy thử (A3: 0,22× và 0,69× so với 12.000 đ, simulated); loại quoc_te (1,88×, thành công 27,3%) và doi_tac (0,85×, điều khoản riêng)"
+  scope: "Chỉ noi_dia và hang_nang (A3: 0,22× và 0,69× so với 12.000 đ, simulated), 40 nhân viên CSKH ở 12 depot; loại quoc_te (1,88×, thành công 27,3%) và doi_tac (0,85×, điều khoản riêng)"
+  preconditions:
+    - "Giám đốc vận hành xác nhận đủ 40 nhân viên đủ điều kiện trước ngày bắt đầu; nếu chỉ 20 người thì chia 10 + 10, MDE 8 điểm và ghi rõ dưới 20 cụm"
+    - "Giám đốc vận hành ký chấp nhận MDE 6 điểm (power 0,64 nếu tác động thật là 5 điểm)"
+    - "Kỹ sư trưởng agent bật khoá chống trùng và đối soát sổ cái trước ngày bắt đầu"
+  timeline:
+    start: "2026-12-07"
+    rollout_0_10: "2026-12-07 đến 2026-12-13"
+    rollout_0_25: "2026-12-14 đến 2026-12-20"
+    rollout_0_50_thu_mau: "2026-12-21 đến 2027-01-03 (khoảng 10 ngày làm việc, mục tiêu ≥ 5.980 yêu cầu mỗi nhóm)"
+    theo_doi_mo_lai_7_ngay: "2027-01-04 đến 2027-01-10"
   assignment:
     unit: "staff"
     control_share: 0.5
@@ -48,12 +65,13 @@ pilot:
     spillover_risk: "Trung bình: nhân viên cùng depot có thể chia sẻ câu trả lời; giảm bằng phân quyền theo tài khoản và log lượt mở trợ lý theo staff_id"
     predeclared: "Có: chỉ số chính, MDE 6 điểm, luật dừng và ngày quyết định chốt trong file này trước ngày bắt đầu"
   stop_rules:
-    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng từ 2 điểm trở lên hoặc vượt 6%, hoặc có từ 1 ca hoàn tiền trùng TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và chuyển toàn bộ về nhân viên tự làm KHÔNG THÌ không được sang bước rollout tiếp theo"
+    - "NẾU tỉ lệ mở lại 7 ngày (tính cuốn chiếu theo ngày) của nhóm trợ lý cao hơn đối chứng từ 2 điểm trở lên hoặc vượt 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và chuyển toàn bộ về nhân viên tự làm KHÔNG THÌ không được sang bước rollout tiếp theo"
+    - "NẾU phát hiện từ 1 ca hoàn tiền trùng (cùng mã đơn hoàn 2 lần, qua đối soát sổ cái mỗi giờ) TRONG bất kỳ thời điểm nào của pilot THÌ Giám đốc vận hành tắt trợ lý ngay trong 30 phút, Kỹ sư trưởng agent sửa khoá chống trùng và Kế toán trưởng thu hồi khoản hoàn thừa KHÔNG THÌ không được bật lại trợ lý"
     - "NẾU chi phí mỗi việc thành công (đã cộng chi phí cố định) vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở thêm hang_nang hay depot mới"
     - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo trên số được xem lại) vượt 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên nhóm trợ lý trong 3 ngày và báo cáo nguyên nhân KHÔNG THÌ không được chuyển bước rollout"
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
   rollback: "Giám đốc vận hành bấm cờ tắt trợ lý, hiệu lực trong 30 phút; khách được phục vụ bằng luồng nhân viên tự làm như trước pilot"
-  decision_date: "2027-01-05"
+  decision_date: "2027-01-12"            # sau khi đủ 7 ngày theo dõi mở lại (2027-01-10)
   simulated_inputs:
     - "phut_xem_lai_simulated (chi phí xem lại trong A2, A3, A4)"
     - "phut_lam_lai_simulated (chi phí làm lại trong A2, A3, A4)"
