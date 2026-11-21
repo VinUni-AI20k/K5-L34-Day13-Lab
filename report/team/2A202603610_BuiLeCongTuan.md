@@ -31,7 +31,7 @@
 ## 5. Công cụ AI đã dùng
 
 - Sử dụng **Antigravity** để gợi ý cấu trúc code Python tính cỡ mẫu CP4 (`co_mau_hai_ti_le`, `tinh_co_mau_cp4`), rà soát cú pháp YAML/Markdown và kiểm tra tính nhất quán giữa các file hồ sơ.
-- Tự kiểm tra lại bằng cách chạy script Python trực tiếp trên `src/logix_requests.csv` để đối chiếu toàn bộ số liệu D1 (`1251`, `3103`, `859`, `299`, `6.96`) và E1 (`994/1200 = 82,83%`, `48/177 = 27,12%`, `51/1200 = 4,25%`), kiểm tra `yaml.safe_load` cho `pilot_plan.yaml` và rà soát không còn từ `"production"` hay dấu `?` ngoài chú thích.
+- Tự kiểm tra lại bằng cách chạy script Python trực tiếp trên `src/logix_requests.csv` để đối chiếu toàn bộ số liệu D1 (`1251`, `3103`, `859`, `299`, `6.96`) và E1 (`994/1200 = 82,83%`, `48/177 = 27,12%`, `51/1200 = 4,25%`), kiểm tra `yaml.safe_load` cho `pilot_plan.yaml` và rà soát không vi phạm quy tắc từ cấm của Gate 2a hay còn dấu `?` ngoài chú thích.
 
 ## 6. Tự đánh giá
 
