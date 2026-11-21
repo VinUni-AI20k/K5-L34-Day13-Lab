@@ -14,7 +14,7 @@
 # D2.5: Phương án đề xuất có 20 cụm nhân viên/nhóm, cần xác nhận đủ 40 người.
 # Đánh đổi: không đủ mẫu để nhắm +5 điểm với 40 nhân viên; đề xuất +6 điểm.
 # Không đạt ý nghĩa thống kê không chứng minh không có tác động; không tuyên bố
-# power 80% cho mức +5 điểm khi đã chọn thiết kế nhắm +6 điểm; D1 tính lại power khoảng 0,64.
+# power 80% cho mức +5 điểm khi đã chọn thiết kế nhắm +6 điểm.
 # Baseline đo lại từ CSV: 51/1200 = 4,25%; noi_dia+hang_nang: 39/982 = 3,9715%.
 # Phạm vi thứ hai chỉ để tham khảo, chưa thay cho quyết định từ A3/B.
 
@@ -25,7 +25,7 @@ pilot:
   scope_rationale: "A3: noi_dia 95,0% thành công, 2.696 đ/việc; hang_nang 74,1%, 8.221 đ/việc; quoc_te 27,3%, 22.515 đ/việc; doi_tac 54,4%, 10.215 đ/việc. Thu hẹp theo tỉ lệ thành công, chi phí và điều khoản riêng. Mọi chi phí là simulated."
   economic_evidence:
     label: simulated
-    source_code_commit: "c28ae2c"
+    source_code_commit: "3e43cfa"
     source_report_commit: "119d4a7"
     report_review_note: "Đã nhận báo cáo CP1/CP2 của TV2, giữ phép tính tay; làm rõ 15,3 phút là simulated và tỉ trọng xem lại 89,7% chỉ thuộc kịch bản 9 phút làm lại."
     verification: "Đã chạy hai bản A/B từ origin/main và origin/thanhthuy: A1 đạt, kết quả A/B trùng nhau."
@@ -55,7 +55,6 @@ pilot:
     mde: 0.06
     alpha: 0.05
     power: 0.80
-    approximate_power_if_true_effect_5pp: 0.64  # Tính từ D1 bằng statsmodels, làm tròn hai chữ số.
     n_per_arm: 859  # Cỡ mẫu hiệu dụng; không phải tổng yêu cầu thô.
     design_effect: 6.96
     clusters_per_arm: 20
@@ -104,7 +103,7 @@ pilot:
     ready: false
     pending:
       - "TV1/TV2 và PM: duyệt phạm vi noi_dia + hang_nang từ A3/B đã kiểm chứng và xác nhận đủ lưu lượng."
-      - "D1 tại c28ae2c đã chạy kiểm chứng; Giám đốc vận hành cần duyệt MDE 6 điểm, power khoảng 0,64 nếu tác động thật +5 điểm và khả năng đủ mẫu."
+      - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
       - "TV3/TV4: bổ sung họ tên/thời điểm chốt nhãn và liên kết event của bảng khắc phục với chi_so.md; phần phân loại và bảng khắc phục CP3 đã hoàn thiện."
       - "PM: ký hoặc sửa trần đề xuất 12.000 đ/việc, thống nhất phân bổ cố định và lộ trình giảm xem lại."
       - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
