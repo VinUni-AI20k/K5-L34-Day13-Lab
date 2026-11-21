@@ -17,7 +17,7 @@
 |   2 | Nguyễn Trung Duy | 2A202603387 | duy321111@gmail.com | duy321111 | Bảng chi phí và độ nhạy B |
 |   3 | Chu Mai Hồng | 2A202603377 | | | Phân loại lỗi C và phiếu duyệt chéo |
 |   4 | Phạm Việt Hưng | 2A202603370 | hungphamm1507@gmail.com | rachel157 | Thiết kế pilot D và gắn nhãn độc lập lần hai |
-|   5 | Trần Việt Tiến | 2A202603394 | | | Chỉ số, event và hồ sơ Gate 2a E |
+|   5 | [Trần Việt Tiến](report/team/2A202603394_TranVietTien.md) | 2A202603394 | | | Người 5 — Nhiệm vụ E, chỉ số, event và người giữ hồ sơ Gate 2a |
 
 Người 1 phụ trách tích hợp `src/lab13.py`. Người 2 và Người 4 gửi lần lượt phần tính B và D1 cho Người 1. Người 2 kiểm số chi phí độc lập trước khi điền bảng. Người 3 và Người 4 giữ riêng hai bộ nhãn cho đến khi cả hai hoàn tất.
 
@@ -82,3 +82,21 @@ Thêm mục đóng góp cho từng thành viên theo phần việc đã thực h
 - [Kế hoạch pilot](report/team/pilot_plan.yaml) (`yaml.safe_load` hợp lệ, không còn dấu `?`).
 - [Code D1](src/lab13_d.py) tích hợp và chạy qua `src/lab13.py`.
 - [Báo cáo cá nhân](report/team/2A202603370_PhamVietHung.md).
+
+## Trần Việt Tiến — 2A202603394
+
+### Phần việc phụ trách
+
+- Người 5, nhiệm vụ E; phụ trách `chi_so.md`, `ho_so_launch_v0.md` và báo cáo cá nhân.
+
+### Đóng góp cụ thể
+
+- Tính ba chỉ số từ CSV, đề xuất thêm hai chỉ số và lập 12 event có `trace_id`.
+- Tổng hợp ba rủi ro kinh tế từ B1/B4, ghi nhãn `simulated`.
+- Viết hồ sơ Gate 2a bảy mục, chuẩn bị lời trình bày và rà soát bài nộp theo A–D.
+
+### Bằng chứng
+
+- [Chỉ số và rủi ro](report/team/chi_so.md) có kết quả 82,83%, 27,12%, 4,25%, công thức và danh sách event.
+- [Hồ sơ Gate 2a](report/team/ho_so_launch_v0.md) đề xuất Go có điều kiện, nêu số bất lợi và các điều kiện cần nhóm xác nhận.
+- [Báo cáo cá nhân](report/team/2A202603394_TranVietTien.md) ghi rõ đóng góp, công cụ AI và việc cần tự kiểm tra.
