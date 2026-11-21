@@ -36,7 +36,7 @@ Báo cáo ngắn, tối đa 2 trang. Số liệu chi tiết nằm trong các fil
 
 ## 6. Tổng hợp đóng góp
 
-Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md` và các báo cáo cá nhân `report/team/MSSV_HoTen.md`.
+Phân công của nhóm nằm trong `TEAM.md`; đóng góp chi tiết nằm trong bốn báo cáo cá nhân: `2A202603532_LuuThanhMy.md`, `2A202603537_NguyenThiHongHanh.md`, `2A202603558_PhamDucHongDuc.md`, `2A202603610_BuiLeCongTuan.md`.
 
 ## 7. Hạn chế và hướng cải thiện
 
