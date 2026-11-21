@@ -199,6 +199,43 @@ if __name__ == '__main__':
           f'tong={b4_tong_thuc_te:,.0f}d cps={b4_cps_thuc_te:,.0f}d '
           f'({b4_cps_thuc_te / BASELINE:.2f}x baseline)')
 
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # CP4 · Nhiệm vụ D1: cỡ mẫu cho pilot (baseline=0.70, alpha=0.05, power=0.80, ICC=0.02).
+    from statistics import NormalDist
+    from statsmodels.stats.proportion import proportion_effectsize
+    from statsmodels.stats.power import NormalIndPower
+
+    def co_mau(p1, p2, alpha=0.05, power=0.80):
+        za = NormalDist().inv_cdf(1 - alpha / 2)
+        zb = NormalDist().inv_cdf(power)
+        pb = (p1 + p2) / 2
+        return math.ceil(
+            (za * math.sqrt(2 * pb * (1 - pb))
+             + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+            / (p2 - p1) ** 2
+        )
+
+    icc = 0.02
+    n_yc_5 = co_mau(0.70, 0.75)
+    de_75 = 1 + (75 - 1) * icc
+    n_nv_75 = math.ceil(n_yc_5 * de_75)
+    so_nv_can = math.ceil(n_nv_75 / 75)
+    tran_20_nv = int(20 / icc)
+    tran_6_depot = int(6 / icc)
+    n_yc_6 = co_mau(0.70, 0.76)
+    m_min_6 = math.ceil(n_yc_6 * (1 - icc) / (20 - n_yc_6 * icc))
+    de_6 = 1 + (m_min_6 - 1) * icc
+    power_5_at_859 = NormalIndPower().power(
+        effect_size=proportion_effectsize(0.75, 0.70), nobs1=n_yc_6, alpha=0.05, ratio=1.0
+    )
+    mo_lai_chung = reqs['mo_lai_trong_7_ngay'].mean()
+    mo_lai_pv = pilot['mo_lai_trong_7_ngay'].mean()
+    print('D1 · Co mau (baseline=0.70, alpha=0.05, power=0.80, ICC=0.02)')
+    print(f'a) Chia theo yeu cau (+5 diem): {n_yc_5:,} yeu cau/nhom')
+    print(f'b) Chia theo nhan vien (m=75): DE={de_75:.2f}, can {n_nv_75:,} yc/nhom '
+          f'({so_nv_can} nguoi/nhom, tong {so_nv_can * 2} > 40 -> khong du nguoi)')
+    print(f'c) 20 nhan vien/nhom: tran toi da < {tran_20_nv:,} (< {n_yc_5:,} -> khong dat)')
+    print(f'd) 6 depot/nhom: tran toi da < {tran_6_depot:,} (< {n_yc_5:,} -> khong dat)')
+    print(f'e) Muc chenh +6 diem ({n_yc_6}/nhom), 20 nguoi/nhom: m >= {m_min_6} yc/nguoi '
+          f'(DE={de_6:.2f}; power neu tac dong that +5 diem: {power_5_at_859:.2f})')
+    print(f'D3 · Ty le mo_lai_trong_7_ngay hien tai: toan_bo={mo_lai_chung:.2%}, '
+          f'pham_vi_pilot={mo_lai_pv:.2%}')
