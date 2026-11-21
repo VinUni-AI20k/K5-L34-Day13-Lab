@@ -146,11 +146,17 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Đóng góp cụ thể
 
--
+- CP1–CP2: kiểm số độc lập A1–A4 và B1–B4 bằng script riêng, không gọi `mo_hinh`. Mọi số khớp `src/lab13.py`, lệch dưới 0,01%. Tự kiểm tuyến tính B1: tỉ số tăng ÷ giảm = 2,000 ở cả ba cặp.
+- CP4: viết `co_mau`, `he_so_thiet_ke`, `m_toi_thieu`, `in_bang_d1` và `in_ti_le_mo_lai` trong `src/lab13.py`. Kết quả: 1.251; DE 2,48 → 3.103 mỗi nhóm; tối đa 1.000; tối đa 300; m ≥ 299 (DE 6,96); power 0,64 ở 5 điểm; tỉ lệ mở lại 4,25% và 3,97% trong phạm vi.
+- CP5: viết `in_bang_e1` và tính thử 3 chỉ số (82,83% · 27,12% · 4,25%). Điền E1, 11 event và phần kiểm tra chéo trong `chi_so.md`.
+- Soạn nháp `pilot_plan.yaml` và mục 4, 6, 7 cùng dòng đề xuất của `ho_so_launch_v0.md` để chủ file (Cường, Dũng) soát. Điền `group_report.md`.
 
 ### Bằng chứng
 
--
+- Commit `6558362` (bảng chi phí phần A), `333975a` (CP2 B1, B3).
+- `src/lab13.py`: các hàm D1 và E1; `python lab13.py` in đủ A1 → E1.
+- `report/team/bang_chi_phi.md`: bảng tự kiểm tuyến tính và ghi chú "Kiểm số độc lập".
+- `report/team/chi_so.md`, `report/team/pilot_plan.yaml`, `report/team/group_report.md`.
 
 ## NguyenTienCuong-2A202603425
 

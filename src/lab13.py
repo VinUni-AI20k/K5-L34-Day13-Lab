@@ -263,6 +263,115 @@ def in_bang_b4(runs, reqs):
         )
 
 
+# ---------- Nhiệm vụ D · Cỡ mẫu pilot ----------
+P_GOC = 0.70        # chỉ số chính hiện tại (cho sẵn)
+MDE = 0.05          # mục tiêu +5 điểm
+ALPHA = 0.05
+POWER = 0.80
+ICC = 0.02
+SO_NHAN_VIEN = 40
+SO_DEPOT = 12
+
+
+def co_mau(p1, p2, alpha=ALPHA, power=POWER):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ (công thức z hai phía, làm tròn lên)."""
+    from statistics import NormalDist
+    za = NormalDist().inv_cdf(1 - alpha / 2)
+    zb = NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    tu = za * math.sqrt(2 * pb * (1 - pb)) + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))
+    return math.ceil(tu ** 2 / (p2 - p1) ** 2)
+
+
+def he_so_thiet_ke(m, icc=ICC):
+    """DE = 1 + (m − 1) × ICC, m = số yêu cầu mỗi cụm."""
+    return 1 + (m - 1) * icc
+
+
+def m_toi_thieu(n_can, c, icc=ICC):
+    """Số yêu cầu tối thiểu mỗi cụm để c × m / DE ≥ n_can. Trả None nếu không bao giờ đạt (n_can ≥ c / ICC)."""
+    if n_can * icc >= c:
+        return None
+    # c·m ≥ n·(1 − ICC + ICC·m)  →  m·(c − n·ICC) ≥ n·(1 − ICC)
+    return math.ceil(n_can * (1 - icc) / (c - n_can * icc))
+
+
+def in_bang_d1():
+    """Năm câu D1 và power ở mức 5 điểm nếu chọn thiết kế cho mức chênh 6 điểm."""
+    from statsmodels.stats.power import NormalIndPower
+    from statsmodels.stats.proportion import proportion_effectsize
+
+    n_5 = co_mau(P_GOC, P_GOC + MDE)
+    n_6 = co_mau(P_GOC, P_GOC + 0.06)
+
+    print('\n=== D1 · Cỡ mẫu (baseline 0,70; +5 điểm; alpha 0,05; power 0,8; ICC 0,02) ===')
+    print(f'  a) Chia theo yêu cầu: co_mau(0.70, 0.75) = {n_5:,} yêu cầu mỗi nhóm')
+
+    de_75 = he_so_thiet_ke(75)
+    n_b = math.ceil(n_5 * de_75)
+    nguoi_b = math.ceil(n_b / 75)
+    print(
+        f'  b) Theo nhân viên, m = 75: DE = {de_75:.2f}; n = {n_5:,} × {de_75:.2f} = {n_b:,} mỗi nhóm '
+        f'→ {nguoi_b} người mỗi nhóm, tổng {2 * nguoi_b} > {SO_NHAN_VIEN}: không đủ người'
+    )
+    tran_c = 20 / ICC
+    print(f'  c) 20 nhân viên mỗi nhóm: cỡ mẫu hiệu dụng tối đa = 20 / 0,02 = {tran_c:,.0f} < {n_5:,}: không đạt')
+    tran_d = 6 / ICC
+    print(f'  d) 6 depot mỗi nhóm: cỡ mẫu hiệu dụng tối đa = 6 / 0,02 = {tran_d:,.0f}')
+    m_e = m_toi_thieu(n_6, 20)
+    de_e = he_so_thiet_ke(m_e)
+    n_hd_e = 20 * m_e / de_e
+    print(
+        f'  e) Mức chênh 6 điểm: co_mau(0.70, 0.76) = {n_6:,} mỗi nhóm; 20 người mỗi nhóm cần '
+        f'm ≥ {m_e} yêu cầu mỗi người (DE = {de_e:.2f}, cỡ mẫu hiệu dụng {n_hd_e:,.0f})'
+    )
+
+    es_5 = proportion_effectsize(P_GOC + MDE, P_GOC)
+    power_5 = NormalIndPower().power(effect_size=es_5, nobs1=n_6, alpha=ALPHA, ratio=1.0)
+    print(f'  Con số bất lợi: thiết kế cho 6 điểm (n = {n_6:,}) mà tác động thật chỉ 5 điểm → power = {power_5:.2f}')
+
+    yc_ngay_nguoi = 1500 / SO_NHAN_VIEN
+    return dict(n_5=n_5, n_6=n_6, de_75=de_75, n_b=n_b, m_e=m_e, de_e=de_e, power_5=power_5,
+                yc_ngay_nguoi=yc_ngay_nguoi)
+
+
+def in_ti_le_mo_lai(reqs):
+    """Tỉ lệ mở lại trong 7 ngày hiện tại, dùng để đặt luật dừng an toàn."""
+    pv = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    toan_bo = reqs['mo_lai_trong_7_ngay'].mean()
+    pham_vi = pv['mo_lai_trong_7_ngay'].mean()
+    ti_le_pv = len(pv) / len(reqs)
+    yc_ngay_nguoi_pv = 1500 / SO_NHAN_VIEN * ti_le_pv
+    print('\n=== D3 · Dữ liệu để đặt luật dừng ===')
+    print(
+        f'  Mở lại trong 7 ngày: toàn mẫu {toan_bo * 100:.2f}% ({int(reqs["mo_lai_trong_7_ngay"].sum())}/{len(reqs)}), '
+        f'phạm vi noi_dia + hang_nang {pham_vi * 100:.2f}% ({int(pv["mo_lai_trong_7_ngay"].sum())}/{len(pv)})'
+    )
+    print(
+        f'  Phạm vi pilot chiếm {ti_le_pv * 100:.1f}% yêu cầu → khoảng {yc_ngay_nguoi_pv:.1f} yêu cầu '
+        f'mỗi nhân viên mỗi ngày (1.500 / 40 × {ti_le_pv:.3f})'
+    )
+    ll_pv = (pv['ket_qua'] == 'lam_lai').mean()
+    print(f'  Tỉ lệ làm lại trong phạm vi: {ll_pv * 100:.1f}% ({int((pv["ket_qua"] == "lam_lai").sum())}/{len(pv)})')
+    return dict(toan_bo=toan_bo, pham_vi=pham_vi, yc_ngay_nguoi_pv=yc_ngay_nguoi_pv)
+
+
+# ---------- Nhiệm vụ E1 · Tính thử ba chỉ số ----------
+def in_bang_e1(reqs):
+    """Ba chỉ số trong đợt chạy thử (không có nhóm đối chứng, nên không nói 'trợ lý đã nâng')."""
+    chinh_mask = (reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    bo_qua_mask = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo'])
+    an_toan_mask = reqs['mo_lai_trong_7_ngay'] == 1
+
+    print('\n=== E1 · Chỉ số trong đợt chạy thử ===')
+    print(f'  Chính: đóng trong 24 giờ và không mở lại 7 ngày = {chinh_mask.mean() * 100:.2f}% ({int(chinh_mask.sum())}/{len(reqs)})')
+    print(f'  Dùng: bỏ qua gợi ý (sua + bo) / được xem lại = {bo_qua_mask.mean() * 100:.2f}% ({int(bo_qua_mask.sum())}/{len(xem)})')
+    print(f'  An toàn: mở lại trong 7 ngày = {an_toan_mask.mean() * 100:.2f}% ({int(an_toan_mask.sum())}/{len(reqs)})')
+    print(f'  Tỉ lệ được xem lại: {len(xem) / len(reqs) * 100:.2f}% ({len(xem)}/{len(reqs)})')
+    print('  Phân bố quyết định xem lại:', xem['quyet_dinh_xem_lai'].value_counts().to_dict())
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
@@ -273,6 +382,8 @@ if __name__ == '__main__':
     in_bang_b1_b2(runs, reqs, kq_a2['cps'])
     in_bang_b3(runs, reqs)
     in_bang_b4(runs, reqs)
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # CP4 · Nhiệm vụ D: cỡ mẫu và dữ liệu cho luật dừng.
+    in_bang_d1()
+    in_ti_le_mo_lai(reqs)
+    # CP5 · Nhiệm vụ E1: tính thử ba chỉ số.
+    in_bang_e1(reqs)
