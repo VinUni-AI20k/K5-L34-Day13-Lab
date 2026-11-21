@@ -1,4 +1,4 @@
-# Bảng chi phí · Nhiệm vụ A và B
+﻿# Bảng chi phí · Nhiệm vụ A và B
 
 Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` ghi nhãn `simulated`. Mỗi câu trả lời không quá ba dòng, có ít nhất một con số.
 
@@ -30,7 +30,7 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 | Hoá đơn token và tool chia cho số yêu cầu | 274,7 | (token + tool) / 1.200 | đo từ trace |
 
 - Chi phí mỗi việc thành công khoảng **16,3 lần** hoá đơn token và tool chia cho số yêu cầu (4.472 / 274,7 đồng, simulated).
-- **Làm lại** chiếm phần lớn nhất: 2.264.000 đồng, tương đương **51,8%** tổng chi phí [simulated]. Xem lại chiếm 40,7% [simulated] (tổng giờ nhân viên chiếm 92,5%).
+- **Làm lại** chiếm phần lớn nhất: 2.264.000 đồng, tương đương **51,8%** tổng chi phí [simulated]. Xem lại chiếm 40,7% [simulated] (chi phí nhân viên chiếm 92,5% tổng chi phí).
 
 ## A3 · Tách theo loại yêu cầu
 
@@ -79,9 +79,9 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 | 2 lần | 4.093.220 đ [simulated] | 234 | 6.901.220 đ [simulated] | 4.237 đ [simulated] |
 | 3 lần | 4.373.585 đ [simulated] | 222 | 7.037.585 đ [simulated] | 4.472 đ [simulated] |
 
-- Giới hạn nào rẻ nhất cho công ty? Có trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất không? Giới hạn **2 lần** rẻ nhất cho công ty (**6.901.220 đ**, simulated), không trùng với giới hạn **1 lần** có chi phí mỗi việc thành công thấp nhất (**4.111 đ**), vì giới hạn 1 lần đẩy thêm **85** việc sang nhân viên (`12.000 đ`/việc).
+- Giới hạn **2 lần** rẻ nhất cho công ty (**6.901.220 đ**, simulated), không trùng với giới hạn **1 lần** có chi phí mỗi việc thành công thấp nhất (**4.111 đ**), vì giới hạn 1 lần đẩy thêm **85** việc sang nhân viên (`12.000 đ`/việc).
 
 ## B4 · Nếu phải xem lại tất cả
 
-- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: Với 9 phút/ca làm lại là **11.743 đ = 0,98×** [simulated]; với trung bình thực tế `15,3 phút/ca` là **12.415 đ = 1,03×** [simulated] (đắt hơn nhân viên tự làm). Mức hoà vốn xem lại là `≤ 5,1 phút` (hoặc `≤ 4,8 phút` với 15,3 phút làm lại).
-- Kết quả này nói gì về thứ pilot cần học được? Pilot phải đo được **tỉ lệ xem lại có thể giảm an toàn xuống mức nào** và **mỗi lần xem lại có rút ngắn dưới 5 phút được không**, vì tiền xem lại chiếm **90%** tổng chi phí (`9.480.000 đ`, simulated).
+- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: Với 9 phút/ca làm lại là **11.743 đ = 0,98×** [simulated]; với thời gian làm lại trung bình từ dữ liệu `simulated` là `15,3 phút/ca` là **12.415 đ = 1,03×** [simulated] (đắt hơn nhân viên tự làm). Mức hoà vốn xem lại là `≤ 5,1 phút` (hoặc `≤ 4,8 phút` với 15,3 phút làm lại).
+- Pilot phải đo được **tỉ lệ xem lại có thể giảm an toàn xuống mức nào** và **mỗi lần xem lại có rút ngắn dưới 5 phút được không**, vì tiền xem lại chiếm **89,7%** tổng chi phí ở kịch bản làm lại 9 phút/ca (`9.480.000 / 10.568.513 đ`, simulated).
