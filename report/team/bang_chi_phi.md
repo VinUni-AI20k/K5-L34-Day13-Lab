@@ -88,12 +88,12 @@ Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu 
 | 3 lần | 4.373.585 đ | 222 | 7.037.585 đ | 4.472 đ |
 
 - Giới hạn **2 lần** rẻ nhất cho công ty: 6.901.220 đ, rẻ hơn 136.365 đ so với 3 lần [simulated]. Giới hạn này **không trùng** với giới hạn cho chi phí mỗi việc thành công thấp nhất (1 lần, 4.111 đ).
-- Chọn 1 lần để tối ưu chi phí mỗi việc thành công sẽ đẩy thêm 85 việc sang nhân viên, làm chi phí cả hệ thống tăng 548.561 đ so với 2 lần.
+- Chọn 1 lần để tối ưu chi phí mỗi việc thành công sẽ đẩy thêm 85 việc sang nhân viên (319 so với 234), làm chi phí cả hệ thống tăng 548.561 đ so với 2 lần [simulated].
 
 ## B4 · Nếu phải xem lại tất cả
 
-Phạm vi `noi_dia` + `hang_nang` gồm 982 yêu cầu. Có 948 yêu cầu có ít nhất một lần chạy ok, xem lại 5 phút mỗi yêu cầu (9.480.000 đ). Có 48 ca làm lại. Token và tool là 224.513 đ. Có 900 việc thành công.
+Phạm vi `noi_dia` + `hang_nang` gồm 982 yêu cầu. Có 948 yêu cầu có ít nhất một lần chạy ok, xem lại 5 phút mỗi yêu cầu (9.480.000 đ) [simulated]. Có 48 ca làm lại. Token và tool là 224.513 đ (đo từ trace). Có 900 việc thành công.
 
 - Xem lại 100%, giả định đề 9 phút/ca làm lại: tổng 10.568.513 đ, tức **11.743 đ mỗi việc thành công = 0,98× của 12.000 đ** [simulated]. Nếu dùng phút làm lại thực tế trong dữ liệu (trung bình 15,3 phút/ca) thì ra 12.415 đ = **1,03×**, đắt hơn nhân viên tự làm [simulated].
 - Xem lại 100% thì trợ lý gần như không tiết kiệm được gì, vì tiền xem lại chiếm khoảng 90% chi phí. Mức hoà vốn là mỗi lần xem lại ≤ 5,1 phút (≤ 4,8 phút nếu tính 15,3 phút làm lại) [simulated].
-- Pilot cần học được hai điều: tỉ lệ xem lại có thể giảm an toàn xuống mức nào, và mỗi lần xem lại có rút xuống dưới 5 phút được không.
+- Pilot cần học được hai điều: tỉ lệ xem lại có thể giảm an toàn từ 100% xuống mức nào, và mỗi lần xem lại có rút từ 5 phút xuống dưới mức hoà vốn 5,1 phút được không [simulated].
