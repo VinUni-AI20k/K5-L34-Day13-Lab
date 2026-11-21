@@ -12,9 +12,9 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Lưu Thanh Mỹ | 2A202603532 | Data97688@gmail.com | aialphaproduct | Trưởng nhóm · Người gắn nhãn 2 · Giữ hồ sơ |
-|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com |  | Người viết code (CP1–CP2) |
-|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com |  | Người kiểm số |
-|   4 | Bùi Lê Công Tuấn | 2A202603610 | blct15102004@gmail.com |  | Người gắn nhãn 1 · Người viết code (CP4) |
+|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com | hanhshi96 | Người viết code (CP1–CP2) |
+|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com | DucPham1501 | Người kiểm số |
+|   4 | Bùi Lê Công Tuấn | 2A202603610 | blct15102004@gmail.com | blct15102004 | Người gắn nhãn 1 · Người viết code (CP4) |
 
 Bốn vai của lab:
 
