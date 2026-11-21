@@ -4,47 +4,58 @@
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: ... · Người gắn nhãn 2: ... (gắn trong 8 phút, không trao đổi)
+Người gắn nhãn 1: Người 3 (phân loại lõi C) · Người gắn nhãn 2: Người 4 (gắn độc lập, giữ riêng bộ nhãn đến khi cả hai hoàn thành) — gắn trong 8 phút, không trao đổi.
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
-| 1 | ... | ... | ... | ... |
-| 2 | ... | ... | ... | ... |
-| 3 | ... | ... | ... | ... |
-| 4 | ... | ... | ... | ... |
-| 5 | ... | ... | ... | ... |
-| 6 | ... | ... | ... | ... |
-| 7 | ... | ... | ... | ... |
-| 8 | ... | ... | ... | ... |
-| 9 | ... | ... | ... | ... |
-| 10 | ... | ... | ... | ... |
-| 11 | ... | ... | ... | ... |
-| 12 | ... | ... | ... | ... |
-| 13 | ... | ... | ... | ... |
-| 14 | ... | ... | ... | ... |
-| 15 | ... | ... | ... | ... |
-| 16 | ... | ... | ... | ... |
-| 17 | ... | ... | ... | ... |
-| 18 | ... | ... | ... | ... |
-| 19 | ... | ... | ... | ... |
-| 20 | ... | ... | ... | ... |
+| 1 | Do người dùng | *(chờ Người 4)* | *(chờ)* | Do người dùng (đề xuất) |
+| 2 | Hệ thống | *(chờ Người 4)* | *(chờ)* | Hệ thống (đề xuất) |
+| 3 | Ngữ cảnh | *(chờ Người 4)* | *(chờ)* | Ngữ cảnh (đề xuất) |
+| 4 | Giới hạn hệ thống | *(chờ Người 4)* | *(chờ)* | Giới hạn hệ thống (đề xuất) |
+| 5 | Ngầm | *(chờ Người 4)* | *(chờ)* | Ngầm (đề xuất) |
+| 6 | Do người dùng | *(chờ Người 4)* | *(chờ)* | Do người dùng (đề xuất) |
+| 7 | Hệ thống | *(chờ Người 4)* | *(chờ)* | Hệ thống (đề xuất) |
+| 8 | Hệ thống | *(chờ Người 4)* | *(chờ)* | Hệ thống (đề xuất) |
+| 9 | Do người dùng | *(chờ Người 4)* | *(chờ)* | Do người dùng (đề xuất) |
+| 10 | Ngữ cảnh | *(chờ Người 4)* | *(chờ)* | Ngữ cảnh (đề xuất) |
+| 11 | Giới hạn hệ thống | *(chờ Người 4)* | *(chờ)* | Giới hạn hệ thống (đề xuất) |
+| 12 | Ngầm | *(chờ Người 4)* | *(chờ)* | Ngầm (đề xuất) |
+| 13 | Giới hạn hệ thống | *(chờ Người 4)* | *(chờ)* | Giới hạn hệ thống (đề xuất) |
+| 14 | Do người dùng | *(chờ Người 4)* | *(chờ)* | Do người dùng (đề xuất) |
+| 15 | Hệ thống | *(chờ Người 4)* | *(chờ)* | Hệ thống (đề xuất) |
+| 16 | Ngữ cảnh | *(chờ Người 4)* | *(chờ)* | Ngữ cảnh (đề xuất) |
+| 17 | Ngầm | *(chờ Người 4)* | *(chờ)* | Ngầm (đề xuất) |
+| 18 | Ngữ cảnh | *(chờ Người 4)* | *(chờ)* | Ngữ cảnh (đề xuất) |
+| 19 | Giới hạn hệ thống | *(chờ Người 4)* | *(chờ)* | Giới hạn hệ thống (đề xuất) |
+| 20 | Hệ thống | *(chờ Người 4)* | *(chờ)* | Hệ thống (đề xuất) |
 
-**Tỉ lệ đồng thuận:** ... / 20 = ...%
+Ghi chú nhãn Người 1 (theo nguyên nhân gốc):
+- Ca 1, 6, 9, 14: đầu vào của khách sai (thiếu số, chọn sai mục, sai mã, bấm nhầm) — việc trợ lý không gợi ý hay không phát hiện là điểm cải thiện, thuộc cột khắc phục, không đổi nhãn.
+- Ca 2, 7, 8, 15, 20: trợ lý làm sai so với thiết kế/chính sách và lỗi đã lộ ra (khách mở lại, nhân viên bắt được, trích dẫn nhìn thấy được).
+- Ca 3, 10, 16, 18: kết quả đúng theo thiết kế, chỉ giả định (khách hiểu kênh hoàn tiền, hiểu cách tính, chấp nhận lịch gửi) không khớp hoàn cảnh.
+- Ca 4, 11, 13, 19: không thể trả lời — thiếu dữ liệu, ngoài phạm vi, đầu vào không xử lý được; ngoài phạm vi là giới hạn dù trợ lý xử lý kém (ca 13).
+- Ca 5, 12, 17: sai (tiền, chi phí, dữ liệu) nhưng không ai nhận ra cho tới khi kiểm tra mẫu; "sai" có thể là sai về chi phí, không chỉ về câu trả lời.
+
+**Tỉ lệ đồng thuận:** *(chờ bộ nhãn Người 4)* / 20 = ...% — yêu cầu đạt từ 16/20 (80%); nếu thấp hơn, nhóm viết lại định nghĩa loại trước khi đi tiếp.
 
 ## Quy tắc phân biệt cho các ca không trùng
 
-Mỗi ca không trùng một câu. Đồng thuận dưới 80% thì ghi định nghĩa đã viết lại.
+Mỗi ca không trùng một câu. Dưới đây là bộ quy tắc đã chuẩn bị sẵn cho các ca dễ lẫn, dùng khi so với bộ nhãn Người 4:
 
-- ...
+- Ca 6, 9 là **do người dùng**, không phải hệ thống: gốc lỗi là khách chọn sai mục hoặc nhập sai mã; việc trợ lý không gợi ý là việc cần cải thiện, nằm ở cột khắc phục.
+- Ca 13 là **giới hạn hệ thống**: ngoài phạm vi thì là giới hạn, kể cả khi trợ lý xử lý giới hạn đó kém.
+- Ca 8, 15 là **hệ thống**, không phải ngầm: sai đã lộ ra (trích dẫn nhìn thấy được, nhân viên bắt được); ngầm chỉ dùng khi không ai nhận ra cho tới khi kiểm tra.
+- Ca 18 là **ngữ cảnh**: số tiền đúng chính sách, chỉ giả định "khách hiểu cách tính" là không khớp.
+- Ca 12 là **ngầm**: kết quả vẫn đúng nhưng chi phí gấp 3 lần suốt 3 tuần mà không ai thấy; "sai" có thể là sai về chi phí, không chỉ về câu trả lời.
 
 ## Bảng khắc phục cho 5 ca, mỗi loại một ca
 
-Cách phát hiện phải đo được (event, ngưỡng, tần suất). Người phụ trách là một vai trò, không ghi "cả đội".
+Chọn ca: 9 (Do người dùng), 7 (Hệ thống), 18 (Ngữ cảnh), 4 (Giới hạn hệ thống), 17 (Ngầm). Cách phát hiện đo được (event, ngưỡng, tần suất); người phụ trách là một vai trò.
 
 | Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
 | --: | --- | --- | --- | --- |
-| ... | Do người dùng | ... | ... | ... |
-| ... | Hệ thống | ... | ... | ... |
-| ... | Ngữ cảnh | ... | ... | ... |
-| ... | Giới hạn hệ thống | ... | ... | ... |
-| ... | Ngầm | ... | ... | ... |
+| 9 | Do người dùng | Event `input_validation_failed`; cảnh báo khi quá 2% số yêu cầu/ngày | Nhận diện mã sàn TMĐT và tra sang mã vận đơn; không tra được thì hướng dẫn kèm ảnh | PM trợ lý hoàn phí |
+| 7 | Hệ thống | Đối soát mỗi giờ: tin nhắn "đã hoàn" không có bản ghi sổ cái ok cùng `trace_id`; ngưỡng 0 ca | Chỉ báo "đã hoàn" khi sổ cái trả ok; lỗi 503 sau 3 lần thì báo "đang xử lý" và chuyển nhân viên | Kỹ sư trưởng agent |
+| 18 | Ngữ cảnh | Tỉ lệ mở lại vì số tiền mà kiểm tra thấy đúng, theo tuần | Mẫu tin nhắn luôn ghi cách tính: 30.000 đ × 50% = 15.000 đ | Trưởng nhóm CSKH |
+| 4 | Giới hạn hệ thống | Event `handoff_to_staff` với `reason = thieu_du_lieu`, theo loại yêu cầu | Giữ cách chuyển kèm tóm tắt; đưa `quoc_te` ra khỏi pilot | PM trợ lý hoàn phí |
+| 17 | Ngầm | Kiểm tra mẫu 100 đơn/tuần so với bảng giá hiện hành; ngưỡng 1% đơn lệch | Xoá bộ nhớ đệm khi có bảng giá mới, ghi phiên bản bảng giá vào trace | Kế toán trưởng |
