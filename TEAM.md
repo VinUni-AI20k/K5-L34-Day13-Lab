@@ -12,7 +12,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Bùi Anh Dũng | 2A202603687 | 26ai.dungba2@vinuni.edu.vn | buianhdung2kar5 | Người viết code (trước giải lao) → Người kiểm số (sau giải lao) |
-|   2 | Lê Minh Phụng | 2A202603693 | ... | ... | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
+|   2 | Lê Minh Phụng | 2A202603693 | phung8282003@gmail.com | okuminhphen | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
 |   3 | Mai Văn Thanh | 2A202603696 | maivanthanh36tb@gmail.com | MaiVanThanhDev | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Nhóm 3 người nên một người giữ hai vai (Phụng: gắn nhãn 1 và kiểm số). Đổi người viết code sau giờ giải lao: Dũng chuyển sang kiểm số, Phụng chuyển sang viết code, để ít nhất hai người tự tay tính được chi phí.
@@ -65,11 +65,14 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Đóng góp cụ thể
 
-- ...
+- Đối chiếu ba kết quả A1 (1,20 · 1,25 · 1,25), phí token và phí gọi tool ở A2.
+- Bổ sung code cho năm câu D1 và tính tỉ lệ mở lại trong 7 ngày: 4,25% toàn mẫu, 3,97% trong phạm vi pilot.
+- Chuẩn bị 20 nhãn tham khảo có hỗ trợ AI, soát các event có `trace_id` và góp ý về số cụm, lịch lấy mẫu và luật dừng pilot.
 
 ### Bằng chứng
 
-- ...
+- Commit `d9b5aaf` và `2d4f9ac`, đã merge vào `main` qua PR #2.
+- File `src/lab13.py`, `report/team/bang_loi.md`, `report/team/chi_so.md` và [báo cáo cá nhân](report/team/2A202603693_LeMinhPhung.md).
 
 ## MaiVanThanh-2A202603696
 

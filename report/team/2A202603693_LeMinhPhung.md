@@ -1,61 +1,42 @@
-# Báo cáo cá nhân — Lê Minh Phụng
+# Báo cáo cá nhân — LeMinhPhung-2A202603693
 
 ## 1. Thông tin thành viên
 
 - Họ tên: Lê Minh Phụng
 - MSSV: 2A202603693
-- Email: [Phụng bổ sung]
-- Vai trong nhóm: người gắn nhãn 1 và người kiểm số trước giải lao, người viết code D1 sau giải lao.
+- Email: phung8282003@gmail.com
+- GitHub: okuminhphen
+- Vai trong nhóm: Người gắn nhãn 1 và người kiểm số trước giải lao, người viết code D1 sau giải lao.
 
 ## 2. Phần việc phụ trách
 
-- CP1: tính tay A1 và đối chiếu một số dòng của A2.
-- CP3: tự gắn nhãn 20 ca trong mục “Hai mươi ca lỗi” của đề bài, sau đó tính đồng thuận và chốt ca lệch cùng người gắn nhãn 2.
-- CP4: tính năm câu D1 và tỉ lệ mở lại trong 7 ngày để nhóm đặt ngưỡng an toàn.
-- CP5: soát các event có `trace_id`, đối chiếu số trong hồ sơ và kiểm tra phần pilot.
+- **CP1:** Tính tay A1 và đối chiếu phí token, phí gọi tool ở A2.
+- **CP3:** Phụ trách cột nhãn người 1 và đối chiếu bảng lỗi.
+- **CP4:** Viết code cho năm câu D1 và tính tỉ lệ mở lại trong 7 ngày để nhóm chọn ngưỡng an toàn.
+- **CP5:** Soát chỉ số, kiểm tra các event có `trace_id` và góp ý cho kế hoạch pilot.
 
 ## 3. Đóng góp cụ thể
 
-### CP1 · Đối chiếu A1 và A2
-
-- A1, với xác suất mỗi lần chạy đúng là 0,8: tối đa hai lần thì số lần chạy kỳ vọng bằng `1 + 0,2 = 1,20`. Chạy đến khi đúng thì kỳ vọng là `1 / 0,8 = 1,25`. Tối đa ba lần thì chi phí mỗi việc thành công theo giá một lần chạy là `(1 + 0,2 + 0,2²) / (1 − 0,2³) = 1,25`.
-- A2, từ tổng các cột trong `logix_runs.csv`: phí token là `(5.771.712 × 26 + 734.774 × 130) / 1.000 = 245.585,132 đ`. Phí gọi tool là `5.600 × 15 = 84.000 đ`. Hai số khớp bảng A2 sau khi làm tròn.
-- Mọi lần chạy đều phát sinh chi phí, kể cả lần lỗi. Mẫu số chỉ đếm yêu cầu thật sự thành công theo `ket_qua` để đo chi phí trên kết quả đạt được.
-
-### CP3 · So nhãn
-
-Bảng `bang_loi.md` ghi đủ 20 nhãn tham khảo, đã đối chiếu với hướng dẫn Lab 13. Kết quả đồng thuận chờ hai bộ nhãn do Phụng và Thanh tự gắn.
-
-### CP4 · D1 và tỉ lệ mở lại
-
-| Câu | Đối chiếu kết quả |
-| --- | --- |
-| a · Chia theo yêu cầu, chênh 5 điểm | Từ 70% lên 75%, alpha 0,05, power 0,80: cần 1.251 yêu cầu mỗi nhóm. |
-| b · Chia theo nhân viên, 75 yêu cầu mỗi người | `DE = 1 + 74 × 0,02 = 2,48`. Làm tròn lên `1.251 × 2,48` được 3.103 yêu cầu, tương đương 42 nhân viên mỗi nhóm, tổng 84 người so với 40 người của đề bài. |
-| c · 20 nhân viên mỗi nhóm | Cỡ mẫu hiệu dụng `20m / [1 + (m − 1) × 0,02]` tiến tới 1.000 từ dưới, thấp hơn 1.251. |
-| d · 6 depot mỗi nhóm | Cỡ mẫu hiệu dụng tiến tới `6 / 0,02 = 300` từ dưới. |
-| e · Chênh 6 điểm, 20 nhân viên mỗi nhóm | Cần 859 yêu cầu hiệu dụng. Giải `20m / (0,98 + 0,02m) ≥ 859` ra `m ≥ 299` sau khi làm tròn. Với `DE = 6,96`, 5.980 yêu cầu thực tế tương đương 859,20 yêu cầu hiệu dụng mỗi nhóm. Power xấp xỉ 0,64 nếu tác động thật là 5 điểm. |
-
-Trong CSV chạy thử, tỉ lệ `mo_lai_trong_7_ngay` là 51/1.200 = 4,25%. Riêng `noi_dia` và `hang_nang` là 39/982 = 3,97%.
-
-### CP5 · Soát hồ sơ và pilot của nhóm
-
-- `chi_so.md` có 8 event, đủ `trace_id` ở cả 8. Ba số trong hồ sơ của Thanh khớp CSV: chỉ số chính 82,83%, bỏ qua gợi ý 27,12% và mở lại 4,25%. Số chi phí và độ nhạy đã đối chiếu với output A và B.
-- `pilot_plan.yaml` trên nhánh `origin/2A202603696_maivanthanh` đọc được bằng `yaml.safe_load`, hết dấu hỏi và có ba luật dừng đủ bốn vế. Kết quả D1 và số mở lại khớp code. Bản trên `main` vẫn là mẫu chờ tích hợp.
-- Kế hoạch có đối chứng đồng thời và phân ngẫu nhiên theo nhân viên. CSV chỉ ghi nhận 20 `staff_id` ở sáu depot chạy thử. Cần xác nhận có 40 nhân viên đủ điều kiện trong phạm vi pilot để chia 20 + 20. Nếu chỉ có 20 người, mỗi nhóm 10 cụm có giới hạn dưới 500 yêu cầu hiệu dụng.
-- Cần ghi riêng giai đoạn tuyển mẫu ở rollout 50% và thời gian theo dõi mở lại đủ 7 ngày trước ngày quyết định. Mỗi nhóm cần ít nhất 5.980 yêu cầu thực tế theo giả định 299 yêu cầu/người. Luật an toàn cũng cần nêu rõ cách đếm ba ngày liên tiếp và thời điểm dừng nếu phát hiện một ca hoàn tiền trùng.
+- **CP1:** Đối chiếu ba kết quả A1 là 1,20 · 1,25 · 1,25. Từ `logix_runs.csv`, phí token là `(5.771.712 × 26 + 734.774 × 130) / 1.000 = 245.585,132 đ` và phí gọi tool là `5.600 × 15 = 84.000 đ`.
+- **CP3:** Chuẩn bị 20 nhãn tham khảo có hỗ trợ AI, đối chiếu với hướng dẫn Lab 13. Bảng lỗi trên `main` ghi hai cột trùng 18/20 ca (90%). Hai ca lệch là ca 8 (Hệ thống) và ca 13 (Giới hạn hệ thống).
+- **CP4:** Bổ sung `co_mau_hai_ti_le` và `in_d1` vào `lab13.py`. Để phát hiện chênh 5 điểm phần trăm, cần 1.251 yêu cầu mỗi nhóm nếu chia theo yêu cầu. Nếu chia theo nhân viên với 75 yêu cầu mỗi người, DE = 2,48 và cần 3.103 yêu cầu, tương đương 42 người mỗi nhóm. Với 20 nhân viên hoặc 6 depot mỗi nhóm, trần cỡ mẫu hiệu dụng lần lượt là 1.000 và 300. Với mức chênh 6 điểm, mỗi nhóm 20 người cần 859 yêu cầu hiệu dụng, tức tối thiểu 299 yêu cầu mỗi người (DE = 6,96). Nếu tác động thật là 5 điểm, power còn khoảng 0,64.
+- **CP4 · An toàn:** Đối chiếu tỉ lệ mở lại trong 7 ngày là 4,25% (51/1.200) toàn mẫu và 3,97% (39/982) trong phạm vi `noi_dia` và `hang_nang`.
+- **CP5:** Soát các chỉ số và cách nối event qua `trace_id`. Góp ý xác nhận đủ 40 nhân viên để chia 20 + 20 vì CSV chạy thử chỉ ghi nhận 20 người. Bản pilot trên `main` đã bổ sung mục tiêu 5.980 yêu cầu thực tế mỗi nhóm, thời gian theo dõi mở lại 7 ngày và điều kiện dừng ngay khi phát hiện hoàn tiền trùng.
 
 ## 4. Bằng chứng
 
-- `src/lab13.py`: `co_mau_hai_ti_le`, `in_d1` và số ca mở lại ở `in_e`.
-- `report/team/bang_loi.md` và `report/team/chi_so.md`: 20 nhãn tham khảo, kiểm tra event và số ca mở lại.
-- Nguồn công thức và kết quả đối chiếu: `docs/du_lieu_va_cong_thuc.md`, `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md` và hai CSV của lab.
+- **Commit:** `d9b5aaf` (code D1, chỉ số và bảng nhãn tham khảo), `2d4f9ac` (tên cột bảng lỗi). Phần việc đã vào `main` qua PR #2.
+- **File:** `src/lab13.py`, `report/team/bang_loi.md`, `report/team/chi_so.md` và `report/team/pilot_plan.yaml`.
+- **Kiểm tra cuối trên `main`:** Ba phép thử A1 đều đạt, script in đủ năm câu D1, 10/10 event có `trace_id` và YAML đọc được với 5 luật dừng.
 
 ## 5. Công cụ AI đã dùng
 
-- Trợ lý AI của OpenAI hỗ trợ viết code D1, kiểm tra kết quả bằng lệnh `python lab13.py` trong `src/`, gắn nhãn tham khảo cho 20 ca và soạn bản nháp báo cáo này.
-- Phụng bổ sung phần tự kiểm tra sau khi chạy lại script, tính tay A1/A2 và kiểm tra bất đẳng thức D1(e) tại `m = 298` và `m = 299`.
+- **Trợ lý AI của OpenAI:** Hỗ trợ viết code D1, gợi ý nhãn tham khảo cho 20 ca, đối chiếu kết quả và soạn nháp báo cáo.
+- **Cách kiểm tra kết quả:** Chạy `python lab13.py` trong `src/`, đối chiếu các số A1 và D1 với hướng dẫn Lab 13, đếm số ca mở lại từ CSV và dùng `yaml.safe_load` để kiểm tra kế hoạch pilot. Với D1(e), 298 yêu cầu/người cho 858,79 yêu cầu hiệu dụng mỗi nhóm, còn 299 cho 859,20 và đạt mức 859.
 
 ## 6. Tự đánh giá
 
-Phụng bổ sung sau khi tự kiểm số, gắn nhãn và duyệt chéo hồ sơ pilot của nhóm được phân công.
+- **Làm được:** Tính và giải thích được cỡ mẫu theo yêu cầu, nhân viên và depot. Khi chia theo cụm, tăng số yêu cầu mỗi cụm chỉ đưa cỡ mẫu hiệu dụng tới gần trần số cụm chia ICC. Vì vậy việc xác nhận đủ nhân viên ảnh hưởng trực tiếp đến khả năng đo tác động của pilot.
+- **Điểm cần cải thiện:**
+  - Lần sau, tôi sẽ tự gắn nhãn cả 20 ca trước khi xem bảng tham khảo và ghi lý do cho các ca dễ nhầm, nhất là khi cần phân biệt lỗi đã lộ với lỗi ngầm hoặc lỗi ngoài phạm vi.
+  - Khi soát pilot, tôi sẽ đối chiếu ngay từ đầu số nhân viên đủ điều kiện, lượng yêu cầu cần thu, thời gian theo dõi 7 ngày và luật dừng cho từng bước rollout.
