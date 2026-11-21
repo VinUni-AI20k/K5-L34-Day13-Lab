@@ -37,16 +37,18 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## HoVaTen-MSSV
+## Nguyễn Thùy Lam - 2A202603632
 
 ### Phần việc phụ trách
 
--
+- Người gắn nhãn 1; người gắn nhãn 2 kiêm giữ hồ sơ theo phân vai nhóm. Yêu cầu hai bộ nhãn độc lập cần hai thành viên khác nhau; xác nhận lại người gắn nhãn thứ hai trước khi chốt CP3.
+- Duy trì `report/team/ho_so_launch_v0.md` từ đầu buổi, cập nhật khi nhóm có kết quả A–E.
 
 ### Đóng góp cụ thể
 
--
+- Soạn bản nháp bộ nhãn người 1 và bảng khắc phục 5 loại lỗi trong `report/team/bang_loi.md`; chưa tính đồng thuận vì chưa có bộ nhãn độc lập thứ hai.
+- Soạn bản nháp hồ sơ launch v0 trong `report/team/ho_so_launch_v0.md`, dùng số đối chiếu từ hướng dẫn và đánh dấu các nội dung cần nhóm xác nhận.
 
 ### Bằng chứng
 
--
+- `report/team/bang_loi.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603632_NguyenThuyLam.md`.
