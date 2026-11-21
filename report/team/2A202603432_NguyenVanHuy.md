@@ -38,6 +38,16 @@
 - Đã bổ sung nhãn `simulated` cho các câu B3 và B4 còn thiếu.
 - B3 so sánh **chi phí cả hệ thống** (tổng trợ lý + 12.000 đ × số yêu cầu không thành công), không chỉ chi phí mỗi việc thành công.
 
+**CP3 · Gắn nhãn độc lập 20 ca lỗi (người gắn nhãn 1):**
+
+- Gắn nhãn 20 ca trong `docs/Ngay13_Lab13_De_bai_hoc_vien.docx` theo 5 loại Google PAIR, theo nguyên nhân gốc. Không trao đổi với người gắn nhãn 2 (Dũng). Đã ghi vào cột "Nhãn người 1" của `bang_loi.md`.
+- Phân bố: Do người dùng 4 ca (1, 6, 9, 14) · Hệ thống 5 ca (2, 7, 8, 15, 20) · Ngữ cảnh 4 ca (3, 10, 16, 18) · Giới hạn hệ thống 4 ca (4, 11, 13, 19) · Ngầm 3 ca (5, 12, 17).
+- Các ca phân vân, cần đem ra bàn khi so nhãn:
+  - Ca 6 (khách chọn sai mục): gắn Do người dùng, không gắn Hệ thống, vì lỗi gốc là khách chọn sai mục.
+  - Ca 8 (dẫn điều 7.2 không có thật): gắn Hệ thống, vì vi phạm thiết kế và có người phát hiện được.
+  - Ca 13 (ngoài phạm vi, trả lời chung chung): gắn Giới hạn hệ thống, vì gốc là ngoài phạm vi.
+  - Ca 18 (tính đúng, thiếu cách tính): gắn Ngữ cảnh, vì hệ thống làm đúng nhưng khách thấy sai.
+
 ## 4. Bằng chứng
 
 - File: [report/team/bang_chi_phi.md](bang_chi_phi.md). Đầu file có ghi chú đối chiếu, lệch 0% so với đáp án.
@@ -47,6 +57,7 @@
 ## 5. Công cụ AI đã dùng
 
 - **Claude Code** (trong VS Code), dùng để đọc `src/lab13.py`, chạy script, đối chiếu số in ra với bảng đáp án trong tài liệu hướng dẫn, và soạn nháp nội dung `bang_chi_phi.md`.
+- CP3: dùng Claude Code để trích 20 ca từ file đề `.docx` và đề xuất nhãn. Mình tự đọc lại từng ca và đối chiếu với định nghĩa 5 loại trước khi giữ nhãn.
 - Tự kiểm tra:
   - Đọc lại hai dòng code tính token/tool để xác nhận không lọc theo `status` và có chia 1.000 trước khi nhân giá.
   - So từng con số trong bảng với đầu ra của script và với bảng đáp án.
