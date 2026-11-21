@@ -11,19 +11,19 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Lưu Thanh Mỹ | 2A202603532 | Data97688@gmail.com | aialphaproduct | Trưởng nhóm · Người gắn nhãn 2 · Giữ hồ sơ |
-|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com | hanhshi96 | Người kiểm số |
-|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com | DucPham1501 | Người viết code (CP1–CP2) |
-|   4 | Bùi Lê Công Tuấn | 2A202603610 | blct15102004@gmail.com | blct15102004 | Người gắn nhãn 1 · Người viết code (CP4) |
+|   1 | Lưu Thanh Mỹ | 2A202603532 | Data97688@gmail.com | aialphaproduct | Trưởng nhóm · Người viết code (phần chính, CP1–CP2) |
+|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com | hanhshi96 | Người kiểm số (phần chính, CP1–CP2) |
+|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com | DucPham1501 | Người gắn nhãn 1 (phần phụ, CP3) |
+|   4 | Bùi Lê Công Tuấn | 2A202603610 | blct15102004@gmail.com | blct15102004 | Người gắn nhãn 2 · Viết `pilot_plan.yaml` (phần phụ, CP3–CP4) · Giữ hồ sơ + review cuối (CP5) |
 
 Bốn vai của lab:
 
-- **Người viết code:** viết và chạy `src/lab13.py`.
-- **Người kiểm số:** tính tay một con số để đối chiếu, điền bảng.
-- **Người gắn nhãn 1:** đọc đề, theo dõi điều kiện "Xong khi"; gắn nhãn 20 ca độc lập ở CP3.
-- **Người gắn nhãn 2, kiêm giữ hồ sơ:** điền `report/team/ho_so_launch_v0.md` từ đầu buổi; gắn nhãn 20 ca độc lập ở CP3.
+- **Người viết code (phần chính):** viết và chạy `src/lab13.py` cho CP1–CP2 — Mỹ.
+- **Người kiểm số (phần chính):** tính tay một con số để đối chiếu, điền `bang_chi_phi.md` cho CP1–CP2 — Hạnh.
+- **Người gắn nhãn 1 (phần phụ):** đọc đề, gắn nhãn 20 ca độc lập ở CP3 — Đức.
+- **Người gắn nhãn 2, kiêm giữ hồ sơ + review cuối (phần phụ):** gắn nhãn 20 ca độc lập ở CP3; viết phần D (cỡ mẫu) ở CP4; CP5 tổng hợp `ho_so_launch_v0.md`, review toàn bộ hồ sơ trước khi nộp — Tuấn.
 
-Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
+Phân công theo "phần chính / phần phụ": Mỹ + Hạnh làm CP1–CP2 (mô hình chi phí và độ nhạy — nền của mọi phần sau); Đức + Tuấn làm CP3–CP4 (gắn nhãn lỗi, kế hoạch pilot) và Tuấn tổng hợp + review cuối ở CP5.
 
 ## Cá nhân
 
@@ -42,9 +42,8 @@ Sao chép mục dưới đây cho từng thành viên.
 ### Phần việc phụ trách
 
 - Setup repo, fork, điền TEAM.md
-- Gắn nhãn 20 ca lỗi (nhãn 2, CP3)
-- Điền `report/team/ho_so_launch_v0.md` từ đầu buổi
-- Điều phối Gate 2a: `report/team/phieu_cham.md`, `report/team/group_report.md`, commit + push
+- Viết `src/lab13.py` phần CP1 (hàm A1, `mo_hinh`, A2–A4) — phần chính
+- Viết `src/lab13.py` phần CP2 (B1–B4) — phần chính
 
 ### Đóng góp cụ thể
 
@@ -60,7 +59,7 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Kiểm số bằng tay, điền `report/team/bang_chi_phi.md` (bảng A2, A3, A4, B1–B4)
+- Kiểm số bằng tay, điền `report/team/bang_chi_phi.md` (bảng A2, A3, A4, B1–B4) — phần chính
 
 ### Đóng góp cụ thể
 
@@ -76,9 +75,8 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Viết `src/lab13.py` phần CP1 (hàm A1, `mo_hinh`, A2–A4)
-- Viết `src/lab13.py` phần CP2 (B1–B4)
-- Điền `report/team/chi_so.md` (CP5)
+- Gắn nhãn 20 ca lỗi (nhãn 1, CP3) — phần phụ
+- Hỗ trợ điền `report/team/bang_loi.md` (bảng khắc phục 5 ca)
 
 ### Đóng góp cụ thể
 
@@ -94,9 +92,10 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Gắn nhãn 20 ca lỗi (nhãn 1, CP3), điền `report/team/bang_loi.md`
-- Viết `src/lab13.py` phần CP4 (tính cỡ mẫu D1, D2)
-- Điền `report/team/pilot_plan.yaml`
+- Gắn nhãn 20 ca lỗi (nhãn 2, CP3) — phần phụ
+- Viết `src/lab13.py` phần CP4 (tính cỡ mẫu D1, D2), điền `report/team/pilot_plan.yaml`
+- CP5: điền `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`
+- Review toàn bộ hồ sơ trước khi nộp; điều phối Gate 2a: `report/team/phieu_cham.md`, `report/team/group_report.md`, commit + push
 
 ### Đóng góp cụ thể
 
