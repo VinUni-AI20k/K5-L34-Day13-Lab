@@ -59,3 +59,25 @@ Sao chép mục dưới đây cho từng thành viên.
 - Commit `54b87ae` (ba hàm A1), `7715c86` (mo_hinh), `490bac8` (A3, A4, bảng chi phí), `199d9e2` (B1–B4); merge `ecc033a`, `fd71273`, `6d7b97d` trên `main`.
 - Output `python lab13.py`: tổng 4.373.585 đ, 978 việc thành công, cps 4.472 đ; A3, A4 và B1–B4 khớp hướng dẫn (B4 là 1,03×).
 - File `report/team/bang_chi_phi.md` (A1–B4) và `report/team/2A202603685_DangVietAnh.md`.
+
+## NguyenVanVinh - 2A202603672
+
+### Phần việc phụ trách
+
+- Người gắn nhãn 2, kiêm giữ hồ sơ: điền `report/team/ho_so_launch_v0.md` từ đầu buổi.
+- Gắn nhãn độc lập 20 ca lỗi ở CP3 (nhiệm vụ C), cùng người gắn nhãn 1 điền `report/team/bang_loi.md`.
+- Báo cáo cá nhân `report/team/2A202603672_NguyenVanVinh.md`.
+
+### Đóng góp cụ thể
+
+- Dựng khung `ho_so_launch_v0.md`: nhóm OPC, lớp L3A; bảy mục, mỗi mục gán một vai trò phụ trách (PM trợ lý hoàn phí, Giám đốc vận hành, Trưởng nhóm CSKH, Kỹ sư trưởng agent), ghi rõ mục nào chờ số từ file nào.
+- Điền mục 1 từ A2, A4: 4.472 đ/việc, gấp 16,3 lần hoá đơn token + tool chia số yêu cầu; 4.599 đ khi cộng chi phí cố định ở 45.000 yêu cầu/tháng, 5.784 đ nếu còn một nửa [simulated].
+- Điền mục 2 từ B1, B2: xếp hạng làm lại +51,8% · xem lại +40,7% · lương +23,1% [simulated].
+- Điền mục 3 từ A3, B3, B4: so với 12.000 đ theo loại (0,22× · 0,69× · 0,85× · 1,88×); cả hệ thống 7.037.585 ÷ 1.200 = 5.865 đ/yêu cầu = 0,49×; con số bất lợi xem lại 100% là 0,98× (1,03× nếu làm lại 15,3 phút) [simulated].
+- Gắn nhãn độc lập 20 ca theo năm loại Google PAIR (Do người dùng 4 · Hệ thống 6 · Ngữ cảnh 3 · Giới hạn hệ thống 4 · Ngầm 3), có ghi lý do từng ca; điền cột nhãn người 2 trong `bang_loi.md`.
+
+### Bằng chứng
+
+- Commit `77d3078` (khung hồ sơ), `9edadc3` (mục 1, 3), `30f75f7` (mục 2, 3 từ B1–B4), `82c79b4` (nhãn người 2 trong `bang_loi.md`), `c64f454` (báo cáo cá nhân) trên `main`.
+- File `report/team/ho_so_launch_v0.md`, `report/team/bang_loi.md`, `report/team/2A202603672_NguyenVanVinh.md`.
+- Phiếu gắn nhãn gốc của người 2 (docx, có lý do từng ca), gắn trước khi so với người gắn nhãn 1.
