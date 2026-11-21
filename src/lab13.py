@@ -7,6 +7,9 @@ import math
 
 import pandas as pd
 
+from lab13_b import in_b
+from lab13_d import in_d1
+
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
 GIA_RA = 130        # đồng cho 1.000 token đầu ra
@@ -156,7 +159,5 @@ if __name__ == '__main__':
     in_a2(mo_hinh(runs, reqs), len(reqs))
     in_a3(runs, reqs)
     in_a4(runs, reqs)
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    in_b(runs, reqs, mo_hinh)
+    in_d1(reqs)
