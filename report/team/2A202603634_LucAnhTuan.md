@@ -33,4 +33,7 @@
 
 ## 6. Tự đánh giá
 
-...
+- **Làm tốt:** `src/lab13.py` chạy từ đầu đến cuối, ba phép thử A1 ĐẠT; các số A2, A3, B1, B3, B4, D1 khớp bảng đối chiếu (lệch dưới 2%). Mọi số từ cột `_simulated` đều có nhãn simulated. Hàm `mo_hinh` nhận tham số nên B chỉ cần gọi lại, không phải chép code.
+- **Điều rút ra:** chi phí thật nằm ở giờ nhân viên (92,5% tổng, simulated) chứ không ở token (5,6%). Chạy lại nhiều hơn không phải lúc nào cũng tốt: với quoc_te, lần 3 chỉ đúng 2,2%. Giới hạn rẻ nhất cho công ty (2 lần) khác giới hạn cho chi phí mỗi việc thành công thấp nhất (1 lần).
+- **Chưa tốt:** phần lớn code viết cùng Claude Code, nên tôi phải tự đọc lại `mo_hinh` và `co_mau` để giải thích được trước hội đồng. Tôi làm luôn D1 thay vì đổi người viết code sau giờ giải lao như hướng dẫn. Nhóm cần một bạn khác tự tính lại D1 và một con số A2 để đối chiếu.
+- **Lần sau:** chia nhỏ commit theo từng checkpoint để có bằng chứng tiến độ rõ hơn; nhờ người kiểm số tính tay trước khi điền bảng.
