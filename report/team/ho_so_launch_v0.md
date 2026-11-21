@@ -6,7 +6,7 @@ Nhóm: Soopi · Lớp: L3A
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |
-| 1 · Chi phí mỗi việc thành công | 3.414 đ biến đổi; 4.599 đ gồm cố định [simulated] trong phạm vi `noi_dia + hang_nang` | Giả lập | PM trợ lý hoàn phí |
+| 1 · Chi phí mỗi việc thành công | Pilot: 3.414 đ biến đổi; **4.599 đ** gồm cố định [simulated]. Toàn mẫu A2 **4.472 đ** chỉ tham chiếu, không dùng cho phạm vi Go | Giả lập | PM trợ lý hoàn phí |
 | 2 · Ba yếu tố nhạy nhất | 1. Làm lại (+51,8%) · 2. Xem lại (+40,7%) · 3. Lương NV (+23,1%) [simulated] | Giả lập | Người kiểm số |
 | 3 · So với nhân viên tự làm | 0,28x biến đổi; 0,38x gồm cố định [simulated]; loại `quoc_te` (1,88x) và `doi_tac` (0,85x) | Giả lập | PM trợ lý hoàn phí |
 | 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | Chính 82,83% (994/1.200) · Dùng 27,12% (48/177) · An toàn 4,25% (51/1.200) | Xong, có bằng chứng | Kỹ sư trưởng agent |

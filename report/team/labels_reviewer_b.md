@@ -1,5 +1,8 @@
 # Phiếu gắn nhãn độc lập B · CP3
 
+> **Thời điểm khóa nhãn B (bắt buộc):** `2026-11-21T14:20:00+07:00`  
+> Trước thời điểm này: chưa mở bộ A. Sau thời điểm này: không sửa hồi tố 20 nhãn B.
+
 Người gắn nhãn: **Người 4 – Nguyễn Hữu Tiến (2A202603598) – người gắn nhãn 2, kiêm giữ hồ sơ**  
 Thời điểm bắt đầu gắn nhãn B: **2026-11-21 14:05 GMT+7**  
 Thời điểm kết thúc gắn nhãn B: **2026-11-21 14:18 GMT+7**  
@@ -8,13 +11,15 @@ Thời điểm nhận bộ A đã khóa và bắt đầu đối chiếu: **2026-
 
 Cam kết độc lập: không trao đổi với Người 3 và **không xem bộ nhãn A** trong suốt thời gian gắn và khóa bộ B; chỉ đối chiếu sau mốc khóa 14:20.
 
+**Công bố phương pháp:** bộ B được trợ lý AI hỗ trợ. Người 4 đã tự rà soát từng ca theo nguyên nhân gốc trước khi khóa lúc 14:20.
+
 **Dấu vết khóa trước khi so A**
 
 | Mốc | Thời gian (GMT+7) | Nội dung |
 | --- | --- | --- |
 | Bắt đầu gắn B | 2026-11-21 14:05 | Chỉ đọc đề bài DOCX + định nghĩa 5 loại; chưa mở bộ A |
 | Kết thúc gắn B | 2026-11-21 14:18 | Đủ 20 nhãn + lý do; trạng thái từng dòng = Đã khóa |
-| Khóa bộ B | 2026-11-21 14:20 | Snapshot khóa; cấm sửa hồi tố |
+| **Khóa bộ B** | **2026-11-21 14:20** | **Snapshot khóa; cấm sửa hồi tố; chưa xem bộ A** |
 | Nhận bộ A / đối chiếu | 2026-11-21 14:25 | Mới mở bộ A; tính đồng thuận 20/20 và chuyển sang `bang_loi.md` |
 
 Nguồn ca lỗi và định nghĩa: `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, mục **Nhiệm vụ C**, bảng **Năm loại lỗi** và **Hai mươi ca lỗi**.

@@ -12,9 +12,22 @@
 
 *Lưu ý:* Chỉ số trong đợt chạy thử là 82,83%, không viết "trợ lý đã nâng chỉ số từ 0,70" vì đợt chạy thử chưa có nhóm đối chứng đồng thời.
 
+## Schema event chuẩn hóa
+
+Mọi event phải tuân schema tối thiểu dưới đây; thiếu trường bắt buộc thì event không được dùng để tính chỉ số.
+
+| Trường | Bắt buộc | Kiểu / quy ước | Mục đích |
+| --- | --- | --- | --- |
+| `event_name` | Có | một trong 10 tên ở bảng dưới | Định danh loại sự kiện |
+| `request_id` | Có | chuỗi ổn định theo yêu cầu hoàn phí | Khóa join chính giữa mọi event |
+| `trace_id` | Có | chuỗi theo một lần chạy agent | Lần theo trace; một request có thể nhiều trace |
+| `ts` | Có | ISO-8601 GMT+7 | Thời điểm phát sinh |
+| `arm` | Có với event thuộc pilot | `control` / `treatment` | Tách nhóm khi tính chỉ số pilot |
+| `days_since_close` | Có với `ticket_reopened` | số ngày lịch sau `ticket_closed.closed_at` | Cửa sổ theo dõi mở lại = 7 ngày |
+
 ## Danh sách event
 
-Ít nhất sáu event. Mỗi event bắt buộc có **`request_id`** (khóa nối theo yêu cầu) và **`trace_id`** (nối với trace agent). Thiết kế chuẩn 10 event:
+Ít nhất sáu event. Mỗi event bắt buộc có **`request_id`** và **`trace_id`** (và `ts`). Thiết kế chuẩn 10 event:
 
 | Event | Ai tạo | Thuộc tính chính | Thời điểm |
 | --- | --- | --- | --- |
@@ -50,7 +63,7 @@
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
 | Số ca làm lại tăng gấp đôi | Chi phí mỗi việc tăng +51,8% lên 6.787 đ [simulated] | Tỉ lệ ca làm lại theo tuần > 7% (đợt chạy thử: 4,9% trong phạm vi) | Thu hẹp phạm vi về riêng `noi_dia`, rà soát 20 trace làm lại gần nhất | PM trợ lý hoàn phí |
-| Phải xem lại 100% kéo dài | Chi phí lên 11.743 đ = 0,98× (hoặc 12.414 đ = 1,03× nếu làm lại 15,3 phút), trợ lý mất hoàn toàn lợi thế kinh tế [simulated] | Tỉ lệ yêu cầu phải xem lại vẫn > 50% ở cuối bước rollout 0.25 | Thực hiện giảm xem lại theo bậc dựa trên độ tin cậy khi tỉ lệ sửa/bỏ < 15% | Trưởng nhóm CSKH |
+| Phải xem lại 100% kéo dài | Chi phí lên 11.743 đ = 0,98× (hoặc 12.414 đ = 1,03× nếu làm lại 15,3 phút), trợ lý mất hoàn toàn lợi thế kinh tế [simulated] | Tỉ lệ yêu cầu phải xem lại vẫn > 50% ở cuối bước rollout 0.10 | Giảm xem lại theo rollout 0.10→100%, 0.25→50%, 0.50→20% khi tỉ lệ sửa/bỏ < 15% | Trưởng nhóm CSKH |
 | Khối lượng xử lý thấp hơn dự kiến | Chi phí cố định 40 tr/tháng phân bổ tăng từ 1.185 đ/việc lên 2.370 đ/việc nếu khối lượng giảm một nửa [simulated] | Số việc thành công hàng tuần đạt < 50% kế hoạch (dưới 3.900 việc/tuần) | Tạm dừng mở rộng pilot, đàm phán lại hợp đồng chi phí cố định hạ tầng | PM trợ lý hoàn phí |
 | Tối ưu sai cục bộ số lần chạy lại | Chi phí cả hệ thống tăng lên 7.449.781 đ (+548.561 đ) nếu ép chạy 1 lần [simulated] | Tỉ lệ yêu cầu không thành công chuyển nhân viên > 25% | Cố định giới hạn `max_attempts = 2` theo tối ưu tổng chi phí toàn công ty | Kỹ sư trưởng agent |
 
