@@ -12,8 +12,8 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Lưu Thanh Mỹ | 2A202603532 | Data97688@gmail.com | aialphaproduct | Trưởng nhóm · Người gắn nhãn 2 · Giữ hồ sơ |
-|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com | hanhshi96 | Người viết code (CP1–CP2) |
-|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com | DucPham1501 | Người kiểm số |
+|   2 | Nguyễn Thị Hồng Hạnh | 2A202603537 | hanhnth.ai@gmail.com | hanhshi96 | Người kiểm số |
+|   3 | Phạm Đức Hồng Đức | 2A202603558 | Phamduchongduc15@gmail.com | DucPham1501 | Người viết code (CP1–CP2) |
 |   4 | Bùi Lê Công Tuấn | 2A202603610 | blct15102004@gmail.com | blct15102004 | Người gắn nhãn 1 · Người viết code (CP4) |
 
 Bốn vai của lab:
@@ -60,9 +60,7 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Viết `src/lab13.py` phần CP1 (hàm A1, `mo_hinh`, A2–A4)
-- Viết `src/lab13.py` phần CP2 (B1–B4)
-- Điền `report/team/chi_so.md` (CP5)
+- Kiểm số bằng tay, điền `report/team/bang_chi_phi.md` (bảng A2, A3, A4, B1–B4)
 
 ### Đóng góp cụ thể
 
@@ -78,7 +76,9 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Kiểm số bằng tay, điền `report/team/bang_chi_phi.md` (bảng A2, A3, A4, B1–B4)
+- Viết `src/lab13.py` phần CP1 (hàm A1, `mo_hinh`, A2–A4)
+- Viết `src/lab13.py` phần CP2 (B1–B4)
+- Điền `report/team/chi_so.md` (CP5)
 
 ### Đóng góp cụ thể
 
