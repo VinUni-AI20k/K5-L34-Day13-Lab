@@ -97,7 +97,7 @@ pilot:
     pending:
       - "TV1/TV2 và PM: duyệt phạm vi noi_dia + hang_nang từ A3/B đã kiểm chứng và xác nhận đủ lưu lượng."
       - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
-      - "TV3 đã lưu bộ nhãn 1 đủ 20 ca ở commit f1fb17e; chờ bộ nhãn 2 độc lập của TV4, tính đồng thuận và chốt bảng khắc phục."
+      - "Đã nhận hai bộ nhãn đủ 20 ca, trùng nhãn 20/20 = 100%; TV4 cần xác nhận mô tả bộ 2 khớp đề gốc, sau đó chốt nhãn thống nhất và bảng khắc phục. CP3 chưa hoàn tất."
       - "PM: ký hoặc sửa trần đề xuất 12.000 đ/việc, thống nhất phân bổ cố định và lộ trình giảm xem lại."
       - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
       - "TV4: xác nhận event đủ trace_id, staff_id, arm và định nghĩa các chỉ số."
