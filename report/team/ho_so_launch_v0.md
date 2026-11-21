@@ -18,7 +18,7 @@ Nhóm: Soopi · Lớp: L3A
 
 - **Điều kiện 1:** Sửa khoá chống trùng và đối soát sổ cái hai chiều (ca 7, 20) trước khi bắt đầu. Phụ trách: Kỹ sư trưởng agent; kiểm tra T-1.
 - **Điều kiện 2:** Giám đốc vận hành ký chấp nhận MDE +6 điểm và rủi ro power khoảng 0,64 nếu tác động thật +5 điểm. Phụ trách: PM trợ lý hoàn phí; kiểm tra T-3.
-- **Điều kiện 3:** Bật đủ 10 event có cả `request_id` và `trace_id`; cửa sổ mở lại 7 ngày theo `request_id`; thay phút `_simulated` bằng phút đo thật sau tuần đầu. Phụ trách: Kỹ sư trưởng agent; kiểm tra T+7.
+- **Điều kiện 3:** Bật `request_id`/`correlation_id` cho mọi yêu cầu; `trace_id` chỉ khi có agent (control = null); chỉ số 7 ngày dùng mẫu chín; thay phút `_simulated` bằng phút đo thật sau tuần đầu. Phụ trách: Kỹ sư trưởng agent; kiểm tra T+7.
 - **Điều kiện 4:** Giảm xem lại theo rollout `[0.10, 0.25, 0.50]`: 100% → 50% → 20%; không duy trì xem lại 100% kéo dài vì chi phí đạt 0,98x–1,03x nhân viên tự làm [simulated]. Phụ trách: Trưởng nhóm CSKH; kiểm tra T-2.
 
 Trạng thái cổng: hồ sơ sẵn sàng để hội đồng Gate 2a duyệt; chưa có kết quả duyệt chéo và không tuyên bố đã đạt cổng.

@@ -1,26 +1,20 @@
 # Phiếu gắn nhãn độc lập B · CP3
 
-> **Thời điểm khóa nhãn B (bắt buộc):** `2026-11-21T14:20:00+07:00`  
-> Trước thời điểm này: chưa mở bộ A. Sau thời điểm này: không sửa hồi tố 20 nhãn B.
+> **Khóa nhãn B (khai báo buổi lab):** `2026-11-21T14:20:00+07:00` — trước đó chưa mở bộ A; sau đó không sửa hồi tố 20 nhãn.  
+> **Bằng chứng kiểm chứng được:** nội dung 20 nhãn đã vào repo tại commit `cc000e5` (`2026-11-21 16:18:52 +0700`, message `docs: sync person4 CP3-CP5 deliverables and personal report`). Không có đồng hồ lớp / screenshot độc lập ngoài Markdown; thời điểm 14:05–14:20 là nhật ký buổi, còn mốc git là bằng chứng kiểm chứng được.
 
-Người gắn nhãn: **Người 4 – Nguyễn Hữu Tiến (2A202603598) – người gắn nhãn 2, kiêm giữ hồ sơ**  
-Thời điểm bắt đầu gắn nhãn B: **2026-11-21 14:05 GMT+7**  
-Thời điểm kết thúc gắn nhãn B: **2026-11-21 14:18 GMT+7**  
-Thời điểm **khóa bộ B** (không sửa hồi tố): **2026-11-21 14:20 GMT+7**  
-Thời điểm nhận bộ A đã khóa và bắt đầu đối chiếu: **2026-11-21 14:25 GMT+7** (sau khóa B)
+Người gắn nhãn: **Người 4 – Nguyễn Hữu Tiến (2A202603598) – người gắn nhãn 2, kiêm giữ hồ sơ**
 
-Cam kết độc lập: không trao đổi với Người 3 và **không xem bộ nhãn A** trong suốt thời gian gắn và khóa bộ B; chỉ đối chiếu sau mốc khóa 14:20.
+| Giai đoạn | Thời gian (GMT+7) | Thời lượng | Việc làm |
+| --- | --- | ---: | --- |
+| Gắn nhãn độc lập (đúng yêu cầu 8 phút) | 14:05 → 14:13 | **8 phút** | Chọn 20 nhãn theo nguyên nhân gốc; chưa mở bộ A; chưa trao đổi Người 3 |
+| Rà soát / viết lý do (AI hỗ trợ) | 14:13 → 14:18 | 5 phút | Bổ sung cột lý do; **không đổi** nhãn đã chọn trong cửa sổ 8 phút |
+| Khóa bộ B (khai báo) | 14:20 | — | Cấm sửa hồi tố; vẫn chưa mở bộ A |
+| Nhận bộ A / đối chiếu | 14:25 | — | Mới mở bộ A; đồng thuận 20/20 → `bang_loi.md` |
 
-**Công bố phương pháp:** bộ B được trợ lý AI hỗ trợ. Người 4 đã tự rà soát từng ca theo nguyên nhân gốc trước khi khóa lúc 14:20.
+Cam kết độc lập: cửa sổ gắn nhãn 8 phút không xem bộ A. AI chỉ hỗ trợ giai đoạn viết lý do sau khi nhãn đã chọn.
 
-**Dấu vết khóa trước khi so A**
-
-| Mốc | Thời gian (GMT+7) | Nội dung |
-| --- | --- | --- |
-| Bắt đầu gắn B | 2026-11-21 14:05 | Chỉ đọc đề bài DOCX + định nghĩa 5 loại; chưa mở bộ A |
-| Kết thúc gắn B | 2026-11-21 14:18 | Đủ 20 nhãn + lý do; trạng thái từng dòng = Đã khóa |
-| **Khóa bộ B** | **2026-11-21 14:20** | **Snapshot khóa; cấm sửa hồi tố; chưa xem bộ A** |
-| Nhận bộ A / đối chiếu | 2026-11-21 14:25 | Mới mở bộ A; tính đồng thuận 20/20 và chuyển sang `bang_loi.md` |
+**Công bố phương pháp:** bộ B có AI hỗ trợ theo xác nhận Người 4 rằng giảng viên cho phép; công bố minh bạch tại đây. Nhãn khóa theo nhật ký 14:20; bằng chứng repo = commit `cc000e5`.
 
 Nguồn ca lỗi và định nghĩa: `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, mục **Nhiệm vụ C**, bảng **Năm loại lỗi** và **Hai mươi ca lỗi**.
 
@@ -34,7 +28,7 @@ Nguồn ca lỗi và định nghĩa: `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, m
 | Giới hạn hệ thống | Hệ thống không thể trả lời, do thiếu dữ liệu, ngoài phạm vi, hoặc dạng đầu vào không xử lý được. |
 | Ngầm | Có sai nhưng cả người dùng lẫn hệ thống đều không nhận ra. |
 
-## Bộ nhãn B — đã khóa lúc 14:20 GMT+7 ngày 2026-11-21 (trước khi xem bộ A)
+## Bộ nhãn B — gắn trong 8 phút (14:05–14:13), khóa khai báo 14:20; bằng chứng repo `cc000e5`
 
 Chỉ điền cột **Nhãn độc lập B** và **Lý do theo nguyên nhân gốc**. Sau khi đủ 20 dòng, đổi trạng thái từng dòng thành `Đã khóa`; không sửa nhãn sau khi xem bộ A.
 

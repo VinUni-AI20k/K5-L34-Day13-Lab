@@ -73,11 +73,12 @@ pilot:
     concurrent_control: "20 nhân viên đối chứng chạy cùng tuần và cùng depot với 20 nhân viên can thiệp"
     spillover_risk: "có rủi ro chia sẻ câu trả lời trong depot; giảm bằng quyền truy cập theo staff_id và log lượt mở trợ lý"
     predeclared: "chỉ số chính, MDE, cách chia, luật dừng và ngày quyết định được ghi trước khi bắt đầu"
+  # Vế sau dấu chấm phân biệt: hành động khi vượt ngưỡng vs được phép tiếp tục khi không vượt.
   stop_rules:
-    - "KHẨN CẤP–HOÀN TRÙNG: NẾU >= 1 ca hoàn tiền trùng (cùng request_id có >= 2 lần refund_ledger_write status=ok, hoặc thiếu idempotency_key) TRONG tức thì khi phát hiện THÌ Giám đốc vận hành tắt trợ lý trong 30 phút NGAY (không đợi 3 ngày) KHÔNG THÌ không được nhận yêu cầu mới bằng trợ lý"
-    - "AN TOÀN–MỞ LẠI: NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng >= 2 điểm hoặc vượt trần tuyệt đối 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
-    - "CHI PHÍ: NẾU chi phí mỗi việc thành công (phạm vi noi_dia+hang_nang) > 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn 2 lần chạy KHÔNG THÌ không được mở hang_nang"
-    - "SỬ DỤNG: NẾU tỉ lệ bỏ qua gợi ý > 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày KHÔNG THÌ không được chuyển bước rollout"
+    - "KHẨN CẤP–HOÀN TRÙNG: NẾU >= 1 ca hoàn tiền trùng (cùng request_id có >= 2 lần refund_ledger_write status=ok, hoặc thiếu idempotency_key) TRONG tức thì khi phát hiện THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và tạm dừng nhận yêu cầu mới bằng trợ lý. Nếu điều kiện NẾU không xảy ra THÌ được phép tiếp tục phục vụ bằng trợ lý."
+    - "AN TOÀN–MỞ LẠI: NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng >= 2 điểm hoặc vượt trần tuyệt đối 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và không sang bước rollout tiếp. Nếu điều kiện NẾU không xảy ra THÌ được phép sang bước rollout tiếp theo lịch."
+    - "CHI PHÍ: NẾU chi phí mỗi việc thành công (phạm vi noi_dia+hang_nang) > 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn 2 lần chạy. Nếu điều kiện NẾU không xảy ra THÌ được phép giữ hang_nang trong phạm vi đã duyệt."
+    - "SỬ DỤNG: NẾU tỉ lệ bỏ qua gợi ý > 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày và tạm dừng chuyển bước rollout. Nếu điều kiện NẾU không xảy ra THÌ được phép chuyển bước rollout theo lịch."
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
   rollback: "Giám đốc vận hành bấm cờ tắt, hiệu lực 30 phút; khách được phục vụ bằng luồng nhân viên tự làm"
   decision_date: "2027-01-05"

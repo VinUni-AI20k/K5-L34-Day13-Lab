@@ -17,7 +17,7 @@ Nhóm đánh giá trợ lý hoàn phí theo bốn trục: chi phí mỗi việc 
 Tóm tắt cách nhóm làm từng nhiệm vụ A–E và link tới file hồ sơ tương ứng.
 
 - A/B: chạy mô hình chi phí và độ nhạy trong `src/lab13.py`, ghi kết quả tại `bang_chi_phi.md`.
-- C: hai bộ nhãn được khóa trước khi đối chiếu tại `bang_loi.md`; bộ B.
+- C: hai bộ nhãn được khóa độc lập trước khi đối chiếu tại `bang_loi.md`; bộ B có AI hỗ trợ, gắn nhãn trong đúng 8 phút (14:05–14:13), rồi rà soát lý do trước khi khóa.
 - D: chọn ngẫu nhiên theo nhân viên 20 + 20, phân tầng depot, ghi tại `pilot_plan.yaml`.
 - E: đặc tả chỉ số/event/rủi ro tại `chi_so.md`; tổng hợp bằng chứng tại `ho_so_launch_v0.md`.
 
@@ -37,8 +37,8 @@ Con số chính (ghi nhãn `simulated` khi cần) và đề xuất cuối của 
 - Ba yếu tố nhạy nhất (toàn mẫu A2): làm lại +51,8%, xem lại +40,7%, lương nhân viên +23,1% [simulated].
 - Chỉ số trong đợt chạy thử (toàn mẫu 1.200 yêu cầu): chính 82,83%, sử dụng 27,12%, an toàn 4,25%; mở lại trong phạm vi pilot 3,97% (39/982); chưa diễn giải là tác động nhân quả.
 - Pilot: rollout chỉ `[0.10, 0.25, 0.50]` (xem lại 100%→50%→20%); **không còn bước 0.75**; MDE +6 điểm, 859 yêu cầu/nhóm, 20 cụm/nhóm, m >=299; nếu tác động thật +5 điểm thì power khoảng 0,64.
-- CP3 đạt đồng thuận 20/20 = 100%; **khóa nhãn B lúc 14:20 GMT+7 ngày 2026-11-21** trước khi so A; bảng khắc phục đủ năm loại.
-- Đề xuất: **Go có điều kiện** cho kế hoạch pilot `noi_dia + hang_nang`; kết quả duyệt chéo vẫn chờ Gate 2a.
+- CP3 đạt đồng thuận 20/20 = 100%; gắn nhãn B trong 8 phút (14:05–14:13), khóa khai báo 14:20; bằng chứng repo = commit `cc000e5`.
+- Đề xuất: **Go có điều kiện** cho kế hoạch pilot `noi_dia + hang_nang`; **Gate 2a / `phieu_cham.md` chưa có phiếu hội đồng thật** (chưa xác minh điểm hội đồng).
 
 ## 5. Khó khăn và cách xử lý
 

@@ -14,47 +14,58 @@
 
 ## Schema event chuẩn hóa
 
-Mọi event phải tuân schema tối thiểu dưới đây; thiếu trường bắt buộc thì event không được dùng để tính chỉ số.
+Phân biệt hai khóa: **`correlation_id` = `request_id`** (mọi yêu cầu, cả đối chứng) và **`trace_id`** (chỉ khi có lần chạy agent).
 
-| Trường | Bắt buộc | Kiểu / quy ước | Mục đích |
-| --- | --- | --- | --- |
-| `event_name` | Có | một trong 10 tên ở bảng dưới | Định danh loại sự kiện |
-| `request_id` | Có | chuỗi ổn định theo yêu cầu hoàn phí | Khóa join chính giữa mọi event |
-| `trace_id` | Có | chuỗi theo một lần chạy agent | Lần theo trace; một request có thể nhiều trace |
-| `ts` | Có | ISO-8601 GMT+7 | Thời điểm phát sinh |
-| `arm` | Có với event thuộc pilot | `control` / `treatment` | Tách nhóm khi tính chỉ số pilot |
-| `days_since_close` | Có với `ticket_reopened` | số ngày lịch sau `ticket_closed.closed_at` | Cửa sổ theo dõi mở lại = 7 ngày |
+| Trường | Bắt buộc | Quy ước |
+| --- | --- | --- |
+| `event_name` | Có | một trong 10 tên ở bảng dưới |
+| `request_id` / `correlation_id` | Có với mọi event | khóa join theo yêu cầu; nhóm đối chứng cũng có |
+| `trace_id` | Chỉ khi có agent | treatment sau khi agent chạy; control hoặc chưa gọi agent → `null` / bỏ trống |
+| `ts` | Có | ISO-8601 GMT+7 |
+| `arm` | Có trong pilot | `control` / `treatment` |
+| `days_since_close` | Có với `ticket_reopened` | ngày lịch sau `ticket_closed.closed_at` |
 
 ## Danh sách event
 
-Ít nhất sáu event. Mỗi event bắt buộc có **`request_id`** và **`trace_id`** (và `ts`). Thiết kế chuẩn 10 event:
+Ít nhất sáu event. Mọi event có `request_id` + `ts`. `trace_id` chỉ bắt buộc với event do agent tạo hoặc gắn với một lần chạy agent.
 
-| Event | Ai tạo | Thuộc tính chính | Thời điểm |
+| Event | Ai tạo | Thuộc tính chính | Ghi chú `trace_id` |
 | --- | --- | --- | --- |
-| `refund_request_created` | App khách hàng | `request_id`, `loai`, `so_tien`, `arm`, `trace_id`, `created_at` | Khi khách hàng gửi yêu cầu hoàn phí |
-| `agent_run_completed` | Trợ lý agent | `request_id`, `attempt`, `tokens_in`, `tokens_out`, `tool_calls`, `status`, `trace_id` | Sau mỗi lần agent chạy xong (kể cả lỗi) |
-| `agent_suggestion_shown` | UI CSKH | `request_id`, `staff_id`, `so_tien_de_xuat`, `trace_id` | Khi đề xuất hoàn tiền hiện lên màn hình |
-| `staff_review_decision` | Nhân viên CSKH | `request_id`, `decision` (giu/sua/bo), `phut_xem_lai`, `trace_id` | Khi nhân viên bấm duyệt, sửa hoặc bỏ qua |
-| `staff_rework_completed` | Nhân viên CSKH | `request_id`, `phut_lam_lai`, `ly_do`, `trace_id` | Khi hoàn thành xử lý lại ca bị lỗi |
-| `refund_ledger_write` | Dịch vụ sổ cái | `request_id`, `idempotency_key`, `so_tien`, `status`, `trace_id` | Khi thực hiện ghi lệnh hoàn tiền vào sổ cái |
-| `handoff_to_staff` | Trợ lý agent | `request_id`, `reason`, `tom_tat`, `trace_id` | Khi agent bỏ cuộc chuyển cho nhân viên làm |
-| `ticket_closed` | Hệ thống ticket | `request_id`, `closed_at`, `duration_hours`, `trace_id` | Khi ticket khiếu nại hoàn tất đóng |
-| `ticket_reopened` | Khách hàng | `request_id`, `reopened_at`, `reason`, `trace_id`, `days_since_close` | Khi khách mở lại ticket; chỉ tính vào chỉ số nếu `0 < days_since_close ≤ 7` |
-| `audit_sample_checked` | Ban kiểm toán/Kế toán | `request_id`, `so_tien_da_hoan`, `so_tien_chuan`, `ket_luan`, `trace_id` | Khi kiểm tra ngẫu nhiên mẫu đối soát hàng tuần |
+| `refund_request_created` | App khách hàng | `request_id`, `loai`, `so_tien`, `arm`, `created_at` | Không cần `trace_id` (chưa có agent) |
+| `agent_run_completed` | Trợ lý agent | `request_id`, `attempt`, `tokens_*`, `tool_calls`, `status`, `trace_id` | Bắt buộc; chỉ `arm=treatment` |
+| `agent_suggestion_shown` | UI CSKH | `request_id`, `staff_id`, `so_tien_de_xuat`, `trace_id` | Bắt buộc; treatment |
+| `staff_review_decision` | Nhân viên CSKH | `request_id`, `decision`, `phut_xem_lai`, `trace_id?` | Có `trace_id` nếu đi từ gợi ý agent; control có thể `null` |
+| `staff_rework_completed` | Nhân viên CSKH | `request_id`, `phut_lam_lai`, `ly_do`, `trace_id?` | `null` nếu không có agent |
+| `refund_ledger_write` | Dịch vụ sổ cái | `request_id`, `idempotency_key`, `so_tien`, `status`, `trace_id?` | Join bằng `request_id`; `trace_id` tùy có agent |
+| `handoff_to_staff` | Trợ lý agent | `request_id`, `reason`, `tom_tat`, `trace_id` | Bắt buộc; treatment |
+| `ticket_closed` | Hệ thống ticket | `request_id`, `closed_at`, `duration_hours` | Không bắt buộc `trace_id` |
+| `ticket_reopened` | Khách hàng | `request_id`, `reopened_at`, `reason`, `days_since_close` | Không bắt buộc `trace_id` |
+| `audit_sample_checked` | Ban kiểm toán/Kế toán | `request_id`, `so_tien_da_hoan`, `so_tien_chuan`, `ket_luan` | Không bắt buộc `trace_id` |
 
 **Quy tắc nối sự kiện**
 
-- Khóa chính theo yêu cầu: luôn join theo `request_id`.
-- `trace_id` dùng để lần theo một lần chạy agent; một `request_id` có thể có nhiều `trace_id` nếu chạy lại.
-- Cửa sổ theo dõi mở lại: **7 ngày lịch** kể từ `ticket_closed.closed_at` của cùng `request_id`. Event `ticket_reopened` ngoài cửa sổ này không vào tử số chỉ số chính/an toàn.
+- Join chính: luôn theo `request_id` (`correlation_id`).
+- `trace_id`: lần theo một lần chạy agent; một request có thể nhiều `trace_id` nếu chạy lại; control không bịa `trace_id`.
+- Cửa sổ mở lại: 7 ngày lịch sau `ticket_closed.closed_at` cùng `request_id`.
 
-**Kiểm tra chéo:** với mỗi chỉ số ở bảng E1, ghi event dùng để tính. Chỉ số nào không tính được từ danh sách event thì chưa đo được.
+### Chỉ số cửa sổ 7 ngày — mẫu chín (mature)
 
-- **Chỉ số chính (% đóng 24h & không mở lại 7 ngày):** `ticket_closed` có `duration_hours ≤ 24` theo `request_id`; và **không** có `ticket_reopened` cùng `request_id` trong cửa sổ 7 ngày sau `closed_at`. Không ghép chỉ bằng `trace_id`.
-- **Chỉ số dùng (Tỉ lệ bỏ qua gợi ý):** Đếm `staff_review_decision` có `decision ∈ {sua, bo}` chia tổng `staff_review_decision`, join theo `request_id`.
-- **Chỉ số an toàn (Tỉ lệ lỗi lọt đến khách):** Số `request_id` có ≥1 `ticket_reopened` trong cửa sổ 7 ngày sau lần đóng gần nhất, chia tổng `refund_request_created`.
-- **Chỉ số dùng tự đề xuất (% yêu cầu mở qua trợ lý):** Đếm `request_id` có `agent_suggestion_shown` chia tổng `refund_request_created` của nhóm can thiệp (`arm`).
-- **Chỉ số an toàn tự đề xuất (% sai lệch kiểm toán):** Đếm `audit_sample_checked` có `so_tien_da_hoan != so_tien_chuan` chia tổng `audit_sample_checked` (theo `request_id`).
+Tại thời điểm báo cáo `report_as_of`:
+
+1. Chỉ đưa vào mẫu số các `request_id` có `ticket_closed.closed_at + 7 ngày ≤ report_as_of` (đã đủ thời gian theo dõi).
+2. Yêu cầu đóng chưa đủ 7 ngày: **loại khỏi mẫu số** chỉ số chính/an toàn tại lần chốt đó; không đếm là “không mở lại”.
+3. Tử số an toàn: trong mẫu chín, số `request_id` có ≥1 `ticket_reopened` với `0 < days_since_close ≤ 7`.
+4. Chốt chỉ số pilot: theo `decision_date` / cuối mỗi bước rollout; ghi rõ `report_as_of`.
+
+*Đợt chạy thử trên CSV hiện tại:* cột `mo_lai_trong_7_ngay` đã quan sát sẵn nên 82,83% / 4,25% là số lịch sử đủ cửa sổ; khi chạy pilot sống phải áp dụng quy tắc mẫu chín ở trên.
+
+**Kiểm tra chéo**
+
+- **Chỉ số chính:** trong mẫu chín, `duration_hours ≤ 24` và không có `ticket_reopened` trong 7 ngày — join bằng `request_id`.
+- **Chỉ số dùng:** `staff_review_decision` với `decision ∈ {sua, bo}` / tổng review (chủ yếu treatment).
+- **Chỉ số an toàn:** mẫu chín như trên.
+- **% mở qua trợ lý:** `agent_suggestion_shown` / `refund_request_created` với `arm=treatment`.
+- **% lệch kiểm toán:** `audit_sample_checked` lệch tiền / tổng audit.
 
 ## E2 · Rủi ro kinh tế
 

@@ -6,17 +6,18 @@
 - Lớp: L3A
 - Repo nhóm: `K5-L3A-DAY13-Soopi-LaunchEconomics`
 - URL repo: `https://github.com/tiennguyen0606/K5-L3A-DAY13-Soopi-LaunchEconomics`
-- Nhánh nộp: `main`
-- Commit chốt: **Chờ Final**
+- Nhánh nộp: `main` 
+- Commit chốt: **cập nhật SHA trên `main` ngay sau khi merge PR #10** (không để "Chờ Final" sau khi nộp)
+- Gate 2a / `phieu_cham.md`: **chưa có phiếu hội đồng thật** 
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub | Vai trò |
+| STT | Họ tên | MSSV nộp bài | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Hồ Anh Dũng | 2A202603613 | 118713346+ITCSIU21172@users.noreply.github.com |  | Người viết code; phụ trách chỉ số và event |
-|   2 | Dương Thanh Bình | 2A202603531 | 26ai.binhdt2@vinuni.edu.vn |  | Người kiểm số; viết code CP4 sau giải lao |
-|   3 | Mai Tuấn Anh | 2A202603574 |  |  | Người gắn nhãn 1 |
-|   4 | Nguyễn Hữu Tiến | 2A202603598 | tiennguyen0606@gmail.com | tiennguyen0606 | Người gắn nhãn 2, kiêm giữ hồ sơ; nhóm trưởng |
+|   1 | Hồ Anh Dũng | 2A202603613 |  | ITCSIU21172 | Người viết code; phụ trách chỉ số và event |
+|   2 | Dương Thanh Bình | 2A202603531 |  | BinhThanh313 | Người kiểm số; viết code CP4 sau giải lao |
+|   3 | Mai Tuấn Anh | 2A202603574 |  | maituananh15 / AnhMT2k4 | Người gắn nhãn 1 |
+|   4 | Nguyễn Hữu Tiến | 2A202603598 | tiennguyen0606@gmail.com | tiennguyen0606 | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
@@ -39,7 +40,7 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## Hồ Anh Dũng — ITCSIU21172
+## Hồ Anh Dũng — 2A202603613
 
 ### Phần việc phụ trách
 

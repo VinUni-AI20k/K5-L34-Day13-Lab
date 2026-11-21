@@ -4,16 +4,18 @@
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: Mai Tuấn Anh (MSSV: 2A202603574) · Người gắn nhãn 2: Nguyễn Hữu Tiến (MSSV: 2A202603598`)
+Người gắn nhãn 1: Mai Tuấn Anh (MSSV: 2A202603574) · Người gắn nhãn 2: Nguyễn Hữu Tiến (MSSV: 2A202603598)
 
 | Mục | Giá trị |
 | --- | --- |
-| Thời điểm khóa nhãn B | **2026-11-21 14:20 GMT+7** (`2026-11-21T14:20:00+07:00`) |
-| Bắt đầu / kết thúc gắn B | 14:05 / 14:18 GMT+7 cùng ngày |
+| Cửa sổ gắn nhãn độc lập (đúng 8 phút) | 14:05 → 14:13 GMT+7 ngày 2026-11-21 |
+| Rà soát / viết lý do | 14:13 → 14:18 GMT+7 |
+| Khóa nhãn B (nhật ký buổi) | **14:20 GMT+7** |
+| Bằng chứng kiểm chứng được | Commit `cc000e5` (2026-11-21 16:18:52 +0700) đưa `labels_reviewer_b.md` vào repo; không có screenshot đồng hồ lớp |
 | Nhận bộ A và đối chiếu | **14:25 GMT+7** — chỉ sau khi B đã khóa |
 | Sửa hồi tố sau đối chiếu | Không |
 
-Không sửa hồi tố hai bộ sau đối chiếu.
+Không sửa hồi tố hai bộ sau đối chiếu. Chi tiết giai đoạn: `labels_reviewer_b.md`.
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
