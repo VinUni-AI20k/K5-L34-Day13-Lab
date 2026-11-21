@@ -25,6 +25,8 @@ Số liệu tính từ `src/lab13.py` (hàm `in_e`), đọc từ `logix_requests
 | agent_suggestion_shown | Giao diện nhân viên | staff_id, so_tien_de_xuat, trace_id | Khi gợi ý hiện ra |
 | staff_review_decision | Nhân viên | quyet_dinh (giu, sua, bo), phut_xem_lai (đo thật), trace_id | Khi bấm giữ, sửa hoặc bỏ |
 | staff_rework_completed | Nhân viên | phut_lam_lai, ly_do, trace_id | Khi làm lại xong |
+| refund_ledger_write | Dịch vụ sổ cái | idempotency_key, ma_don, so_tien, ket_qua (ok, loi_tai_khoan, loi_he_thong), trace_id | Khi ghi lệnh hoàn vào sổ cái |
+| handoff_to_staff | Agent | reason (thieu_du_lieu, ngoai_pham_vi, ngoai_12_thang, het_lan_chay), tom_tat, trace_id | Khi chuyển yêu cầu cho nhân viên |
 | ticket_closed | Hệ thống ticket | closed_at, trace_id | Khi đóng yêu cầu |
 | ticket_reopened | Khách | reopened_at, reason, trace_id | Khi khách mở lại |
 | audit_sample_checked | Kế toán | so_tien_da_hoan, so_tien_dung, trace_id | Hằng tuần |
@@ -38,6 +40,7 @@ Số liệu tính từ `src/lab13.py` (hàm `in_e`), đọc từ `logix_requests
 - An toàn (mở lại): số yêu cầu có `ticket_reopened` trong cửa sổ 7 ngày chia số yêu cầu từ `refund_request_created` trong cùng tập theo dõi. Đo được.
 - Dùng (tự đề xuất, % yêu cầu mở bằng trợ lý): `agent_suggestion_shown` chia `refund_request_created` theo `arm`. Đo được.
 - An toàn (tự đề xuất, đơn hoàn sai tiền): `audit_sample_checked`. Đo được.
+- Bảng khắc phục trong `bang_loi.md` (ca 1, 20, 19): `refund_ledger_write` và `handoff_to_staff`. Đo được.
 
 ## E2 · Rủi ro kinh tế
 

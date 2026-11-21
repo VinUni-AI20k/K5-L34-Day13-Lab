@@ -2,19 +2,20 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
+- Tên nhóm: PD
 - Lớp: L3A
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/buianhdung2kar5/K5-L3A-DAY13-PD-LaunchEconomics · nhánh `main` · commit chốt: điền khi nộp
+- Repo nhóm: `K5-L3A-DAY13-PD-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/buianhdung2kar5/K5-L3A-DAY13-PD-LaunchEconomics · `main` · ...
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Bùi Anh Dũng | 2A202603687 | 26ai.dungba2@vinuni.edu.vn | buianhdung2kar5 | Người viết code (trước giải lao), người kiểm số (sau giải lao) |
-|   2 | Phụng |  |  |  | Người gắn nhãn 1 + người kiểm số, viết code D sau giải lao |
-|   3 | Thanh |  |  |  | Người gắn nhãn 2 kiêm giữ hồ sơ |
-|   4 | (nhóm 3 người) | | | | |
+|   1 | Bùi Anh Dũng | 2A202603687 | 26ai.dungba2@vinuni.edu.vn | buianhdung2kar5 | Người viết code (trước giải lao) → Người kiểm số (sau giải lao) |
+|   2 | Lê Minh Phụng | 2A202603693 | ... | ... | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
+|   3 | Mai Văn Thanh | 2A202603696 | maivanthanh36tb@gmail.com | ... | Người gắn nhãn 2, kiêm giữ hồ sơ |
+
+Nhóm 3 người nên một người giữ hai vai (Phụng: gắn nhãn 1 và kiểm số). Đổi người viết code sau giờ giải lao: Dũng chuyển sang kiểm số, Phụng chuyển sang viết code, để ít nhất hai người tự tay tính được chi phí.
 
 Bốn vai của lab:
 
@@ -23,21 +24,19 @@ Bốn vai của lab:
 - **Người gắn nhãn 1:** đọc đề, theo dõi điều kiện "Xong khi"; gắn nhãn 20 ca độc lập ở CP3.
 - **Người gắn nhãn 2, kiêm giữ hồ sơ:** điền `report/team/ho_so_launch_v0.md` từ đầu buổi; gắn nhãn 20 ca độc lập ở CP3.
 
-Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
-
 ## Cá nhân
 
-Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/` theo dạng:
+Mỗi thành viên có báo cáo riêng trong `report/team/MSSV_HoTen.md`:
 
-```text
-report/team/MSSV_HoTen.md
-```
+- Bùi Anh Dũng: `report/team/2A202603687_BuiAnhDung.md`
+- Lê Minh Phụng: `report/team/2A202603693_LeMinhPhung.md`
+- Mai Văn Thanh: `report/team/2A202603696_MaiVanThanh.md`
 
 Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## Bùi Anh Dũng-2A202603687
+## BuiAnhDung-2A202603687
 
 ### Phần việc phụ trách
 
@@ -55,3 +54,41 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - Commit `22e4359`; file `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/chi_so.md`.
 - Báo cáo cá nhân: `report/team/2A202603687_BuiAnhDung.md`.
+
+## LeMinhPhung-2A202603693
+
+### Phần việc phụ trách
+
+- CP1: tính tay A1 (1,20 · 1,25 · 1,25) và 1–2 số trong A2 để đối chiếu.
+- CP3: gắn nhãn 1 cho 20 ca độc lập, so nhãn với người gắn nhãn 2, tính đồng thuận, chốt ca lệch.
+- Sau giải lao: viết code D1 (5 câu cỡ mẫu) và tỉ lệ `mo_lai_trong_7_ngay`; soát `chi_so.md`; chạy kiểm tra cuối. Duyệt chéo phần pilot của nhóm kia.
+
+### Đóng góp cụ thể
+
+- ...
+
+### Bằng chứng
+
+- ...
+
+## MaiVanThanh-2A202603696
+
+### Phần việc phụ trách
+
+- Người gắn nhãn 2, kiêm giữ hồ sơ.
+- CP1: điền bảng A2, A3 trong `bang_chi_phi.md`.
+- CP3: gắn nhãn 2 cho 20 ca độc lập; ghi 2 bộ nhãn, đồng thuận, quy tắc ca lệch và bảng khắc phục vào `bang_loi.md`.
+- CP4: điền `pilot_plan.yaml`.
+- CP5: hoàn thiện `ho_so_launch_v0.md`, điền `phieu_cham.md`, `group_report.md`.
+
+### Đóng góp cụ thể
+
+- Điền bảng A2 (9 dòng, nhãn *simulated*) và A3 (4 loại) trong `report/team/bang_chi_phi.md`.
+- Điền `report/team/pilot_plan.yaml`: D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299), D2, chia theo nhân viên 20 + 20, MDE 6 điểm, 3 luật dừng đủ 4 vế.
+- Soạn `report/team/ho_so_launch_v0.md` (7 mục, đề xuất Go có điều kiện).
+- ...
+
+### Bằng chứng
+
+- `report/team/bang_chi_phi.md`, `report/team/pilot_plan.yaml`, `report/team/ho_so_launch_v0.md`
+- Commit: ...
