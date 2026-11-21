@@ -1,51 +1,81 @@
-# Lab 13 · Nhiệm vụ D · Kế hoạch pilot trợ lý hoàn phí LogiX-VN (Gate 2a)
-# Điền mọi chỗ có dấu hỏi. Khi nộp, ngoài các dòng chú thích không còn dấu hỏi nào.
-# Kiểm tra đọc được: python -c "import yaml; yaml.safe_load(open('../report/team/pilot_plan.yaml'))"
-#
-# D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02)
-#   a) Chia theo yêu cầu:
-#   b) Theo nhân viên, m = 75:
-#   c) 20 nhân viên mỗi nhóm:
-#   d) 6 depot mỗi nhóm:
-#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm:
-#
-# D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (mỗi câu một dòng):
-#   1. Đối chứng chạy cùng thời gian:
-#   2. Chia ngẫu nhiên hay do người chọn:
-#   3. Ảnh hưởng gián tiếp và cách giảm:
-#   4. Chỉ số chính, ngưỡng, ngày quyết định đã viết trước:
-#   5. Ít nhất 20 cụm mỗi nhóm:
-#
-# Đánh đổi đã chấp nhận (nếu cách chia chưa đạt cả hai điều kiện):
-#
-# Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn:
+﻿# Lab 13 · Nhiệm vụ D · BẢN NHÁP TV3, chưa được duyệt để chạy pilot.
+# Tính lại: python src/tv3_pilot_checks.py (chỉ dùng thư viện chuẩn).
+# D1a: +5 điểm: 1.251 yêu cầu mỗi nhóm.
+# D1b: m=75, DE=2,48; ceil(1251*2,48)=3.103 yêu cầu/nhóm;
+#      ceil(3103/75)=42 nhân viên/nhóm, tổng 84 > 40.
+# D1c: 20 nhân viên/nhóm: n hiệu dụng < 20/0,02 = 1.000 < 1.251.
+# D1d: 6 depot/nhóm: n hiệu dụng < 6/0,02 = 300.
+# D1e: +6 điểm: 859/nhóm; m >= 299; DE=6,96;
+#      n hiệu dụng = 20*299/6,96 = 859,20/nhóm.
+# D2.1: Đối chứng chạy đồng thời, cùng chính sách và cùng thời gian theo dõi.
+# D2.2: Ngẫu nhiên theo staff, phân tầng depot; khóa seed trước khi phân nhóm.
+# D2.3: Có nguy cơ chia sẻ gợi ý; giới hạn truy cập, theo dõi staff_id/arm.
+# D2.4: CHƯA chốt: phạm vi, ngưỡng chi phí, lịch; phải ký trước khi bắt đầu.
+# D2.5: Phương án đề xuất có 20 cụm nhân viên/nhóm, cần xác nhận đủ 40 người.
+# Đánh đổi: không đủ mẫu để nhắm +5 điểm với 40 nhân viên; đề xuất +6 điểm.
+# Không đạt ý nghĩa thống kê không chứng minh không có tác động; không tuyên bố
+# power 80% cho mức +5 điểm khi đã chọn thiết kế nhắm +6 điểm.
+# Baseline đo lại từ CSV: 51/1200 = 4,25%; noi_dia+hang_nang: 39/982 = 3,9715%.
+# Phạm vi thứ hai chỉ để tham khảo, chưa thay cho quyết định từ A3/B.
 
 pilot:
-  owner: "?"                      # một người có tên vai trò, không ghi "cả đội"
-  scope: "?"                      # loại yêu cầu nào, depot nào; dựa vào kết quả A3
+  status: draft_pending_team_review
+  owner: "Giám đốc vận hành LogiX-VN"
+  scope: null  # Chờ TV1/TV2 xác nhận A3/B; chưa cho phép tuyển mẫu.
   assignment:
-    unit: "?"                     # request | staff | depot
+    unit: staff
     control_share: 0.5
     randomized: true
-  rollout: [0.10, 0.25, 0.50]     # mỗi bước một tuần
+    stratification: depot
+    seed: 20261121  # Đề xuất, khóa trước khi phân nhóm; không sửa sau khi xem kết quả.
+    clusters_per_arm: 20
+    allocation: "Phân 40 nhân viên thành 20 can thiệp và 20 đối chứng; cân bằng theo depot, xử lý depot có số người lẻ nhưng giữ tổng 20/20."
+  rollout: [0.10, 0.25, 0.50]
+  rollout_policy: "Tương ứng 4, 10, 20 nhân viên trong nhóm can thiệp; nhóm đối chứng cố định 20 người. Mỗi bước ít nhất một tuần; chỉ tăng sau khi đủ cửa sổ theo dõi an toàn."
   primary_metric:
     name: dong_trong_24h_khong_mo_lai_7_ngay
     baseline: 0.70
-    mde: 0.05
+    mde: 0.06
     alpha: 0.05
     power: 0.80
-    n_per_arm: "?"
-    design_effect: "?"            # 1 nếu chia theo yêu cầu
-    clusters_per_arm: "?"         # để trống nếu chia theo yêu cầu
+    n_per_arm: 859  # Cỡ mẫu hiệu dụng; không phải tổng yêu cầu thô.
+    design_effect: 6.96
+    clusters_per_arm: 20
+    requests_per_cluster: 299
+    raw_n_per_arm: 5980
+    measurement_window: "Chỉ phân tích chính ở rollout 0.50; mỗi người đủ 299 yêu cầu thuộc phạm vi và mọi yêu cầu đã theo dõi đủ 7 ngày. Không gộp giai đoạn tăng dần vào phân tích chính."
+    analysis: "Theo nhóm phân ngẫu nhiên ban đầu (ITT), hiệu chỉnh cụm nhân viên và phân tầng depot; báo cáo chênh lệch và khoảng tin cậy 95%. Không phân tích như 5.980 quan sát độc lập."
   identifiability:
-    concurrent_control: "?"
-    spillover_risk: "?"
-    predeclared: "?"
+    concurrent_control: "20 nhân viên đối chứng làm cùng thời gian, cùng phạm vi; được phục vụ bằng quy trình nhân viên tự làm."
+    spillover_risk: "Nhân viên chia sẻ gợi ý; chỉ cấp quyền cho nhóm can thiệp, ghi staff_id, arm, trace_id và mọi truy cập trái nhóm; báo cáo sai lệch giao thức."
+    predeclared: "Chưa hoàn tất. Khóa chỉ số, phạm vi, seed, ngưỡng, phương pháp phân tích và ngày quyết định trước khi tuyển mẫu."
+  safety:
+    observed_reopen_rate_all: 0.0425
+    observed_reopen_count_all: 51
+    observed_request_count_all: 1200
+    proposed_reopen_absolute_ceiling: 0.06
+    proposed_reopen_excess_vs_control: 0.02  # 2 điểm phần trăm, không phải tăng tương đối 2%.
+    maturity: "Tỉ lệ mở lại chỉ tính trên yêu cầu đã đủ 7 ngày theo dõi; so hai nhóm cùng cửa sổ."
+  cost_ceiling_vnd_per_success: null  # Chờ A/B; không tự đặt số thay cho kết quả nhóm.
   stop_rules:
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-  interim_looks: "chỉ kiểm tra chỉ số an toàn"
-  rollback: "?"                   # ai bấm, mất bao lâu, khách được phục vụ bằng gì
-  decision_date: "?"
-  simulated_inputs: ["?"]         # liệt kê mọi con số giả lập đã dùng
+    - "NẾU có ít nhất 1 ca hoàn trùng được xác nhận TRONG bất kỳ lần đối soát nào THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và giao Kế toán trưởng đối soát KHÔNG THÌ không được tiếp tục hoàn tự động hoặc tăng rollout khi chưa sửa và kiểm chứng."
+    - "NẾU tỉ lệ mở lại 7 ngày vượt 6% hoặc cao hơn đối chứng ít nhất 2 điểm phần trăm TRONG 3 lần kiểm tra hằng ngày liên tiếp trên tập đủ 7 ngày theo dõi THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và Trưởng nhóm CSKH rà ca lỗi KHÔNG THÌ không được chuyển bước rollout."
+    - "NẾU chi phí mỗi việc thành công vượt cost_ceiling_vnd_per_success đã ký duyệt TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí tạm dừng tăng rollout và trình phạm vi/giới hạn lần chạy sửa đổi trong 2 ngày làm việc KHÔNG THÌ không được mở rộng pilot. Chưa ký ngưỡng thì không được bắt đầu pilot."
+    - "NẾU tỉ lệ sửa hoặc bỏ gợi ý trên số được xem lại vượt 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày và đề xuất sửa luồng KHÔNG THÌ không được chuyển bước rollout."
+  interim_looks: "Theo dõi an toàn hằng ngày và điều kiện vận hành/chi phí hằng tuần; không kiểm định hiệu quả chính giữa kỳ hoặc dừng sớm vì kết quả thuận lợi."
+  rollback: "Giám đốc vận hành tắt cờ trợ lý trong 30 phút; yêu cầu mới và tồn chuyển sang nhân viên tự làm kèm tóm tắt; Kế toán trưởng đối soát sổ cái trước khi thử lại."
+  decision_date: null  # Chờ lịch thực tế và thời gian đủ mẫu + 7 ngày theo dõi.
+  simulated_inputs:
+    - "phut_xem_lai_simulated: mọi chi phí suy ra phải ghi simulated."
+    - "phut_lam_lai_simulated: mọi chi phí suy ra phải ghi simulated."
+    - "Toàn bộ CSV là dữ liệu giả lập của lab; baseline 0,70, ICC 0,02 và bảng giá là giả định đề bài."
+  launch_gate:
+    ready: false
+    pending:
+      - "TV1/TV2: xác nhận phạm vi và bằng chứng kinh tế A3/B."
+      - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
+      - "TV3 và TV4: hoàn thành hai bộ nhãn độc lập và bảng khắc phục; chưa có kết quả gắn nhãn."
+      - "PM: ký ngưỡng chi phí bằng số; cập nhật luật dừng tương ứng."
+      - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
+      - "TV4: xác nhận event đủ trace_id, staff_id, arm và định nghĩa các chỉ số."
+      - "Nhóm: khóa ngày bắt đầu/ngày quyết định, kiểm tra YAML và ký bản cuối."
