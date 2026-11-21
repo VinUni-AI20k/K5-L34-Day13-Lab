@@ -49,6 +49,22 @@ Thêm mục đóng góp cho từng thành viên theo phần việc đã thực h
 - `src/lab13.py` chạy hết A1–A4, B1–B4 và D1 trên hai CSV gốc. A1 đạt 1,20 · 1,25 · 1,25. A2 ghi nhận 978/1.200 yêu cầu thành công và chi phí 4.472 đ/việc thành công [simulated].
 - [Báo cáo cá nhân](report/team/2A202603522_VuDucTam.md).
 
+## Nguyễn Trung Duy — 2A202603387
+
+### Phần việc phụ trách
+
+- Kiểm số A1–A4 từ mô hình của Người 1, phụ trách bảng chi phí và độ nhạy B1–B4, tổng hợp phần A–B trong báo cáo nhóm.
+
+### Đóng góp cụ thể
+
+- Tính chín kịch bản B1, kịch bản kết hợp B2, ba giới hạn lượt chạy B3 và hai giả định thời gian làm lại khi xem lại 100% ở B4.
+- Chuẩn bị mã phần B để Người 1 tích hợp. Đối chiếu số liệu với hai CSV và ghi nhãn `simulated` cho các kết quả dùng thời gian giả lập.
+
+### Bằng chứng
+
+- Commit `2bad982`. [Bảng chi phí](report/team/bang_chi_phi.md), [mã phần B](src/lab13_b.py) và [báo cáo nhóm](report/team/group_report.md).
+- [Báo cáo cá nhân](report/team/2A202603387_NguyenTrungDuy.md).
+
 ## Phạm Việt Hưng — 2A202603370
 
 ### Phần việc phụ trách
