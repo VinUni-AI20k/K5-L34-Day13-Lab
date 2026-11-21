@@ -99,8 +99,11 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Đóng góp cụ thể
 
--
+- CP3: Gắn nhãn độc lập 20 ca lỗi theo 5 loại Google PAIR (cột `Nhãn người 2`) và lập bảng khắc phục 5 ca (mỗi loại 1 ca) trong `report/team/bang_loi.md`.
+- CP4: Viết hàm `co_mau_hai_ti_le` và `tinh_co_mau_cp4` trong `src/lab13.py` tính 5 câu D1 và tỉ lệ `mo_lai_trong_7_ngay` hiện tại; hoàn thiện toàn bộ `report/team/pilot_plan.yaml` (cỡ mẫu, 5 câu kiểm tra D2, đánh đổi MDE 6 điểm, 3 luật dừng 4 vế).
+- CP5: Tính thử 3 chỉ số E1, liệt kê 10 event có `trace_id`, lập bảng 3 rủi ro kinh tế E2 trong `report/team/chi_so.md`; tổng hợp 7 mục và đề xuất `Go có điều kiện` trong `report/team/ho_so_launch_v0.md`.
 
 ### Bằng chứng
 
--
+- Nhánh `feat/cp3-cp4-pilot-plan` (PR #10), các commit `48fdce8`, `41c83ac`.
+- Các file đã cập nhật: `src/lab13.py`, `report/team/bang_loi.md`, `report/team/pilot_plan.yaml`, `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`.
