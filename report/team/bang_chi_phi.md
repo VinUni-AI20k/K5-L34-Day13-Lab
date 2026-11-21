@@ -30,6 +30,7 @@ Kiểm tay với p = 0,8: (1 − 0,2²) / 0,8 = 1,20; 1 / 0,8 = 1,25; [(1 − 0,
 
 - Chi phí mỗi việc thành công gấp 16,3 lần "hoá đơn chia số yêu cầu" (4.472 ÷ 274,7) [simulated].
 - Khoản lớn nhất là làm lại, 51,8% tổng chi phí [simulated]; tiếp theo là xem lại, 40,7% [simulated]. Giờ nhân viên chiếm 92,5% tổng chi phí [simulated].
+- Khi so với nhân viên tự làm, cộng 1.200 − 978 = 222 yêu cầu không thành công: (4.373.585,132 + 222 × 12.000) / 1.200 ≈ 5.865 đ/yêu cầu, bằng 0,49× mức 12.000 đ [simulated], chưa cộng cố định. Không dùng riêng 4.472 / 12.000 = 0,37× để kết luận mức tiết kiệm của cả hệ thống.
 
 Kiểm tay từ CSV: xem lại 890 phút × 2.000 = 1.780.000 đ; làm lại 1.132 phút × 2.000 = 2.264.000 đ [simulated]. Tổng (245.585,132 + 84.000 + 1.780.000 + 2.264.000) / 978 ≈ 4.472 đ/việc [simulated]. Cộng mọi lần chạy kể cả lỗi; 93.804 đ chạy lại đã nằm trong token + tool, không cộng thêm; mẫu số chỉ đếm `ket_qua == 'thanh_cong'`.
 
@@ -57,7 +58,7 @@ Kiểm tay A4: phạm vi có 900 việc thành công; quy mô đầy đủ 45.00
 
 ## B1 · Đổi từng yếu tố
 
-| Kịch bản | Cách tính | Chi phí mỗi việc thành công | Thay đổi (%) |
+| Kịch bản | Cách tính | Chi phí mỗi việc thành công | Thay đổi (%) [simulated] |
 | --- | --- | ---: | ---: |
 | Giá token gấp đôi | 52 đ và 260 đ cho 1.000 token; giá tool giữ nguyên | 4.723 [simulated] | +5,6% |
 | Giá token giảm một nửa | 13 đ và 65 đ | 4.346 [simulated] | −2,8% |
@@ -69,24 +70,24 @@ Kiểm tay A4: phạm vi có 900 việc thành công; quy mô đầy đủ 45.00
 | Chỉ cho chạy tối đa 2 lần | Bỏ lần chạy có attempt > 2; yêu cầu có so_lan_chay > 2 coi là chuyen_nhan_vien | 4.237 [simulated] | −5,2% |
 | Chỉ cho chạy 1 lần | Như trên với giới hạn 1 | 4.111 [simulated] | −8,1% |
 
-Kiểm tra: "giảm một nửa" giảm đúng bằng nửa mức tăng của "gấp đôi" (5,6 → 2,8; 40,7 → 20,3; 51,8 → 25,9).
+Kiểm tra trên số chưa làm tròn: "giảm một nửa" giảm đúng bằng nửa mức tăng của "gấp đôi"; phần trăm hiển thị làm tròn một chữ số (5,6 → 2,8; 40,7 → 20,3; 51,8 → 25,9) [simulated]. Ví dụ xem lại gấp đôi: (4.373.585,132 + 1.780.000) / 978 ≈ 6.292 đ/việc, tăng 40,7% [simulated].
 
 ## B2 · Đổi một cặp và xếp hạng
 
-- Giá token gấp đôi cùng lúc tỉ lệ xem lại gấp đôi: 6.543 [simulated], +46,3%, bằng tổng hai tác động riêng (+5,6% + 40,7%) vì mô hình tuyến tính.
-- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. số ca làm lại (+51,8%) · 2. tỉ lệ xem lại (+40,7%) · 3. lương nhân viên (+23,1%).
+- Giá token gấp đôi cùng lúc tỉ lệ xem lại gấp đôi: (4.373.585,132 + 245.585,132 + 1.780.000) / 978 ≈ 6.543 đ, tăng 46,3% [simulated]; bằng tổng hai tác động riêng (5,6% + 40,7%) [simulated] vì mô hình cộng tuyến tính.
+- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. số ca làm lại (+51,8%) · 2. tỉ lệ xem lại (+40,7%) · 3. lương nhân viên (+23,1%) [simulated].
 
 ## B3 · Giới hạn chạy lại có thật sự rẻ hơn
 
 | Giới hạn | Tổng chi phí trợ lý | Số yêu cầu không thành công | Chi phí cả hệ thống | Chi phí mỗi việc thành công |
 | --- | ---: | ---: | ---: | ---: |
-| 1 lần | 3.621.781 | 319 | 7.449.781 [simulated] | 4.111 [simulated] |
-| 2 lần | 4.093.220 | 234 | 6.901.220 [simulated] | 4.237 [simulated] |
-| 3 lần | 4.373.585 | 222 | 7.037.585 [simulated] | 4.472 [simulated] |
+| 1 lần | 3.621.781 [simulated] | 319 | 7.449.781 [simulated] | 4.111 [simulated] |
+| 2 lần | 4.093.220 [simulated] | 234 | 6.901.220 [simulated] | 4.237 [simulated] |
+| 3 lần | 4.373.585 [simulated] | 222 | 7.037.585 [simulated] | 4.472 [simulated] |
 
-- Giới hạn 2 lần rẻ nhất cho công ty (6.901.220 đ). Không trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất, là 1 lần (4.111 đ). Tối ưu riêng chi phí mỗi việc sẽ đẩy thêm 85 việc sang nhân viên.
+- Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 × số yêu cầu không thành công. Giới hạn 2 lần rẻ nhất: 4.093.220 + 234 × 12.000 = 6.901.220 đ [simulated]; giới hạn 1 lần có chi phí mỗi việc thấp nhất (4.111 đ [simulated]) nhưng chuyển thêm 319 − 234 = 85 việc sang nhân viên so với 2 lần.
 
 ## B4 · Nếu phải xem lại tất cả
 
-- Xem lại 100% (`noi_dia` + `hang_nang`), tính với 9 phút/ca làm lại theo đề: 11.743 đ = 0,98× [simulated]. Với 15,3 phút/ca (trung bình đo được trên toàn bộ ca làm lại): 12.415 đ = 1,03× [simulated], xem lại 100% còn đắt hơn nhân viên tự làm.
-- Xem lại 100% gần như không tiết kiệm được gì, vì tiền xem lại chiếm khoảng 90% chi phí. Pilot phải học được tỉ lệ xem lại có thể giảm xuống mức nào an toàn, và mỗi lần xem lại có thể ngắn hơn 5 phút không (hoà vốn ở khoảng 4,8–5,1 phút).
+- Xem lại 100% (`noi_dia` + `hang_nang`): (224.513,274 + 948 × 5 × 2.000 + 48 × 9 × 2.000) / 900 ≈ 11.743 đ = 0,98× mức 12.000 đ [simulated]. Thay 9 bằng trung bình chính xác 15,2973 phút/ca từ cột `_simulated` trên toàn bộ ca làm lại: 12.414,50 đ, làm tròn 12.415 đ = 1,03× [simulated]; hướng dẫn ghi xấp xỉ 12.414 đ, lệch dưới 0,01%.
+- Tiền xem lại chiếm khoảng 90% chi phí trong kịch bản 9 phút làm lại [simulated]; pilot cần tìm tỉ lệ xem lại thấp nhất vẫn an toàn. Thời gian xem lại hoà vốn tối đa khoảng 5,1 phút với 9 phút làm lại hoặc 4,8 phút với 15,3 phút làm lại [simulated]; chưa cộng chi phí cố định.
