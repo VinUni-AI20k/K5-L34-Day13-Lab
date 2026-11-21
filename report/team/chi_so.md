@@ -35,5 +35,5 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
-| ... | ... | ... | ... | ... |
-| ... | ... | ... | ... | ... |
+| Số ca làm lại tăng gấp đôi | CPS tăng 51,8%, từ 4.472 lên 6.787 đ/việc [simulated] | Tỉ lệ làm lại theo tuần > 7% (mẫu thử 4,9%) | Thu hẹp pilot về `noi_dia` + `hang_nang`, rà soát 20 trace làm lại | PM trợ lý hoàn phí |
+| Phải xem lại 100% kéo dài | 11.743 đ/việc (0,98× baseline) nếu làm lại 9 phút; 12.415 đ (1,03×) nếu dùng 15,3 phút trung bình [simulated] | Tỉ lệ xem lại còn > 50% cuối bước rollout 0,25 hoặc thời gian xem lại trung bình > 4,8 phút | Giảm xem lại theo bậc khi tỉ lệ sửa + bỏ dưới 15%; đo thời gian thật sau tuần 1 | Trưởng nhóm CSKH |
