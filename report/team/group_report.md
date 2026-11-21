@@ -17,7 +17,7 @@ Trả lời bốn câu cho trợ lý hoàn phí LogiX-VN trước Gate 2a: có �
 - **A · Chi phí** (`bang_chi_phi.md`, `src/lab13.py`): ba phép thử A1 đạt; `mo_hinh` tính từ trace; tách theo loại; cộng chi phí cố định 40 triệu đ/tháng cho phạm vi noi_dia + hang_nang.
 - **B · Độ nhạy** (`bang_chi_phi.md`): 9 kịch bản đổi từng yếu tố, một cặp, giới hạn 1/2/3 lần chạy, xem lại 100%. Tự kiểm: "giảm một nửa" bằng đúng nửa mức tăng của "gấp đôi".
 - **C · Bảng lỗi** (`bang_loi.md`): hai người gắn nhãn 20 ca, đồng thuận 18/20 = 90% (lệch ca 8 và 13); quy tắc cho ca lệch; bảng khắc phục 5 ca đủ năm loại, mỗi dòng có event, ngưỡng, tần suất và một vai phụ trách.
-- **D · Pilot** (`pilot_plan.yaml`): tính đủ năm câu D1 trước khi chọn cách chia; chọn chia theo nhân viên 20 + 20; bốn luật dừng (an toàn, hoàn trùng, chi phí, mức độ sử dụng); điều kiện đủ 40 nhân viên và lịch thu mẫu + 7 ngày theo dõi.
+- **D · Pilot** (`pilot_plan.yaml`): tính đủ năm câu D1 trước khi chọn cách chia; chọn chia theo nhân viên 20 + 20; năm luật dừng (an toàn tuyệt đối, lỗi tiền, an toàn so với đối chứng từ bước 10 người, chi phí biến đổi, mức độ sử dụng); điều kiện đủ 40 nhân viên và lịch thu mẫu + 7 ngày theo dõi.
 - **E · Chỉ số, rủi ro, hồ sơ** (`chi_so.md`, `ho_so_launch_v0.md`): ba chỉ số tính thử, 8 event có `trace_id`, 3 dòng rủi ro kinh tế lấy số từ bảng độ nhạy; hồ sơ một trang bảy mục.
 
 ## 4. Kết quả
