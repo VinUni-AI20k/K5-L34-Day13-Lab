@@ -26,7 +26,7 @@
 
 - File: `report/team/bang_chi_phi.md` (A2, A3), `report/team/pilot_plan.yaml`, `report/team/ho_so_launch_v0.md`, `report/team/bang_loi.md`, `TEAM.md`.
 - Kiểm tra: `yaml.safe_load` đọc được `pilot_plan.yaml`; ngoài dòng chú thích không còn dấu `?`; lệnh tìm từ cấm theo `SUBMISSION.md` trong `report/team` không in gì.
-- Commit: ...
+- Commit (GitHub `MaiVanThanhDev`): `2212a77`, `2242982`, `369be1d`, `8f46aa6`; PR #2 và #3 đã merge vào `main` (`c44bfaa`).
 
 ## 5. Công cụ AI đã dùng
 

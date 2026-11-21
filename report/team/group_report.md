@@ -36,7 +36,6 @@ Trả lời bốn câu cho trợ lý hoàn phí LogiX-VN trước Gate 2a: có �
 - Tỉ lệ mở lại hiện tại 4,25% (3,97% trong phạm vi) nên ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu; nhóm đổi sang so với đối chứng (+2 điểm) kèm trần 6%.
 - Cột nhãn người 1 có đối chiếu với bảng tham khảo trong hướng dẫn, nên tỉ lệ đồng thuận 90% chỉ phản ánh độ khớp của người 2 với bộ nhãn đó; nhóm ghi rõ điều này trong `bang_loi.md`. Hai ca lệch (8, 13) đều do lẫn giữa nơi cần sửa và nguyên nhân gốc.
 - Hai người cùng sửa `bang_chi_phi.md` gây xung đột khi gộp; số hai bên trùng khớp nên giữ bản chạy ra từ code. Sau đó mỗi người làm trên nhánh riêng và mở PR.
-- ...
 
 ## 6. Tổng hợp đóng góp
 
@@ -47,7 +46,6 @@ Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md`.
 - Chi phí xem lại và làm lại dựa trên cột `_simulated`; phải thay bằng phút đo thật (event `staff_review_decision`, `staff_rework_completed`) sau tuần 1 của pilot.
 - Đợt chạy thử không có nhóm đối chứng nên chỉ viết được "chỉ số trong đợt chạy thử là…", chưa kết luận được tác động của trợ lý.
 - Mẫu 1.200 yêu cầu chỉ có 20 nhân viên và 6 depot; kết quả theo loại hang_nang (158 yêu cầu) và doi_tac (68) còn ít dữ liệu.
-- ...
 
 ## 8. Tài liệu tham khảo
 

@@ -5,7 +5,7 @@
 - Tên nhóm: PD
 - Lớp: L3A
 - Repo nhóm: `K5-L3A-DAY13-PD-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: ... · `main` · ...
+- URL repo, nhánh nộp, commit chốt: https://github.com/buianhdung2kar5/K5-L3A-DAY13-PD-LaunchEconomics · `main` · commit merge cuối cùng trên `main` (bản đã kiểm tra cuối: `c44bfaa`)
 
 ## Thành viên
 
@@ -13,7 +13,7 @@
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Bùi Anh Dũng | 2A202603687 | 26ai.dungba2@vinuni.edu.vn | buianhdung2kar5 | Người viết code (trước giải lao) → Người kiểm số (sau giải lao) |
 |   2 | Lê Minh Phụng | 2A202603693 | ... | ... | Người gắn nhãn 1 + Người kiểm số (trước giải lao) → Người viết code (sau giải lao) |
-|   3 | Mai Văn Thanh | 2A202603696 | maivanthanh36tb@gmail.com | ... | Người gắn nhãn 2, kiêm giữ hồ sơ |
+|   3 | Mai Văn Thanh | 2A202603696 | maivanthanh36tb@gmail.com | MaiVanThanhDev | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Nhóm 3 người nên một người giữ hai vai (Phụng: gắn nhãn 1 và kiểm số). Đổi người viết code sau giờ giải lao: Dũng chuyển sang kiểm số, Phụng chuyển sang viết code, để ít nhất hai người tự tay tính được chi phí.
 
@@ -77,11 +77,12 @@ Mỗi thành viên có báo cáo riêng trong `report/team/MSSV_HoTen.md`:
 ### Đóng góp cụ thể
 
 - Điền bảng A2 (9 dòng, nhãn *simulated*) và A3 (4 loại) trong `report/team/bang_chi_phi.md`.
-- Điền `report/team/pilot_plan.yaml`: D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299), D2, chia theo nhân viên 20 + 20, MDE 6 điểm, 3 luật dừng đủ 4 vế.
-- Soạn `report/team/ho_so_launch_v0.md` (7 mục, đề xuất Go có điều kiện).
-- ...
+- Điền `report/team/pilot_plan.yaml`: D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299), D2, chia theo nhân viên 20 + 20, MDE 6 điểm; điều kiện đủ 40 nhân viên, lịch thu mẫu + 7 ngày theo dõi; 5 luật dừng đủ 4 vế, áp dụng theo bước rollout.
+- Gắn nhãn 2 cho 20 ca lỗi; ghi hai bộ nhãn, đồng thuận 18/20, quy tắc ca 8 và 13, bảng khắc phục 5 ca trong `report/team/bang_loi.md`.
+- Soạn `report/team/ho_so_launch_v0.md` (7 mục, đề xuất Go có điều kiện) và nháp `report/team/group_report.md`.
+- Gộp nhánh của Dũng và Phụng, giải quyết xung đột `bang_chi_phi.md` và `bang_loi.md`.
 
 ### Bằng chứng
 
 - `report/team/bang_chi_phi.md`, `report/team/pilot_plan.yaml`, `report/team/ho_so_launch_v0.md`
-- Commit: ...
+- Commit: `2212a77` (pilot_plan.yaml, hồ sơ, TEAM.md), `2242982` (pilot theo góp ý của Phụng, nhãn người 2), `369be1d` (bảng lỗi CP3, mục 5 hồ sơ), `8f46aa6` (luật dừng theo bước rollout); PR #2, #3
