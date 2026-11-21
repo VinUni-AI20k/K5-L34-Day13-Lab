@@ -51,19 +51,36 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/2A202603634_LucAnhTuan.md`; chi phí mỗi việc thành công 4.472 đ [simulated].
 
-## HoVaTen - MSSV
-## Nguyễn Thùy Lam - 2A202603632
+## NguyenThuyLam-2A202603632
 
 ### Phần việc phụ trách
 
-- Người gắn nhãn 1; người gắn nhãn 2 kiêm giữ hồ sơ theo phân vai nhóm. Yêu cầu hai bộ nhãn độc lập cần hai thành viên khác nhau; xác nhận lại người gắn nhãn thứ hai trước khi chốt CP3.
-- Duy trì `report/team/ho_so_launch_v0.md` từ đầu buổi, cập nhật khi nhóm có kết quả A–E.
+- Người gắn nhãn 1: gắn nhãn 20 ca lỗi theo năm loại Google PAIR, theo dõi điều kiện "Xong khi" của CP3, soạn bảng khắc phục 5 ca trong `report/team/bang_loi.md`.
+- Soạn bản nháp đầu tiên của `report/team/ho_so_launch_v0.md`, sau đó bàn giao cho người giữ hồ sơ (Đạt).
 
 ### Đóng góp cụ thể
 
-- Soạn bản nháp bộ nhãn người 1 và bảng khắc phục 5 loại lỗi trong `report/team/bang_loi.md`; chưa tính đồng thuận vì chưa có bộ nhãn độc lập thứ hai.
-- Soạn bản nháp hồ sơ launch v0 trong `report/team/ho_so_launch_v0.md`, dùng số đối chiếu từ hướng dẫn và đánh dấu các nội dung cần nhóm xác nhận.
+- Bộ nhãn người 1 cho 20 ca và bảng khắc phục đủ năm loại (ca 9, 7, 18, 4, 17) trong `report/team/bang_loi.md`; Lam đã xác nhận bộ nhãn. Tỉ lệ đồng thuận với người 2: 20/20.
+- Bản nháp hồ sơ launch v0 với số đối chiếu và nhãn simulated.
 
 ### Bằng chứng
 
 - `report/team/bang_loi.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603632_NguyenThuyLam.md`.
+
+## MaiLamTanDat-2A202603645
+
+### Phần việc phụ trách
+
+- Người kiểm số: tính lại độc lập số của CP1, CP2, D1 và E1; ghi cách tính tay vào `report/team/bang_chi_phi.md`.
+- Người gắn nhãn 2: gắn nhãn 20 ca ở CP3; đồng thuận với Lam 20/20.
+- Người giữ hồ sơ: điền `report/team/chi_so.md` và cập nhật `report/team/ho_so_launch_v0.md`.
+
+### Đóng góp cụ thể
+
+- Kiểm số độc lập bằng script không dùng `lab13.py`: A2, A3, A4, B1–B4 khớp bản của Tuấn (chi phí mỗi việc thành công 4.472 đ [simulated]); D1 khớp (1.251; m ≥ 299; power ≈ 0,64); E1 khớp (82,83% · 27,12% · 4,25%).
+- Điền `chi_so.md`: ba chỉ số tính thử, hai chỉ số nhóm đề xuất, 8 event có `trace_id`, ba dòng rủi ro kinh tế lấy từ bảng độ nhạy.
+- Cập nhật `ho_so_launch_v0.md`: tên nhóm và lớp, mục 4, số 12.415 đ ở mục 7.
+
+### Bằng chứng
+
+- `report/team/bang_chi_phi.md` (mục "Kiểm số độc lập"), `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603645_MaiLamTanDat.md`.
