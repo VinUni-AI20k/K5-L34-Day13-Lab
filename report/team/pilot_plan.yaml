@@ -92,12 +92,19 @@ pilot:
     - "phut_xem_lai_simulated: mọi chi phí suy ra phải ghi simulated."
     - "phut_lam_lai_simulated: mọi chi phí suy ra phải ghi simulated."
     - "Toàn bộ CSV là dữ liệu giả lập của lab; baseline 0,70, ICC 0,02 và bảng giá là giả định đề bài."
+  error_analysis:
+    label_agreement: 1.0
+    agreement_count: 20
+    case_count: 20
+    source_confirmation: user_reported_tv4_confirmed
+    remediation_case_ids: [9, 7, 18, 4, 17]
+    evidence: report/team/bang_loi.md
   launch_gate:
     ready: false
     pending:
       - "TV1/TV2 và PM: duyệt phạm vi noi_dia + hang_nang từ A3/B đã kiểm chứng và xác nhận đủ lưu lượng."
       - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
-      - "Đã nhận hai bộ nhãn đủ 20 ca, trùng nhãn 20/20 = 100%; TV4 cần xác nhận mô tả bộ 2 khớp đề gốc, sau đó chốt nhãn thống nhất và bảng khắc phục. CP3 chưa hoàn tất."
+      - "TV3/TV4: bổ sung họ tên/thời điểm chốt nhãn và liên kết event của bảng khắc phục với chi_so.md; phần phân loại và bảng khắc phục CP3 đã hoàn thiện."
       - "PM: ký hoặc sửa trần đề xuất 12.000 đ/việc, thống nhất phân bổ cố định và lộ trình giảm xem lại."
       - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
       - "TV4: xác nhận event đủ trace_id, staff_id, arm và định nghĩa các chỉ số."

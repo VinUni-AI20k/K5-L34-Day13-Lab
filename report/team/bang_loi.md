@@ -10,28 +10,28 @@ Yêu cầu: gắn độc lập trong 8 phút, không trao đổi. TV4 chỉ xem 
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
-| 1 | Do người dùng | Do người dùng | Có | Chưa chốt |
-| 2 | Hệ thống | Hệ thống | Có | Chưa chốt |
-| 3 | Ngữ cảnh | Ngữ cảnh | Có | Chưa chốt |
-| 4 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Chưa chốt |
-| 5 | Ngầm | Ngầm | Có | Chưa chốt |
-| 6 | Do người dùng | Do người dùng | Có | Chưa chốt |
-| 7 | Hệ thống | Hệ thống | Có | Chưa chốt |
-| 8 | Hệ thống | Hệ thống | Có | Chưa chốt |
-| 9 | Do người dùng | Do người dùng | Có | Chưa chốt |
-| 10 | Ngữ cảnh | Ngữ cảnh | Có | Chưa chốt |
-| 11 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Chưa chốt |
-| 12 | Ngầm | Ngầm | Có | Chưa chốt |
-| 13 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Chưa chốt |
-| 14 | Do người dùng | Do người dùng | Có | Chưa chốt |
-| 15 | Hệ thống | Hệ thống | Có | Chưa chốt |
-| 16 | Ngữ cảnh | Ngữ cảnh | Có | Chưa chốt |
-| 17 | Ngầm | Ngầm | Có | Chưa chốt |
-| 18 | Ngữ cảnh | Ngữ cảnh | Có | Chưa chốt |
-| 19 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Chưa chốt |
-| 20 | Hệ thống | Hệ thống | Có | Chưa chốt |
+| 1 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 2 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 3 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 4 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 5 | Ngầm | Ngầm | Có | Ngầm |
+| 6 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 7 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 8 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 9 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 10 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 11 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 12 | Ngầm | Ngầm | Có | Ngầm |
+| 13 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 14 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 15 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 16 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 17 | Ngầm | Ngầm | Có | Ngầm |
+| 18 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 19 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 20 | Hệ thống | Hệ thống | Có | Hệ thống |
 
-**Tỉ lệ đồng thuận nhãn theo số ca:** 20 / 20 = 100% (vượt ngưỡng 80%). Chưa chốt nhãn thống nhất: cần xác nhận các khác biệt mô tả với đề gốc; không xem 100% là bằng chứng đã gắn trên cùng nội dung ca.
+**Tỉ lệ đồng thuận:** 20 / 20 = 100% (vượt ngưỡng 80%). Theo xác nhận của người dùng trong cuộc trao đổi, TV4 đã đối chiếu các khác biệt mô tả với đề gốc; giữ nguyên nhãn và chốt nhãn thống nhất ở bảng trên.
 
 ## Bộ nhãn 1 — giải thích do người dùng cung cấp
 
@@ -62,7 +62,7 @@ Giữ nguyên phân loại và lập luận người dùng đã gửi; chỉ b�
 
 ## Bộ nhãn 2 — nội dung do người dùng cung cấp
 
-Lưu nguyên nhãn và mô tả đã nhận, chỉ bỏ dấu gạch chéo cuối dòng. Một số mô tả không khớp đề gốc; chưa sửa bộ nhãn ban đầu và chưa xác nhận hai người đã gắn trên cùng nội dung ca.
+Lưu nguyên nhãn và mô tả đã nhận, chỉ bỏ dấu gạch chéo cuối dòng. Một số mô tả ban đầu không khớp đề gốc. Theo thông tin người dùng cung cấp sau khi đối chiếu, TV4 đã xác nhận lại các ca theo đề gốc; giữ nguyên bản gửi ban đầu làm bằng chứng, dùng nội dung đề gốc cho bảng khắc phục.
 
 | Ca | Loại lỗi | Mô tả đã nhận |
 | --: | --- | --- |
@@ -87,11 +87,11 @@ Lưu nguyên nhãn và mô tả đã nhận, chỉ bỏ dấu gạch chéo cuố
 | 19 | Giới hạn hệ thống | Khách hỏi thông tin kiện hàng quá 6 tháng đã lưu kho lưu trữ |
 | 20 | Hệ thống | Hệ thống gọi tool ghi sổ cái bị duplicate lệnh hoàn tiền 2 lần cho 1 đơn |
 
-### Đối chiếu mô tả bộ 2 với đề gốc — cần người gắn nhãn 2 xác nhận
+### Đối chiếu mô tả bộ 2 với đề gốc — TV4 đã xác nhận theo thông tin người dùng
 
 Nguồn: `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, mục “Hai mươi ca lỗi”. Các dòng dưới là ghi chú kiểm tra, không thay thế nội dung ban đầu của người gắn nhãn 2.
 
-| Ca | Điểm khác trong mô tả bộ 2 | Nội dung đề gốc cần xác nhận |
+| Ca | Điểm khác trong mô tả bộ 2 | Nội dung đề gốc đã đối chiếu |
 | --: | --- | --- |
 | 2 | Vượt hạn mức hoàn tiền | Kiện 28 kg, gọi tool với tham số hàng thường thay vì hàng nặng, hoàn thiếu 45.000 đ |
 | 3 | Đổi địa chỉ bị tạo ticket hoàn tiền | Hoàn về ví LogiX trong 5 phút nhưng khách chờ tiền về ngân hàng |
@@ -107,27 +107,27 @@ Nguồn: `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, mục “Hai mươi ca lỗi�
 | 16 | Khách VIP cần hỗ trợ đặc biệt | Thông báo Zalo lúc 2:14 sáng theo thiết kế gửi ngay khi xong, làm phiền khách |
 | 19 | Đơn quá 6 tháng đã lưu trữ | Đơn từ 14 tháng trước trong khi trợ lý chỉ truy cập 12 tháng |
 
-**Kết luận kiểm tra:** 100% là mức trùng nhãn theo số ca của hai danh sách đã nhận; chưa đủ để khẳng định hai người đã phân loại cùng 20 mô tả. Người gắn nhãn 2 cần xác nhận lại đề đang dùng. Giữ nguyên bộ 2 này; nếu cần gắn lại, lưu riêng bản đối chiếu/lần 2, không ghi đè bằng chứng ban đầu.
+**Kết luận sau xác nhận:** người dùng thông báo TV4 đã xác nhận các ca theo đề gốc và giữ nguyên bộ nhãn. Hai bộ nhãn trùng 20/20 = 100%; không sửa nhãn hoặc mô tả gửi ban đầu. Bảng đối chiếu trên lưu lại cách xử lý khác biệt mô tả, không phải một bộ nhãn độc lập mới do AI tạo.
 
 ## Quy tắc phân biệt cho các ca không trùng
 
-Không có ca khác nhãn trong hai danh sách đã nhận. Các khác biệt về mô tả được ghi riêng ở bảng đối chiếu trên; chưa giả định hai người đã thống nhất nội dung ca.
+Không có ca khác nhãn trong hai danh sách đã nhận. Các khác biệt về mô tả đã được đối chiếu theo đề gốc và TV4 xác nhận theo thông tin người dùng; không có ca cần phân xử nhãn.
 
 ## Bảng khắc phục cho 5 ca, mỗi loại một ca
 
-Cách phát hiện phải đo được (event, ngưỡng, tần suất). Người phụ trách là một vai trò, không ghi "cả đội".
+Chọn ca 9, 7, 18, 4, 17 theo đề gốc, đủ năm loại. Mỗi dòng có event, ngưỡng, tần suất và một vai trò chịu trách nhiệm. Các ngưỡng, lịch kiểm tra và biện pháp là đề xuất thiết kế, chưa phải kết quả triển khai; 212 đơn là dữ kiện của ca 17.
 
 | Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
 | --: | --- | --- | --- | --- |
-| ... | Do người dùng | ... | ... | ... |
-| ... | Hệ thống | ... | ... | ... |
-| ... | Ngữ cảnh | ... | ... | ... |
-| ... | Giới hạn hệ thống | ... | ... | ... |
-| ... | Ngầm | ... | ... | ... |
+| 9 | Do người dùng | Event input_validation_failed có trace_id và reason=sai_loai_ma; tính tỉ lệ hằng ngày trên tổng yêu cầu, cảnh báo nếu >2% | Nhận diện mã đơn sàn TMĐT và hướng dẫn lấy mã vận đơn; chỉ tra chéo khi có dữ liệu ánh xạ, không đoán mã | PM trợ lý hoàn phí |
+| 7 | Hệ thống | Mỗi giờ đối soát thông báo đã hoàn với refund_ledger_write thành công cùng trace_id; cảnh báo ngay khi có ít nhất 1 thông báo không có ghi sổ thành công | Chỉ xác nhận đã hoàn sau khi sổ cái trả thành công; lỗi 503 hết số lần thử thì thông báo đang xử lý và chuyển nhân viên; dùng khóa chống trùng | Kỹ sư trưởng agent |
+| 18 | Ngữ cảnh | Event ticket_reopened có trace_id và reason=khong_hieu_cach_tinh; rà mọi ca thuộc lý do này hằng tuần, cảnh báo khi có ít nhất 1 ca tính đúng nhưng thiếu giải thích | Luôn hiển thị phí gốc, tỉ lệ và phép tính: 30.000 đ × 50% = 15.000 đ; kiểm tra mẫu tin nhắn trước khi gửi | Trưởng nhóm CSKH |
+| 4 | Giới hạn hệ thống | Event handoff_to_staff có trace_id, loai và reason=thieu_du_lieu_chang; rà hằng tuần, ngưỡng 0 ca tự xác nhận hoàn khi không có dữ liệu chặng | Báo rõ giới hạn dữ liệu; chuyển nhân viên kèm tóm tắt và thông tin còn thiếu; loại quoc_te khỏi phạm vi pilot đề xuất | PM trợ lý hoàn phí |
+| 17 | Ngầm | Event audit_sample_checked có trace_id và phiên bản bảng giá; kiểm tra ngẫu nhiên 100 đơn/tuần so với bảng giá hiện hành, cảnh báo nếu ít nhất 1 đơn lệch | Vô hiệu hóa cache khi đổi bảng giá; ghi phiên bản giá trong trace; đối soát 212 đơn bị ảnh hưởng và thực hiện điều chỉnh sau phê duyệt | Kế toán trưởng |
 
 ## Hướng dẫn thực hiện CP3 (TV3 chuẩn bị)
 
-**Trạng thái: đã lưu hai bộ nhãn do người dùng cung cấp; nhãn trùng 20/20 = 100%, nhưng mô tả bộ 2 cần xác nhận lại với đề gốc. CP3 chưa chốt.**
+**Trạng thái CP3: đã có hai bộ nhãn, đồng thuận 20/20 = 100%, TV4 đã xác nhận đối chiếu theo thông tin người dùng, và bảng khắc phục đủ năm loại. Còn bổ sung họ tên/thời điểm chốt và liên kết event với chi_so.md khi đóng gói hồ sơ.**
 Không dùng gợi ý hoặc đáp án mẫu để điền hai bộ nhãn độc lập. Mỗi người ghi riêng trong 8 phút; chỉ đối chiếu hai bộ nhãn sau khi cả hai đã chốt. Không sửa nhãn ban đầu sau khi so sánh.
 
 ### Định nghĩa thao tác trước khi gắn nhãn
@@ -149,7 +149,7 @@ Gắn theo nguyên nhân gốc; nơi cần sửa không tự quyết định lo�
 - Với mỗi ca bất đồng, ghi số ca, hai nhãn ban đầu, nhãn thống nhất và một câu quy tắc phân biệt dựa trên mô tả ca.
 - Mỗi loại chọn một ca sau khi thống nhất. Bảng dưới chỉ là đề xuất thiết kế, chưa phải kết quả phân loại 20 ca và chưa thay bảng nộp ở trên.
 
-### Thư viện khắc phục đề xuất — cần đối chiếu ca thực tế
+### Thư viện khắc phục tham khảo
 
 Các ngưỡng sau là ngưỡng đề xuất của nhóm, không phải số liệu quan sát.
 
@@ -166,7 +166,7 @@ Các ngưỡng sau là ngưỡng đề xuất của nhóm, không phải số li
 - [ ] Điền tên và thời điểm chốt của từng người.
 - [x] Lưu bộ nhãn 1 đủ 20 ca và giải thích do người dùng cung cấp.
 - [x] Lưu bộ nhãn 2 đủ 20 ca do người dùng cung cấp; chưa xác nhận quá trình gắn độc lập.
-- [ ] TV4 xác nhận các mô tả khác đề gốc; lưu riêng mọi bản gắn lại.
-- [x] Tính mức trùng nhãn theo số ca từ hai danh sách đã nhận: 20/20 = 100%; ghi rõ giới hạn do khác mô tả.
-- [ ] Gắn số ca thực tế vào 5 dòng khắc phục, điều chỉnh biện pháp đúng mô tả ca.
+- [x] Người dùng xác nhận TV4 đã đối chiếu các mô tả khác đề gốc; giữ nguyên bộ nhãn ban đầu.
+- [x] Tính đồng thuận từ hai bộ nhãn đã nhận: 20/20 = 100%; chốt nhãn thống nhất sau xác nhận đối chiếu.
+- [x] Hoàn thiện bảng khắc phục cho ca 9, 7, 18, 4, 17 theo đề gốc, đủ năm loại.
 - [ ] TV4 kiểm tra event ở bảng khắc phục được đặc tả trong chi_so.md.
