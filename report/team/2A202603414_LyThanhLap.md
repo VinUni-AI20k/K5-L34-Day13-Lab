@@ -55,4 +55,13 @@
 
 ## 6. Tự đánh giá
 
-*(Tự viết: phần nào nắm chắc, phần nào cần hỏi thêm. Ví dụ: tự giải thích được vì sao tử số tính mọi lần chạy, cách tính cỡ mẫu hiệu dụng khi chia theo cụm, và lý do chọn Go có điều kiện.)*
+**Nắm chắc:**
+
+- Tử số tính mọi lần chạy: lần lỗi vẫn tốn token, tool và giờ nhân viên. Mẫu số chỉ đếm việc thành công vì đó là phần công ty nhận được. Kết quả: 4.472 đ, gấp 16,3 lần hoá đơn chia yêu cầu (`simulated`).
+- Cỡ mẫu hiệu dụng: n = c × m / DE < c / ICC. Với 20 cụm, trần là 1.000 < 1.251, nên số cụm quyết định chứ không phải tổng số yêu cầu. Tự giải tay câu e: m ≥ 299.
+- Go có điều kiện: `noi_dia` + `hang_nang` rẻ hơn nhân viên (0,22×, 0,69×), nhưng còn lỗi ca 7 và ca 20, power 0,64, phút xem lại giả lập, xem lại 100% lên 0,98–1,03×.
+
+**Cần hỏi thêm:**
+
+- Cách ước ICC thật từ dữ liệu tuần đầu. Nếu ICC là 0,05 thì trần chỉ còn 400.
+- Ngưỡng an toàn +2 điểm có đủ nhạy ở bước 0.10 (4 nhân viên) không.
