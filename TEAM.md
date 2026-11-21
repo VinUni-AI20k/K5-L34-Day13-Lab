@@ -81,3 +81,23 @@ Sao chép mục dưới đây cho từng thành viên.
 - Commit `77d3078` (khung hồ sơ), `9edadc3` (mục 1, 3), `30f75f7` (mục 2, 3 từ B1–B4), `82c79b4` (nhãn người 2 trong `bang_loi.md`), `c64f454` (báo cáo cá nhân) trên `main`.
 - File `report/team/ho_so_launch_v0.md`, `report/team/bang_loi.md`, `report/team/2A202603672_NguyenVanVinh.md`.
 - Phiếu gắn nhãn gốc của người 2 (docx, có lý do từng ca), gắn trước khi so với người gắn nhãn 1.
+
+## VuQuangMinh - 2A202603657
+
+### Phần việc phụ trách
+
+- Người gắn nhãn 1: đọc đề, theo dõi điều kiện "Xong khi" và "Tự kiểm tra" của từng checkpoint.
+- Gắn nhãn độc lập 20 ca lỗi ở CP3 (nhiệm vụ C), so nhãn với người gắn nhãn 2 và hoàn thiện `report/team/bang_loi.md`.
+- Báo cáo cá nhân `report/team/2A202603657_VuQuangMinh.md`.
+
+### Đóng góp cụ thể
+
+- Soát CP1 theo `CHECKPOINTS.md`: ba phép thử ĐẠT, A2 khớp đáp án (4.472 đ/việc [simulated]); báo nhóm phần còn thiếu lúc đó (A3, A4 trong code, `bang_chi_phi.md`, `TEAM.md`). Soát tiến độ sau CP2: B1–B4 đủ, không có từ "production".
+- Gắn nhãn độc lập 20 ca theo năm loại Google PAIR (Hệ thống 7 · Giới hạn hệ thống 7 · Do người dùng 2 · Ngữ cảnh 2 · Ngầm 2), đẩy lên nhánh riêng trước khi so.
+- So hai bộ nhãn: trùng 11/20 = 55%; cùng người gắn nhãn 2 thống nhất 9 ca không trùng (1, 3, 8, 9, 10, 12, 16, 17, 18).
+- Hoàn thiện `bang_loi.md`: định nghĩa viết lại cho bốn cặp loại hay lẫn, một câu quy tắc cho mỗi ca không trùng, bảng khắc phục 5 ca đủ năm loại (ca 9, 7, 18, 13, 12) có event, ngưỡng, tần suất và vai trò phụ trách.
+
+### Bằng chứng
+
+- Commit `e70707b` (nhãn người 1, nhánh `feat/cp3-nhan-nguoi-1`), `89520d5` (hoàn thành CP3 trên `main`), `a102869` (báo cáo cá nhân, nhánh `docs/bao-cao-ca-nhan-minh`).
+- File `report/team/bang_loi.md`, `report/team/2A202603657_VuQuangMinh.md`.
