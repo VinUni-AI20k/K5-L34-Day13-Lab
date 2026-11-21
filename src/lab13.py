@@ -19,17 +19,30 @@ BASELINE = 12000    # đồng cho 1 yêu cầu khi nhân viên tự làm (6 phú
 def so_lan_chay_ky_vong(p, k=None):
     """Số lần chạy trung bình cho 1 yêu cầu khi mỗi lần đúng với xác suất p.
     k = số lần chạy tối đa; k=None nghĩa là chạy lại đến khi đúng."""
-    raise NotImplementedError('VIẾT Ở ĐÂY')
+    if not 0 < p <= 1:
+        raise ValueError('p must be in (0, 1]')
+    if k is None:
+        return 1.0 / p
+    if not isinstance(k, int) or k < 1:
+        raise ValueError('k must be a positive integer or None')
+    return (1.0 - (1.0 - p) ** k) / p
 
 
 def ti_le_thanh_cong(p, k=None):
     """Xác suất yêu cầu thành công sau tối đa k lần chạy."""
-    raise NotImplementedError('VIẾT Ở ĐÂY')
+    if not 0 < p <= 1:
+        raise ValueError('p must be in (0, 1]')
+    if k is None:
+        return 1.0
+    if not isinstance(k, int) or k < 1:
+        raise ValueError('k must be a positive integer or None')
+    return 1.0 - (1.0 - p) ** k
 
 
 def he_so_chi_phi_moi_viec_thanh_cong(p, k=None):
     """Chi phí mỗi việc thành công, tính bằng bội số của giá một lần chạy."""
-    raise NotImplementedError('VIẾT Ở ĐÂY')
+    success = ti_le_thanh_cong(p, k)
+    return so_lan_chay_ky_vong(p, k) / success
 
 
 def kiem_tra_dap_an_biet_truoc():
@@ -50,7 +63,28 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
     - thanh_cong: số yêu cầu có ket_qua == 'thanh_cong'.
     - Các tham số giá/hệ số/max_lan_chay dùng cho Nhiệm vụ B (độ nhạy, giới hạn số lần chạy); giữ mặc định ở A2.
     """
-    raise NotImplementedError('VIẾT Ở ĐÂY')
+    reqs = reqs.copy()
+    runs = runs[runs['request_id'].isin(reqs['request_id'])].copy()
+    if max_lan_chay is not None:
+        if not isinstance(max_lan_chay, int) or max_lan_chay < 1:
+            raise ValueError('max_lan_chay must be a positive integer or None')
+        runs = runs[runs['attempt'] <= max_lan_chay]
+        vuot = reqs['so_lan_chay'] > max_lan_chay
+        reqs.loc[vuot, 'ket_qua'] = 'chuyen_nhan_vien'
+        reqs.loc[vuot, ['phut_xem_lai_simulated', 'phut_lam_lai_simulated']] = 0
+    tien_token = runs['tokens_in'] / 1000 * gia_vao + runs['tokens_out'] / 1000 * gia_ra
+    tien_tool = runs['tool_calls'] * gia_tool
+    xem_lai = reqs['phut_xem_lai_simulated'].sum() * luong_phut * he_so_xem_lai
+    lam_lai = reqs['phut_lam_lai_simulated'].sum() * luong_phut * he_so_lam_lai
+    token = tien_token.sum()
+    tool = tien_tool.sum()
+    tong = token + tool + xem_lai + lam_lai
+    thanh_cong = int((reqs['ket_qua'] == 'thanh_cong').sum())
+    chay_lai = (tien_token + tien_tool)[runs['attempt'] > 1].sum()
+    return dict(token=token, tool=tool, chay_lai=chay_lai, xem_lai=xem_lai,
+                lam_lai=lam_lai, tong=tong, thanh_cong=thanh_cong,
+                cps=tong / thanh_cong if thanh_cong else math.nan,
+                hoa_don_moi_yc=(token + tool) / len(reqs) if len(reqs) else math.nan)
 
 
 if __name__ == '__main__':
@@ -60,7 +94,31 @@ if __name__ == '__main__':
     ket_qua = mo_hinh(runs, reqs)
     for ten, gia_tri in ket_qua.items():
         print(f'{ten:12s} {gia_tri:>14,.0f}')
-    # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
+    # A3 · Chi phí theo loại yêu cầu
+    print('A3 · Chi phí theo loại')
+    for loai in reqs['loai'].drop_duplicates():
+        loai_reqs = reqs[reqs['loai'] == loai]
+        subset = mo_hinh(runs, loai_reqs)
+        n_req = len(loai_reqs)
+        print(f'{loai:12s} yc={n_req:4d} thanh_cong={subset["thanh_cong"]:4d} '
+              f'ty_le={subset["thanh_cong"] / n_req:.1%} '
+              f'lan_chay/yc={loai_reqs["so_lan_chay"].mean():.2f} '
+              f'cps={subset["cps"]:,.0f}d so_voi_baseline={subset["cps"] / BASELINE:.2f}x')
+    # A4 · Phân bổ 40 triệu đồng/tháng cho phạm vi pilot.
+    pilot = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    pilot_cost = mo_hinh(runs, pilot)
+    # Giữ mẫu số là toàn bộ mẫu để khớp tỷ lệ thành công của phạm vi trên tổng tải.
+    pilot_success_rate = pilot_cost['thanh_cong'] / len(reqs)
+    monthly_success = 45000 * pilot_success_rate
+    fixed_per_success = 40_000_000 / monthly_success
+    half_volume_fixed = fixed_per_success * 2
+    print('A4 · Chi phí cố định')
+    print(f'pham_vi=noi_dia+hang_nang thanh_cong_mau={pilot_cost["thanh_cong"]} '
+          f'ty_le={pilot_success_rate:.1%} thanh_cong_thang={monthly_success:,.0f}')
+    print(f'chi_phi_co_dinh/viec={fixed_per_success:,.0f}d '
+          f'tong_cps={pilot_cost["cps"] + fixed_per_success:,.0f}d')
+    print(f'nua_san_luong: chi_phi_co_dinh/viec={half_volume_fixed:,.0f}d '
+          f'tong_cps={pilot_cost["cps"] + half_volume_fixed:,.0f}d')
     # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
     #   from statsmodels.stats.proportion import proportion_effectsize
