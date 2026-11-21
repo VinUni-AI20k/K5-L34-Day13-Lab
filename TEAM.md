@@ -2,10 +2,10 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: DTL
+- Lớp: L3A
+- Repo nhóm: `K5-L3A-DAY13-DTL-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/tuanvtxm6/K5-L3A-DAY13-DTL-LaunchEconomics, nhánh `main`, commit chốt:
 
 ## Thành viên
 
