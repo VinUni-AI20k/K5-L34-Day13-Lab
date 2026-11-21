@@ -123,7 +123,82 @@ if __name__ == '__main__':
           f'tong_cps={pilot_cost["cps"] + fixed_per_success:,.0f}d')
     print(f'nua_san_luong: chi_phi_co_dinh/viec={half_volume_fixed:,.0f}d '
           f'tong_cps={pilot_cost["cps"] + half_volume_fixed:,.0f}d')
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
+    # B1 · Đổi từng yếu tố, mỗi lần chỉ thay một tham số.
+    kich_ban = {
+        'Gia token gap doi': dict(gia_vao=52, gia_ra=260),
+        'Gia token giam mot nua': dict(gia_vao=13, gia_ra=65),
+        'Xem lai gap doi': dict(he_so_xem_lai=2),
+        'Xem lai giam mot nua': dict(he_so_xem_lai=0.5),
+        'Lam lai gap doi': dict(he_so_lam_lai=2),
+        'Lam lai giam mot nua': dict(he_so_lam_lai=0.5),
+        'Luong tang 25%': dict(luong_phut=2500),
+        'Toi da 2 lan chay': dict(max_lan_chay=2),
+        'Chi 1 lan chay': dict(max_lan_chay=1),
+    }
+    print('B1 · Do nhay tung yeu to (CPS, thay doi so voi A2)')
+    ket_qua_b1 = {}
+    for ten, tham_so in kich_ban.items():
+        ket_qua_b1[ten] = mo_hinh(runs, reqs, **tham_so)['cps']
+        thay_doi = (ket_qua_b1[ten] / ket_qua['cps'] - 1) * 100
+        print(f'{ten:24s} {ket_qua_b1[ten]:8,.0f}d {thay_doi:+6.1f}%')
+
+    # B2 · Kịch bản kết hợp và xếp hạng theo tác động tuyệt đối lên CPS.
+    ket_hop = mo_hinh(runs, reqs, gia_vao=52, gia_ra=260, he_so_xem_lai=2)
+    print(f'B2 · Token gap doi + xem lai gap doi: {ket_hop["cps"]:,.0f}d '
+          f'({(ket_hop["cps"] / ket_qua["cps"] - 1) * 100:+.1f}%)')
+    anh_huong = {
+        'So ca lam lai': max(abs(ket_qua_b1['Lam lai gap doi'] / ket_qua['cps'] - 1),
+                             abs(ket_qua_b1['Lam lai giam mot nua'] / ket_qua['cps'] - 1)),
+        'Ty le xem lai': max(abs(ket_qua_b1['Xem lai gap doi'] / ket_qua['cps'] - 1),
+                             abs(ket_qua_b1['Xem lai giam mot nua'] / ket_qua['cps'] - 1)),
+        'Luong nhan vien': abs(ket_qua_b1['Luong tang 25%'] / ket_qua['cps'] - 1),
+        'Gia token': abs(ket_qua_b1['Gia token gap doi'] / ket_qua['cps'] - 1),
+        'Gioi han retry': abs(ket_qua_b1['Chi 1 lan chay'] / ket_qua['cps'] - 1),
+    }
+    hang = sorted(anh_huong, key=anh_huong.get, reverse=True)
+    print('B2 · Ba yeu to anh huong manh nhat: ' + ', '.join(hang[:3]))
+
+    # B3 · So sánh CPS và chi phí toàn hệ thống khi giới hạn số lần chạy.
+    print('B3 · Gioi han chay lai (chi phi don vi: dong)')
+    for gioi_han in (1, 2, 3):
+        gioi_han_cost = mo_hinh(runs, reqs, max_lan_chay=gioi_han)
+        khong_thanh_cong = len(reqs) - gioi_han_cost['thanh_cong']
+        chi_phi_he_thong = gioi_han_cost['tong'] + BASELINE * khong_thanh_cong
+        print(f'{gioi_han} lan: tong_tro_ly={gioi_han_cost["tong"]:,.0f}d '
+              f'khong_thanh_cong={khong_thanh_cong} '
+              f'toan_he_thong={chi_phi_he_thong:,.0f}d cps={gioi_han_cost["cps"]:,.0f}d')
+
+    # B4 · Xem lại 100% các yêu cầu pilot có gợi ý (ít nhất một run status=ok).
+    pilot_ids = pilot['request_id']
+    pilot_runs = runs[runs['request_id'].isin(pilot_ids)]
+    ids_co_goi_y = pilot_runs.loc[pilot_runs['status'] == 'ok', 'request_id'].unique()
+    pilot_lam_lai = pilot[pilot['ket_qua'] == 'lam_lai']
+    pilot_token_tool = (
+        pilot_runs['tokens_in'].sum() / 1000 * GIA_VAO
+        + pilot_runs['tokens_out'].sum() / 1000 * GIA_RA
+        + pilot_runs['tool_calls'].sum() * GIA_TOOL
+    )
+    so_phut_xem_lai_moi_ca = 5
+    so_phut_lam_lai_moi_ca = 9
+    b4_tong = (pilot_token_tool + len(ids_co_goi_y) * so_phut_xem_lai_moi_ca * LUONG_PHUT
+               + len(pilot_lam_lai) * so_phut_lam_lai_moi_ca * LUONG_PHUT)
+    b4_thanh_cong = int((pilot['ket_qua'] == 'thanh_cong').sum())
+    b4_cps = b4_tong / b4_thanh_cong
+    # Dùng mức trung bình toàn bộ ca làm lại theo hướng dẫn, rồi áp dụng cho 48 ca pilot.
+    lam_lai_phut_thuc_te = round(reqs.loc[
+        reqs['ket_qua'] == 'lam_lai', 'phut_lam_lai_simulated'
+    ].mean(), 1)
+    b4_tong_thuc_te = (pilot_token_tool + len(ids_co_goi_y) * so_phut_xem_lai_moi_ca * LUONG_PHUT
+                       + len(pilot_lam_lai) * lam_lai_phut_thuc_te * LUONG_PHUT)
+    b4_cps_thuc_te = b4_tong_thuc_te / b4_thanh_cong
+    print(f'B4 · Pilot review 100%: n={len(pilot)}, goi_y={len(ids_co_goi_y)}, '
+          f'thanh_cong={b4_thanh_cong}, token_tool={pilot_token_tool:,.0f}d')
+    print(f'B4 · 9 phut lam lai/ca: tong={b4_tong:,.0f}d cps={b4_cps:,.0f}d '
+          f'({b4_cps / BASELINE:.2f}x baseline)')
+    print(f'B4 · {lam_lai_phut_thuc_te:.1f} phut lam lai/ca theo simulated: '
+          f'tong={b4_tong_thuc_te:,.0f}d cps={b4_cps_thuc_te:,.0f}d '
+          f'({b4_cps_thuc_te / BASELINE:.2f}x baseline)')
+
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
     #   from statsmodels.stats.proportion import proportion_effectsize
     #   from statsmodels.stats.power import NormalIndPower

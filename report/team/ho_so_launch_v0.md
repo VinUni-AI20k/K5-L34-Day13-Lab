@@ -6,14 +6,14 @@ Nhóm: ... · Lớp: ...
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |
-| 1 · Chi phí mỗi việc thành công | ... | ... | ... |
-| 2 · Ba yếu tố nhạy nhất | ... | ... | ... |
-| 3 · So với nhân viên tự làm | ... | ... | ... |
-| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | ... | ... | ... |
-| 5 · Bảng lỗi và cách khắc phục | ... | ... | ... |
-| 6 · Pilot plan | ... | ... | ... |
-| 7 · Rủi ro kinh tế | ... | ... | ... |
+| 1 · Chi phí mỗi việc thành công | 4.472 đ/việc thành công; trong phạm vi `noi_dia` + `hang_nang`, cộng cố định ở 45.000 yêu cầu/tháng là 4.599 đ/việc [simulated] | Xong, có bằng chứng | Người viết code; người kiểm số |
+| 2 · Ba yếu tố nhạy nhất | Làm lại ×2: +51,8%; xem lại ×2: +40,7%; lương +25%: +23,1% CPS [simulated] | Xong, có bằng chứng | Người viết code sau giải lao |
+| 3 · So với nhân viên tự làm | Ước tính toàn hệ thống: 5.865 đ/yêu cầu (cộng 222 ca chuyển nhân viên × 12.000 đ vào tổng chi phí, chia 1.200 yêu cầu) = 0,49× baseline [simulated] | Xong, có bằng chứng | Người kiểm số |
+| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | Chưa hoàn thiện | Chưa | Người giữ hồ sơ |
+| 5 · Bảng lỗi và cách khắc phục | Chưa hoàn thiện | Chưa | Người gắn nhãn 1 |
+| 6 · Pilot plan | Chưa hoàn thiện; chờ cỡ mẫu D1 | Chưa | Người phụ trách D1 |
+| 7 · Rủi ro kinh tế | Làm lại ×2 làm CPS lên 6.787 đ (+51,8%); xem lại 100% có thể lên 12.415 đ/việc (1,03× baseline) [simulated] | Xong, có bằng chứng | Người giữ hồ sơ |
 
-**Đề xuất:** Go · Go có điều kiện · No-go (giữ một). Go có điều kiện: ghi từng điều kiện, người phụ trách, ngày kiểm tra. No-go: ghi việc phải làm để quay lại cổng.
+**Đề xuất:** Chưa kết luận; cần hoàn tất phân tích độ nhạy B, bảng lỗi C, pilot plan D và chỉ số/rủi ro E trước khi chọn Go, Go có điều kiện hoặc No-go.
 
 - ...
