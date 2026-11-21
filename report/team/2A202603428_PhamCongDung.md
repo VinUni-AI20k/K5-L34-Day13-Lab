@@ -26,11 +26,20 @@
 - **Viết câu trả lời A3 & A4 trong `report/team/bang_chi_phi.md`:**
   - Phân tích bảng tách theo loại yêu cầu: kết luận loại **`quoc_te`** không đáng để trợ lý xử lý vì tỉ lệ thành công chỉ **27,3%**, chi phí **22.515 đ = 1,88×** của 12.000 đ (`simulated`). Giải thích việc cho chạy lại tới 3 lần không giúp ích vì tỉ lệ `status == 'ok'` của `quoc_te` giảm mạnh qua từng lần thử (lần 1: **30,0%**, lần 2: **11,4%**, lần 3: **2,2%**) do lỗi lặp lại trên cùng yêu cầu. Đề xuất loại cả `quoc_te` và `doi_tac` (**10.215 đ = 0,85×**, có điều khoản riêng) khỏi phạm vi pilot.
   - Phân tích chi phí cố định 40 triệu đ/tháng trên phạm vi `noi_dia` + `hang_nang` (biến đổi **3.414 đ/việc**, 900/1.200 việc thành công): ở quy mô 45.000 yêu cầu/tháng (33.750 việc thành công), cố định là **1.185 đ/việc** → tổng **4.599 đ = 0,38×** (`simulated`); ở một nửa khối lượng (22.500 yêu cầu/tháng), cố định tăng gấp đôi lên **2.370 đ/việc** → tổng **5.784 đ = 0,48×** (`simulated`).
-- **Cập nhật `report/team/ho_so_launch_v0.md` (Mục 1, Mục 2, Mục 3) và nháp rủi ro kinh tế trong `report/team/chi_so.md`:**
+- **Cập nhật `report/team/ho_so_launch_v0.md` (Mục 1, Mục 3):**
   - Điền Mục 1 (Chi phí mỗi việc thành công: 4.472 đ toàn mẫu; 3.414 đ biến đổi và 4.599 đ có cố định cho phạm vi pilot, trạng thái `Giả lập`, phụ trách: `PM trợ lý hoàn phí`).
-  - Điền Mục 2 (Ba yếu tố nhạy nhất: 1. Số ca làm lại +51,8% · 2. Tỉ lệ xem lại +40,7% · 3. Lương nhân viên +23,1%, trạng thái `Giả lập`, phụ trách: `PM trợ lý hoàn phí`).
-  - Điền Mục 3 (So với nhân viên tự làm 12.000 đ: cả hệ thống 5.865 đ = 0,49×; thu hẹp phạm vi pilot về `noi_dia` 0,22× và `hang_nang` 0,69×, giới hạn 2 lần chạy, trạng thái `Giả lập`, phụ trách: `Giám đốc vận hành LogiX-VN`).
-  - Soạn nháp 3 dòng rủi ro kinh tế ở mục E2 của `report/team/chi_so.md` (số ca làm lại tăng gấp đôi lên 6.787 đ; xem lại 100% kéo dài lên 11.743 đ = 0,98× hoặc 12.415 đ = 1,03×; khối lượng thấp hơn dự kiến làm chi phí cố định mỗi việc tăng từ 1.185 đ lên 2.370 đ).
+  - Điền Mục 3 (So với nhân viên tự làm 12.000 đ: cả hệ thống 5.865 đ = 0,49×; thu hẹp phạm vi pilot về `noi_dia` 0,22× và `hang_nang` 0,69×, trạng thái `Giả lập`, phụ trách: `Giám đốc vận hành LogiX-VN`).
+
+**Tại CP2 (Nhiệm vụ B — Bảng độ nhạy & Nháp rủi ro kinh tế):**
+
+- **Ghi Mục 2 (Ba yếu tố nhạy nhất) vào `report/team/ho_so_launch_v0.md`:**
+  - Tổng hợp từ bảng độ nhạy B1 & B2: Xếp hạng 3 yếu tố làm chi phí mỗi việc thành công thay đổi mạnh nhất là **1. Số ca làm lại** (gấp đôi → **6.787 đ, +51,8%**, giảm một nửa → **3.315 đ, −25,9%** `simulated`) · **2. Tỉ lệ xem lại** (gấp đôi → **6.292 đ, +40,7%**, giảm một nửa → **3.562 đ, −20,3%** `simulated`) · **3. Lương nhân viên** (tăng 25% → **5.506 đ, +23,1%** `simulated`).
+  - Đối chiếu kịch bản đổi cặp B2 (Giá token ×2 + Tỉ lệ xem lại ×2 → **6.543 đ, +46,3%** `simulated`, bằng đúng tổng hai tác động riêng `+5,6% + 40,7%` do mô hình cộng tuyến tính) và kịch bản giới hạn chạy lại B3 (giới hạn **2 lần chạy** giúp tổng chi phí cả hệ thống rẻ nhất cho công ty ở mức **6.901.220 đ** `simulated`, tiết kiệm 136.365 đ so với 3 lần và 548.561 đ so với 1 lần).
+  - Gán trạng thái `Giả lập` và người phụ trách là `PM trợ lý hoàn phí`.
+- **Soạn nháp bảng Rủi ro kinh tế (cho mục E2) trong `report/team/chi_so.md` từ số liệu bảng độ nhạy B1 & B4:**
+  - **Rủi ro 1 (Số ca làm lại tăng gấp đôi):** Tác động làm chi phí mỗi việc thành công tăng **+51,8%** (từ 4.472 đ lên **6.787 đ**, `simulated`). Dấu hiệu theo dõi: tỉ lệ làm lại theo tuần > 7% (so với 4,9% trong đợt chạy thử ở phạm vi `noi_dia` + `hang_nang`). Hành động: thu hẹp pilot về `noi_dia` và rà soát 20 trace làm lại gần nhất. Phụ trách: `PM trợ lý hoàn phí`.
+  - **Rủi ro 2 (Phải xem lại 100% kéo dài — từ kết quả B4):** Tác động làm chi phí trong phạm vi `noi_dia` + `hang_nang` tăng lên **11.743 đ = 0,98×** của 12.000 đ (hoặc **12.415 đ = 1,03×** nếu dùng phút làm lại thực tế 15,3 phút/ca trong dữ liệu, `simulated`), mất toàn bộ lợi thế tiết kiệm. Dấu hiệu theo dõi: % yêu cầu được xem lại vẫn > 50% cuối bước rollout 0,25 hoặc thời gian xem lại > 4,8 phút/ca. Hành động: giảm tỉ lệ xem lại theo bậc khi tỉ lệ `sua` + `bo` < 15%. Phụ trách: `Trưởng nhóm CSKH`.
+  - **Rủi ro 3 (Khối lượng thấp hơn dự kiến — từ kết quả A4):** Chi phí cố định 40 triệu đ/tháng làm cộng thêm **+1.185 đ/việc** ở 45.000 yc/tháng (**4.599 đ = 0,38×**, `simulated`) và tăng gấp đôi lên **+2.370 đ/việc** khi khối lượng giảm một nửa (**5.784 đ = 0,48×**, `simulated`). Phụ trách: `PM trợ lý hoàn phí`.
 
 ## 4. Bằng chứng
 
@@ -48,6 +57,9 @@
     - Tỉ trọng làm lại và xem lại: `2.264.000 / 4.373.585 = 51,77% ≈ 51,8%`; `1.780.000 / 4.373.585 = 40,70% ≈ 40,7%`.
     - Chi phí cả hệ thống trên mỗi yêu cầu: `(4.373.585 + 222 × 12.000) / 1.200 = 7.037.585 / 1.200 = 5.864,65 ≈ 5.865 đ (0,49×)`.
     - Chi phí cố định mỗi việc ở phạm vi `noi_dia` + `hang_nang`: `40.000.000 / (45.000 × 900 / 1.200) = 40.000.000 / 33.750 = 1.185,18 ≈ 1.185 đ`; cộng CPS biến đổi `3.413,90 + 1.185,18 = 4.599 đ (0,38×)`.
+  - Tự kiểm tra số liệu độ nhạy ở CP2 (B1, B2, B4):
+    - Tính cộng tuyến tính B2: `(4.723 − 4.472) + (6.292 − 4.472) = 251 + 1.820 = 2.071 đ` → `4.472 + 2.071 = 6.543 đ (+46,3%)`, khớp với `+5,6% + 40,7% = +46,3%`.
+    - Kịch bản xem lại 100% (B4) trên `noi_dia` + `hang_nang`: `948 ca có ≥1 lần ok × 5 phút × 2.000 đ = 9.480.000 đ`; `48 ca làm lại × 9 phút × 2.000 đ = 864.000 đ`; cộng token+tool `224.513 đ` = `10.568.513 đ / 900 việc = 11.743 đ (0,98×)`. Với trung bình thực tế `15,3125 phút/ca làm lại`: `(9.480.000 + 48 × 15,3125 × 2.000 + 224.513) / 900 = 11.174.513 / 900 = 12.416 đ ≈ 12.415 đ (1,03×)`.
   - Kiểm tra định dạng: xác nhận mọi con số có nguồn từ `phut_xem_lai_simulated` và `phut_lam_lai_simulated` đều đi kèm nhãn `simulated`, người phụ trách là một vai trò cụ thể.
 
 ## 6. Tự đánh giá
