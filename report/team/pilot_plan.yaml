@@ -26,7 +26,8 @@ pilot:
   economic_evidence:
     label: simulated
     source_code_commit: "3e43cfa"
-    source_report_commit: "72a51a5"
+    source_report_commit: "119d4a7"
+    report_review_note: "Đã nhận báo cáo CP1/CP2 của TV2, giữ phép tính tay; làm rõ 15,3 phút là simulated và tỉ trọng xem lại 89,7% chỉ thuộc kịch bản 9 phút làm lại."
     verification: "Đã chạy hai bản A/B từ origin/main và origin/thanhthuy: A1 đạt, kết quả A/B trùng nhau."
     scoped_requests: 982
     scoped_successes: 900
@@ -96,7 +97,7 @@ pilot:
     pending:
       - "TV1/TV2 và PM: duyệt phạm vi noi_dia + hang_nang từ A3/B đã kiểm chứng và xác nhận đủ lưu lượng."
       - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
-      - "TV3 và TV4: hoàn thành hai bộ nhãn độc lập và bảng khắc phục; chưa có kết quả gắn nhãn."
+      - "TV3 đã lưu bộ nhãn 1 đủ 20 ca ở commit f1fb17e; chờ bộ nhãn 2 độc lập của TV4, tính đồng thuận và chốt bảng khắc phục."
       - "PM: ký hoặc sửa trần đề xuất 12.000 đ/việc, thống nhất phân bổ cố định và lộ trình giảm xem lại."
       - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
       - "TV4: xác nhận event đủ trace_id, staff_id, arm và định nghĩa các chỉ số."
