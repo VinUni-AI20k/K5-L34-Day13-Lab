@@ -48,6 +48,14 @@
   - Ca 13 (ngoài phạm vi, trả lời chung chung): gắn Giới hạn hệ thống, vì gốc là ngoài phạm vi.
   - Ca 18 (tính đúng, thiếu cách tính): gắn Ngữ cảnh, vì hệ thống làm đúng nhưng khách thấy sai.
 
+**CP3 · Bảng khắc phục 3 ca (Do người dùng, Hệ thống, Ngữ cảnh):**
+
+- Đã điền 3 dòng trong `bang_loi.md`. Mỗi dòng có event đo được, ngưỡng, tần suất và một vai trò phụ trách.
+  - Ca 1 · Do người dùng: event `bank_account_rejected`, cảnh báo khi vượt 1% số lệnh hoàn/ngày. Khắc phục bằng kiểm số tài khoản và cho khách xác nhận tên chủ tài khoản. Phụ trách: PM trợ lý hoàn phí.
+  - Ca 7 · Hệ thống: báo thành công khi chưa có `ledger_write_ok`. Đối soát mỗi giờ, ngưỡng 0 ca. Chỉ báo "đã hoàn" khi sổ cái xác nhận. Phụ trách: kỹ sư backend phụ trách tích hợp sổ cái.
+  - Ca 3 · Ngữ cảnh: event `refund_reopened` với lý do "chưa nhận tiền" dù đã hoàn về ví. Báo cáo theo tuần, ngưỡng 3%. Khắc phục bằng cho khách chọn kênh nhận và ghi rõ trong tin nhắn. Phụ trách: UX writer.
+- Chọn ca 7 cho loại Hệ thống vì đây là lỗi nặng nhất: báo khách đã hoàn tiền trong khi tiền chưa đi.
+
 ## 4. Bằng chứng
 
 - File: [report/team/bang_chi_phi.md](bang_chi_phi.md). Đầu file có ghi chú đối chiếu, lệch 0% so với đáp án.
