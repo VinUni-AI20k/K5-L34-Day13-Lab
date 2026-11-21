@@ -4,13 +4,11 @@
 
 ## Nhãn theo từng ca
 
-Người gắn nhãn 1: Lê Minh Phụng · Người gắn nhãn 2: Mai Văn Thanh
+20 nhãn tham khảo ở cột người 1 được gắn theo nguyên nhân gốc và đối chiếu với mục “Nhãn tham khảo cho 20 ca” trong [hướng dẫn Lab 13](../../docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md).
 
-20 nhãn tham khảo cho Phụng được gắn theo nguyên nhân gốc và đối chiếu với mục “Nhãn tham khảo cho 20 ca” trong [hướng dẫn Lab 13](../../docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md).
+Người 2 ghi bộ nhãn riêng trước khi xem cột tham khảo. Để tính đồng thuận theo bài lab, điền kết quả tự gắn của hai người, đếm số ca trùng rồi chia 20. Mốc 80% tương ứng 16 ca trùng. Ghi cách phân biệt cho từng ca lệch.
 
-Thanh ghi bộ nhãn riêng trước khi xem cột tham khảo. Để tính đồng thuận theo bài lab, điền kết quả tự gắn của Phụng và Thanh, đếm số ca trùng rồi chia 20. Mốc 80% tương ứng 16 ca trùng. Ghi cách phân biệt cho từng ca lệch.
-
-| Ca | Nhãn tham khảo cho Phụng | Nhãn của Thanh | Trùng? | Nhãn thống nhất |
+| Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
 | 1 | Do người dùng | ... | ... | ... |
 | 2 | Hệ thống | ... | ... | ... |
