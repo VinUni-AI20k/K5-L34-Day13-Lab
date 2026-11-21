@@ -10,7 +10,9 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 | Số lần chạy trung bình, chạy đến khi đúng | 1,25 |
 | Hệ số chi phí mỗi việc thành công, tối đa 3 lần | 1,25 |
 
-`python lab13.py` in `Ba phép thử đáp án biết trước: ĐẠT`.
+`python -X utf8 lab13.py` in `Ba phép thử đáp án biết trước: ĐẠT` (bật UTF-8 nếu terminal lỗi khi in tiếng Việt).
+
+Kiểm tay với p = 0,8: (1 − 0,2²) / 0,8 = 1,20; 1 / 0,8 = 1,25; [(1 − 0,2³) / 0,8] / (1 − 0,2³) = 1,25.
 
 ## A2 · Mô hình chi phí từ trace
 
@@ -26,28 +28,32 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 | Chi phí mỗi việc thành công | 4.472 | | simulated |
 | Hoá đơn token và tool chia cho số yêu cầu | 274,7 | | đo từ trace |
 
-- Chi phí mỗi việc thành công gấp 16,3 lần "hoá đơn chia số yêu cầu" (4.472 ÷ 274,7).
-- Khoản lớn nhất là làm lại, 51,8% tổng chi phí [simulated]; tiếp theo là xem lại, 40,7% [simulated]. Giờ nhân viên chiếm 92,5% tổng chi phí.
+- Chi phí mỗi việc thành công gấp 16,3 lần "hoá đơn chia số yêu cầu" (4.472 ÷ 274,7) [simulated].
+- Khoản lớn nhất là làm lại, 51,8% tổng chi phí [simulated]; tiếp theo là xem lại, 40,7% [simulated]. Giờ nhân viên chiếm 92,5% tổng chi phí [simulated].
+
+Kiểm tay từ CSV: xem lại 890 phút × 2.000 = 1.780.000 đ; làm lại 1.132 phút × 2.000 = 2.264.000 đ [simulated]. Tổng (245.585,132 + 84.000 + 1.780.000 + 2.264.000) / 978 ≈ 4.472 đ/việc [simulated]. Cộng mọi lần chạy kể cả lỗi; 93.804 đ chạy lại đã nằm trong token + tool, không cộng thêm; mẫu số chỉ đếm `ket_qua == 'thanh_cong'`.
 
 ## A3 · Tách theo loại yêu cầu
 
 | Loại | Số yêu cầu | Tỉ lệ thành công | Số lần chạy mỗi yêu cầu | Chi phí mỗi việc thành công | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| noi_dia | 824 | 95,0% | 1,11 | 2.696 [simulated] | 0,22× |
-| hang_nang | 158 | 74,1% | 1,47 | 8.221 [simulated] | 0,69× |
-| quoc_te | 150 | 27,3% | 2,32 | 22.515 [simulated] | 1,88× |
-| doi_tac | 68 | 54,4% | 1,88 | 10.215 [simulated] | 0,85× |
+| noi_dia | 824 | 95,0% | 1,11 | 2.696 [simulated] | 0,22× [simulated] |
+| hang_nang | 158 | 74,1% | 1,47 | 8.221 [simulated] | 0,69× [simulated] |
+| quoc_te | 150 | 27,3% | 2,32 | 22.515 [simulated] | 1,88× [simulated] |
+| doi_tac | 68 | 54,4% | 1,88 | 10.215 [simulated] | 0,85× [simulated] |
 
-- Loại không đáng để trợ lý xử lý: `quoc_te` (1,88×, thành công 27,3%). Chạy lại tới 3 lần không giúp: tỉ lệ thành công theo lần thử là 30,0% (lần 1), 11,4% (lần 2), 2,2% (lần 3), nên lỗi lặp lại trên cùng yêu cầu.
+- Loại không đáng để trợ lý xử lý: `quoc_te` (22.515 đ/việc = 1,88× mức 12.000 đ [simulated], thành công 27,3%). Chạy lại giúp ít: tỉ lệ `status == 'ok'` là 45/150 = 30,0% (lần 1), 12/105 = 11,4% (lần 2), 2/93 = 2,2% (lần 3); trung bình 2,32 lần chạy/yêu cầu vẫn chỉ đạt 27,3% thành công.
 
 ## A4 · Chi phí cố định (phạm vi noi_dia + hang_nang)
 
 | Khối lượng | Việc thành công mỗi tháng | Chi phí cố định mỗi việc | Chi phí mỗi việc thành công + cố định | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: |
-| 45.000 yêu cầu/tháng | 33.750 | 1.185 đ | 4.599 đ [simulated] | 0,38× |
-| Một nửa khối lượng | 16.875 | 2.370 đ | 5.784 đ [simulated] | 0,48× |
+| 45.000 yêu cầu/tháng | 33.750 | 1.185 đ | 4.599 đ [simulated] | 0,38× [simulated] |
+| Một nửa khối lượng | 16.875 | 2.370 đ | 5.784 đ [simulated] | 0,48× [simulated] |
 
-- Chi phí cố định không đổi kết luận ở quy mô đầy đủ (0,38×), nhưng khi khối lượng giảm một nửa thì chi phí tăng lên 5.784 đ (0,48×). Hồ sơ launch phải ghi rõ con số đã cộng cố định và ở khối lượng nào.
+- Chi phí cố định không đổi kết luận tại 45.000 và 22.500 yêu cầu/tháng: lần lượt 4.599 đ (0,38×) và 5.784 đ (0,48×) [simulated]. Giả định cơ cấu và tỉ lệ thành công giữ nguyên; đây là chi phí mỗi việc trợ lý làm thành công, chưa gồm phần nhân viên làm thay.
+
+Kiểm tay A4: phạm vi có 900 việc thành công; quy mô đầy đủ 45.000 × 900 / 1.200 = 33.750 việc/tháng. Một nửa khối lượng: 22.500 × 900 / 1.200 = 16.875; cố định 40.000.000 / 16.875 ≈ 2.370 đ/việc; cộng chi phí biến đổi 3.072.513,274 / 900 ≈ 3.414 đ/việc, được 5.784 đ/việc [simulated].
 
 ## B1 · Đổi từng yếu tố
 
