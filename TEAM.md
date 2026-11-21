@@ -13,7 +13,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Hồ Anh Dũng | ITCSIU21172 | 118713346+ITCSIU21172@users.noreply.github.com |  | Người viết code; phụ trách chỉ số và event |
+|   1 | Hồ Anh Dũng | 2A202603613 | 118713346+ITCSIU21172@users.noreply.github.com |  | Người viết code; phụ trách chỉ số và event |
 |   2 | Dương Thanh Bình | 2A202603531 | 26ai.binhdt2@vinuni.edu.vn |  | Người kiểm số; viết code CP4 sau giải lao |
 |   3 | Mai Tuấn Anh | 2A202603574 |  |  | Người gắn nhãn 1 |
 |   4 | Nguyễn Hữu Tiến | 2A202603598 | tiennguyen0606@gmail.com | tiennguyen0606 | Người gắn nhãn 2, kiêm giữ hồ sơ; nhóm trưởng |
