@@ -41,6 +41,19 @@
   - **Rủi ro 2 (Phải xem lại 100% kéo dài — từ kết quả B4):** Tác động làm chi phí trong phạm vi `noi_dia` + `hang_nang` tăng lên **11.743 đ = 0,98×** của 12.000 đ (hoặc **12.415 đ = 1,03×** nếu dùng phút làm lại thực tế 15,3 phút/ca trong dữ liệu, `simulated`), mất toàn bộ lợi thế tiết kiệm. Dấu hiệu theo dõi: % yêu cầu được xem lại vẫn > 50% cuối bước rollout 0,25 hoặc thời gian xem lại > 4,8 phút/ca. Hành động: giảm tỉ lệ xem lại theo bậc khi tỉ lệ `sua` + `bo` < 15%. Phụ trách: `Trưởng nhóm CSKH`.
   - **Rủi ro 3 (Khối lượng thấp hơn dự kiến — từ kết quả A4):** Chi phí cố định 40 triệu đ/tháng làm cộng thêm **+1.185 đ/việc** ở 45.000 yc/tháng (**4.599 đ = 0,38×**, `simulated`) và tăng gấp đôi lên **+2.370 đ/việc** khi khối lượng giảm một nửa (**5.784 đ = 0,48×**, `simulated`). Phụ trách: `PM trợ lý hoàn phí`.
 
+**Tại CP3 (Nhiệm vụ C — Bảng lỗi và cách khắc phục):**
+
+- **Gắn nhãn độc lập 20 ca lỗi và đối chiếu đồng thuận trong `report/team/bang_loi.md`:**
+  - Thực hiện gắn nhãn độc lập 20 ca lỗi (Người gắn nhãn 2: Phạm Công Dũng) trong 8 phút theo 5 loại của Google PAIR (Do người dùng, Hệ thống, Ngữ cảnh, Giới hạn hệ thống, Ngầm).
+  - So nhãn với Người gắn nhãn 1 (Nguyễn Văn Huy): trùng **18/20 ca**, đạt **tỉ lệ đồng thuận 90%** (vượt ngưỡng yêu cầu ≥ 80%).
+  - Thảo luận và ghi câu quy tắc phân biệt theo nguyên nhân gốc cho 2 ca lệch nhau:
+    - **Ca 6:** Khách chọn mục "Hoàn phí giao trễ" nhưng mô tả hàng vỡ → thống nhất là **Do người dùng** (gốc lỗi từ thao tác chọn sai mục của khách; việc kiểm tra chéo nội dung thuộc bước khắc phục).
+    - **Ca 13:** Khách hỏi bảo hiểm hàng hoá của đối tác ngoài phạm vi trợ lý → thống nhất là **Giới hạn hệ thống** (yêu cầu nằm ngoài phạm vi thiết kế thì gốc lỗi là giới hạn hệ thống, dù cách trợ lý trả lời chung chung cần được cải thiện).
+- **Điền phương án khắc phục cho 2 loại lỗi phụ trách (Giới hạn hệ thống & Ngầm) trong `report/team/bang_loi.md` và cập nhật Mục 5 hồ sơ:**
+  - **Ca 4 (Giới hạn hệ thống):** Phát hiện qua event `handoff_to_staff` với `reason == 'thieu_du_lieu'` (kèm `trace_id`), thống kê theo loại yêu cầu mỗi ngày (ngưỡng cảnh báo > 10%). Khắc phục: giữ cơ chế chuyển nhân viên kèm tóm tắt và loại `quoc_te` (1,88×, thành công 27,3%, `simulated`) khỏi phạm vi pilot. Phụ trách: `PM trợ lý hoàn phí`.
+  - **Ca 17 (Ngầm):** Phát hiện qua event `audit_sample_checked` kiểm tra mẫu ngẫu nhiên 100 đơn hoàn/tuần đối chiếu bảng giá hiện hành (ngưỡng cảnh báo ≥ 1% đơn lệch tiền). Khắc phục: tự động xoá cache ngay khi bảng giá cập nhật và ghi `pricing_table_version` vào mọi `trace_id`. Phụ trách: `Kế toán trưởng`.
+  - Cập nhật **Mục 5 (Bảng lỗi và cách khắc phục)** vào `report/team/ho_so_launch_v0.md` với tỉ lệ đồng thuận 90% (18/20), trạng thái `Xong, có bằng chứng`, người phụ trách `Kỹ sư trưởng agent`.
+
 ## 4. Bằng chứng
 
 - File hồ sơ tổng hợp: [report/team/ho_so_launch_v0.md](ho_so_launch_v0.md) (đã điền Mục 1, 2, 3 với đầy đủ con số, nhãn `simulated`, trạng thái `Giả lập` và vai trò phụ trách).
