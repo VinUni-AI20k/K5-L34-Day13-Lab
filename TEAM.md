@@ -11,9 +11,9 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
+|   1 |    Lục Anh Tuấn    |   2A202603634   |    26ai.tuanla2@vinuni.edu.vn   |    tuanvtxm6    |    Người viết code     |
+|   2 |    Nguyễn Thùy Lam    |   2A202603632   |    26ai.lamnt5@vinuni.edu.vn  |  ThuyLam4719      |     Người gán nhãn 1 và 2    |
+|   3 |    Mai Lâm Tấn Đạt    |   2A202603645   |   26ai.datmlt@vinuni.edu.vn    |    tandat411    |     Người kiểm số     |
 |   4 |        |      |       |        |         |
 
 Bốn vai của lab:
