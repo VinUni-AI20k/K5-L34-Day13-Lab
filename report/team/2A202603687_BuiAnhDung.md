@@ -33,7 +33,7 @@ Ví dụ: `20241234_NguyenVanAn.md`.
 - Ba yếu tố nhạy nhất: số ca làm lại (+51,8%), tỉ lệ xem lại (+40,7%), lương nhân viên (+23,1%).
 - Giới hạn 2 lần chạy rẻ nhất cho công ty (6.901.220 đ); xem lại 100% cho 11.743 đ = 0,98× (12.415 đ = 1,03× nếu làm lại 15,3 phút).
 - Chỉ số tính thử: chính 82,83% (994/1.200), dùng 27,12% (48/177), an toàn 4,25% (51/1.200).
-- Commit: điền mã commit sau khi commit.
+- Commit: `22e4359` (feat: hoàn thành nhiệm vụ A, B và E1/E2).
 
 ## 5. Công cụ AI đã dùng
 
