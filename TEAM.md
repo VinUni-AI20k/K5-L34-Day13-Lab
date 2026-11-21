@@ -32,21 +32,28 @@ Mỗi thành viên có báo cáo riêng trong `report/team/MSSV_HoTen.md`:
 - Lê Minh Phụng: `report/team/2A202603693_LeMinhPhung.md`
 - Mai Văn Thanh: `report/team/2A202603696_MaiVanThanh.md`
 
+Ví dụ: `report/team/20241234_NguyenVanAn.md`.
+
+Sao chép mục dưới đây cho từng thành viên.
+
 ## BuiAnhDung-2A202603687
 
 ### Phần việc phụ trách
 
-- CP1, CP2: viết A1, `mo_hinh`, A3, A4 và các kịch bản B1–B4 trong `src/lab13.py`.
-- Sau giải lao: kiểm số D1 bằng tay, chạy `yaml.safe_load` và kiểm dấu `?` trong `pilot_plan.yaml`.
-- CP5: tính 3 chỉ số thử, lấy số cho 2 dòng rủi ro từ bảng độ nhạy. Duyệt chéo số liệu và nhãn *simulated* của nhóm kia.
+- Nhiệm vụ A, B (mô hình chi phí, bảng độ nhạy) trong `src/lab13.py` và `report/team/bang_chi_phi.md`.
+- Nhiệm vụ E1, E2 trong `report/team/chi_so.md`.
+- Sau giải lao: kiểm số phần D do Phụng viết.
 
 ### Đóng góp cụ thể
 
-- ...
+- Viết ba hàm A1 và `mo_hinh`; ba phép thử đáp án biết trước in ĐẠT (1,20 · 1,25 · 1,25).
+- Điền bảng A1–A4, B1–B4 (chi phí mỗi việc thành công 4.472 đ [simulated], gấp 16,3 lần hoá đơn token).
+- Tính thử ba chỉ số (82,83% · 27,12% · 4,25%), soạn danh sách event và ba dòng rủi ro kinh tế.
 
 ### Bằng chứng
 
-- ...
+- Commit `22e4359`; file `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/chi_so.md`.
+- Báo cáo cá nhân: `report/team/2A202603687_BuiAnhDung.md`.
 
 ## LeMinhPhung-2A202603693
 
