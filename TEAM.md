@@ -12,7 +12,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Lý Thành Lập |  2A202603414    |       |      | Người kiểm số |
-|   2 | Nguyễn Tiến Cường |  2A202603425    |       |        | Người viết code |
+|   2 | Nguyễn Tiến Cường |  2A202603425    | cuongdelldz@gmail.com | cuong-sadboi | Người viết code |
 |   3 | Nguyễn Văn Huy |  2A202603432    |       |        | Người gắn nhãn 1 |
 |   4 | Phạm Công Dũng |   2A202603428   |       |        | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
@@ -170,11 +170,15 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Đóng góp cụ thể
 
--
+- Chuẩn bị & CP1–CP2 (`src/lab13.py`, commit `aa93465`): cài đặt `src/.venv`, viết 3 hàm A1 đạt 100% (`1,20 · 1,25 · 1,25`), viết `mo_hinh()` cộng mọi lần chạy kể cả lỗi (đọc CSV với `keep_default_na=False`), triển khai A3 (`noi_dia` `0,22×`, `hang_nang` `0,69×`, `doi_tac` `0,85×`, `quoc_te` `1,88×` kèm tỉ lệ `ok` theo lần thử), A4 (cố định 40 triệu đ/tháng cho `noi_dia` + `hang_nang`: `4.599 đ = 0,38×` ở 45.000 yc/tháng, `5.784 đ = 0,48×` ở 22.500 yc/tháng), 9 kịch bản B1, cặp tuyến tính B2 (`6.543 đ`, `+46,3%`, top 3: làm lại, xem lại, lương NV), chi phí cả hệ thống B3 (2 lần rẻ nhất `6.901.220 đ`) và kịch bản xem lại 100% B4 ở cả 2 mức phút làm lại (`9,0` phút → `11.743 đ = 0,98×`; `15,3` phút → `12.415 đ = 1,03×`, hoà vốn ≤ `4,8–5,1` phút) (`simulated`).
+- CP3–CP5 (vai Người kiểm số & Chủ file `pilot_plan.yaml`): đối chiếu `bang_chi_phi.md` khớp 0% với `src/lab13.py`, đủ nhãn `simulated`; chạy kiểm chứng toàn bộ `src/lab13.py` bản cuối từ A1 đến E1; tính tay đối chiếu D1 câu e (`m ≥ 299`, `DE = 6,96`), soát `pilot_plan.yaml` (`yaml.safe_load` hợp lệ, không còn `?` ngoài chú thích, đủ 3 luật dừng 4 vế) và đối chiếu 11 event + kiểm tra chéo trong `chi_so.md`; kiểm tra không có từ cấm trong `report/team/`.
 
 ### Bằng chứng
 
--
+- Commit `aa93465` (`feat(lab13): implement CP1 (A1-A4) and CP2 (B1-B4) in src/lab13.py`).
+- Báo cáo cá nhân: [report/team/2A202603425_NguyenTienCuong.md](report/team/2A202603425_NguyenTienCuong.md)
+- Code & chạy kiểm chứng A1–E1: [src/lab13.py](src/lab13.py)
+- Kế hoạch pilot đã soát: [report/team/pilot_plan.yaml](report/team/pilot_plan.yaml)
 
 ## NguyenVanHuy-2A202603432
 
