@@ -1,9 +1,11 @@
 """Lab 13 · Định giá agent và lập kế hoạch pilot (Gate 2a) — bài làm của nhóm (file nộp).
-Chạy trong thư mục src/: python3 lab13.py   (cần pandas; Nhiệm vụ D cần thêm statsmodels)
+Chạy trong thư mục src/: python3 lab13.py   (cần pandas)
 Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TODO CP1…CP4). Dữ liệu trong hai file CSV là giả lập.
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+from statistics import NormalDist
+
 import pandas as pd
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
@@ -166,6 +168,56 @@ def in_b(runs, reqs):
         print(f'   hoa von: moi lan xem lai <= {hv:.2f} phut')
 
 
+def co_mau_hai_ti_le(p1, p2, alpha, power):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ với kiểm định hai phía và chia 1:1."""
+    chuan = NormalDist()
+    z_alpha = chuan.inv_cdf(1 - alpha / 2)
+    z_power = chuan.inv_cdf(power)
+    p_tb = (p1 + p2) / 2
+    sai_so_gop = math.sqrt(2 * p_tb * (1 - p_tb))
+    sai_so_rieng = math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))
+    return math.ceil(((z_alpha * sai_so_gop + z_power * sai_so_rieng) / (p2 - p1)) ** 2)
+
+
+def in_d1():
+    """So sánh cỡ mẫu theo yêu cầu, theo nhân viên và theo depot."""
+    print('\n=== D1 · Cỡ mẫu pilot ===')
+    p_goc, alpha, power, icc = 0.70, 0.05, 0.80, 0.02
+    p_5_diem, p_6_diem = 0.75, 0.76
+    n_5_diem = co_mau_hai_ti_le(p_goc, p_5_diem, alpha, power)
+    print(f'a) Theo yêu cầu: {n_5_diem:,} yêu cầu/nhóm')
+
+    m = 75
+    de = 1 + (m - 1) * icc
+    n_theo_nhan_vien = math.ceil(n_5_diem * de)
+    so_nhan_vien = math.ceil(n_theo_nhan_vien / m)
+    print(f'b) Theo nhân viên (m={m}): DE={de:.2f}, {n_theo_nhan_vien:,} yêu cầu/nhóm, '
+          f'{so_nhan_vien} nhân viên/nhóm ({2 * so_nhan_vien} tổng cộng, hiện có 40)')
+
+    nhan_vien_moi_nhom, depot_moi_nhom = 20, 6
+    # Khi m tăng vô hạn, cỡ mẫu hiệu dụng tiến tới số cụm / ICC.
+    print(f'c) {nhan_vien_moi_nhom} nhân viên/nhóm: giới hạn cỡ mẫu hiệu dụng '
+          f'< {nhan_vien_moi_nhom / icc:,.0f}')
+    print(f'd) {depot_moi_nhom} depot/nhóm: giới hạn cỡ mẫu hiệu dụng < {depot_moi_nhom / icc:,.0f}')
+
+    n_6_diem = co_mau_hai_ti_le(p_goc, p_6_diem, alpha, power)
+    # Giải c*m / (1 + (m - 1)*ICC) >= n khi n thấp hơn giới hạn c/ICC.
+    m_toi_thieu = math.ceil(n_6_diem * (1 - icc) / (nhan_vien_moi_nhom - n_6_diem * icc))
+    de_6_diem = 1 + (m_toi_thieu - 1) * icc
+    n_thuc_te = nhan_vien_moi_nhom * m_toi_thieu
+    print(f'e) Chênh 6 điểm: {n_6_diem:,} yêu cầu hiệu dụng/nhóm, '
+          f'm tối thiểu {m_toi_thieu} yêu cầu/nhân viên, DE={de_6_diem:.2f}')
+    print(f'   {n_thuc_te:,} yêu cầu thực tế/nhóm, {n_thuc_te / de_6_diem:,.2f} yêu cầu hiệu dụng/nhóm')
+
+    # Power xấp xỉ hai phía với Cohen h, ở cỡ mẫu hiệu dụng đã chọn cho mức 6 điểm.
+    h = 2 * (math.asin(math.sqrt(p_5_diem)) - math.asin(math.sqrt(p_goc)))
+    chuan = NormalDist()
+    z_alpha = chuan.inv_cdf(1 - alpha / 2)
+    dich_chuyen = h * math.sqrt(n_6_diem / 2)
+    power_5_diem = chuan.cdf(dich_chuyen - z_alpha) + chuan.cdf(-dich_chuyen - z_alpha)
+    print(f'   Power nếu tác động thực là 5 điểm: {power_5_diem:.2f}')
+
+
 def in_e(runs, reqs):
     print('\n=== E1 · Chỉ số tính thử trên 1.200 yêu cầu ===')
     chinh = ((reqs.dong_trong_24h == 1) & (reqs.mo_lai_trong_7_ngay == 0))
@@ -175,8 +227,11 @@ def in_e(runs, reqs):
     print(f'Chinh   {chinh.mean():.2%} ({chinh.sum()}/{len(reqs)})')
     print(f'Dung    {bo_qua.mean():.2%} ({bo_qua.sum()}/{len(xem)})')
     print(f'An toan {an_toan.mean():.2%} ({an_toan.sum()}/{len(reqs)})')
-    pv = reqs[reqs.loai.isin(['noi_dia', 'hang_nang'])]
-    print(f'An toan trong pham vi noi_dia + hang_nang: {pv.mo_lai_trong_7_ngay.mean():.2%}')
+    pham_vi = reqs.loai.isin(['noi_dia', 'hang_nang'])
+    pv = reqs[pham_vi]
+    an_toan_pv = an_toan[pham_vi]
+    print(f'An toan trong pham vi noi_dia + hang_nang: {an_toan_pv.mean():.2%} '
+          f'({an_toan_pv.sum()}/{len(pv)})')
     print(f"Ti le lam_lai trong pham vi: {(pv.ket_qua == 'lam_lai').mean():.2%} "
           f"({(pv.ket_qua == 'lam_lai').sum()}/{len(pv)})")
     print(f"Ti le duoc xem lai trong pham vi: {pv.duoc_xem_lai.mean():.2%}")
@@ -188,7 +243,5 @@ if __name__ == '__main__':
     kiem_tra_dap_an_biet_truoc()
     in_a(runs, reqs)
     in_b(runs, reqs)
+    in_d1()
     in_e(runs, reqs)
-    # TODO CP4 · Nhiệm vụ D (Phụng viết sau giải lao): cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
