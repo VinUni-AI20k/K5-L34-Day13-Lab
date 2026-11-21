@@ -16,7 +16,7 @@ Trả lời bốn câu cho trợ lý hoàn phí LogiX-VN trước Gate 2a: có �
 
 - **A · Chi phí** (`bang_chi_phi.md`, `src/lab13.py`): ba phép thử A1 đạt; `mo_hinh` tính từ trace; tách theo loại; cộng chi phí cố định 40 triệu đ/tháng cho phạm vi noi_dia + hang_nang.
 - **B · Độ nhạy** (`bang_chi_phi.md`): 9 kịch bản đổi từng yếu tố, một cặp, giới hạn 1/2/3 lần chạy, xem lại 100%. Tự kiểm: "giảm một nửa" bằng đúng nửa mức tăng của "gấp đôi".
-- **C · Bảng lỗi** (`bang_loi.md`): hai người gắn nhãn độc lập 20 ca, đồng thuận .../20; quy tắc cho ca lệch; bảng khắc phục 5 ca đủ năm loại, mỗi dòng có event, ngưỡng, tần suất và một vai phụ trách.
+- **C · Bảng lỗi** (`bang_loi.md`): hai người gắn nhãn 20 ca, đồng thuận 18/20 = 90% (lệch ca 8 và 13); quy tắc cho ca lệch; bảng khắc phục 5 ca đủ năm loại, mỗi dòng có event, ngưỡng, tần suất và một vai phụ trách.
 - **D · Pilot** (`pilot_plan.yaml`): tính đủ năm câu D1 trước khi chọn cách chia; chọn chia theo nhân viên 20 + 20; bốn luật dừng (an toàn, hoàn trùng, chi phí, mức độ sử dụng); điều kiện đủ 40 nhân viên và lịch thu mẫu + 7 ngày theo dõi.
 - **E · Chỉ số, rủi ro, hồ sơ** (`chi_so.md`, `ho_so_launch_v0.md`): ba chỉ số tính thử, 8 event có `trace_id`, 3 dòng rủi ro kinh tế lấy số từ bảng độ nhạy; hồ sơ một trang bảy mục.
 
@@ -34,6 +34,7 @@ Trả lời bốn câu cho trợ lý hoàn phí LogiX-VN trước Gate 2a: có �
 
 - Với 40 nhân viên, không cách chia theo cụm nào đủ mẫu cho mức chênh 5 điểm (20 người/nhóm tối đa 1.000 < 1.251). Nhóm chấp nhận mức chênh 6 điểm và ghi rõ power 0,64 trong hồ sơ thay vì giấu đi.
 - Tỉ lệ mở lại hiện tại 4,25% (3,97% trong phạm vi) nên ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu; nhóm đổi sang so với đối chứng (+2 điểm) kèm trần 6%.
+- Cột nhãn người 1 có đối chiếu với bảng tham khảo trong hướng dẫn, nên tỉ lệ đồng thuận 90% chỉ phản ánh độ khớp của người 2 với bộ nhãn đó; nhóm ghi rõ điều này trong `bang_loi.md`. Hai ca lệch (8, 13) đều do lẫn giữa nơi cần sửa và nguyên nhân gốc.
 - Hai người cùng sửa `bang_chi_phi.md` gây xung đột khi gộp; số hai bên trùng khớp nên giữ bản chạy ra từ code. Sau đó mỗi người làm trên nhánh riêng và mở PR.
 - ...
 

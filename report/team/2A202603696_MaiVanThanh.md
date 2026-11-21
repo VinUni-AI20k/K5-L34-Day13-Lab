@@ -20,7 +20,7 @@
 - **pilot_plan.yaml**: tính năm câu D1 (1.251 · 3.103 · 1.000 · 300 · m ≥ 299) trước khi chọn cách chia. Chọn chia theo nhân viên 20 + 20 vì đủ 20 cụm và tách được tác động; chấp nhận mức chênh 6 điểm (859 yêu cầu/nhóm, DE 6,96) và ghi rõ power chỉ còn 0,64 nếu tác động thật là 5 điểm. Đặt luật an toàn theo tỉ lệ mở lại hiện tại 4,25% (3,97% trong phạm vi), so với đối chứng +2 điểm kèm trần 6%, thay vì ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu. Sau góp ý của Phụng: thêm điều kiện đủ 40 nhân viên (nếu chỉ 20 người thì 10 + 10, MDE 8 điểm), lịch thu mẫu ≥ 5.980 yêu cầu/nhóm cộng 7 ngày theo dõi, tách luật hoàn trùng thành luật dừng ngay (tổng 4 luật dừng).
 - **ho_so_launch_v0.md**: soạn trang hồ sơ bảy mục, đề xuất Go có điều kiện cho pilot noi_dia + hang_nang.
 - **TEAM.md**: điền thông tin nhóm, phân vai, phần việc của từng người.
-- **bang_loi.md**: ... (bổ sung sau CP3: nhãn của tôi, tỉ lệ đồng thuận với người gắn nhãn 1)
+- **bang_loi.md**: tự gắn nhãn 20 ca (người gắn nhãn 2), đồng thuận 18/20 = 90% với người gắn nhãn 1; hai ca lệch là ca 8 (tôi gắn Ngầm, thống nhất Hệ thống vì trích dẫn sai nhìn thấy được) và ca 13 (tôi gắn Hệ thống, thống nhất Giới hạn vì gốc là ngoài phạm vi). Viết bảng khắc phục 5 ca (1, 20, 18, 19, 5) có event, ngưỡng, tần suất và vai phụ trách.
 
 ## 4. Bằng chứng
 
