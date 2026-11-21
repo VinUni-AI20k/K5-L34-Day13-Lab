@@ -24,7 +24,7 @@
 
 ### CP3 · So nhãn
 
-Codex đã gắn đủ 20 nhãn tham khảo trong `bang_loi.md` và đối chiếu với hướng dẫn Lab 13. Kết quả đồng thuận chờ hai bộ nhãn do Phụng và Thanh tự gắn.
+Bảng `bang_loi.md` ghi đủ 20 nhãn tham khảo, đã đối chiếu với hướng dẫn Lab 13. Kết quả đồng thuận chờ hai bộ nhãn do Phụng và Thanh tự gắn.
 
 ### CP4 · D1 và tỉ lệ mở lại
 
@@ -53,7 +53,7 @@ Trong CSV chạy thử, tỉ lệ `mo_lai_trong_7_ngay` là 51/1.200 = 4,25%. Ri
 
 ## 5. Công cụ AI đã dùng
 
-- OpenAI Codex hỗ trợ viết code D1, kiểm tra kết quả bằng lệnh `python lab13.py` trong `src/`, gắn nhãn tham khảo cho 20 ca và soạn bản nháp báo cáo này.
+- Trợ lý AI của OpenAI hỗ trợ viết code D1, kiểm tra kết quả bằng lệnh `python lab13.py` trong `src/`, gắn nhãn tham khảo cho 20 ca và soạn bản nháp báo cáo này.
 - Phụng bổ sung phần tự kiểm tra sau khi chạy lại script, tính tay A1/A2 và kiểm tra bất đẳng thức D1(e) tại `m = 298` và `m = 299`.
 
 ## 6. Tự đánh giá
