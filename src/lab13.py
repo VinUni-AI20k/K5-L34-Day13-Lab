@@ -162,5 +162,54 @@ if __name__ == '__main__':
     cps_b4 = tong_b4 / thanh_cong_b4
     print(f'B4 xem lai 100%: cps={cps_b4:>12,.0f}  so_voi_12000={cps_b4/12000:>6.2f}x')
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    tinh_co_mau_cp4(reqs)
+
+
+# ---------- Nhiệm vụ D · Cỡ mẫu và kiểm tra an toàn (CP4) ----------
+def co_mau_hai_ti_le(p1, p2, alpha=0.05, power=0.80):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ p1, p2."""
+    from statistics import NormalDist
+    za = NormalDist().inv_cdf(1 - alpha / 2)
+    zb = NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil(
+        (za * math.sqrt(2 * pb * (1 - pb)) + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+        / (p2 - p1) ** 2
+    )
+
+
+def tinh_co_mau_cp4(reqs=None, p1=0.70, mde=0.05, alpha=0.05, power=0.80, icc=0.02):
+    """Tính năm câu D1 và tỉ lệ mở lại hiện tại cho pilot_plan.yaml."""
+    n_5pt = co_mau_hai_ti_le(p1, p1 + mde, alpha=alpha, power=power)
+    de_75 = 1 + (75 - 1) * icc
+    n_b = math.ceil(n_5pt * de_75)
+    staff_b = math.ceil(n_b / 75)
+    max_eff_staff = 20 / icc
+    max_eff_depot = 6 / icc
+
+    n_6pt = co_mau_hai_ti_le(p1, p1 + 0.06, alpha=alpha, power=power)
+    m_e = math.ceil(n_6pt * (1 - icc) / (20 - n_6pt * icc))
+    de_e = 1 + (m_e - 1) * icc
+    n_eff_e = 20 * m_e / de_e
+
+    print('\n--- D1 · Cỡ mẫu pilot ---')
+    print(f'a) Chia theo yêu cầu (mde=5đ): {n_5pt} yêu cầu/nhóm')
+    print(f'b) Theo nhân viên (m=75): DE={de_75:.2f}, cần {n_b}/nhóm -> {staff_b} người/nhóm (tổng {staff_b*2} > 40)')
+    print(f'c) 20 nhân viên/nhóm: tối đa {max_eff_staff:.0f} hiệu dụng (< {n_5pt}: không đạt 5đ)')
+    print(f'd) 6 depot/nhóm: tối đa {max_eff_depot:.0f} hiệu dụng (< {n_5pt}: không đạt)')
+    print(f'e) Mức chênh 6đ ({n_6pt}/nhóm), 20 nhân viên/nhóm: m >= {m_e} yc/người (DE={de_e:.2f}, hiệu dụng={n_eff_e:.1f})')
+
+    try:
+        from statsmodels.stats.proportion import proportion_effectsize
+        from statsmodels.stats.power import NormalIndPower
+        es_5pt = proportion_effectsize(p1 + mde, p1)
+        pwr_5pt = NormalIndPower().power(effect_size=es_5pt, nobs1=n_6pt, alpha=alpha, ratio=1.0)
+        print(f'   Power nếu tác động thật chỉ 5đ với n={n_6pt}: {pwr_5pt:.2f}')
+    except ImportError:
+        pass
+
+    if reqs is not None:
+        reopen_all = (reqs['mo_lai_trong_7_ngay'] == 1).mean()
+        scope = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+        reopen_scope = (scope['mo_lai_trong_7_ngay'] == 1).mean()
+        print(f'Tỉ lệ mo_lai_trong_7_ngay toàn bộ: {reopen_all:.2%} | trong phạm vi noi_dia+hang_nang: {reopen_scope:.2%}')
