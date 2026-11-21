@@ -32,12 +32,12 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 | Loại | Số yêu cầu | Tỉ lệ thành công | Số lần chạy mỗi yêu cầu | Chi phí mỗi việc thành công | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| noi_dia | 824 | 95,0% | 1,11 | 2.696 đ [simulated] | 0,22× |
-| hang_nang | 158 | 74,1% | 1,47 | 8.221 đ [simulated] | 0,69× |
-| quoc_te | 150 | 27,3% | 2,32 | 22.515 đ [simulated] | 1,88× |
-| doi_tac | 68 | 54,4% | 1,88 | 10.215 đ [simulated] | 0,85× |
+| noi_dia | 824 | 95,0% | 1,11 | 2.696 đ [simulated] | 0,22× [simulated] |
+| hang_nang | 158 | 74,1% | 1,47 | 8.221 đ [simulated] | 0,69× [simulated] |
+| quoc_te | 150 | 27,3% | 2,32 | 22.515 đ [simulated] | 1,88× [simulated] |
+| doi_tac | 68 | 54,4% | 1,88 | 10.215 đ [simulated] | 0,85× [simulated] |
 
-- Loại nào không đáng để trợ lý xử lý? Với loại đó, cho chạy lại tới 3 lần có giúp không? **quoc_te** (1,88×, thành công 27,3%). Chạy lại không giúp: tỉ lệ ok theo lần thử là 30,0% → 11,4% → 2,2%, lỗi lặp lại trên cùng yêu cầu nên chỉ tốn thêm tiền. `doi_tac` (0,85×, có điều khoản riêng) sát ngưỡng nên cũng loại khỏi phạm vi pilot.
+- Loại nào không đáng để trợ lý xử lý? Với loại đó, cho chạy lại tới 3 lần có giúp không? **quoc_te** (1,88× [simulated], thành công 27,3%). Chạy lại không giúp: tỉ lệ ok theo lần thử là 30,0% → 11,4% → 2,2%, lỗi lặp lại trên cùng yêu cầu nên chỉ tốn thêm tiền. `doi_tac` (0,85× [simulated], có điều khoản riêng) sát ngưỡng nên cũng loại khỏi phạm vi pilot.
 
 ## A4 · Chi phí cố định (phạm vi noi_dia + hang_nang)
 
@@ -45,8 +45,8 @@ Phạm vi có 982 yêu cầu, 900 việc thành công trên 1.200 yêu cầu c�
 
 | Khối lượng | Việc thành công mỗi tháng | Chi phí cố định mỗi việc | Chi phí mỗi việc thành công + cố định | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: |
-| 45.000 yêu cầu/tháng | 33.750 | 1.185 đ | 4.599 đ [simulated] | 0,38× |
-| Một nửa khối lượng | 16.875 | 2.370 đ | 5.784 đ [simulated] | 0,48× |
+| 45.000 yêu cầu/tháng | 33.750 | 1.185 đ | 4.599 đ [simulated] | 0,38× [simulated] |
+| Một nửa khối lượng | 16.875 | 2.370 đ | 5.784 đ [simulated] | 0,48× [simulated] |
 
 - Chi phí cố định có đổi kết luận không? Ở khối lượng nào? Không đổi: vẫn dưới 12.000 đ ở cả hai mức (0,38× và 0,48×) [simulated]. Cố định tăng từ 1.185 đ lên 2.370 đ mỗi việc khi khối lượng còn một nửa, nên hồ sơ phải nói rõ con số đã cộng cố định ở khối lượng nào.
 

@@ -28,7 +28,9 @@ Trả lời bốn câu cho trợ lý hoàn phí LogiX-VN trước Gate 2a: có �
 - Chỉ số trong đợt chạy thử: chính 82,83%, bỏ qua gợi ý 27,12%, mở lại 7 ngày 4,25%.
 - Pilot: chia theo nhân viên 20 + 20, MDE 6 điểm (859/nhóm, DE 6,96). Con số bất lợi: power chỉ 0,64 nếu tác động thật là 5 điểm.
 - Đề xuất: **Go có điều kiện** cho pilot noi_dia + hang_nang.
-- Kết quả duyệt chéo từ hội đồng: ... / 30, quyết định ..., câu hỏi: ...
+- Kết quả duyệt chéo từ hội đồng (nhóm DLB chấm): **30 / 30**, quyết định **Go có điều kiện**. Góp ý: đặt nhãn [simulated] sát từng bội số; hồ sơ ghi "8 event" trong khi `chi_so.md` có 10 (đã sửa cả hai).
+- Câu hỏi của hội đồng: nếu chỉ xác nhận được 20 nhân viên (10 + 10, MDE 8 điểm) thì pilot còn ra quyết định không? Nhóm trả lời: không. Cỡ mẫu hiệu dụng bị chặn dưới 10 ÷ 0,02 = 500, power chỉ 0,51 ở 6 điểm và 0,38 ở 5 điểm (0,55 và 0,41 kể cả khi chạy 26 ngày), dưới 20 cụm; nên đổi thành No-go cho pilot đo tác động, quay lại cổng khi đủ 40 nhân viên. Hồ sơ và `pilot_plan.yaml` đã ghi điều kiện này.
+- Nhóm PD chấm nhóm DLB: 30 / 30, Go có điều kiện (xem `phieu_cham.md`).
 
 ## 5. Khó khăn và cách xử lý
 
