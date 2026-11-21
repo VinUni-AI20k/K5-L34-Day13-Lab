@@ -4,9 +4,9 @@ Báo cáo ngắn, tối đa 2 trang. Số liệu chi tiết nằm trong các fil
 
 ## 1. Thông tin nhóm
 
-- Tên nhóm: `[CHỜ XÁC NHẬN]`
-- Lớp: `[CHỜ XÁC NHẬN]`
-- Thành viên: xem `TEAM.md` `[CHỜ BỔ SUNG THÔNG TIN THÀNH VIÊN]`
+- Tên nhóm: HoHoHo
+- Lớp: L3A
+- Thành viên: xem `TEAM.md` (1. Bùi Quang Huy — `2A202603469` · 2. Hoàng Minh Huy — `2A202603495`)
 
 ## 2. Mục tiêu và cách tiếp cận
 
@@ -33,7 +33,7 @@ Nhóm xây dựng hồ sơ đánh giá kinh tế và kế hoạch pilot (Gate 2a
 
 ## 6. Tổng hợp đóng góp
 
-Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md` `[CHỜ ĐIỀN THÔNG TIN THÀNH VIÊN]`.
+Chi tiết đóng góp của từng thành viên nằm trong [TEAM.md](../../TEAM.md) và hai báo cáo cá nhân: [2A202603469_BuiQuangHuy.md](2A202603469_BuiQuangHuy.md), [2A202603495_HoangMinhHuy.md](2A202603495_HoangMinhHuy.md).
 
 ## 7. Hạn chế và hướng cải thiện
 

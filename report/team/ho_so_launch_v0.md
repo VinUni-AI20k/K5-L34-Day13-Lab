@@ -2,7 +2,7 @@
 
 > Tài liệu một trang phục vụ hội đồng Gate 2a duyệt kế hoạch **pilot** (không sử dụng cho triển khai chính thức). Cột trạng thái chỉ nhận: **Xong, có bằng chứng · Chưa · Giả lập** (các mục phụ thuộc nhãn độc lập CP3 ghi `PENDING` theo đúng hiện trạng).
 
-Nhóm: `[CHỜ XÁC NHẬN]` · Lớp: `[CHỜ XÁC NHẬN]`
+Nhóm: HoHoHo · Lớp: L3A (Thành viên: Bùi Quang Huy `2A202603469`, Hoàng Minh Huy `2A202603495`)
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |

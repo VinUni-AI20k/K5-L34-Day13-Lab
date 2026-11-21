@@ -13,7 +13,7 @@
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: `[CHỜ XÁC NHẬN]` · Người gắn nhãn 2: `[CHỜ XÁC NHẬN]` (gắn trong 8 phút, không trao đổi)
+Người gắn nhãn 1: Bùi Quang Huy (`2A202603469`) · Người gắn nhãn 2: Hoàng Minh Huy (`2A202603495`) (gắn trong 8 phút, không trao đổi)
 
 | Ca | Mô tả tình huống (trích nguyên văn đề bài) | Nhãn người 1 | Nhãn người 2 | Lý do ngắn (Người 2) | Confidence | Trùng? | Nhãn thống nhất | Trạng thái |
 | --: | --- | --- | --- | --- | --- | --- | --- | --- |
