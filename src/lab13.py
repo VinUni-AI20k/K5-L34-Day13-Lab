@@ -6,6 +6,12 @@ Bản gốc chưa sửa nằm ở lab13_starter.py.
 import math
 from statistics import NormalDist
 import pandas as pd
+try:
+    from statsmodels.stats.proportion import proportion_effectsize
+    from statsmodels.stats.power import NormalIndPower
+    HAS_STATSMODELS = True
+except ImportError:
+    HAS_STATSMODELS = False
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
@@ -71,28 +77,107 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
                 hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs))
 
 
-# ---------- Nhiệm vụ D1 · Cỡ mẫu ----------
-def co_mau(p1, p2, alpha=0.05, power=0.8):
+# ---------- Nhiệm vụ D · Cỡ mẫu và phân tích phương án chia nhóm pilot (CP4) ----------
+def co_mau(p1, p2, alpha=0.05, power=0.80):
+    """Cỡ mẫu mỗi nhóm khi so sánh hai tỉ lệ p1, p2 (kiểm định hai phía)."""
     za = NormalDist().inv_cdf(1 - alpha / 2)
     zb = NormalDist().inv_cdf(power)
     pb = (p1 + p2) / 2
-    return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
-                      + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+    tu = za * math.sqrt(2 * pb * (1 - pb)) + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))
+    return math.ceil((tu ** 2) / ((p2 - p1) ** 2))
+
+
+def he_so_thiet_ke(m, icc=0.02):
+    """Hệ số thiết kế DE = 1 + (m - 1) * ICC khi chia theo cụm kích thước m."""
+    return 1 + (m - 1) * icc
+
+
+def co_mau_hieu_dung(c, m, icc=0.02):
+    """Cỡ mẫu hiệu dụng mỗi nhóm với c cụm, mỗi cụm m quan sát."""
+    return (c * m) / he_so_thiet_ke(m, icc)
+
+
+def so_yc_moi_cum_toi_thieu(n_muc_tieu, c, icc=0.02):
+    """Tìm m nhỏ nhất để c*m / (1 + (m - 1)*icc) >= n_muc_tieu."""
+    mau = c - icc * n_muc_tieu
+    if mau <= 0:
+        return None  # không tồn tại m hữu hạn vì n_muc_tieu >= c / icc
+    return math.ceil(n_muc_tieu * (1 - icc) / mau)
+
+
+def chay_nhiem_vu_d(reqs, baseline=0.70, mde=0.05, mde_thay_the=0.06,
+                    alpha=0.05, power=0.80, icc=0.02):
+    """Tính D1 (5 câu cỡ mẫu), phân tích 3 phương án chia nhóm, D2 và tỉ lệ mở lại 7 ngày."""
+    n_5 = co_mau(baseline, baseline + mde, alpha=alpha, power=power)
+    de_75 = he_so_thiet_ke(75, icc)
+    n_b = math.ceil(n_5 * de_75)
+    so_nv_moi_nhom = math.ceil(n_b / 75)
+    gioi_han_20nv = 20 / icc
+    gioi_han_6depot = 6 / icc
+
+    n_6 = co_mau(baseline, baseline + mde_thay_the, alpha=alpha, power=power)
+    m_e = so_yc_moi_cum_toi_thieu(n_6, c=20, icc=icc)
+    de_e = he_so_thiet_ke(m_e, icc)
+    n_hieu_dung_e = co_mau_hieu_dung(20, m_e, icc)
+    if HAS_STATSMODELS:
+        power_5_tai_n6 = NormalIndPower().power(
+            effect_size=proportion_effectsize(baseline + mde, baseline),
+            nobs1=n_6,
+            alpha=alpha,
+        )
+        power_str = f"{power_5_tai_n6:.2f}"
+    else:
+        power_str = "0.64 (xấp xỉ khi không có statsmodels)"
+
+    reopen_all = reqs['mo_lai_trong_7_ngay'].mean()
+    sub_pilot = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    reopen_pilot = sub_pilot['mo_lai_trong_7_ngay'].mean()
+
+    print('\n=== NHIỆM VỤ D1 · CỠ MẪU (baseline=0.70, +5 điểm, alpha=0.05, power=0.80, ICC=0.02) ===')
+    print(f'a) Chia theo yêu cầu: {n_5:,} yêu cầu mỗi nhóm')
+    print(f'b) Theo nhân viên (m=75): DE = {de_75:.2f}, n = {n_b:,}/nhóm -> {so_nv_moi_nhom} người/nhóm (tổng {so_nv_moi_nhom * 2} > 40: KHÔNG ĐỦ NGƯỜI)')
+    print(f'c) 20 nhân viên mỗi nhóm: cỡ mẫu hiệu dụng tối đa < c/ICC = {gioi_han_20nv:,.0f} < {n_5:,} (KHÔNG ĐẠT cho +5 điểm)')
+    print(f'd) 6 depot mỗi nhóm: cỡ mẫu hiệu dụng tối đa < c/ICC = {gioi_han_6depot:,.0f}')
+    print(f'e) Mức chênh +6 điểm (n = {n_6:,}/nhóm), 20 nhân viên/nhóm: cần m >= {m_e} yêu cầu/người (DE = {de_e:.2f}, n_eff = {n_hieu_dung_e:.1f})')
+    print(f'   Đánh đổi: nếu tác động thật chỉ +5 điểm ở n = {n_6:,}, power giảm còn {power_str}')
+
+    print('\n=== PHÂN TÍCH 3 PHƯƠNG ÁN CHIA NHÓM PILOT ===')
+    print('- Theo yêu cầu      : Đủ mẫu (1.251/nhóm) nhưng cùng nhân viên vừa dùng vừa không dùng -> tràn tác động cao, loại.')
+    print('- Theo nhân viên 20+20: Tách tác động tốt (20 cụm/nhóm, ngẫu nhiên phân tầng theo depot), đạt +6 điểm khi m >= 299 -> CHỌN.')
+    print('- Theo depot 6+6    : Chỉ 6 cụm (< 20) và n_eff tối đa < 300 -> không đủ mẫu, loại.')
+
+    print('\n=== NHIỆM VỤ D2 · 5 CÂU KIỂM TRA TÁCH ĐƯỢC TÁC ĐỘNG (unit = staff, 20 + 20) ===')
+    print('1. Đối chứng chạy cùng thời gian: Có (20 nhân viên đối chứng làm cùng tuần, cùng depot).')
+    print('2. Chia ngẫu nhiên hay người chọn: Bốc thăm ngẫu nhiên bằng code với seed chốt trước, phân tầng theo depot.')
+    print('3. Ảnh hưởng gián tiếp & cách giảm: Có rủi ro trao đổi trong depot; giảm bằng phân quyền theo staff_id và log truy cập.')
+    print('4. Viết trước chỉ số/ngưỡng/ngày quyết định: Có, chốt trước khi bắt đầu pilot.')
+    print('5. Ít nhất 20 cụm mỗi nhóm: Có, đúng 20 nhân viên/nhóm.')
+
+    print('\n=== TỈ LỆ MỞ LẠI TRONG 7 NGÀY HIỆN TẠI (CĂN CỨ LUẬT DỪNG AN TOÀN) ===')
+    print(f'- Toàn bộ mẫu (1.200 yêu cầu): {reopen_all * 100:.2f}% ({int(reqs["mo_lai_trong_7_ngay"].sum())}/{len(reqs)})')
+    print(f'- Phạm vi pilot noi_dia + hang_nang ({len(sub_pilot)} yêu cầu): {reopen_pilot * 100:.2f}% ({int(sub_pilot["mo_lai_trong_7_ngay"].sum())}/{len(sub_pilot)})')
+
+    return dict(
+        n_5=n_5, de_75=de_75, n_b=n_b, so_nv_moi_nhom=so_nv_moi_nhom,
+        gioi_han_20nv=gioi_han_20nv, gioi_han_6depot=gioi_han_6depot,
+        n_6=n_6, m_e=m_e, de_e=de_e,
+        reopen_all=reopen_all, reopen_pilot=reopen_pilot,
+    )
 
 
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
-    
+
     print('=== A1: BA PHÉP THỬ ĐÁP ÁN BIẾT TRƯỚC ===')
     kiem_tra_dap_an_biet_truoc()
-    
+
     print('\n=== A2: MÔ HÌNH CHI PHÍ TỪ TRACE ===')
     ket_qua = mo_hinh(runs, reqs)
     for ten, gia_tri in ket_qua.items():
         print(f'{ten:15s} {gia_tri:>14,.2f}')
     print(f"Chi phí mỗi việc thành công gấp: {ket_qua['cps'] / ket_qua['hoa_don_moi_yc']:.1f} lần hoá đơn/yc")
-    
+
     # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
     print('\n=== A3: TÁCH THEO LOẠI YÊU CẦU ===')
     for loai in ['noi_dia', 'hang_nang', 'quoc_te', 'doi_tac']:
@@ -104,7 +189,7 @@ if __name__ == '__main__':
         cps = kq_loai['cps']
         so_voi_12k = cps / BASELINE
         print(f'{loai:10s} | YC: {so_yc:4d} | TC: {ti_le_tc:5.1f}% | Lần chạy/YC: {lan_chay_tb:.2f} | CPS [sim]: {cps:8,.0f} đ | So 12k: {so_voi_12k:.2f}×')
-    
+
     # Tỉ lệ ok theo từng lần thử cho quoc_te
     pivot_qt = runs.merge(reqs[['request_id', 'loai']]).pivot_table(
         index='loai', columns='attempt', values='status', aggfunc=lambda s: (s == 'ok').mean()
@@ -157,15 +242,5 @@ if __name__ == '__main__':
     print(f"Xem lại 100% với 9 phút làm lại : Tổng = {tong_9p:10,.0f} đ | CPS = {cps_9p:8,.0f} đ ({cps_9p/BASELINE:.2f}×)")
     print(f"Xem lại 100% với 15.3 phút làm lại: Tổng = {tong_15p:10,.0f} đ | CPS = {cps_15p:8,.0f} đ ({cps_15p/BASELINE:.2f}×)")
 
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    print('\n=== D1: CỠ MẪU ===')
-    n_req = co_mau(0.70, 0.75)
-    de_75 = 1 + 74 * 0.02
-    n_75 = math.ceil(n_req * de_75)
-    print(f"a) Chia theo yêu cầu : {n_req} yêu cầu mỗi nhóm")
-    print(f"b) Theo NV (m=75)   : DE = {de_75:.2f} -> {n_75} yêu cầu/nhóm ({n_75/75:.1f} nhân viên/nhóm > 20)")
-    print(f"c) 20 NV mỗi nhóm    : Giới hạn c/ICC = {20/0.02:.0f} < {n_req} (không đạt)")
-    print(f"d) 6 depot mỗi nhóm  : Giới hạn c/ICC = {6/0.02:.0f} (không đạt)")
-    n_6pt = co_mau(0.70, 0.76)
-    m_req = (n_6pt * 0.98) / (20 - n_6pt * 0.02)
-    print(f"e) MDE 6 điểm (859/nhóm): 20 NV -> m >= {math.ceil(m_req)} yêu cầu/nhân viên (DE = {1 + (math.ceil(m_req)-1)*0.02:.2f})")
+    # CP4 · Nhiệm vụ D: cỡ mẫu, phân tích phương án chia nhóm pilot và D2 của Người 2
+    chay_nhiem_vu_d(reqs)

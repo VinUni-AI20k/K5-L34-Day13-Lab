@@ -11,10 +11,10 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 |        |      |       |        | Người viết code |
+|   2 |        |      |       |        | Người kiểm số |
+|   3 | Mai Tuấn Anh | 2A202603574 |       |        | Người gắn nhãn 1 |
+|   4 |        |      |       |        | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
