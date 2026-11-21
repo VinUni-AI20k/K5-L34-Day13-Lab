@@ -332,6 +332,61 @@ def kiem_tra_co_mau():
     print('Hàm cỡ mẫu khớp hướng dẫn: ĐẠT')
 
 
+def power_hai_ti_le(p1, p2, n, alpha=0.05):
+    """Power khi mỗi nhóm có n mẫu (Cohen's h, như statsmodels NormalIndPower)."""
+    try:
+        from statsmodels.stats.proportion import proportion_effectsize
+        from statsmodels.stats.power import NormalIndPower
+        h = proportion_effectsize(p2, p1)
+        return NormalIndPower().power(effect_size=h, nobs1=n, alpha=alpha, ratio=1.0)
+    except ImportError:  # dự phòng khi chưa cài statsmodels: cùng công thức, bỏ đuôi phía kia
+        from statistics import NormalDist
+        h = 2 * math.asin(math.sqrt(p2)) - 2 * math.asin(math.sqrt(p1))
+        za = NormalDist().inv_cdf(1 - alpha / 2)
+        return NormalDist().cdf(abs(h) * math.sqrt(n / 2) - za)
+
+
+def in_bang_d1(p1=0.70, chenh=0.05, icc=0.02, tong_nhan_vien=40):
+    """D1 a–e: cỡ mẫu theo yêu cầu, theo nhân viên (m = 75), 20 người/nhóm, 6 depot/nhóm, chênh 6 điểm."""
+    print('\n=== D1 · Cỡ mẫu theo ba cách chia (baseline 0,70; +5 điểm; alpha 0,05; power 0,8; ICC 0,02) ===')
+
+    # a) Chia theo yêu cầu
+    n_a = co_mau(p1, p1 + chenh)
+    print(f'  a) Theo yêu cầu             : {n_a:,} yêu cầu mỗi nhóm')
+
+    # b) Theo nhân viên, m = 75
+    m_b = 75
+    de_b = he_so_thiet_ke(m_b, icc)
+    n_b = math.ceil(n_a * de_b - 1e-9)
+    nguoi_b = math.ceil(n_b / m_b)
+    du_b = 'đủ người' if 2 * nguoi_b <= tong_nhan_vien else 'KHÔNG đủ người'
+    print(f'  b) Theo nhân viên, m = {m_b}   : DE = {de_b:.2f}; n = {n_a:,} × {de_b:.2f} = {n_b:,} mỗi nhóm '
+          f'→ {nguoi_b} người/nhóm, tổng {2 * nguoi_b} vs {tong_nhan_vien}: {du_b}')
+
+    # c) 20 nhân viên mỗi nhóm: trần hiệu dụng c / ICC
+    c_c = 20
+    tran_c = c_c / icc
+    kq_c = 'đạt' if tran_c >= n_a else 'KHÔNG đạt'
+    print(f'  c) 20 nhân viên mỗi nhóm    : trần c/ICC = {c_c}/{icc} = {tran_c:,.0f} '
+          f'{"≥" if tran_c >= n_a else "<"} {n_a:,}: {kq_c} (vd m = 75 → hiệu dụng {co_mau_hieu_dung(c_c, 75, icc):,.0f})')
+
+    # d) 6 depot mỗi nhóm
+    c_d = 6
+    tran_d = c_d / icc
+    print(f'  d) 6 depot mỗi nhóm         : trần c/ICC = {c_d}/{icc} = {tran_d:,.0f} < {n_a:,}: KHÔNG đạt (chỉ 6 cụm < 20)')
+
+    # e) Mức chênh 6 điểm, 20 người mỗi nhóm
+    n_e = co_mau(p1, p1 + 0.06)
+    m_e = m_toi_thieu(n_e, c_c, icc)
+    print(f'  e) Chênh 6 điểm, 20 người/nhóm: cần {n_e:,} mỗi nhóm → m ≥ {m_e} yêu cầu mỗi người '
+          f'(DE {he_so_thiet_ke(m_e, icc):.2f}; hiệu dụng {co_mau_hieu_dung(c_c, m_e, icc):,.0f})')
+
+    # Đánh đổi: power ở mức chênh 5 điểm nếu chỉ thiết kế cho n = 859
+    pw = power_hai_ti_le(p1, p1 + chenh, n_e)
+    print(f'  -> Đánh đổi: thiết kế cho 6 điểm (n = {n_e}) mà tác động thật chỉ 5 điểm thì power ≈ {pw:.2f} (< 0,8)')
+    return {'a': n_a, 'b': n_b, 'c': tran_c, 'd': tran_d, 'e': m_e, 'power_5d': pw}
+
+
 def in_ti_le_mo_lai(reqs):
     """Tỉ lệ mo_lai_trong_7_ngay hiện tại, dùng để đặt luật dừng an toàn trong pilot_plan.yaml (D3)."""
     pv = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
@@ -366,7 +421,5 @@ if __name__ == '__main__':
     print('\n=== D · Chuẩn bị cỡ mẫu ===')
     kiem_tra_co_mau()
     in_ti_le_mo_lai(reqs)
-    # TODO CP4 · Nhiệm vụ D1: in đủ 5 câu a–e bằng co_mau, he_so_thiet_ke, co_mau_hieu_dung, m_toi_thieu
-    #   (baseline 0,70; +5 điểm; alpha 0,05; power 0,8; ICC 0,02), và power ở 5 điểm khi n = 859:
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # CP4 · Nhiệm vụ D1: 5 câu a–e và power ở 5 điểm khi n = 859
+    in_bang_d1()
