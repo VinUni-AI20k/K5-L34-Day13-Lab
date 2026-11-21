@@ -13,7 +13,7 @@ K5–L3A · Nguyễn Võ Thái Bảo, Nguyễn Trường Duy, Đoàn Văn Hiệp
 | Nhiệm vụ | Cách làm và hồ sơ |
 | --- | --- |
 | A–B | Tái tính bốn khoản chi phí, tách bốn loại yêu cầu, đổi từng giả định và tính cả phần nhân viên làm thay. [Bảng chi phí](bang_chi_phi.md) |
-| C | Duy và Hiệp nhận cùng 20 ca, ghi nhãn riêng, sau đó mới đối chiếu và mở bảng khắc phục. [Bảng lỗi](bang_loi.md) |
+| C | Codex điền 20 ca theo năm loại lỗi. Duy và Hiệp mỗi người nhận một cột để rà soát và commit. [Bảng lỗi](bang_loi.md) |
 | D | Chia ngẫu nhiên theo nhân viên trong 12 depot, cân bằng 20 người mỗi nhánh. [Kế hoạch pilot](pilot_plan.yaml) |
 | E | Đăng ký chỉ số, sơ đồ event, luật dừng và điều kiện ra quyết định. [Chỉ số](chi_so.md) · [Hồ sơ Gate 2a](ho_so_launch_v0.md) |
 
@@ -29,7 +29,7 @@ Chi phí trên việc thành công và chi phí trên yêu cầu dùng hai mẫu
 
 ## 6. Tổng hợp đóng góp
 
-Bảo phụ trách A–B và tích hợp, Duy phụ trách kiểm số và bảng lỗi, Hiệp phụ trách phép tính D–E và hồ sơ pilot. Hai người gắn nhãn độc lập xác nhận kết quả trong báo cáo riêng. [Thông tin nhóm](../../TEAM.md)
+Bảo phụ trách A–B và tích hợp, Duy phụ trách kiểm số và bảng lỗi, Hiệp phụ trách phép tính D–E và hồ sơ pilot. Bảng lỗi ghi rõ nguồn AI của hai cột nhãn. [Thông tin nhóm](../../TEAM.md)
 
 ## 7. Hạn chế và hướng cải thiện
 
