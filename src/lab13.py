@@ -94,7 +94,9 @@ if __name__ == '__main__':
     for ten, gia_tri in ket_qua.items():
         print(f'{ten:12s} {gia_tri:>14,.0f}')
     for v in reqs['loai'].unique():
-        ket_qua_loai = mo_hinh(runs, reqs[reqs['loai'] == v])
+        reqs_loai = reqs[reqs['loai'] == v]
+        runs_loai = runs[runs['request_id'].isin(reqs_loai['request_id'])]
+        ket_qua_loai = mo_hinh(runs_loai, reqs_loai)
         print(f'{v:12s} cps={ket_qua_loai["cps"]:>12,.0f}')
 
     baseline_cps = ket_qua['cps']
