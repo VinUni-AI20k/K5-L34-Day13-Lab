@@ -5,7 +5,7 @@
 - Họ tên: Trần Việt Tiến
 - MSSV: 2A202603394
 - Nhóm: VOI; lớp: L3A.
-- Vai trò: Người 5 — Chỉ số, event và hồ sơ Gate 2a, nhiệm vụ E.
+- Vai trò: nhiệm vụ E.
 
 ## 2. Phần việc phụ trách
 
