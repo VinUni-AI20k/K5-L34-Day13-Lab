@@ -32,6 +32,12 @@
 - B3: tính chi phí **cả hệ thống** (cộng 12.000 đ cho mỗi ca không thành công), không chỉ chi phí mỗi việc. Giới hạn 2 lần rẻ nhất cho công ty (6.901.220 đ), khác với giới hạn 1 lần cho chi phí mỗi việc thành công thấp nhất (4.111 đ) [simulated].
 - B4: xem lại 100% cho noi_dia + hang_nang ra 11.743 đ = 0,98× của 12.000 đ, hoặc 1,03× nếu dùng phút làm lại thực tế 15,3 phút. Hoà vốn khi mỗi lần xem lại ≤ 5,1 phút [simulated].
 
+**Soát yêu cầu "Xong khi" của B2, B3, B4:**
+
+- Mỗi câu trả lời B2, B3, B4 không quá 3 dòng, đều có số và có nhãn `[simulated]`.
+- Đã bổ sung nhãn `simulated` cho các câu B3 và B4 còn thiếu.
+- B3 so sánh **chi phí cả hệ thống** (tổng trợ lý + 12.000 đ × số yêu cầu không thành công), không chỉ chi phí mỗi việc thành công.
+
 ## 4. Bằng chứng
 
 - File: [report/team/bang_chi_phi.md](bang_chi_phi.md). Đầu file có ghi chú đối chiếu, lệch 0% so với đáp án.
