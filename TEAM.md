@@ -12,7 +12,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 |    Lục Anh Tuấn    |   2A202603634   |    26ai.tuanla2@vinuni.edu.vn   |    tuanvtxm6    |    Người viết code     |
-|   2 |    Nguyễn Thùy Lam    |   2A202603632   |    26ai.lamnt5@vinuni.edu.vn  |  ThuyLam4719      |     Người gán nhãn 1 và 2    |
+|   2 |    Nguyễn Thùy Lam    |   2A202603632   |    26ai.lamnt5@vinuni.edu.vn  |  ThuyLam4719      |     Người gán nhãn 1 và 2, kiêm giữ hồ sơ    |
 |   3 |    Mai Lâm Tấn Đạt    |   2A202603645   |   26ai.datmlt@vinuni.edu.vn    |    tandat411    |     Người kiểm số     |
 |   4 |        |      |       |        |         |
 
@@ -36,6 +36,20 @@ report/team/MSSV_HoTen.md
 Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
+
+## LucAnhTuan-2A202603634
+
+### Phần việc phụ trách
+
+- Người viết code: `src/lab13.py` cho nhiệm vụ A, B và D1; số trong `report/team/bang_chi_phi.md` và chú thích D1 của `report/team/pilot_plan.yaml`.
+
+### Đóng góp cụ thể
+
+- Ba hàm A1 (ba phép thử ĐẠT), hàm `mo_hinh` (A2), tách theo loại (A3), chi phí cố định (A4), bảng độ nhạy B1–B4, cỡ mẫu D1.
+
+### Bằng chứng
+
+- `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/2A202603634_LucAnhTuan.md`; chi phí mỗi việc thành công 4.472 đ [simulated].
 
 ## HoVaTen-MSSV
 
