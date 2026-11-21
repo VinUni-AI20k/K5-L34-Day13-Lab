@@ -91,3 +91,21 @@ Kiểm tra trên số chưa làm tròn: "giảm một nửa" giảm đúng bằn
 
 - Xem lại 100% (`noi_dia` + `hang_nang`): (224.513,274 + 948 × 5 × 2.000 + 48 × 9 × 2.000) / 900 ≈ 11.743 đ = 0,98× mức 12.000 đ [simulated]. Thay 9 bằng trung bình chính xác 15,2973 phút/ca từ cột `_simulated` trên toàn bộ ca làm lại: 12.414,50 đ, làm tròn 12.415 đ = 1,03× [simulated]; hướng dẫn ghi xấp xỉ 12.414 đ, lệch dưới 0,01%.
 - Tiền xem lại chiếm khoảng 90% chi phí trong kịch bản 9 phút làm lại [simulated]; pilot cần tìm tỉ lệ xem lại thấp nhất vẫn an toàn. Thời gian xem lại hoà vốn tối đa khoảng 5,1 phút với 9 phút làm lại hoặc 4,8 phút với 15,3 phút làm lại [simulated]; chưa cộng chi phí cố định.
+
+## Kiểm số tính tay
+
+Phần dưới là bản nháp từ nhánh gộp, giữ để đối chiếu; chưa có xác nhận người tính và cách tính. Cả 5 dòng lệch trên 2% so với code, không dùng thay kết quả A2 đã kiểm tra.
+
+- Người tính: [họ tên], ngày [dd/mm]
+- Cách lập bản nháp: cần người tính xác nhận có dùng bảng tính và thời điểm tính.
+- Công thức: [dán các công thức ở bảng trên, hoặc mô tả ngắn]
+
+| Khoản | Tính tay (đ), bản nháp | Từ code (đ) | Lệch so với code |
+| --- | ---: | ---: | ---: |
+| Token | 240.000 | 245.585 | 2,27% |
+| Tool | 82.000 | 84.000 | 2,38% |
+| Làm lại [simulated] | 2.200.000 | 2.264.000 | 2,83% [simulated] |
+| Tổng [simulated] | 4.250.000 | 4.373.585 | 2,83% [simulated] |
+| Chi phí mỗi việc thành công [simulated] | 4.350 | 4.472 | 2,73% [simulated] |
+
+Lệch = trị tuyệt đối (bản nháp − số từ code) / số từ code × 100%; chưa có công thức của bản nháp để xác định nguyên nhân sai.
