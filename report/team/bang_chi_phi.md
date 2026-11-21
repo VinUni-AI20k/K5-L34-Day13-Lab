@@ -91,3 +91,11 @@ Phạm vi noi_dia + hang_nang (982 yêu cầu): 948 yêu cầu có ít nhất m�
 
 - Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: **11.743 đ = 0,98×** [simulated]. Nếu dùng 15,3 phút làm lại mỗi ca như trung bình trong dữ liệu (trung vị 14,5): **12.415 đ = 1,03×** [simulated], tức đắt hơn nhân viên tự làm.
 - Kết quả này nói gì về thứ pilot cần học được? Xem lại 100% thì trợ lý gần như không tiết kiệm gì vì tiền xem lại chiếm 90% chi phí. Pilot phải học được tỉ lệ xem lại có thể giảm an toàn tới đâu và mỗi lần xem lại có dưới mức hoà vốn **5,1 phút** (với 9 phút làm lại) hoặc **4,8 phút** (với 15,3 phút) không [simulated].
+
+## Kiểm số độc lập (Người kiểm số: Mai Lâm Tấn Đạt)
+
+Tính lại không dùng `lab13.py` (đọc CSV bằng thư viện `csv`, cộng tay từng khoản), kết quả khớp bảng A2–B4 ở trên.
+
+- Cách tính tay một con số: token 245.585 + tool 5.600 lần × 15 = 84.000 + xem lại 890 phút × 2.000 = 1.780.000 + làm lại 1.132 phút × 2.000 = 2.264.000 = **4.373.585 đ**. Chia 978 việc thành công = **4.472 đ/việc** [simulated]. Hoá đơn token + tool chia số yêu cầu = (245.585 + 84.000) ÷ 1.200 = 274,7 đ; 4.472 ÷ 274,7 = 16,3 lần.
+- A3 (4 loại), A4 (4.599 đ và 5.784 đ), B1 (9 kịch bản), B2 (+46,3%), B3 (3 giới hạn), B4 (11.743 đ và 12.415 đ, hoà vốn 5,1 và 4,8 phút): đều lệch 0% so với bản độc lập [simulated].
+- Kiểm tính tuyến tính: 5,6 → 2,8; 40,7 → 20,3; 51,8 → 25,9 đúng bằng nửa mức "gấp đôi".

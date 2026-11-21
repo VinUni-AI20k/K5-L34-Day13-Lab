@@ -5,12 +5,13 @@
 - Họ tên: Nguyễn Thùy Lam
 - MSSV: 2A202603632
 - Email: 26ai.lamnt5@vinuni.edu.vn
-- Vai trong nhóm: Người gắn nhãn 1.
+- Vai trong nhóm: Người gắn nhãn 1 (người gắn nhãn 2 kiêm giữ hồ sơ là Mai Lâm Tấn Đạt).
 
 ## 2. Phần việc phụ trách
 
-- Đọc đề, theo dõi điều kiện “Xong khi” và tự gắn nhãn độc lập 20 ca lỗi theo năm loại Google PAIR tại CP3.
-- Sau khi người gắn nhãn 2 hoàn tất độc lập, cùng đối chiếu bộ nhãn, tính đồng thuận, thống nhất ca bất đồng và ghi quy tắc phân biệt.
+- Gắn nhãn độc lập 20 ca lỗi theo năm loại Google PAIR và theo dõi điều kiện "Xong khi" của CP3.
+- Soạn bản nháp `ho_so_launch_v0.md`, sau đó bàn giao cho người giữ hồ sơ (Đạt) cập nhật theo kết quả A–E.
+- Sau khi người gắn nhãn 2 hoàn tất độc lập, cùng đối chiếu bộ nhãn, tính đồng thuận và hoàn thiện bảng khắc phục 5 ca.
 
 ## 3. Đóng góp cụ thể
 
@@ -20,7 +21,8 @@
 ## 4. Bằng chứng
 
 - `TEAM.md`: phân công Nguyễn Thùy Lam là người gắn nhãn 1.
-- `report/team/bang_loi.md`: bảng 20 ca và các cột để ghi bộ nhãn độc lập, đồng thuận, nhãn thống nhất; bảng khắc phục nhóm ở phần sau.
+- `report/team/bang_loi.md`: bộ nhãn người 1, đồng thuận với người 2 là 20/20, bảng khắc phục gồm ca 9, 7, 18, 4, 17.
+- `report/team/ho_so_launch_v0.md`: bản nháp hồ sơ bảy mục, sau đó người giữ hồ sơ (Đạt) cập nhật.
 
 ## 5. Công cụ AI đã dùng
 

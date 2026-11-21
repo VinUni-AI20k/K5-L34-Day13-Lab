@@ -41,28 +41,49 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
-- Người viết code: `src/lab13.py` cho nhiệm vụ A, B và D1; số trong `report/team/bang_chi_phi.md` và chú thích D1 của `report/team/pilot_plan.yaml`.
+- Người viết code: `src/lab13.py` cho nhiệm vụ A, B và D1; số trong `report/team/bang_chi_phi.md`.
+- Nhiệm vụ D: `report/team/pilot_plan.yaml`; chốt mục 6 và đề xuất của `report/team/ho_so_launch_v0.md`; viết `report/team/group_report.md`.
 
 ### Đóng góp cụ thể
 
 - Ba hàm A1 (ba phép thử ĐẠT), hàm `mo_hinh` (A2), tách theo loại (A3), chi phí cố định (A4), bảng độ nhạy B1–B4, cỡ mẫu D1.
+- `pilot_plan.yaml`: chia theo nhân viên 20/20, MDE 6 điểm (859/nhóm, DE 6,96), năm câu D2, 4 luật dừng NẾU – TRONG – THÌ – KHÔNG THÌ, ngày quyết định 2027-01-12.
 
 ### Bằng chứng
 
-- `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/2A202603634_LucAnhTuan.md`; chi phí mỗi việc thành công 4.472 đ [simulated].
+- `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/pilot_plan.yaml`, `report/team/group_report.md`, `report/team/2A202603634_LucAnhTuan.md`; chi phí mỗi việc thành công 4.472 đ [simulated].
 
-## HoVaTen - MSSV
-## Nguyễn Thùy Lam - 2A202603632
+## NguyenThuyLam-2A202603632
 
 ### Phần việc phụ trách
 
-- Người gắn nhãn 1: đọc đề, theo dõi điều kiện “Xong khi” và tự gắn nhãn độc lập 20 ca ở CP3.
+- Người gắn nhãn 1: gắn nhãn 20 ca lỗi theo năm loại Google PAIR, theo dõi điều kiện "Xong khi" của CP3, soạn bảng khắc phục 5 ca trong `report/team/bang_loi.md`.
+- Soạn bản nháp đầu tiên của `report/team/ho_so_launch_v0.md`, sau đó bàn giao cho người giữ hồ sơ (Đạt).
 
 ### Đóng góp cụ thể
 
-- Tạo đề xuất bộ nhãn người 1 cho 20 ca bằng AI theo ý kiến mới của giảng viên mà nhóm báo lại; Lam rà soát/xác nhận trước khi chốt.
-- Theo dõi CP3: sau khi hai người hoàn thành độc lập, cùng nhóm tính đồng thuận, thống nhất ca bất đồng và kiểm tra ngưỡng tối thiểu 16/20.
+- Bộ nhãn người 1 cho 20 ca và bảng khắc phục đủ năm loại (ca 9, 7, 18, 4, 17) trong `report/team/bang_loi.md`; Lam đã xác nhận bộ nhãn. Tỉ lệ đồng thuận với người 2: 20/20.
+- Đề xuất bộ nhãn người 1 được tạo bằng AI theo ý kiến mới của giảng viên mà nhóm báo lại; Lam rà soát/xác nhận trước khi chốt.
+- Bản nháp hồ sơ launch v0 với số đối chiếu và nhãn simulated.
 
 ### Bằng chứng
 
-- `report/team/bang_loi.md`, `report/team/2A202603632_NguyenThuyLam.md`.
+- `report/team/bang_loi.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603632_NguyenThuyLam.md`.
+
+## MaiLamTanDat-2A202603645
+
+### Phần việc phụ trách
+
+- Người kiểm số: tính lại độc lập số của CP1, CP2, D1 và E1; ghi cách tính tay vào `report/team/bang_chi_phi.md`.
+- Người gắn nhãn 2: gắn nhãn 20 ca ở CP3; đồng thuận với Lam 20/20.
+- Người giữ hồ sơ: điền `report/team/chi_so.md` và cập nhật `report/team/ho_so_launch_v0.md`.
+
+### Đóng góp cụ thể
+
+- Kiểm số độc lập bằng script không dùng `lab13.py`: A2, A3, A4, B1–B4 khớp bản của Tuấn (chi phí mỗi việc thành công 4.472 đ [simulated]); D1 khớp (1.251; m ≥ 299; power ≈ 0,64); E1 khớp (82,83% · 27,12% · 4,25%).
+- Điền `chi_so.md`: ba chỉ số tính thử, hai chỉ số nhóm đề xuất, 8 event có `trace_id`, ba dòng rủi ro kinh tế lấy từ bảng độ nhạy.
+- Cập nhật `ho_so_launch_v0.md`: tên nhóm và lớp, mục 4, số 12.415 đ ở mục 7.
+
+### Bằng chứng
+
+- `report/team/bang_chi_phi.md` (mục "Kiểm số độc lập"), `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603645_MaiLamTanDat.md`.

@@ -4,7 +4,9 @@
 
 - Lab không gọi model thật, không cần và không dùng API key.
 - Được dùng trợ lý AI (ChatGPT, Claude, Gemini, Copilot, Cursor…) để giải thích khái niệm, gợi ý code và soát lỗi.
-
+- Mọi con số trong hồ sơ phải do `src/lab13.py` của nhóm tính ra, hoặc tính tay có ghi cách tính. Không dùng AI để bịa số, nhãn lỗi hay kết quả duyệt chéo.
+- Nhóm phải tự giải thích được: vì sao tử số tính mọi lần chạy còn mẫu số chỉ đếm việc thành công, cách tính cỡ mẫu hiệu dụng khi chia theo cụm, và lý do của đề xuất cuối. Hội đồng và giảng viên có thể hỏi trực tiếp.
+- Mỗi thành viên ghi công cụ AI đã dùng và cách tự kiểm tra trong báo cáo cá nhân `report/team/MSSV_HoTen.md`.
 
 ## Làm bài và liêm chính
 
