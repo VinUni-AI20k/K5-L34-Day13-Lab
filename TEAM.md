@@ -17,7 +17,7 @@
 |   2 | Nguyễn Trung Duy | 2A202603387 | duy321111@gmail.com | duy321111 | Bảng chi phí và độ nhạy B |
 |   3 | Chu Mai Hồng | 2A202603377 | | | Phân loại lỗi C và phiếu duyệt chéo |
 |   4 | Phạm Việt Hưng | 2A202603370 | hungphamm1507@gmail.com | rachel157 | Thiết kế pilot D và gắn nhãn độc lập lần hai |
-|   5 | [Trần Việt Tiến](report/team/2A202603394_TranVietTien.md) | 2A202603394 | | | Người 5 — Nhiệm vụ E, chỉ số, event và người giữ hồ sơ Gate 2a |
+|   5 | [Trần Việt Tiến](report/team/2A202603394_TranVietTien.md) | 2A202603394 | | | Nhiệm vụ E, chỉ số, event và người giữ hồ sơ Gate 2a |
 
 Người 1 phụ trách tích hợp `src/lab13.py`. Người 2 và Người 4 gửi lần lượt phần tính B và D1 cho Người 1. Người 2 kiểm số chi phí độc lập trước khi điền bảng. Người 3 và Người 4 giữ riêng hai bộ nhãn cho đến khi cả hai hoàn tất.
 
@@ -87,7 +87,7 @@ Thêm mục đóng góp cho từng thành viên theo phần việc đã thực h
 
 ### Phần việc phụ trách
 
-- Người 5, nhiệm vụ E; phụ trách `chi_so.md`, `ho_so_launch_v0.md` và báo cáo cá nhân.
+- Nhiệm vụ E; phụ trách `chi_so.md`, `ho_so_launch_v0.md` và báo cáo cá nhân.
 
 ### Đóng góp cụ thể
 
