@@ -75,13 +75,14 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 | Giới hạn | Tổng chi phí trợ lý | Số yêu cầu không thành công | Chi phí cả hệ thống | Chi phí mỗi việc thành công |
 | --- | ---: | ---: | ---: | ---: |
-| 1 lần | ... | ... | ... | ... |
-| 2 lần | ... | ... | ... | ... |
-| 3 lần | ... | ... | ... | ... |
+| 1 lần | 3.621.781 [simulated] | 319 | 7.449.781 [simulated] | 4.111 [simulated] (thấp nhất) |
+| 2 lần | 4.093.220 [simulated] | 234 | **6.901.220 [simulated] (rẻ nhất)** | 4.237 [simulated] |
+| 3 lần | 4.373.585 [simulated] | 222 | 7.037.585 [simulated] | 4.472 [simulated] |
 
-- Giới hạn nào rẻ nhất cho công ty? Có trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất không? ...
+- Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu cầu không thành công (nhân viên làm thay).
+- Giới hạn nào rẻ nhất cho công ty? Có trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất không? **2 lần** rẻ nhất cho công ty (6.901.220 đ [simulated]); không trùng với giới hạn 1 lần (chi phí mỗi việc thành công thấp nhất 4.111 đ), vì giới hạn 1 lần đẩy thêm 85 yêu cầu sang nhân viên.
 
 ## B4 · Nếu phải xem lại tất cả
 
-- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: ...
-- Kết quả này nói gì về thứ pilot cần học được? ...
+- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: (948 yêu cầu × 5 phút × 2.000 + 48 ca làm lại × 9 phút × 2.000 + 224.513 đ token và tool) ÷ 900 = **11.743 đ = 0,98×** [simulated]. Nếu làm lại 15,3 phút/ca (trung bình cột `phut_lam_lai_simulated`) thì **12.415 đ = 1,03×** [simulated], đắt hơn nhân viên tự làm.
+- Kết quả này nói gì về thứ pilot cần học được? Xem lại 100% thì trợ lý gần như không tiết kiệm (tiền xem lại chiếm 90% chi phí). Pilot phải đo được tỉ lệ xem lại giảm an toàn xuống mức nào, và mỗi lần xem lại có dưới mức hoà vốn **5,1 phút** (làm lại 9 phút) hoặc **4,8 phút** (làm lại 15,3 phút) [simulated] không.
