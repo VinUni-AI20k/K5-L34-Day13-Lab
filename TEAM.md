@@ -2,32 +2,28 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: VOI
+- Lớp: L3A
+- Repo nhóm: `K5-L3A-DAY13-VOI-LaunchEconomics`
+- URL repo: https://github.com/vuductam20022004/K5-L3A-DAY13-VOI-LaunchEconomics
+- Nhánh làm việc của Người 1: `tam`
+- Nhánh nộp, commit chốt:
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 | Vũ Đức Tâm | 2A202603522 | ductamyenphucnamdinh@gmail.com | vuductam20022004 | Code và mô hình chi phí A |
+|   2 | Nguyễn Trung Duy | 2A202603387 | duy321111@gmail.com | duy321111 | Bảng chi phí và độ nhạy B |
+|   3 | Chu Mai Hồng | 2A202603377 | | | Phân loại lỗi C và phiếu duyệt chéo |
+|   4 | Phạm Việt Hưng | 2A202603370 | | | Thiết kế pilot D và gắn nhãn độc lập lần hai |
+|   5 | Trần Việt Tiến | 2A202603394 | | | Chỉ số, event và hồ sơ Gate 2a E |
 
-Bốn vai của lab:
-
-- **Người viết code:** viết và chạy `src/lab13.py`.
-- **Người kiểm số:** tính tay một con số để đối chiếu, điền bảng.
-- **Người gắn nhãn 1:** đọc đề, theo dõi điều kiện "Xong khi"; gắn nhãn 20 ca độc lập ở CP3.
-- **Người gắn nhãn 2, kiêm giữ hồ sơ:** điền `report/team/ho_so_launch_v0.md` từ đầu buổi; gắn nhãn 20 ca độc lập ở CP3.
-
-Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
+Người 1 phụ trách tích hợp `src/lab13.py`. Người 2 và Người 4 gửi lần lượt phần tính B và D1 cho Người 1. Người 2 kiểm số chi phí độc lập trước khi điền bảng. Người 3 và Người 4 giữ riêng hai bộ nhãn cho đến khi cả hai hoàn tất.
 
 ## Cá nhân
 
-Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/` theo dạng:
+Mỗi thành viên đồng thời tạo một báo cáo riêng theo dạng:
 
 ```text
 report/team/MSSV_HoTen.md
@@ -35,18 +31,20 @@ report/team/MSSV_HoTen.md
 
 Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
-Sao chép mục dưới đây cho từng thành viên.
+Thêm mục đóng góp cho từng thành viên theo phần việc đã thực hiện.
 
-## HoVaTen-MSSV
+## Vũ Đức Tâm — 2A202603522
 
 ### Phần việc phụ trách
 
--
+- Thiết lập môi trường Python, phụ trách `src/lab13.py` và bàn giao số liệu A1–A4 cho Người 2.
 
 ### Đóng góp cụ thể
 
--
+- Hoàn thiện phần tính kinh tế chạy lại, mô hình chi phí từ trace, bảng chi phí theo loại yêu cầu và hai kịch bản phân bổ chi phí cố định. Chuẩn bị tham số độ nhạy và giới hạn lượt chạy cho phần B.
+- Tích hợp phần B của Người 2 và phần D1 của Người 4 vào lệnh `python lab13.py`.
 
 ### Bằng chứng
 
--
+- `src/lab13.py` chạy hết A1–A4, B1–B4 và D1 trên hai CSV gốc. A1 đạt 1,20 · 1,25 · 1,25. A2 ghi nhận 978/1.200 yêu cầu thành công và chi phí 4.472 đ/việc thành công [simulated].
+- [Báo cáo cá nhân](report/team/2A202603522_VuDucTam.md).
