@@ -28,6 +28,15 @@
 # Thời gian thu mẫu: phạm vi noi_dia + hang_nang ≈ 1.500/ngày × 982/1.200 ÷ 40 người ≈ 30,7 yêu cầu/người/ngày,
 #   nên 299 yêu cầu/người cần khoảng 10 ngày làm việc. Mỗi nhóm cần ít nhất 20 × 299 = 5.980 yêu cầu thực tế.
 #   Chỉ đếm mẫu từ bước rollout 0.50, sau đó chờ đủ 7 ngày theo dõi mở lại rồi mới chốt số cho cả hai nhóm.
+#   Nếu tính cả mọi loại yêu cầu (1.500 ÷ 40 ≈ 37,5/người/ngày) thì cần ít nhất 8 ngày; không chốt sau đúng 7 ngày (7 × 37,5 ≈ 263 < 299).
+#   7 ngày "không mở lại" là cửa sổ theo dõi từng đơn, không thay cho số ngày gom đủ mẫu.
+#
+# Luật dừng theo bước rollout (D3):
+#   - Bước 0.10 (4 nhân viên) chưa đủ cụm để so với đối chứng: lệch 2 điểm dễ là nhiễu. Chỉ dùng luật tuyệt đối
+#     (mở lại > 6%, hoàn trùng, báo "đã hoàn" mà sổ cái không ghi). Luật so với đối chứng +2 điểm áp dụng từ bước 0.25.
+#   - Luật chi phí không cộng 40 triệu cố định: ở bước 4 người, cố định ≈ 40.000.000 ÷ 3.375 việc ≈ 11.852 đ/việc,
+#     cộng 3.414 đ ≈ 15.300 đ, luật sẽ kêu ngay dù trợ lý không đắt hơn (10 người ≈ 8.155 đ; 20 người ≈ 5.784 đ).
+#     Rủi ro khối lượng thấp so với chi phí cố định theo dõi ở E2 (xem lại hợp đồng), không dùng để dừng pilot.
 #
 # Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn:
 #   Toàn mẫu 4,25% (51/1.200); trong phạm vi noi_dia + hang_nang 3,97% (39/982).
@@ -65,9 +74,10 @@ pilot:
     spillover_risk: "Trung bình: nhân viên cùng depot có thể chia sẻ câu trả lời; giảm bằng phân quyền theo tài khoản và log lượt mở trợ lý theo staff_id"
     predeclared: "Có: chỉ số chính, MDE 6 điểm, luật dừng và ngày quyết định chốt trong file này trước ngày bắt đầu"
   stop_rules:
-    - "NẾU tỉ lệ mở lại 7 ngày (tính cuốn chiếu theo ngày) của nhóm trợ lý cao hơn đối chứng từ 2 điểm trở lên hoặc vượt 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và chuyển toàn bộ về nhân viên tự làm KHÔNG THÌ không được sang bước rollout tiếp theo"
-    - "NẾU phát hiện từ 1 ca hoàn tiền trùng (cùng mã đơn hoàn 2 lần, qua đối soát sổ cái mỗi giờ) TRONG bất kỳ thời điểm nào của pilot THÌ Giám đốc vận hành tắt trợ lý ngay trong 30 phút, Kỹ sư trưởng agent sửa khoá chống trùng và Kế toán trưởng thu hồi khoản hoàn thừa KHÔNG THÌ không được bật lại trợ lý"
-    - "NẾU chi phí mỗi việc thành công (đã cộng chi phí cố định) vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở thêm hang_nang hay depot mới"
+    - "NẾU tỉ lệ mở lại 7 ngày (tính cuốn chiếu theo ngày) của nhóm trợ lý vượt 6% số yêu cầu TRONG 3 ngày liên tiếp, áp dụng từ bước 0.10 THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và chuyển toàn bộ về nhân viên tự làm KHÔNG THÌ không được sang bước rollout tiếp theo"
+    - "NẾU phát hiện từ 1 ca hoàn tiền trùng (cùng mã đơn hoàn 2 lần) hoặc 1 tin nhắn báo khách đã hoàn mà sổ cái không có bản ghi ok cùng trace_id (đối soát mỗi giờ) TRONG bất kỳ bước nào của pilot THÌ Giám đốc vận hành tắt trợ lý ngay trong 30 phút, Kỹ sư trưởng agent sửa lỗi và Kế toán trưởng xử lý khoản hoàn sai KHÔNG THÌ không được bật lại trợ lý"
+    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn nhóm đối chứng từ 2 điểm trở lên TRONG 3 ngày liên tiếp, chỉ áp dụng từ bước 0.25 (10 nhân viên mỗi nhóm trở lên) THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và rà 20 trace mở lại KHÔNG THÌ không được sang bước rollout tiếp theo"
+    - "NẾU chi phí biến đổi mỗi việc thành công (token + tool + xem lại + làm lại, chưa cộng 40 triệu đ/tháng chi phí cố định) vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở thêm hang_nang hay depot mới"
     - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo trên số được xem lại) vượt 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên nhóm trợ lý trong 3 ngày và báo cáo nguyên nhân KHÔNG THÌ không được chuyển bước rollout"
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
   rollback: "Giám đốc vận hành bấm cờ tắt trợ lý, hiệu lực trong 30 phút; khách được phục vụ bằng luồng nhân viên tự làm như trước pilot"
@@ -76,4 +86,4 @@ pilot:
     - "phut_xem_lai_simulated (chi phí xem lại trong A2, A3, A4)"
     - "phut_lam_lai_simulated (chi phí làm lại trong A2, A3, A4)"
     - "Chi phí mỗi việc thành công theo loại 0,22× / 0,69× / 1,88× / 0,85× dùng để chọn scope"
-    - "Ngưỡng 8.000 đ trong luật dừng chi phí (dựa trên A4: 4.599 đ ở quy mô đầy đủ, 5.784 đ ở nửa khối lượng)"
+    - "Ngưỡng 8.000 đ trong luật dừng chi phí, so với chi phí biến đổi 3.414 đ/việc trong phạm vi (A4, chưa cộng cố định)"
