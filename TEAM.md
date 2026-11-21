@@ -12,8 +12,8 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 |    Lục Anh Tuấn    |   2A202603634   |    26ai.tuanla2@vinuni.edu.vn   |    tuanvtxm6    |    Người viết code     |
-|   2 |    Nguyễn Thùy Lam    |   2A202603632   |    26ai.lamnt5@vinuni.edu.vn  |  ThuyLam4719      |     Người gán nhãn 1 và 2, kiêm giữ hồ sơ    |
-|   3 |    Mai Lâm Tấn Đạt    |   2A202603645   |   26ai.datmlt@vinuni.edu.vn    |    tandat411    |     Người kiểm số     |
+|   2 |    Nguyễn Thùy Lam    |   2A202603632   |    26ai.lamnt5@vinuni.edu.vn  |  ThuyLam4719      |     Người gán nhãn 1   |
+|   3 |    Mai Lâm Tấn Đạt    |   2A202603645   |   26ai.datmlt@vinuni.edu.vn    |    tandat411    |     Người kiểm số, người gán nhãn 2, kiêm giữ hồ sơ    |
 |   4 |        |      |       |        |         |
 
 Bốn vai của lab:
@@ -51,16 +51,19 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - `src/lab13.py`, `report/team/bang_chi_phi.md`, `report/team/2A202603634_LucAnhTuan.md`; chi phí mỗi việc thành công 4.472 đ [simulated].
 
-## HoVaTen-MSSV
+## HoVaTen - MSSV
+## Nguyễn Thùy Lam - 2A202603632
 
 ### Phần việc phụ trách
 
--
+- Người gắn nhãn 1; người gắn nhãn 2 kiêm giữ hồ sơ theo phân vai nhóm. Yêu cầu hai bộ nhãn độc lập cần hai thành viên khác nhau; xác nhận lại người gắn nhãn thứ hai trước khi chốt CP3.
+- Duy trì `report/team/ho_so_launch_v0.md` từ đầu buổi, cập nhật khi nhóm có kết quả A–E.
 
 ### Đóng góp cụ thể
 
--
+- Soạn bản nháp bộ nhãn người 1 và bảng khắc phục 5 loại lỗi trong `report/team/bang_loi.md`; chưa tính đồng thuận vì chưa có bộ nhãn độc lập thứ hai.
+- Soạn bản nháp hồ sơ launch v0 trong `report/team/ho_so_launch_v0.md`, dùng số đối chiếu từ hướng dẫn và đánh dấu các nội dung cần nhóm xác nhận.
 
 ### Bằng chứng
 
--
+- `report/team/bang_loi.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603632_NguyenThuyLam.md`.
