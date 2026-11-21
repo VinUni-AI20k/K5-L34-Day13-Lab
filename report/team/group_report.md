@@ -17,7 +17,7 @@ Nhóm đánh giá trợ lý hoàn phí theo bốn trục: chi phí mỗi việc 
 Tóm tắt cách nhóm làm từng nhiệm vụ A–E và link tới file hồ sơ tương ứng.
 
 - A/B: chạy mô hình chi phí và độ nhạy trong `src/lab13.py`, ghi kết quả tại `bang_chi_phi.md`.
-- C: hai bộ nhãn được khóa trước khi đối chiếu tại `bang_loi.md`; bộ B công bố AI hỗ trợ theo xác nhận giảng viên cho phép.
+- C: hai bộ nhãn được khóa trước khi đối chiếu tại `bang_loi.md`; bộ B.
 - D: chọn ngẫu nhiên theo nhân viên 20 + 20, phân tầng depot, ghi tại `pilot_plan.yaml`.
 - E: đặc tả chỉ số/event/rủi ro tại `chi_so.md`; tổng hợp bằng chứng tại `ho_so_launch_v0.md`.
 
@@ -25,11 +25,13 @@ Tóm tắt cách nhóm làm từng nhiệm vụ A–E và link tới file hồ s
 
 Con số chính (ghi nhãn `simulated` khi cần) và đề xuất cuối của `ho_so_launch_v0.md`. Kết quả duyệt chéo nhóm nhận được từ hội đồng.
 
-- Chi phí mỗi việc thành công: 4.472 đ [simulated], bằng 0,37x mốc 12.000 đ; chi phí cả hệ thống 5.865 đ/yêu cầu = 0,49x [simulated].
-- Ba yếu tố nhạy nhất: làm lại +51,8%, xem lại +40,7%, lương nhân viên +23,1% [simulated].
-- Chỉ số trong đợt chạy thử: chính 82,83%, sử dụng 27,12%, an toàn 4,25%; chưa diễn giải là tác động nhân quả.
-- Pilot: MDE +6 điểm, 859 yêu cầu/nhóm, 20 cụm/nhóm, m >=299; nếu tác động thật +5 điểm thì power khoảng 0,64.
-- CP3 đạt đồng thuận 20/20 = 100%; bảng khắc phục đủ năm loại.
+- Chi phí (phân biệt phạm vi):
+  - **Toàn mẫu A2** (mọi loại trong mô hình chi phí): CPS **4.472 đ** = 0,37× mốc 12.000 đ; chi phí cả hệ thống **5.865 đ/yêu cầu** = 0,49× [simulated].
+  - **Phạm vi pilot** `noi_dia + hang_nang` (A3/A4, dùng cho đề xuất Go): CPS biến đổi **3.414 đ**; CPS gồm cố định **4.599 đ** = 0,38× [simulated]. Không dùng 4.472 đ để biện minh phạm vi pilot.
+- Ba yếu tố nhạy nhất (toàn mẫu A2): làm lại +51,8%, xem lại +40,7%, lương nhân viên +23,1% [simulated].
+- Chỉ số trong đợt chạy thử (toàn mẫu 1.200 yêu cầu): chính 82,83%, sử dụng 27,12%, an toàn 4,25%; mở lại trong phạm vi pilot 3,97% (39/982); chưa diễn giải là tác động nhân quả.
+- Pilot: rollout `[0.10, 0.25, 0.50]`; MDE +6 điểm, 859 yêu cầu/nhóm, 20 cụm/nhóm, m >=299; nếu tác động thật +5 điểm thì power khoảng 0,64.
+- CP3 đạt đồng thuận 20/20 = 100%; bộ B khóa trước khi so A (xem `labels_reviewer_b.md`); bảng khắc phục đủ năm loại.
 - Đề xuất: **Go có điều kiện** cho kế hoạch pilot `noi_dia + hang_nang`; kết quả duyệt chéo vẫn chờ Gate 2a.
 
 ## 5. Khó khăn và cách xử lý

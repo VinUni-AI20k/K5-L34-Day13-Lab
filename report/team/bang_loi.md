@@ -4,7 +4,9 @@
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: Mai Tuấn Anh (MSSV: 2A202603574) · Người gắn nhãn 2: Nguyễn Hữu Tiến (AI hỗ trợ theo xác nhận giảng viên cho phép; xem công bố trong `labels_reviewer_b.md`)
+Người gắn nhãn 1: Mai Tuấn Anh (MSSV: 2A202603574) · Người gắn nhãn 2: Nguyễn Hữu Tiến (MSSV: 2A202603598)
+
+Dấu vết độc lập (bộ B): bắt đầu 14:05 · kết thúc gắn 14:18 · **khóa bộ B 14:20 GMT+7 ngày 2026-11-21** · mới nhận bộ A và đối chiếu từ 14:25. Không sửa hồi tố hai bộ sau đối chiếu.
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |

@@ -65,7 +65,9 @@ pilot:
     spillover_risk: "có rủi ro chia sẻ câu trả lời trong depot; giảm bằng quyền truy cập theo staff_id và log lượt mở trợ lý"
     predeclared: "chỉ số chính, MDE, cách chia, luật dừng và ngày quyết định được ghi trước khi bắt đầu"
   stop_rules:
-    - "NẾU mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng >= 2 điểm hoặc vượt 6%, hoặc có >= 1 ca hoàn trùng TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
+    # An toàn tách 2 nhánh: hoàn trùng dừng NGAY; mở lại so đối chứng / trần 6% mới dùng cửa sổ 3 ngày liên tiếp.
+    - "NẾU phát hiện >= 1 ca hoàn tiền trùng (cùng request_id ghi ledger thành công >= 2 lần, hoặc thiếu idempotency_key) TRONG bất kỳ thời điểm nào THÌ Giám đốc vận hành tắt trợ lý trong 30 phút NGAY, không chờ đủ 3 ngày KHÔNG THÌ không được tiếp tục phục vụ yêu cầu mới bằng trợ lý"
+    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng >= 2 điểm hoặc vượt trần tuyệt đối 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
     - "NẾU chi phí mỗi việc thành công > 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn 2 lần chạy KHÔNG THÌ không được mở hang_nang"
     - "NẾU tỉ lệ bỏ qua gợi ý > 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày KHÔNG THÌ không được chuyển bước rollout"
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
