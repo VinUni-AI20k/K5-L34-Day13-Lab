@@ -21,6 +21,8 @@
 #   Với 40 nhân viên, không cách chia theo cụm nào đủ mẫu cho mức chênh 5 điểm (tối đa 1.000 < 1.251).
 #   Nhóm chọn chia theo nhân viên 20/20 để tách được tác động, và chấp nhận MDE 6 điểm (859 mỗi nhóm, m ≥ 299).
 #   Cái giá: nếu tác động thật chỉ 5 điểm thì power chỉ ≈ 0,64, tức khoảng 1/3 khả năng bỏ sót. Giám đốc vận hành phải ký chấp nhận.
+#   20 + 20 cần cả 40 nhân viên của 12 depot, trong khi đợt chạy thử chỉ có 6 depot (20 nhân viên). 20 người ở 6 depot mới chưa từng dùng
+#   trợ lý, nên bốc thăm phân tầng theo depot (mỗi depot chia đều hai nhóm) để nhóm trợ lý và đối chứng có cùng tỉ lệ người đã quen trợ lý.
 #   m ≥ 299: phạm vi noi_dia + hang_nang ≈ 1.500 × 982/1.200 ÷ 40 ≈ 30 yêu cầu/người/ngày → khoảng 10 ngày; nhóm đo 14 ngày cho dư.
 #
 # Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn: hiện tại 4,25% (51/1.200), trong phạm vi noi_dia + hang_nang 3,97% (39/982); ngưỡng: so với đối chứng, dừng khi nhóm trợ lý cao hơn ≥ 2 điểm, kèm trần tuyệt đối 6%. Không đặt 3% tuyệt đối vì mức hiện tại đã 3,97%, pilot sẽ dừng ngay tuần đầu.
@@ -30,7 +32,7 @@
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
-  scope: "Chỉ noi_dia và hang_nang (0,22× và 0,69× so với 12.000 đ, simulated) ở 6 depot đã chạy thử; loại quoc_te (1,88×, thành công 27,3%, chạy lại không giúp) và doi_tac (0,85×, điều khoản riêng)"
+  scope: "Chỉ noi_dia và hang_nang (0,22× và 0,69× so với 12.000 đ, simulated) ở cả 12 depot (40 nhân viên; đợt chạy thử chỉ có 6 depot D01–D06 với 20 nhân viên, không đủ cho 20 + 20); loại quoc_te (1,88×, thành công 27,3%, chạy lại không giúp) và doi_tac (0,85×, điều khoản riêng)"
   assignment:
     unit: "staff"
     control_share: 0.5

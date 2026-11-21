@@ -33,8 +33,9 @@ Dựng hồ sơ launch v0 cho trợ lý hoàn phí LogiX-VN để hội đồng 
 
 ## 5. Khó khăn và cách xử lý
 
-- **Cài đặt trên Windows:** lệnh `py -3 -m venv .venv` trong README báo lỗi vì máy không có Python launcher `py`. Đã dùng `python -m venv .venv` (Python 3.13.5 của Miniconda) rồi cài `requirements.txt`; kiểm tra in `san sang`.
+- **Cài đặt trên máy Windows của Tuấn (người viết code):** lệnh `py -3 -m venv .venv` trong README báo lỗi vì máy không có Python launcher `py`. Đã dùng `python -m venv .venv` (Python 3.13.5 của Miniconda) rồi cài `requirements.txt`; kiểm tra in `san sang`.
 - **Nhóm chỉ có 3 người cho 4 vai:** ban đầu một người nhận cả hai vai gắn nhãn, không đáp ứng yêu cầu gắn nhãn độc lập của CP3. Đã chia lại: Lam gắn nhãn 1, Đạt kiêm kiểm số, gắn nhãn 2 và giữ hồ sơ.
+- **Đợt chạy thử chỉ có 20 nhân viên ở 6 depot**, không đủ để chia 20 + 20; bản đầu của `pilot_plan.yaml` ghi nhầm phạm vi "6 depot đã chạy thử". Người kiểm số phát hiện khi soát chéo; đã sửa thành cả 12 depot (40 nhân viên), bốc thăm phân tầng theo depot.
 - **Không đủ mẫu cho mức chênh 5 điểm:** với 40 nhân viên, cách chia theo cụm tốt nhất chỉ đạt tối đa 1.000 < 1.251. Nhóm chấp nhận MDE 6 điểm và ghi rõ power 0,64 trong hồ sơ.
 - **File mẫu báo cáo cá nhân bị xoá nhầm** khi tạo báo cáo riêng; đã khôi phục `MSSV_HoTen.md` từ lịch sử git.
 
@@ -52,7 +53,7 @@ Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md`.
 
 - Chi phí phụ thuộc hai cột phút simulated (92,5% tổng chi phí); kết luận có thể đổi khi có phút đo thật, nên pilot phải đo `phut_xem_lai` và `phut_lam_lai` thật từ tuần 1.
 - Đợt chạy thử không có đối chứng, nên ba chỉ số E1 chỉ mô tả đợt chạy thử, chưa nói được tác động của trợ lý.
-- MDE 6 điểm làm pilot có khoảng 1/3 khả năng bỏ sót tác động thật 5 điểm. Có thể cải thiện bằng cách kéo dài thời gian đo hoặc mở rộng sang 6 depot còn lại để có thêm nhân viên.
+- MDE 6 điểm làm pilot có khoảng 1/3 khả năng bỏ sót tác động thật 5 điểm. Pilot đã dùng cả 40 nhân viên của 12 depot nên không thể thêm cụm; chỉ có thể kéo dài thời gian đo hoặc chạy lại một đợt pilot thứ hai rồi gộp kết quả.
 - Nhóm thiếu một người nên không đổi người viết code sau giờ giải lao như hướng dẫn; bù lại bằng kiểm số độc lập cho mọi bảng A, B, D1, E1.
 
 ## 8. Tài liệu tham khảo
