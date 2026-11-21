@@ -43,8 +43,8 @@ Cách phát hiện phải đo được (event, ngưỡng, tần suất). Ngườ
 
 | Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
 | --: | --- | --- | --- | --- |
-| ... | Do người dùng | ... | ... | ... |
-| ... | Hệ thống | ... | ... | ... |
-| ... | Ngữ cảnh | ... | ... | ... |
+| 1 | Do người dùng | Event `bank_account_rejected` (ngân hàng trả lỗi sai số tài khoản, có `trace_id`). Dashboard đếm theo ngày; cảnh báo khi vượt 1% số lệnh hoàn/ngày | Trước khi tạo lệnh: kiểm độ dài và checksum số tài khoản, gọi API tra tên chủ tài khoản và cho khách xác nhận. Sai thì yêu cầu nhập lại, chưa tạo lệnh | PM trợ lý hoàn phí |
+| 7 | Hệ thống | Event `refund_reported_success` không có `ledger_write_ok` cùng `trace_id`. Đối soát tự động mỗi giờ; ngưỡng **0** ca (1 ca là cảnh báo ngay) | Chỉ báo "đã hoàn tiền" khi sổ cái xác nhận ghi thành công. Lỗi 503 sau 3 lần thử thì báo "đang xử lý", đưa vào hàng đợi thử lại và chuyển nhân viên nếu quá 30 phút | Kỹ sư backend phụ trách tích hợp sổ cái |
+| 3 | Ngữ cảnh | Event `refund_reopened` với lý do "chưa nhận tiền" trong khi `refund_channel = vi_logix` và đã ghi thành công. Báo cáo theo tuần; cảnh báo khi vượt 3% số yêu cầu hoàn về ví | Hỏi khách chọn kênh nhận (ví LogiX hoặc ngân hàng) trước khi hoàn. Tin nhắn ghi rõ "Đã hoàn X đ vào ví LogiX" kèm hướng dẫn rút về ngân hàng | Designer trải nghiệm hội thoại (UX writer) |
 | ... | Giới hạn hệ thống | ... | ... | ... |
 | ... | Ngầm | ... | ... | ... |
