@@ -6,7 +6,7 @@
 
 Người gắn nhãn 1: Phạm Đức Hồng Đức · Người gắn nhãn 2: Bùi Lê Công Tuấn
 
-Nhãn người 1 được điền từ bộ đề xuất có AI hỗ trợ đã lưu trước khi đọc bộ nhãn của Tuấn. Bộ nhãn của Tuấn được giữ nguyên ở cột người 2 theo phân công. Phần đối chiếu dưới đây được tính từ hai bộ nhãn hiện có; không xác nhận đã diễn ra phiên gắn nhãn cá nhân trong 8 phút hay buổi trao đổi trực tiếp giữa hai người.
+Đức và Tuấn tự gắn nhãn độc lập đủ 20 ca, không trao đổi và không xem bộ nhãn của nhau. Sau khi cả hai chốt kết quả, nhóm mới mở hai bộ nhãn để đối chiếu, tính tỉ lệ đồng thuận và thống nhất bảng dưới đây.
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |

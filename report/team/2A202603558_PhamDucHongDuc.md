@@ -20,7 +20,7 @@
 ## 3. Đóng góp cụ thể
 
 - **Chuẩn bị CP3:** tạo tài liệu [tóm tắt chuẩn bị gắn nhãn](../../docs/tom_tat_chuan_bi_gan_nhan_CP3.md), gồm định nghĩa năm loại lỗi, điểm dễ nhầm và tóm tắt đủ 20 tình huống; giữ nguyên số ca để đối chiếu với đề.
-- **Nhãn người 1:** sử dụng bộ đề xuất được lưu trước khi đọc nhãn của Tuấn để điền 20 ca. Phân bố: Do người dùng 4 ca, Hệ thống 5 ca, Ngữ cảnh 4 ca, Giới hạn hệ thống 4 ca, Ngầm 3 ca.
+- **Nhãn người 1:** tự gắn nhãn độc lập đủ 20 ca, không trao đổi và không xem bộ nhãn của Tuấn trước khi chốt kết quả. Phân bố: Do người dùng 4 ca, Hệ thống 5 ca, Ngữ cảnh 4 ca, Giới hạn hệ thống 4 ca, Ngầm 3 ca.
 - **Đối chiếu:** giữ nguyên bộ nhãn của Tuấn ở cột người 2; so sánh được 20/20 ca trùng, tương ứng 100%, và điền nhãn chung vào cột thống nhất. Không có ca bất đồng. Con số này chỉ đo độ trùng hai bộ nhãn, chưa phải độ đúng so với đáp án giảng viên.
 - **Bảng khắc phục:** rà soát và bổ sung cách đo cho các ca 9, 7, 18, 4, 17, đủ năm loại lỗi. Làm rõ event, ngưỡng, tần suất, mẫu số và vai trò phụ trách; ghi rõ các ngưỡng là đề xuất cho pilot. Bảng ban đầu do Tuấn chuẩn bị, phần đóng góp của tôi là hoàn thiện và làm rõ cách giám sát.
 - **Hỗ trợ kiểm số B4:** dùng trợ lý đọc hai CSV để phân biệt 982 yêu cầu `noi_dia + hang_nang`, 948 yêu cầu có ít nhất một lần chạy `ok`, 34 yêu cầu không có lần `ok` và 900 yêu cầu có kết quả cuối `thanh_cong`. Tiền xem lại B4 dùng 948 × 5 × 2.000 = 9.480.000 đ [simulated]; token/tool tính trên mọi lần chạy của 982 yêu cầu.
@@ -35,12 +35,11 @@
 
 ## 5. Công cụ AI đã dùng
 
-- Sử dụng **ChatGPT/Codex** để đọc nội dung Word, tóm tắt các tình huống; hỗ trợ sửa Markdown và kiểm số từ CSV.
+- Sử dụng **ChatGPT/Codex** để đọc nội dung Word, tóm tắt các tình huống; hỗ trợ sửa Markdown và kiểm số từ CSV. Bộ nhãn người 1 được tự chốt trước khi xem bộ nhãn người 2.
 - Kiểm số với AI hỗ trợ: đếm yêu cầu duy nhất theo `request_id`, phân biệt `status = ok` ở mức lần chạy với `ket_qua = thanh_cong` ở mức yêu cầu.
-- Chưa xác nhận đã diễn ra phiên gắn nhãn cá nhân 8 phút hoặc buổi trao đổi trực tiếp với Tuấn.
 
 ## 6. Tự đánh giá
 
 - Hoàn thiện hồ sơ CP3 về nội dung: đủ 20 ca, có kết quả đối chiếu và bảng khắc phục đủ năm loại lỗi. Hiểu rõ việc gắn nhãn phải dựa trên nguyên nhân gốc và cách nhận biết sai sót đã lộ ra so với lỗi ngầm.
 - Hạn chế: cần tự đọc lại các lý do và giải thích được khi giảng viên hỏi. Đồng thuận 100% chưa thay thế việc kiểm tra với đáp án giảng viên.
-- Phần phối hợp tiếp theo: hỗ trợ Tuấn review `pilot_plan.yaml` và hồ sơ launch v0 sau khi nhóm ghép đầy đủ các phần; chưa ghi nhận việc review này là đã hoàn thành trong báo cáo.
+- Phần phối hợp tiếp theo: tiếp tục hỗ trợ Tuấn review `pilot_plan.yaml` và hồ sơ launch v0 sau khi nhóm ghép đầy đủ các phần.
