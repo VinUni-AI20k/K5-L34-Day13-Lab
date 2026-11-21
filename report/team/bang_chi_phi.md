@@ -85,4 +85,5 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 ## B4 · Nếu phải xem lại tất cả
 
 - Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: (948 yêu cầu × 5 phút × 2.000 + 48 ca làm lại × 9 phút × 2.000 + 224.513 đ token và tool) ÷ 900 = **11.743 đ = 0,98×** [simulated]. Nếu làm lại 15,3 phút/ca (trung bình cột `phut_lam_lai_simulated`) thì **12.415 đ = 1,03×** [simulated], đắt hơn nhân viên tự làm.
+- Đối chiếu với code: `lab13.py` ra 11.679 đ (0,97×) [simulated] vì xem lại cả 982 yêu cầu và chia 934; bảng này chỉ xem lại 948 ca có câu trả lời (bỏ 34 ca chuyển nhân viên) và chia 900 việc thành công. Lệch 0,55%, cùng kết luận ≈ 1×.
 - Kết quả này nói gì về thứ pilot cần học được? Xem lại 100% thì trợ lý gần như không tiết kiệm (tiền xem lại chiếm 90% chi phí). Pilot phải đo được tỉ lệ xem lại giảm an toàn xuống mức nào, và mỗi lần xem lại có dưới mức hoà vốn **5,1 phút** (làm lại 9 phút) hoặc **4,8 phút** (làm lại 15,3 phút) [simulated] không.
