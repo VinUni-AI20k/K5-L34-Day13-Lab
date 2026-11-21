@@ -189,6 +189,7 @@ def in_bang_b1_b2(runs, reqs, cps_goc):
 
     print('\n=== B1 · Đổi từng yếu tố ===')
     print(f'  {"Kịch bản":30s} {"CPS [sim]":>12s} {"Thay đổi":>10s}')
+    print(f'  {"Gốc (A2)":30s} {cps_goc:10,.0f} đ {"":>10s}')
     ket_qua_tang = []
     cps_map = {}
     for ten, kw, la_tang in kich_ban:
@@ -199,7 +200,20 @@ def in_bang_b1_b2(runs, reqs, cps_goc):
             ket_qua_tang.append((abs(pct), ten, pct))
         print(f'  {ten:30s} {cps:10,.0f} đ {pct:+9.1f}%')
 
-    cps_cap = mo_hinh(runs, reqs, gia_vao=52, gia_ra=260, he_so_xem_lai=2.0)['cps']
+    # Tự kiểm tra tuyến tính (CHECKPOINTS CP2): "giảm một nửa" giảm đúng bằng nửa mức tăng của "gấp đôi".
+    print('\n  Tự kiểm tuyến tính [simulated] (tỉ số tăng ÷ giảm phải = 2,000):')
+    for yeu_to, ten_tang, ten_giam in [
+        ('Giá token', 'Giá token gấp đôi', 'Giá token giảm một nửa'),
+        ('Tỉ lệ xem lại', 'Tỉ lệ xem lại gấp đôi', 'Tỉ lệ xem lại giảm một nửa'),
+        ('Số ca làm lại', 'Số ca làm lại gấp đôi', 'Số ca làm lại giảm một nửa'),
+    ]:
+        tang = cps_map[ten_tang] - cps_goc
+        giam = cps_map[ten_giam] - cps_goc
+        ti_so = tang / -giam
+        assert abs(ti_so - 2.0) < 1e-6, f'{yeu_to}: mô hình không tuyến tính (tỉ số {ti_so:.4f})'
+        print(f'  {yeu_to:15s} tăng {tang:+10,.1f} đ | giảm {giam:+10,.1f} đ | tỉ số {ti_so:.3f} ĐẠT')
+
+    cps_cap =mo_hinh(runs, reqs, gia_vao=52, gia_ra=260, he_so_xem_lai=2.0)['cps']
     pct_cap = (cps_cap / cps_goc - 1.0) * 100
     tong_tac_dong_rieng = (
         (cps_map['Giá token gấp đôi'] - cps_goc)
@@ -219,13 +233,29 @@ def in_bang_b3(runs, reqs):
     """So sánh chi phí cả hệ thống theo giới hạn số lần chạy (B3)."""
     print('\n=== B3 · Giới hạn chạy lại và chi phí cả hệ thống ===')
     print(f'  {"Giới hạn":10s} {"Tổng trợ lý [sim]":>18s} {"Không TC":>10s} {"Cả hệ thống [sim]":>19s} {"CPS [sim]":>12s}')
+    bang = {}
     for k in [1, 2, 3]:
         kq = mo_hinh(runs, reqs, max_lan_chay=k)
         khong_tc = len(reqs) - kq['thanh_cong']
         ca_he_thong = kq['tong'] + khong_tc * BASELINE
+        bang[k] = dict(khong_tc=khong_tc, ca_he_thong=ca_he_thong, cps=kq['cps'])
         print(
             f'  {f"{k} lần":10s} {kq["tong"]:16,.0f} đ {khong_tc:10d} '
             f'{ca_he_thong:17,.0f} đ {kq["cps"]:10,.0f} đ'
+        )
+
+    k_he_thong = min(bang, key=lambda k: bang[k]['ca_he_thong'])
+    k_cps = min(bang, key=lambda k: bang[k]['cps'])
+    print(
+        f'  -> Rẻ nhất cho công ty: {k_he_thong} lần ({bang[k_he_thong]["ca_he_thong"]:,.0f} đ); '
+        f'CPS thấp nhất: {k_cps} lần ({bang[k_cps]["cps"]:,.0f} đ) [simulated]'
+    )
+    if k_he_thong != k_cps:
+        them_viec = bang[k_cps]['khong_tc'] - bang[k_he_thong]['khong_tc']
+        them_tien = bang[k_cps]['ca_he_thong'] - bang[k_he_thong]['ca_he_thong']
+        print(
+            f'  -> Chọn {k_cps} lần để tối ưu CPS đẩy thêm {them_viec} việc sang nhân viên, '
+            f'chi phí cả hệ thống tăng {them_tien:,.0f} đ [simulated]'
         )
 
 
@@ -373,6 +403,9 @@ def in_bang_e1(reqs):
 
 
 if __name__ == '__main__':
+    import sys
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')  # console Windows mặc định cp1252, không in được tiếng Việt
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
     in_bang_a1()

@@ -70,7 +70,15 @@ Gốc (A2): 4.472 đ [simulated].
 | Chỉ cho chạy tối đa 2 lần | Bỏ lần chạy có attempt > 2; yêu cầu có so_lan_chay > 2 coi là chuyen_nhan_vien | 4.237 đ | −5,2% |
 | Chỉ cho chạy 1 lần | Như trên với giới hạn 1 | 4.111 đ | −8,1% |
 
-Tự kiểm tính tuyến tính: mỗi kịch bản "giảm một nửa" giảm đúng bằng nửa mức tăng của kịch bản "gấp đôi" (token 5,6 → 2,8; xem lại 40,7 → 20,3; làm lại 51,8 → 25,9). Đúng.
+Tự kiểm tính tuyến tính: mỗi kịch bản "giảm một nửa" giảm đúng bằng nửa mức tăng của kịch bản "gấp đôi". Đúng, tỉ số tăng ÷ giảm = 2,000 ở cả ba cặp [simulated]:
+
+| Cặp kịch bản | Tăng khi gấp đôi | Giảm khi giảm một nửa |
+| --- | ---: | ---: |
+| Giá token | +251,1 đ (+5,62%) | −125,6 đ (−2,81%) |
+| Tỉ lệ xem lại | +1.820,0 đ (+40,70%) | −910,0 đ (−20,35%) |
+| Số ca làm lại | +2.314,9 đ (+51,77%) | −1.157,5 đ (−25,88%) |
+
+Kiểm số độc lập (Lý Thành Lập): B1, B2, B3, B4 được tính lại bằng script riêng, không gọi `mo_hinh`. Cách tính: lấy từng thành phần gốc (token, tool, phút xem lại, phút làm lại) rồi nhân hệ số; với giới hạn k lần chạy thì lọc `attempt ≤ k` và `so_lan_chay ≤ k`. Mọi số khớp `src/lab13.py`, lệch dưới 0,01%.
 
 ## B2 · Đổi một cặp và xếp hạng
 
