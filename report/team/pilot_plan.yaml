@@ -10,7 +10,7 @@
 # D2.1: Đối chứng chạy đồng thời, cùng chính sách và cùng thời gian theo dõi.
 # D2.2: Ngẫu nhiên theo staff, phân tầng depot; khóa seed trước khi phân nhóm.
 # D2.3: Có nguy cơ chia sẻ gợi ý; giới hạn truy cập, theo dõi staff_id/arm.
-# D2.4: CHƯA chốt: phạm vi, ngưỡng chi phí, lịch; phải ký trước khi bắt đầu.
+# D2.4: Đã đề xuất phạm vi/ngưỡng từ A/B; chờ lịch và phê duyệt trước khi bắt đầu.
 # D2.5: Phương án đề xuất có 20 cụm nhân viên/nhóm, cần xác nhận đủ 40 người.
 # Đánh đổi: không đủ mẫu để nhắm +5 điểm với 40 nhân viên; đề xuất +6 điểm.
 # Không đạt ý nghĩa thống kê không chứng minh không có tác động; không tuyên bố
@@ -21,7 +21,23 @@
 pilot:
   status: draft_pending_team_review
   owner: "Giám đốc vận hành LogiX-VN"
-  scope: null  # Chờ TV1/TV2 xác nhận A3/B; chưa cho phép tuyển mẫu.
+  scope: "Đề xuất chỉ noi_dia và hang_nang; phân bổ nhân viên tại các depot đủ lưu lượng, chốt danh sách trước phân nhóm. Loại quoc_te và doi_tac."
+  scope_rationale: "A3: noi_dia 95,0% thành công, 2.696 đ/việc; hang_nang 74,1%, 8.221 đ/việc; quoc_te 27,3%, 22.515 đ/việc; doi_tac 54,4%, 10.215 đ/việc. Thu hẹp theo tỉ lệ thành công, chi phí và điều khoản riêng. Mọi chi phí là simulated."
+  economic_evidence:
+    label: simulated
+    source_code_commit: "3e43cfa"
+    source_report_commit: "72a51a5"
+    verification: "Đã chạy hai bản A/B từ origin/main và origin/thanhthuy: A1 đạt, kết quả A/B trùng nhau."
+    scoped_requests: 982
+    scoped_successes: 900
+    cps_with_fixed_cost_at_full_volume_vnd: 4599
+    cps_with_fixed_cost_at_half_volume_vnd: 5784
+    review_all_suggestions_cps_9_min_rework_vnd: 11743
+    review_all_suggestions_cps_15_3_min_rework_vnd: 12415
+    review_all_note: "B4 xem lại 948 yêu cầu có gợi ý trong 982 yêu cầu thuộc phạm vi; hai CPS chưa gồm cố định. 15,3 phút là simulated, không phải đo thật."
+    retry_note: "B3 TOÀN MẪU: 2 lần cho chi phí hệ thống thấp nhất 6.901.220 đ simulated; tính lại theo phạm vi trước khi áp dụng giới hạn này cho pilot."
+    review_risk_action: "Đo phút xem lại/làm lại thật từ tuần 1; giảm xem lại theo bằng chứng an toàn. Xem lại 100% không bảo đảm tiết kiệm khi cộng cố định."
+    sensitivity_note: "B1 toàn mẫu: làm lại gấp đôi +51,8%; xem lại gấp đôi +40,7%; lương tăng 25% làm CPS tăng 23,1%. Không gán các mức này cho riêng phạm vi pilot."
   assignment:
     unit: staff
     control_share: 0.5
@@ -50,13 +66,19 @@ pilot:
     spillover_risk: "Nhân viên chia sẻ gợi ý; chỉ cấp quyền cho nhóm can thiệp, ghi staff_id, arm, trace_id và mọi truy cập trái nhóm; báo cáo sai lệch giao thức."
     predeclared: "Chưa hoàn tất. Khóa chỉ số, phạm vi, seed, ngưỡng, phương pháp phân tích và ngày quyết định trước khi tuyển mẫu."
   safety:
+    observed_reopen_rate_scope: 0.03971486761710794
+    observed_reopen_count_scope: 39
+    observed_request_count_scope: 982
     observed_reopen_rate_all: 0.0425
     observed_reopen_count_all: 51
     observed_request_count_all: 1200
     proposed_reopen_absolute_ceiling: 0.06
     proposed_reopen_excess_vs_control: 0.02  # 2 điểm phần trăm, không phải tăng tương đối 2%.
     maturity: "Tỉ lệ mở lại chỉ tính trên yêu cầu đã đủ 7 ngày theo dõi; so hai nhóm cùng cửa sổ."
-  cost_ceiling_vnd_per_success: null  # Chờ A/B; không tự đặt số thay cho kết quả nhóm.
+  cost_ceiling_vnd_per_success: 12000  # Đề xuất trần hòa vốn; chưa ký duyệt.
+  cost_ceiling_status: proposed_pending_owner_approval
+  cost_definition: "(Token + tool mọi lần chạy + xem lại + làm lại đo thật + cố định phân bổ) / số việc thành công cùng phạm vi/kỳ. Phân bổ 40 triệu đ/tháng theo số việc thành công dự báo đủ tháng; không chia toàn bộ cố định tháng cho mẫu một tuần. Khi chưa có phút đo thật phải ghi simulated."
+  cost_threshold_rationale: "12.000 đ là baseline giả định của lab, được đề xuất làm trần hòa vốn. A4 là 4.599 đ simulated ở tải giả định; B4 xem lại 100% có thể vượt trần khi cộng cố định."
   stop_rules:
     - "NẾU có ít nhất 1 ca hoàn trùng được xác nhận TRONG bất kỳ lần đối soát nào THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và giao Kế toán trưởng đối soát KHÔNG THÌ không được tiếp tục hoàn tự động hoặc tăng rollout khi chưa sửa và kiểm chứng."
     - "NẾU tỉ lệ mở lại 7 ngày vượt 6% hoặc cao hơn đối chứng ít nhất 2 điểm phần trăm TRONG 3 lần kiểm tra hằng ngày liên tiếp trên tập đủ 7 ngày theo dõi THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và Trưởng nhóm CSKH rà ca lỗi KHÔNG THÌ không được chuyển bước rollout."
@@ -72,10 +94,10 @@ pilot:
   launch_gate:
     ready: false
     pending:
-      - "TV1/TV2: xác nhận phạm vi và bằng chứng kinh tế A3/B."
+      - "TV1/TV2 và PM: duyệt phạm vi noi_dia + hang_nang từ A3/B đã kiểm chứng và xác nhận đủ lưu lượng."
       - "TV2: kiểm chứng D1 và tích hợp vào src/lab13.py; helper TV3 không thay file nộp chính."
       - "TV3 và TV4: hoàn thành hai bộ nhãn độc lập và bảng khắc phục; chưa có kết quả gắn nhãn."
-      - "PM: ký ngưỡng chi phí bằng số; cập nhật luật dừng tương ứng."
+      - "PM: ký hoặc sửa trần đề xuất 12.000 đ/việc, thống nhất phân bổ cố định và lộ trình giảm xem lại."
       - "Giám đốc vận hành: xác nhận 40 nhân viên, khả năng đủ 299 yêu cầu/người và chấp nhận MDE 6 điểm."
       - "TV4: xác nhận event đủ trace_id, staff_id, arm và định nghĩa các chỉ số."
       - "Nhóm: khóa ngày bắt đầu/ngày quyết định, kiểm tra YAML và ký bản cuối."
