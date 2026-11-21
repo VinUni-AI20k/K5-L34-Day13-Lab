@@ -10,7 +10,8 @@
 ## 2. Phần việc phụ trách
 
 - Viết và chạy `src/lab13.py` cho nhiệm vụ A (A1–A4), B (B1–B4) và D1, kèm các số phụ trợ cho D3 (tỉ lệ mở lại hiện tại) và E1 (ba chỉ số tính thử).
-- Điền số vào `report/team/bang_chi_phi.md` (cùng người kiểm số) và phần chú thích D1 trong `report/team/pilot_plan.yaml`.
+- Điền số vào `report/team/bang_chi_phi.md` (cùng người kiểm số).
+- Viết `report/team/pilot_plan.yaml` (nhiệm vụ D), chốt mục 6 và đề xuất của `report/team/ho_so_launch_v0.md`, viết `report/team/group_report.md`.
 
 ## 3. Đóng góp cụ thể
 
@@ -28,12 +29,13 @@
 
 ## 5. Công cụ AI đã dùng
 
-- Claude Code (Claude): dùng để viết khung code A–D trong `src/lab13.py`, định dạng bảng in ra và điền số vào `bang_chi_phi.md`.
+- Claude Code (Claude): dùng để viết khung code A–D trong `src/lab13.py`, định dạng bảng in ra, điền số vào `bang_chi_phi.md`, soạn `pilot_plan.yaml` và `group_report.md`.
+- Với `pilot_plan.yaml`: kiểm tra bằng `yaml.safe_load`, kiểm tra ngoài dòng chú thích không còn dấu `?`, đối chiếu từng số (859, 6,96, 3,97%, 27,12%) với output của `lab13.py`.
 - Cách tự kiểm tra: ba phép thử A1 phải ĐẠT trước khi chạy tiếp; đối chiếu từng con số A2, A3, B1, B3, B4, D1 với bảng số tự đối chiếu trong `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md` (đều lệch dưới 2%); kiểm tra "giảm một nửa" bằng đúng nửa "gấp đôi" ở B1, và cặp B2 bằng tổng hai tác động riêng.
 
 ## 6. Tự đánh giá
 
 - **Làm tốt:** `src/lab13.py` chạy từ đầu đến cuối, ba phép thử A1 ĐẠT; các số A2, A3, B1, B3, B4, D1 khớp bảng đối chiếu (lệch dưới 2%). Mọi số từ cột `_simulated` đều có nhãn simulated. Hàm `mo_hinh` nhận tham số nên B chỉ cần gọi lại, không phải chép code.
 - **Điều rút ra:** chi phí thật nằm ở giờ nhân viên (92,5% tổng, simulated) chứ không ở token (5,6%). Chạy lại nhiều hơn không phải lúc nào cũng tốt: với quoc_te, lần 3 chỉ đúng 2,2%. Giới hạn rẻ nhất cho công ty (2 lần) khác giới hạn cho chi phí mỗi việc thành công thấp nhất (1 lần).
-- **Chưa tốt:** phần lớn code viết cùng Claude Code, nên tôi phải tự đọc lại `mo_hinh` và `co_mau` để giải thích được trước hội đồng. Tôi làm luôn D1 thay vì đổi người viết code sau giờ giải lao như hướng dẫn. Nhóm cần một bạn khác tự tính lại D1 và một con số A2 để đối chiếu.
+- **Chưa tốt:** phần lớn code viết cùng Claude Code, nên tôi phải tự đọc lại `mo_hinh` và `co_mau` để giải thích được. Tôi làm luôn D1 thay vì đổi người viết code sau giờ giải lao như hướng dẫn. Bù lại, Đạt (người kiểm số) đã tính lại độc lập A2–B4, D1 và E1 bằng script riêng, đều khớp.
 - **Lần sau:** chia nhỏ commit theo từng checkpoint để có bằng chứng tiến độ rõ hơn; nhờ người kiểm số tính tay trước khi điền bảng.
