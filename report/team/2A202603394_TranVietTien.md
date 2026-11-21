@@ -9,7 +9,7 @@
 
 ## 2. Phần việc phụ trách
 
-Em phụ trách `chi_so.md` và `ho_so_launch_v0.md`, tổng hợp kết quả A–D để chuẩn bị hồ sơ và phần trình bày Gate 2a.
+Phụ trách `chi_so.md` và `ho_so_launch_v0.md`, tổng hợp kết quả A–D để chuẩn bị hồ sơ và phần trình bày Gate 2a.
 
 ## 3. Đóng góp cụ thể
 
@@ -27,8 +27,8 @@ Em phụ trách `chi_so.md` và `ho_so_launch_v0.md`, tổng hợp kết quả A
 
 ## 5. Công cụ AI đã dùng
 
-Em dùng ChatGPT/Codex hỗ trợ tính kiểm tra, trình bày và soát báo cáo. Số liệu được đối chiếu với CSV và công thức lab; em cần tự chạy lại để giải thích khi bảo vệ.
+Dùng ChatGPT/Codex hỗ trợ tính kiểm tra, trình bày và soát báo cáo. Số liệu được đối chiếu với CSV và công thức lab; cần tự chạy lại để giải thích khi bảo vệ.
 
 ## 6. Tự đánh giá
 
-Em đã hoàn thiện phần E theo dữ liệu hiện có. Bảng C còn chờ bộ nhãn thứ hai và đồng thuận; đề xuất, lịch kiểm tra và kết quả duyệt chéo cần nhóm xác nhận. Em cần nắm rõ mẫu số từng chỉ số và lý do chọn phạm vi pilot để trình bày được phần mình phụ trách.
+Đã hoàn thiện phần E theo dữ liệu hiện có. Bảng C còn chờ bộ nhãn thứ hai và đồng thuận; đề xuất, lịch kiểm tra và kết quả duyệt chéo cần nhóm xác nhận. Cần nắm rõ mẫu số từng chỉ số và lý do chọn phạm vi pilot để trình bày được phần mình phụ trách.
