@@ -1,10 +1,13 @@
 """Lab 13 · Định giá agent và lập kế hoạch pilot (Gate 2a) — bài làm của nhóm (file nộp).
-Chạy trong thư mục src/: python3 lab13.py   (cần pandas; Nhiệm vụ D cần thêm statsmodels)
-Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TODO CP1…CP4). Dữ liệu trong hai file CSV là giả lập.
+Chạy trong thư mục src/: python3 lab13.py (cần pandas).
+Kiểm tra riêng nhiệm vụ D bằng python3 lab13.py --cp4.
+Không cần khoá API. Dữ liệu trong hai file CSV là giả lập.
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
+import argparse
 import math
-import pandas as pd
+
+from lab13_cp4 import doc_yeu_cau, in_ket_qua_cp4
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
@@ -53,7 +56,16 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
     raise NotImplementedError('VIẾT Ở ĐÂY')
 
 
-if __name__ == '__main__':
+def main():
+    parser = argparse.ArgumentParser(description='Lab 13 · Kinh tế và kế hoạch pilot')
+    parser.add_argument('--cp4', action='store_true', help='Chỉ in cỡ mẫu và tỉ lệ mở lại của nhiệm vụ D')
+    args = parser.parse_args()
+    if args.cp4:
+        in_ket_qua_cp4(doc_yeu_cau())
+        return
+
+    import pandas as pd
+
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
     kiem_tra_dap_an_biet_truoc()
@@ -62,6 +74,8 @@ if __name__ == '__main__':
         print(f'{ten:12s} {gia_tri:>14,.0f}')
     # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
     # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    in_ket_qua_cp4(reqs.to_dict(orient='records'))
+
+
+if __name__ == '__main__':
+    main()

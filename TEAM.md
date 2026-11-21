@@ -2,17 +2,17 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: NhomTTBH
+- Lớp: L3A
+- Repo nhóm: `K5-L3A-DAY13-NhomTTBH-LaunchEconomics`
+- URL repo, nhánh nộp, commit chốt: https://github.com/NguyenDacThe/K5-L3A-DAY13-NhomTTBH-LaunchEconomics.git
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
+|   2 | Nguyễn Đắc Thể | 2A202603529 | dacthebn@gmail.com | NguyenDacThe | Người 2 · Kiểm số CP1–CP2, phụ trách pilot CP4 và tiếp quản code sau bàn giao |
 |   3 |        |      |       |        |         |
 |   4 |        |      |       |        |         |
 

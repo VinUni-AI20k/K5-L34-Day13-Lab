@@ -4,7 +4,9 @@
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: ... · Người gắn nhãn 2: ... (gắn trong 8 phút, không trao đổi)
+Phiếu đề xuất của Nguyễn Quốc Hưng có hỗ trợ AI và được [lưu riêng](cp3_2A202603553_NguyenQuocHung.md). Người còn lại lưu đủ 20 nhãn trước khi mở phiếu của Hưng. Sau khi Hưng xác nhận phiếu, chép nguyên hai bộ nhãn vào bảng dưới rồi mới điền cột thống nhất.
+
+Người gắn nhãn 1: Nguyễn Quốc Hưng (chờ xác nhận phiếu) · Người gắn nhãn 2: chờ phiếu của thành viên còn lại.
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
@@ -29,7 +31,7 @@ Người gắn nhãn 1: ... · Người gắn nhãn 2: ... (gắn trong 8 phút,
 | 19 | ... | ... | ... | ... |
 | 20 | ... | ... | ... | ... |
 
-**Tỉ lệ đồng thuận:** ... / 20 = ...%
+**Tỉ lệ đồng thuận:** chờ đủ hai phiếu. Đếm số ca có hai nhãn ban đầu giống nhau, chia cho 20 và đổi sang phần trăm. Mốc 80% tương đương 16 ca trùng.
 
 ## Quy tắc phân biệt cho các ca không trùng
 

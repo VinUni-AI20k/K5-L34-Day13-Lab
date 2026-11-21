@@ -6,6 +6,7 @@ Code khởi đầu và dữ liệu giả lập của Lab 13. **Mọi lệnh ch�
 - Cách chạy: `python3 lab13.py`.
 - Input: `logix_runs.csv`, `logix_requests.csv` cùng thư mục, file yêu cầu đọc bằng `pd.read_csv('logix_requests.csv', keep_default_na=False)`.
 - Output: in ra stdout ba phép thử A1, các bảng A2, A3, độ nhạy (B) và cỡ mẫu (D1). Nhóm chép số vào các file trong `report/team/`.
+- Kiểm tra riêng D1 và tỉ lệ mở lại bằng `python lab13.py --cp4`. Lệnh này dùng thư viện chuẩn Python và chạy độc lập với phần A–B.
 - File học viên được sửa: `lab13.py`. Không sửa hai file CSV.
 
 ## Cài đặt
