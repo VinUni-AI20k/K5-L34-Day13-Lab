@@ -1,0 +1,648 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hồ sơ Gate 2a · GREEN</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: hồ sơ một trang + thanh tab dính; mỗi tab là một mục hồ sơ, số tóm tắt trước, chi tiết sau. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --surface-2: #eef1f5;
+  --ink: #121820; --ink-2: #4a5462; --muted: #737e8f; --line: #dde2e9;
+  --accent: #2a78d6; --accent-ink: #1c5cab; --accent-soft: #e3eefb;
+  --staff: #8a93a1;
+  --sim-bg: #fbefd2; --sim-ink: #7a5000;
+  --ok-bg: #e2f3e2; --ok-ink: #0b6a0b; --bad-bg: #fbe4e4; --bad-ink: #a32626;
+  --up: #d03b3b; --down: #2a78d6; --gap: #ffffff;
+  --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #eda100; --c5: #e87ba4;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-num: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1216; --surface: #171b21; --surface-2: #1e232b;
+  --ink: #edf0f4; --ink-2: #b6bfcb; --muted: #8790a0; --line: #2b323c;
+  --accent: #3987e5; --accent-ink: #86b6ef; --accent-soft: #16263b; --staff: #6f7886;
+  --sim-bg: #3a2c0d; --sim-ink: #f2c45a; --ok-bg: #11301a; --ok-ink: #73d473; --bad-bg: #3a1616; --bad-ink: #f19393;
+  --up: #e66767; --down: #3987e5; --gap: #171b21;
+  --c1: #3987e5; --c2: #d95926; --c3: #199e70; --c4: #c98500; --c5: #d55181; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1216; --surface: #171b21; --surface-2: #1e232b;
+  --ink: #edf0f4; --ink-2: #b6bfcb; --muted: #8790a0; --line: #2b323c;
+  --accent: #3987e5; --accent-ink: #86b6ef; --accent-soft: #16263b; --staff: #6f7886;
+  --sim-bg: #3a2c0d; --sim-ink: #f2c45a; --ok-bg: #11301a; --ok-ink: #73d473; --bad-bg: #3a1616; --bad-ink: #f19393;
+  --up: #e66767; --down: #3987e5; --gap: #171b21;
+  --c1: #3987e5; --c2: #d95926; --c3: #199e70; --c4: #c98500; --c5: #d55181; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); margin: 0 }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.wrap { max-width: 1140px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.25 }
+h2 { font-size: 1.3rem; font-weight: 700 }
+h3 { font-size: 1.02rem; font-weight: 600 }
+p { margin: 0 }
+code { font: 0.86em var(--f-num); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere }
+.num { font-family: var(--f-num); font-variant-numeric: tabular-nums }
+.muted { color: var(--muted) } .ink2 { color: var(--ink-2) }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600 }
+
+header.top { background: var(--surface); border-bottom: 1px solid var(--line) }
+header.top .wrap { padding-block: 22px 14px; display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: flex-end; justify-content: space-between }
+header.top h1 { font-size: clamp(1.3rem, 3vw, 1.75rem); font-weight: 700 }
+.verdict { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1.5px solid var(--accent); border-radius: 999px; color: var(--accent-ink); font-weight: 700; background: var(--accent-soft) }
+.verdict svg { flex: none }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line) }
+nav.tabs .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none }
+nav.tabs a { flex: none; padding: 11px 14px; color: var(--ink-2); text-decoration: none; font-weight: 500; border-bottom: 2.5px solid transparent; white-space: nowrap }
+nav.tabs a:hover { color: var(--ink) }
+nav.tabs a[aria-current="page"] { color: var(--accent-ink); border-bottom-color: var(--accent); font-weight: 600 }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, tr[tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+main { padding-block: 26px 60px }
+section.view { display: grid; gap: 28px }
+.block { display: grid; gap: 14px; min-width: 0 }
+.block > header { display: grid; gap: 4px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; min-width: 0 }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 18px }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 6px; align-content: start }
+.kpi .v { font: 600 1.85rem/1.1 var(--f-num); font-variant-numeric: tabular-nums; letter-spacing: -0.01em }
+.kpi .v small { font-size: 0.55em; font-weight: 400; color: var(--muted) }
+.kpi .d { font-size: 0.86rem; color: var(--ink-2) }
+
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 0.74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; vertical-align: 1px }
+.chip.sim { background: var(--sim-bg); color: var(--sim-ink) }
+.chip.ok { background: var(--ok-bg); color: var(--ok-ink) }
+.chip.bad { background: var(--bad-bg); color: var(--bad-ink) }
+.chip.plain { background: var(--surface-2); color: var(--ink-2) }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor }
+.chip.plain::before, .chip.tag::before { display: none }
+
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--surface-2) }
+tr:last-child td { border-bottom: 0 }
+td.r, th.r { text-align: right; font-family: var(--f-num); font-variant-numeric: tabular-nums; white-space: nowrap }
+tr.click { cursor: pointer } tr.click:hover td { background: var(--accent-soft) }
+
+ul.notes { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2) }
+ul.notes b { color: var(--ink) }
+
+/* Biểu đồ thanh ngang bằng HTML */
+.bars { display: grid; gap: 10px }
+.bar-row { display: grid; grid-template-columns: minmax(90px, 150px) 1fr minmax(78px, auto); gap: 10px; align-items: center }
+.bar-row .lbl { font-size: 0.86rem; color: var(--ink-2); overflow-wrap: anywhere }
+.bar-row .val { font: 0.86rem var(--f-num); text-align: right; white-space: nowrap }
+.track { position: relative; height: 22px }
+.track .fill { position: absolute; top: 3px; bottom: 3px; left: 0; border-radius: 0 4px 4px 0; background: var(--accent) }
+.track .fill.staff { background: var(--staff) }
+.track .fill.out { background: var(--accent); opacity: 0.45 }
+.track .ref { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 1.5px dashed var(--ink-2) }
+.ref-lbl { font-size: 0.74rem; color: var(--muted); position: relative; height: 16px }
+.ref-lbl span { position: absolute; transform: translateX(-50%); white-space: nowrap }
+.stack { display: flex; height: 30px; gap: 2px; border-radius: 4px; overflow: hidden }
+.stack > div { min-width: 2px }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.84rem; color: var(--ink-2) }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px }
+
+/* Tornado */
+.tor { display: grid; gap: 7px }
+.tor-row { display: grid; grid-template-columns: minmax(120px, 190px) 1fr; gap: 10px; align-items: center; cursor: pointer; border-radius: 6px; padding: 2px 4px }
+.tor-row:hover { background: var(--surface-2) }
+.tor-row .lbl { font-size: 0.85rem; color: var(--ink-2) }
+.tor-track { position: relative; height: 22px }
+.tor-track .axis { position: absolute; top: -3px; bottom: -3px; left: 50%; border-left: 1px solid var(--ink-2) }
+.tor-track .fill { position: absolute; top: 3px; bottom: 3px }
+.tor-track .fill.up { left: 50%; background: var(--up); border-radius: 0 4px 4px 0 }
+.tor-track .fill.down { right: 50%; background: var(--down); border-radius: 4px 0 0 4px }
+.tor-track .t { position: absolute; top: 1px; font: 0.76rem var(--f-num); white-space: nowrap; color: var(--ink) }
+
+/* Máy tính */
+.calc { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 22px }
+@media (max-width: 820px) { .calc { grid-template-columns: 1fr } }
+.ctl { display: grid; gap: 4px }
+.ctl label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.88rem; font-weight: 500 }
+.ctl label output { font: 600 0.88rem var(--f-num); color: var(--accent-ink) }
+.ctl .hint { font-size: 0.76rem; color: var(--muted) }
+input[type=range] { width: 100%; accent-color: var(--accent) }
+.ctls { display: grid; gap: 14px }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; flex-wrap: wrap }
+.seg button { border: 0; background: var(--surface); color: var(--ink-2); padding: 6px 12px; font: 500 0.85rem var(--f-body); cursor: pointer; border-right: 1px solid var(--line) }
+.seg button:last-child { border-right: 0 }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 6px 12px; border-radius: 7px; font: 500 0.85rem var(--f-body); cursor: pointer }
+.btn:hover { border-color: var(--accent) }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.out-big { font: 600 2.6rem/1 var(--f-num); font-variant-numeric: tabular-nums; letter-spacing: -0.02em }
+.out-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.out-grid > div { background: var(--surface-2); border-radius: 7px; padding: 10px 12px; display: grid; gap: 2px }
+.out-grid .k { font-size: 0.76rem; color: var(--muted) }
+.out-grid .v { font: 600 1.05rem var(--f-num) }
+.meter { position: relative; height: 12px; background: var(--surface-2); border-radius: 6px }
+.meter .fill { position: absolute; inset: 0 auto 0 0; border-radius: 6px; background: var(--accent) }
+.meter .ref { position: absolute; top: -4px; bottom: -4px; border-left: 2px solid var(--ink) }
+
+/* Bảng lỗi */
+.cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px }
+.case { border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; background: var(--surface); display: grid; gap: 4px; border-top: 4px solid var(--cc) }
+.case .n { font: 600 0.8rem var(--f-num); color: var(--muted) }
+.case .l { font-size: 0.84rem; font-weight: 600 }
+.case .a { font-size: 0.74rem; color: var(--ok-ink) }
+
+/* Pilot */
+.timeline { display: grid; gap: 8px }
+.tl-track { position: relative; height: 46px; background: var(--surface-2); border-radius: 6px }
+.tl-seg { position: absolute; top: 6px; bottom: 6px; border-radius: 4px; background: var(--accent); color: #fff; font: 600 0.76rem var(--f-num); display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap }
+.tl-mark { position: absolute; top: 0; bottom: 0; border-left: 2px solid var(--ink) }
+.tl-axis { position: relative; height: 34px; font-size: 0.74rem; color: var(--muted) }
+.tl-axis span { position: absolute; transform: translateX(-50%); white-space: nowrap; text-align: center; line-height: 1.3 }
+.rules { display: grid; gap: 12px }
+.rule { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface) }
+.rule > div { padding: 10px 12px; border-right: 1px solid var(--line); font-size: 0.86rem; min-width: 0 }
+.rule > div:last-child { border-right: 0 }
+.rule .k { display: block; margin-bottom: 3px; font-size: 0.7rem; letter-spacing: 0.08em; font-weight: 700; color: var(--muted) }
+.rule > div:nth-child(3) { background: var(--accent-soft) }
+@media (max-width: 760px) { .rule { grid-template-columns: 1fr } .rule > div { border-right: 0; border-bottom: 1px solid var(--line) } .rule > div:last-child { border-bottom: 0 } }
+dl.kv { display: grid; grid-template-columns: minmax(120px, 190px) 1fr; gap: 8px 16px; margin: 0; font-size: 0.9rem }
+dl.kv dt { color: var(--muted) } dl.kv dd { margin: 0; min-width: 0 }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr } dl.kv dd { margin-bottom: 6px } }
+
+#tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 0.8rem; padding: 6px 9px; border-radius: 6px; max-width: 280px; line-height: 1.4 }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.8rem }
+footer .wrap { padding-block: 18px }
+@media (prefers-reduced-motion: no-preference) { .fill, .stack > div, .meter .fill { transition: width .25s ease, left .25s ease } }
+</style>
+
+<header class="top"><div class="wrap">
+  <div style="display:grid;gap:6px;min-width:0">
+    <div class="eyebrow">Nhóm GREEN · L3B · Lab 13 · Duyệt Gate 2a</div>
+    <h1>Hồ sơ launch v0 · Trợ lý hoàn phí LogiX-VN</h1>
+    <p class="ink2" style="font-size:.9rem">Dữ liệu giả lập: 1.200 yêu cầu, 1.624 lần chạy trong 2 tuần chạy thử ở 6 depot. Nhãn <span class="chip sim">simulated</span> đánh dấu số tính từ cột phút giả lập.</p>
+  </div>
+  <div class="verdict" id="verdict"></div>
+</div></header>
+<nav class="tabs" aria-label="Các mục hồ sơ"><div class="wrap" id="tabs"></div></nav>
+<main><div class="wrap" id="app"></div></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div id="tip" hidden></div>
+
+<script>
+const D = /*__DATA__*/null;
+
+// ---------- tiện ích ----------
+const nf = (x, d = 0) => Number(x).toLocaleString('vi-VN', { minimumFractionDigits: d, maximumFractionDigits: d });
+const dong = x => nf(x) + ' đ';
+const pct = (x, d = 1) => nf(x * 100, d) + '%';
+const spct = (x, d = 1) => (x >= 0 ? '+' : '−') + nf(Math.abs(x) * 100, d) + '%';
+const lan = x => nf(x, 2) + '×';
+const SIM = '<span class="chip sim">simulated</span>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const md = s => esc(s)
+  .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+  .replace(/`([^`]+)`/g, '<code>$1</code>')
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<u>$1</u>')
+  .replace(/\[simulated\]|\(`simulated`\)/g, SIM);
+const $ = (s, el = document) => el.querySelector(s);
+const tipAttr = t => ` data-tip="${esc(t)}"`;
+const statusChip = s => /giả lập/i.test(s) ? `<span class="chip sim">${esc(s)}</span>` : /^xong/i.test(s) ? `<span class="chip ok">${esc(s)}</span>` : `<span class="chip bad">${esc(s)}</span>`;
+const G = D.gia, A2 = D.a2;
+const LOAI_TEN = { noi_dia: 'Nội địa', hang_nang: 'Hàng nặng', quoc_te: 'Quốc tế', doi_tac: 'Đối tác' };
+
+// ---------- tab ----------
+const VIEWS = [
+  ['tong-quan', 'Tổng quan'], ['chi-phi', 'Chi phí (A)'], ['do-nhay', 'Độ nhạy (B)'],
+  ['bang-loi', 'Bảng lỗi (C)'], ['pilot', 'Pilot (D)'], ['chi-so', 'Chỉ số & rủi ro (E)']];
+$('#tabs').innerHTML = VIEWS.map(([id, t]) => `<a href="#${id}" data-v="${id}">${t}</a>`).join('');
+
+$('#verdict').innerHTML = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 9.3l2.6 2.5L13 6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Đề xuất: ${md(D.de_xuat.match(/\*\*(.+?)\*\*/)[1])}</span>`;
+$('#foot').innerHTML = `Sinh bởi <code>src/tv3_bao_cao_ui.py</code> từ <code>logix_runs.csv</code>, <code>logix_requests.csv</code> và các file trong <code>report/team/</code>${D.commit ? ` · commit <code>${esc(D.commit)}</code>` : ''}. Số tính bằng <code>mo_hinh()</code> của nhóm; lệch so với hồ sơ ≤ 2%. Gate 2a chỉ duyệt kế hoạch pilot.`;
+
+// ---------- Tổng quan ----------
+function viewTongQuan() {
+  const pv = D.tp.pham_vi['3'];
+  const e = D.e1.toan_mau;
+  return `
+  <div class="kpis">
+    <div class="kpi"><div class="eyebrow">Chi phí mỗi việc thành công</div><div class="v">${nf(A2.cps)}<small> đ</small></div><div class="d">Toàn mẫu, gồm token, tool, xem lại, làm lại ÷ ${nf(A2.thanh_cong)} việc thành công ${SIM}</div></div>
+    <div class="kpi"><div class="eyebrow">Gấp hoá đơn token + tool</div><div class="v">${nf(A2.boi_so_hoa_don, 1)}<small>×</small></div><div class="d">Hoá đơn chỉ ${nf(A2.hoa_don_moi_yc, 1)} đ/yêu cầu; giờ nhân viên chiếm ${pct((A2.xem_lai + A2.lam_lai) / A2.tong)} tổng chi phí ${SIM}</div></div>
+    <div class="kpi"><div class="eyebrow">So với nhân viên tự làm (12.000 đ)</div><div class="v">${lan(D.a4[0].cps / G.baseline)}</div><div class="d">Phạm vi nội địa + hàng nặng, cộng cố định 40 tr đ/tháng ở 45.000 yêu cầu/tháng: ${dong(D.a4[0].cps)} ${SIM}</div></div>
+    <div class="kpi"><div class="eyebrow">Chỉ số chính trong đợt chạy thử</div><div class="v">${pct(e.chinh / e.n, 2)}</div><div class="d">Đóng trong 24 giờ, không mở lại 7 ngày (${nf(e.chinh)}/${nf(e.n)}). Chưa có đối chứng nên chưa kết luận nhân quả.</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="block">
+      <header><h2>Đề xuất cho hội đồng</h2></header>
+      <div class="card" style="display:grid;gap:12px">
+        <p>${md(D.de_xuat)}</p>
+        <div class="eyebrow">Con số bất lợi nhóm đã nêu</div>
+        <ul class="notes">
+          <li>Xem lại 100% đưa chi phí lên <b>${lan(D.b4.kich_ban[0].cps / G.baseline)}</b> của 12.000 đ, hoặc <b>${lan(D.b4.kich_ban[1].cps / G.baseline)}</b> nếu làm lại ${esc(D.b4.kich_ban[1].phut_lam.toString().replace('.', ','))} phút ${SIM}</li>
+          <li>Chia theo nhân viên chỉ phát hiện được mức chênh <b>6 điểm</b>; nếu tác động thật là 5 điểm thì power còn <b>${nf(D.d1.power5, 2)}</b></li>
+          <li>Hàng nặng đã mở lại <b>${pct(D.a3[1].mo_lai, 2)}</b> trong đợt chạy thử, cao hơn trần 6%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="block">
+      <header><h2>Điều kiện kèm theo</h2></header>
+      <div class="tbl"><table><thead><tr><th>Điều kiện</th><th>Người phụ trách</th><th>Ngày kiểm tra</th></tr></thead>
+      <tbody>${D.dieu_kien.map(r => `<tr><td>${md(r[0])}</td><td>${md(r[1])}</td><td class="num" style="white-space:nowrap">${md(r[2])}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <header><h2>Bảy mục hồ sơ</h2><p class="muted">Nguồn: <code>report/team/ho_so_launch_v0.md</code>. Bấm một dòng để mở mục chi tiết.</p></header>
+    <div class="tbl"><table><thead><tr><th>Mục</th><th>Con số chính</th><th>Trạng thái</th><th>Người phụ trách</th></tr></thead>
+    <tbody>${D.ho_so.map((r, i) => `<tr class="click" tabindex="0" data-go="${['chi-phi', 'do-nhay', 'chi-phi', 'chi-so', 'bang-loi', 'pilot', 'chi-so'][i]}"><td style="min-width:150px"><b>${md(r[0])}</b></td><td style="min-width:320px">${md(r[1])}</td><td>${statusChip(r[2])}</td><td>${md(r[3])}</td></tr>`).join('')}</tbody></table></div>
+  </div>`;
+}
+
+// ---------- Chi phí ----------
+function viewChiPhi() {
+  const parts = [
+    ['Token', A2.token, 'var(--c1)', false], ['Tool', A2.tool, 'var(--c3)', false],
+    ['Xem lại', A2.xem_lai, 'var(--c4)', true], ['Làm lại', A2.lam_lai, 'var(--c2)', true]];
+  const maxA3 = Math.max(...D.a3.map(r => r.cps)) * 1.08;
+  return `
+  <div class="block">
+    <header><div class="eyebrow">A1</div><h2>Ba phép thử đáp án biết trước</h2></header>
+    <div class="grid3">${D.a1.map(t => `<div class="card" style="display:grid;gap:6px"><span class="chip ok" style="justify-self:start">ĐẠT</span><div class="num" style="font-size:1.5rem;font-weight:600">${nf(t.gia_tri, 2)}</div><div class="ink2" style="font-size:.88rem">${esc(t.ten)} (p = 0,8)</div></div>`).join('')}</div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">A2</div><h2>Tổng chi phí ${dong(A2.tong)} cho ${nf(A2.thanh_cong)} việc thành công</h2>
+      <p class="ink2">Tử số tính mọi lần chạy, kể cả ${nf(A2.so_run - A2.so_yc)} lần chạy lại; mẫu số chỉ đếm <code>ket_qua = thanh_cong</code>.</p></header>
+    <div class="card" style="display:grid;gap:12px">
+      <div class="stack">${parts.map(([n, v, c, s]) => `<div style="width:${v / A2.tong * 100}%;background:${c}"${tipAttr(`${n}: ${dong(v)} (${pct(v / A2.tong)})${s ? ' · simulated' : ''}`)}></div>`).join('')}</div>
+      <div class="legend">${parts.map(([n, v, c, s]) => `<span><i style="background:${c}"></i>${n} <b class="num">${dong(v)}</b> · ${pct(v / A2.tong)} ${s ? SIM : ''}</span>`).join('')}</div>
+    </div>
+    <div class="tbl"><table><thead><tr><th>Khoản</th><th class="r">Số tiền</th><th>Nguồn</th><th>Nhãn</th></tr></thead><tbody>
+      <tr><td>Token</td><td class="r">${dong(A2.token)}</td><td>${nf(A2.so_run)} lần chạy trong <code>logix_runs.csv</code></td><td><span class="chip plain">đo từ trace</span></td></tr>
+      <tr><td>Tool</td><td class="r">${dong(A2.tool)}</td><td>${nf(A2.tool_calls)} lượt gọi × ${G.tool} đ</td><td><span class="chip plain">đo từ trace</span></td></tr>
+      <tr><td class="muted">Trong đó lần chạy thứ 2 và 3</td><td class="r muted">${dong(A2.chay_lai)}</td><td class="muted">attempt &gt; 1</td><td><span class="chip plain">đo từ trace</span></td></tr>
+      <tr><td>Xem lại</td><td class="r">${dong(A2.xem_lai)}</td><td>${nf(A2.phut_xem)} phút × ${nf(G.luong)} đ</td><td>${SIM}</td></tr>
+      <tr><td>Làm lại</td><td class="r">${dong(A2.lam_lai)}</td><td>${nf(A2.phut_lam)} phút × ${nf(G.luong)} đ</td><td>${SIM}</td></tr>
+      <tr><td><b>Chi phí mỗi việc thành công</b></td><td class="r"><b>${dong(A2.cps)}</b></td><td>${dong(A2.tong)} ÷ ${nf(A2.thanh_cong)}</td><td>${SIM}</td></tr>
+      <tr><td>Hoá đơn token + tool mỗi yêu cầu</td><td class="r">${nf(A2.hoa_don_moi_yc, 1)} đ</td><td>÷ ${nf(A2.so_yc)} yêu cầu</td><td><span class="chip plain">đo từ trace</span></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">A3</div><h2>Quốc tế tốn hơn nhân viên tự làm, nên để ngoài pilot</h2>
+      <p class="ink2">Chi phí mỗi việc thành công theo loại yêu cầu, so với vạch 12.000 đ ${SIM}</p></header>
+    <div class="card bars">
+      ${D.a3.map(r => { const vao = ['noi_dia', 'hang_nang'].includes(r.loai); return `
+      <div class="bar-row"><div class="lbl">${LOAI_TEN[r.loai]} <span class="muted">· ${nf(r.n)} yc</span></div>
+        <div class="track"${tipAttr(`${LOAI_TEN[r.loai]}: ${dong(r.cps)} = ${lan(r.cps / G.baseline)} · thành công ${r.tc}/${r.n} (${pct(r.tc / r.n)}) · ${nf(r.lan_chay, 2)} lần chạy/yêu cầu`)}>
+          <div class="fill${vao ? '' : ' out'}" style="width:${r.cps / maxA3 * 100}%"></div>
+          <div class="ref" style="left:${G.baseline / maxA3 * 100}%"></div></div>
+        <div class="val">${dong(r.cps)}</div></div>`; }).join('')}
+      <div class="bar-row"><div></div><div class="ref-lbl"><span style="left:${G.baseline / maxA3 * 100}%">Nhân viên tự làm 12.000 đ</span></div><div></div></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Trong phạm vi pilot</span><span><i style="background:var(--accent);opacity:.45"></i>Ngoài phạm vi</span></div>
+    </div>
+    <div class="tbl"><table><thead><tr><th>Loại</th><th class="r">Yêu cầu</th><th class="r">Thành công</th><th class="r">Lần chạy/yc</th><th class="r">CPS ${SIM}</th><th class="r">So với 12.000 đ</th><th>Lần chạy ok theo lần thử 1 · 2 · 3</th></tr></thead><tbody>
+      ${D.a3.map(r => `<tr><td>${LOAI_TEN[r.loai]} <code>${r.loai}</code></td><td class="r">${nf(r.n)}</td><td class="r">${pct(r.tc / r.n)}</td><td class="r">${nf(r.lan_chay, 2)}</td><td class="r">${dong(r.cps)}</td><td class="r">${lan(r.cps / G.baseline)}</td><td class="num" style="white-space:nowrap">${r.ok_theo_lan.map(([o, n]) => n ? pct(o / n) : '—').join(' · ')}</td></tr>`).join('')}
+    </tbody></table></div>
+    <ul class="notes"><li>Quốc tế: tỉ lệ lần chạy ok giảm từ ${pct(D.a3[2].ok_theo_lan[0][0] / D.a3[2].ok_theo_lan[0][1])} ở lần đầu xuống ${pct(D.a3[2].ok_theo_lan[2][0] / D.a3[2].ok_theo_lan[2][1])} ở lần ba, nên chạy lại tới 3 lần không cứu được loại này.</li>
+      <li>Đối tác có điều khoản riêng, chỉ ${D.a3[3].tc}/${D.a3[3].n} thành công và đã ở mức ${lan(D.a3[3].cps / G.baseline)} ${SIM}</li></ul>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">A4</div><h2>Chi phí cố định 40 triệu đ/tháng không đổi quyết định</h2>
+      <p class="ink2">Phạm vi nội địa + hàng nặng: ${nf(D.b4.tc)} việc thành công trên 1.200 yêu cầu mẫu, chi phí biến đổi ${dong(D.a4[0].cps - D.a4[0].co_dinh)}/việc ${SIM}</p></header>
+    <div class="tbl"><table><thead><tr><th class="r">Yêu cầu/tháng</th><th class="r">Việc thành công/tháng</th><th class="r">Cố định mỗi việc</th><th class="r">CPS gồm cố định ${SIM}</th><th class="r">So với 12.000 đ</th></tr></thead><tbody>
+      ${D.a4.map(r => `<tr><td class="r">${nf(r.yc_thang)}</td><td class="r">${nf(r.tc_thang)}</td><td class="r">${dong(r.co_dinh)}</td><td class="r">${dong(r.cps)}</td><td class="r">${lan(r.cps / G.baseline)}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="ink2">Điểm hoà vốn khoảng <b class="num">${nf(D.hoa_von)}</b> yêu cầu/tháng ${SIM}. Dưới mức này, nhân viên tự làm rẻ hơn.</p>
+  </div>`;
+}
+
+// ---------- Độ nhạy ----------
+const DEF = { kt: 1, kx: 1, kl: 1, w: 2000, k: 3, scope: 'toan_mau', fixed: false, vol: 45000 };
+let S = { ...DEF };
+function tinh(s) {
+  const t = D.tp[s.scope][String(s.k)];
+  const token = (t.tin / 1000 * G.vao + t.tout / 1000 * G.ra) * s.kt;
+  const tool = t.tool * G.tool, xem = t.px * s.w * s.kx, lam = t.pl * s.w * s.kl;
+  const tong = token + tool + xem + lam;
+  const coDinh = s.fixed ? G.co_dinh / (s.vol * t.tc / 1200) : 0;
+  const cps = tong / t.tc + coDinh;
+  const nv = 6 * s.w;
+  return { t, token, tool, xem, lam, tong, coDinh, cps, nv, heThong: tong + (t.n - t.tc) * nv };
+}
+function viewDoNhay() {
+  const b1 = D.b1, maxAbs = Math.max(...b1.map(r => Math.abs(r.pct))) * 1.25;
+  return `
+  <div class="block">
+    <header><div class="eyebrow">Máy tính độ nhạy</div><h2>Đổi giả định, xem chi phí mỗi việc thành công thay đổi ra sao</h2>
+      <p class="ink2">Tính lại ngay trên ${nf(A2.so_run)} lần chạy thật và phút giả lập của mẫu. Mô hình cộng tuyến tính nên kết quả khớp <code>mo_hinh()</code>. Bấm một dòng ở bảng B1 bên dưới để nạp kịch bản.</p></header>
+    <div class="card calc">
+      <div class="ctls">
+        <div class="ctl"><label>Phạm vi</label><div class="seg" id="scope"><button data-v="toan_mau">Toàn mẫu (1.200)</button><button data-v="pham_vi">Nội địa + hàng nặng (982)</button></div></div>
+        <div class="ctl"><label>Số lần chạy tối đa</label><div class="seg" id="lim"><button data-v="1">1 lần</button><button data-v="2">2 lần</button><button data-v="3">3 lần</button></div><span class="hint">Yêu cầu cần nhiều lần hơn được chuyển cho nhân viên</span></div>
+        <div class="ctl"><label for="kt">Giá token <output id="o-kt"></output></label><input type="range" id="kt" min="0.25" max="4" step="0.25"><span class="hint">Mặc định 26 đ vào / 130 đ ra cho 1.000 token</span></div>
+        <div class="ctl"><label for="kx">Thời gian xem lại <output id="o-kx"></output></label><input type="range" id="kx" min="0" max="3" step="0.1"><span class="hint">Hệ số nhân trên ${nf(A2.phut_xem)} phút xem lại ${SIM}</span></div>
+        <div class="ctl"><label for="kl">Thời gian làm lại <output id="o-kl"></output></label><input type="range" id="kl" min="0" max="3" step="0.1"><span class="hint">Hệ số nhân trên ${nf(A2.phut_lam)} phút làm lại ${SIM}</span></div>
+        <div class="ctl"><label for="w">Lương nhân viên <output id="o-w"></output></label><input type="range" id="w" min="1500" max="4000" step="100"><span class="hint">Mức nhân viên tự làm = 6 phút × lương</span></div>
+        <div class="ctl"><label for="fixed" style="justify-content:flex-start;gap:8px"><input type="checkbox" id="fixed"> Cộng chi phí cố định 40 triệu đ/tháng</label>
+          <label for="vol">Khối lượng <output id="o-vol"></output></label><input type="range" id="vol" min="5000" max="60000" step="500"></div>
+        <div class="row"><button class="btn" id="reset">Về mặc định (A2)</button></div>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start" aria-live="polite">
+        <div><div class="eyebrow">Chi phí mỗi việc thành công ${SIM}</div><div class="out-big" id="o-cps"></div><div class="ink2" id="o-delta" style="margin-top:6px"></div></div>
+        <div style="display:grid;gap:6px"><div class="meter"><div class="fill" id="m-fill"></div><div class="ref" id="m-ref"></div></div>
+          <div class="muted" style="font-size:.8rem" id="m-lbl"></div></div>
+        <div class="stack" id="o-stack"></div>
+        <div class="legend" id="o-leg"></div>
+        <div class="out-grid">
+          <div><span class="k">Việc thành công</span><span class="v" id="o-tc"></span></div>
+          <div><span class="k">Chuyển nhân viên / làm lại</span><span class="v" id="o-fail"></span></div>
+          <div><span class="k">Tổng chi phí trợ lý</span><span class="v" id="o-tong"></span></div>
+          <div><span class="k">Cả hệ thống (cộng nhân viên làm thay)</span><span class="v" id="o-ht"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="block">
+      <header><div class="eyebrow">B1</div><h2>Làm lại và xem lại là hai đòn bẩy lớn nhất</h2><p class="ink2">Thay đổi so với A2 = ${dong(A2.cps)} ${SIM}</p></header>
+      <div class="card tor">${b1.map((r, i) => `
+        <div class="tor-row" data-b1="${i}" tabindex="0" role="button"${tipAttr(`${r.ten}: ${dong(r.cps)} (${spct(r.pct)}). Bấm để nạp vào máy tính.`)}>
+          <div class="lbl">${esc(r.ten)}</div>
+          <div class="tor-track"><div class="axis"></div>
+            <div class="fill ${r.pct >= 0 ? 'up' : 'down'}" style="width:${Math.abs(r.pct) / maxAbs * 50}%"></div>
+            <span class="t" style="${r.pct >= 0 ? `left:calc(50% + ${Math.abs(r.pct) / maxAbs * 50}% + 4px)` : `right:calc(50% + ${Math.abs(r.pct) / maxAbs * 50}% + 4px)`}">${spct(r.pct)}</span></div>
+        </div>`).join('')}
+        <div class="legend" style="margin-top:6px"><span><i style="background:var(--up)"></i>Tăng chi phí</span><span><i style="background:var(--down)"></i>Giảm chi phí</span></div>
+      </div>
+      <ul class="notes"><li><b>B2.</b> Giá token và xem lại cùng gấp đôi: ${dong(D.b2.cps)} (${spct(D.b2.pct)}), đúng bằng tổng hai tác động riêng vì mô hình tuyến tính ${SIM}</li>
+        <li>Xếp hạng: 1. số ca làm lại · 2. tỉ lệ xem lại · 3. lương nhân viên. Giá token gấp đôi chỉ ${spct(b1[0].pct)}.</li></ul>
+    </div>
+    <div class="block">
+      <header><div class="eyebrow">B3</div><h2>Giới hạn 2 lần rẻ nhất cho cả công ty</h2><p class="ink2">Chi phí cả hệ thống = trợ lý + 12.000 đ cho mỗi yêu cầu nhân viên làm thay ${SIM}</p></header>
+      <div class="card bars">${(() => { const mx = Math.max(...D.b3.map(r => r.he_thong)) * 1.05, mn = Math.min(...D.b3.map(r => r.he_thong)); return D.b3.map(r => `
+        <div class="bar-row"><div class="lbl">Tối đa ${r.k} lần</div>
+          <div class="track"${tipAttr(`Tối đa ${r.k} lần: trợ lý ${dong(r.tong)} + ${r.khong_tc} yêu cầu × 12.000 đ = ${dong(r.he_thong)} · CPS ${dong(r.cps)}`)}>
+            <div class="fill" style="width:${r.tong / mx * 100}%;border-radius:0"></div>
+            <div class="fill staff" style="left:calc(${r.tong / mx * 100}% + 2px);width:calc(${(r.he_thong - r.tong) / mx * 100}% - 2px)"></div></div>
+          <div class="val">${r.he_thong === mn ? '<b>' : ''}${nf(r.he_thong / 1e6, 2)} tr đ${r.he_thong === mn ? '</b>' : ''}</div></div>`).join(''); })()}
+        <div class="legend"><span><i style="background:var(--accent)"></i>Chi phí trợ lý</span><span><i style="background:var(--staff)"></i>Nhân viên làm thay</span></div>
+      </div>
+      <div class="tbl"><table><thead><tr><th>Giới hạn</th><th class="r">Không thành công</th><th class="r">CPS</th><th class="r">Cả hệ thống</th></tr></thead><tbody>
+        ${D.b3.map(r => `<tr><td>${r.k} lần</td><td class="r">${r.khong_tc}</td><td class="r">${dong(r.cps)}</td><td class="r">${dong(r.he_thong)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="ink2">Giới hạn 1 lần cho CPS thấp nhất nhưng đẩy thêm ${D.b3[0].khong_tc - D.b3[1].khong_tc} yêu cầu sang nhân viên so với 2 lần.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">B4</div><h2>Xem lại 100% gần như xoá phần tiết kiệm</h2>
+      <p class="ink2">Nội địa + hàng nặng: ${nf(D.b4.so_xem)} yêu cầu có gợi ý × 5 phút xem lại, ${D.b4.so_lam} ca làm lại, ${nf(D.b4.tc)} việc thành công ${SIM}</p></header>
+    <div class="grid2">${D.b4.kich_ban.map(k => `
+      <div class="card" style="display:grid;gap:10px"><div class="eyebrow">Làm lại ${esc(k.nhan)}</div>
+        <div class="row" style="justify-content:space-between"><span class="num" style="font-size:1.6rem;font-weight:600">${dong(k.cps)}</span><span class="chip ${k.cps > G.baseline ? 'bad' : 'sim'}">${lan(k.cps / G.baseline)} của 12.000 đ</span></div>
+        <div class="meter"><div class="fill" style="width:${Math.min(k.cps / 14000, 1) * 100}%"></div><div class="ref" style="left:${G.baseline / 14000 * 100}%"></div></div>
+        <p class="ink2" style="font-size:.88rem">Hoà vốn khi mỗi lần xem lại ≤ <b class="num">${nf(k.hoa_von, 1)} phút</b> ${SIM}</p></div>`).join('')}</div>
+  </div>`;
+}
+function bindDoNhay() {
+  const ids = ['kt', 'kx', 'kl', 'w', 'vol'];
+  const sync = () => {
+    ids.forEach(id => $('#' + id).value = S[id]);
+    $('#fixed').checked = S.fixed; $('#vol').disabled = !S.fixed;
+    document.querySelectorAll('#scope button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === S.scope));
+    document.querySelectorAll('#lim button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === String(S.k)));
+    render();
+  };
+  const render = () => {
+    const r = tinh(S), base = tinh({ ...DEF, scope: S.scope });
+    $('#o-kt').textContent = `${nf(G.vao * S.kt, 1)} / ${nf(G.ra * S.kt, 1)} đ (×${nf(S.kt, 2)})`;
+    $('#o-kx').textContent = '×' + nf(S.kx, 1);
+    $('#o-kl').textContent = '×' + nf(S.kl, 1);
+    $('#o-w').textContent = nf(S.w) + ' đ/phút';
+    $('#o-vol').textContent = nf(S.vol) + ' yc/tháng';
+    $('#o-cps').textContent = dong(r.cps);
+    const d = r.cps / base.cps - 1;
+    $('#o-delta').innerHTML = Math.abs(d) < 5e-5 ? `Bằng mức mặc định của phạm vi này` : `${spct(d)} so với mặc định của phạm vi này (${dong(base.cps)})`;
+    const ratio = r.cps / r.nv, mx = Math.max(r.cps, r.nv) * 1.15;
+    $('#m-fill').style.width = (r.cps / mx * 100) + '%';
+    $('#m-fill').style.background = ratio > 1 ? 'var(--up)' : 'var(--accent)';
+    $('#m-ref').style.left = (r.nv / mx * 100) + '%';
+    $('#m-lbl').innerHTML = `Bằng <b class="num">${lan(ratio)}</b> mức nhân viên tự làm (vạch đen, ${dong(r.nv)}) · ${ratio > 1 ? '<span class="chip bad">đắt hơn nhân viên</span>' : '<span class="chip ok">rẻ hơn nhân viên</span>'}`;
+    const parts = [['Token', r.token, 'var(--c1)'], ['Tool', r.tool, 'var(--c3)'], ['Xem lại', r.xem, 'var(--c4)'], ['Làm lại', r.lam, 'var(--c2)'], ['Cố định', r.coDinh * r.t.tc, 'var(--staff)']].filter(p => p[1] > 0);
+    const tot = parts.reduce((a, p) => a + p[1], 0);
+    $('#o-stack').innerHTML = parts.map(([n, v, c]) => `<div style="width:${v / tot * 100}%;background:${c}"${tipAttr(`${n}: ${dong(v / r.t.tc)}/việc (${pct(v / tot)})`)}></div>`).join('');
+    $('#o-leg').innerHTML = parts.map(([n, v, c]) => `<span><i style="background:${c}"></i>${n} <span class="num">${nf(v / r.t.tc)} đ</span></span>`).join('');
+    $('#o-tc').textContent = `${nf(r.t.tc)} / ${nf(r.t.n)}`;
+    $('#o-fail').textContent = nf(r.t.n - r.t.tc);
+    $('#o-tong').textContent = dong(r.tong);
+    $('#o-ht').textContent = dong(r.heThong);
+  };
+  ids.forEach(id => $('#' + id).addEventListener('input', e => { S[id] = +e.target.value; render(); }));
+  $('#fixed').addEventListener('change', e => { S.fixed = e.target.checked; sync(); });
+  document.querySelectorAll('#scope button').forEach(b => b.onclick = () => { S.scope = b.dataset.v; sync(); });
+  document.querySelectorAll('#lim button').forEach(b => b.onclick = () => { S.k = +b.dataset.v; sync(); });
+  $('#reset').onclick = () => { S = { ...DEF }; sync(); };
+  const PRESET = [{ kt: 2 }, { kt: 0.5 }, { kx: 2 }, { kx: 0.5 }, { kl: 2 }, { kl: 0.5 }, { w: 2500 }, { k: 2 }, { k: 1 }];
+  document.querySelectorAll('[data-b1]').forEach(el => {
+    const go = () => { S = { ...DEF, ...PRESET[+el.dataset.b1] }; sync(); $('.calc').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    el.onclick = go; el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
+  });
+  sync();
+}
+
+// ---------- Bảng lỗi ----------
+const LOAI_LOI = { 'Do người dùng': 'var(--c1)', 'Hệ thống': 'var(--c2)', 'Ngữ cảnh': 'var(--c3)', 'Giới hạn hệ thống': 'var(--c4)', 'Ngầm': 'var(--c5)' };
+function viewBangLoi() {
+  const trung = D.nhan.filter(r => r[1] === r[2]).length;
+  const dem = {}; D.nhan.forEach(r => dem[r[4]] = (dem[r[4]] || 0) + 1);
+  return `
+  <div class="kpis">
+    <div class="kpi"><div class="eyebrow">Đồng thuận hai người gắn nhãn</div><div class="v">${trung}/${D.nhan.length}</div><div class="d">${pct(trung / D.nhan.length, 0)}, ngưỡng 16/20 = 80% · gắn độc lập trong 8 phút</div></div>
+    <div class="kpi" style="grid-column:span 2;min-width:0"><div class="eyebrow">Phân bố nhãn thống nhất · 5 loại Google PAIR</div>
+      <div class="stack" style="margin-top:6px">${Object.keys(LOAI_LOI).map(k => `<div style="width:${(dem[k] || 0) / 20 * 100}%;background:${LOAI_LOI[k]}"${tipAttr(`${k}: ${dem[k] || 0} ca`)}></div>`).join('')}</div>
+      <div class="legend">${Object.keys(LOAI_LOI).map(k => `<span><i style="background:${LOAI_LOI[k]}"></i>${k} <b class="num">${dem[k] || 0}</b></span>`).join('')}</div></div>
+  </div>
+  <div class="block">
+    <header><div class="eyebrow">C · Hai bộ nhãn độc lập</div><h2>20 ca lỗi, gắn theo nguyên nhân gốc</h2><p class="muted">Nguồn: <code>report/team/bang_loi.md</code>. Ca có viền đậm được chọn vào bảng khắc phục.</p></header>
+    <div class="cases">${D.nhan.map(r => { const chon = D.khac_phuc.some(k => k[0] === r[0]); return `
+      <div class="case" style="--cc:${LOAI_LOI[r[4]] || 'var(--line)'};${chon ? 'border-color:var(--ink);border-top-color:var(--cc);border-width:1.5px 1.5px 1.5px;border-top-width:4px' : ''}"${tipAttr(`Ca ${r[0]} · Người 1: ${r[1]} · Người 2: ${r[2]}`)}>
+        <span class="n">Ca ${esc(r[0])}${chon ? ' · khắc phục' : ''}</span><span class="l">${esc(r[4])}</span><span class="a">${r[1] === r[2] ? '✓ hai người trùng' : '≠ ' + esc(r[1]) + ' / ' + esc(r[2])}</span></div>`; }).join('')}</div>
+  </div>
+  <div class="block">
+    <header><div class="eyebrow">Bảng khắc phục · mỗi loại một ca</div><h2>Mỗi cách phát hiện có event, ngưỡng và tần suất</h2></header>
+    <div class="tbl"><table><thead><tr><th>Ca</th><th>Loại</th><th>Phát hiện bằng gì</th><th>Khắc phục thế nào</th><th>Ai phụ trách</th></tr></thead><tbody>
+      ${D.khac_phuc.map(r => `<tr><td class="num">${esc(r[0])}</td><td style="white-space:nowrap"><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${LOAI_LOI[r[1]]};margin-right:6px"></i>${esc(r[1])}</td><td style="min-width:260px">${md(r[2])}</td><td style="min-width:240px">${md(r[3])}</td><td>${md(r[4])}</td></tr>`).join('')}
+    </tbody></table></div>
+  </div>`;
+}
+
+// ---------- Pilot ----------
+const ZA = 1.959963985, ZB = 0.841621234;
+function coMau(p1, p2) { const pb = (p1 + p2) / 2; return Math.ceil((ZA * Math.sqrt(2 * pb * (1 - pb)) + ZB * Math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2); }
+function phi(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)), dd = 0.3989423 * Math.exp(-x * x / 2); const p = dd * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return x > 0 ? 1 - p : p; }
+function power(p1, p2, n) { const pb = (p1 + p2) / 2; return phi((Math.abs(p2 - p1) * Math.sqrt(n) - ZA * Math.sqrt(2 * pb * (1 - pb))) / Math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))); }
+let P = { mde: 6, icc: D.d1.icc, c: 20, m: D.d1.m_min };
+function viewPilot() {
+  const d = D.d1, pl = D.plan, pm = pl.primary_metric;
+  const designs = [
+    ['Theo yêu cầu', 'DE = 1, nhưng nhân viên vừa dùng vừa không dùng trợ lý: tràn tác động cao', d.n5, d.n5, false],
+    ['Theo nhân viên · 20 + 20', `Trần hiệu dụng c ÷ ICC = ${nf(d.tran_nv)}`, d.tran_nv, d.n5, true],
+    ['Theo depot · 6 + 6', `Trần ${nf(d.tran_depot)} và chỉ 6 cụm mỗi nhóm (dưới 20)`, d.tran_depot, d.n5, false]];
+  const mx = d.n5 * 1.15;
+  // timeline
+  const dates = s => (String(s).match(/\d{4}-\d{2}-\d{2}/g) || []).map(x => new Date(x + 'T00:00:00'));
+  const sc = pl.schedule, t0 = dates(sc.start_date)[0], tEnd = dates(pl.decision_date)[0];
+  const span = (tEnd - t0) / 864e5 + 1, pos = dt => ((dt - t0) / 864e5) / span * 100;
+  const segs = [['10%', sc.step_010], ['25%', sc.step_025], ['50% · đo chỉ số chính', sc.step_050]].map(([n, s]) => { const [a, b] = dates(s); return { n, a, b, s }; });
+  const fz = dates(sc.data_freeze)[0];
+  const fd = dt => dt.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' });
+  return `
+  <div class="kpis">
+    <div class="kpi"><div class="eyebrow">Cách chia</div><div class="v" style="font-size:1.4rem;font-family:var(--f-body)">Theo nhân viên</div><div class="d">${pm.clusters_per_arm} + ${pm.clusters_per_arm} nhân viên, bốc thăm có seed, phân tầng theo 12 depot</div></div>
+    <div class="kpi"><div class="eyebrow">Mức chênh phát hiện được</div><div class="v">${nf(pm.mde * 100)}<small> điểm</small></div><div class="d">${nf(pm.n_per_arm)} yêu cầu/nhóm · DE ${nf(pm.design_effect, 2)} · m ≥ ${pm.requests_per_cluster} yêu cầu/người</div></div>
+    <div class="kpi"><div class="eyebrow">Con số bất lợi</div><div class="v">${nf(pm.power_if_effect_is_5_points, 2)}</div><div class="d">Power nếu tác động thật chỉ 5 điểm. Giám đốc vận hành ký chấp nhận trước ngày bắt đầu.</div></div>
+    <div class="kpi"><div class="eyebrow">Ngày quyết định</div><div class="v" style="font-size:1.4rem">${esc(pl.decision_date)}</div><div class="d">Bắt đầu ${esc(sc.start_date)} · không so chỉ số chính giữa chừng</div></div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">D1 · Ba cách chia</div><h2>Chỉ chia theo yêu cầu đủ mẫu cho mức 5 điểm, nhưng tràn tác động</h2>
+      <p class="ink2">Cỡ mẫu hiệu dụng tối đa mỗi nhóm so với ${nf(d.n5)} yêu cầu cần cho mức 5 điểm (baseline 0,70; α 0,05; power 0,8; ICC ${nf(d.icc, 2)})</p></header>
+    <div class="card bars">${designs.map(([n, note, v, need, chon]) => `
+      <div class="bar-row"><div class="lbl">${n}${chon ? ' <span class="chip ok">đã chọn</span>' : ''}</div>
+        <div class="track"${tipAttr(note)}><div class="fill${v >= need ? '' : ' out'}" style="width:${v / mx * 100}%"></div><div class="ref" style="left:${need / mx * 100}%"></div></div>
+        <div class="val">${nf(v)}</div></div>`).join('')}
+      <div class="bar-row"><div></div><div class="ref-lbl"><span style="left:${d.n5 / mx * 100}%">Cần ${nf(d.n5)}</span></div><div></div></div>
+      <ul class="notes"><li>Theo nhân viên với m = 75: DE ${nf(d.de75, 2)} → ${nf(d.n_b)} yêu cầu/nhóm = ${d.nv_b} người mỗi nhóm, tổng ${d.nv_b * 2} &gt; 40 nhân viên.</li>
+        <li>Đánh đổi: nhận mức chênh 6 điểm (${nf(d.n6)}/nhóm), cần m ≥ ${d.m_min} yêu cầu mỗi người, khoảng ${Math.ceil(d.m_min / (d.yc_ngay_pv / 40))} ngày ở bước 50%.</li></ul>
+    </div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">Máy tính cỡ mẫu theo cụm</div><h2>Thử lại câu hỏi của hội đồng</h2><p class="ink2">Công thức trong <code>docs/du_lieu_va_cong_thuc.md</code>; power tính xấp xỉ chuẩn, khớp statsmodels tới 2 chữ số.</p></header>
+    <div class="card calc">
+      <div class="ctls">
+        <div class="row"><span class="muted" style="font-size:.85rem">Nạp nhanh:</span><div class="seg" id="dz"><button data-p="yc">Theo yêu cầu</button><button data-p="nv">Theo nhân viên</button><button data-p="dp">Theo depot</button></div></div>
+        <div class="ctl"><label for="mde">Mức chênh muốn phát hiện <output id="o-mde"></output></label><input type="range" id="mde" min="3" max="10" step="1"></div>
+        <div class="ctl"><label for="icc">ICC <output id="o-icc"></output></label><input type="range" id="icc" min="0" max="0.1" step="0.005"></div>
+        <div class="ctl"><label for="c">Số cụm mỗi nhóm <output id="o-c"></output></label><input type="range" id="c" min="2" max="1300" step="1"><span class="hint">Nhân viên, depot hoặc yêu cầu</span></div>
+        <div class="ctl"><label for="m">Yêu cầu mỗi cụm (m) <output id="o-m"></output></label><input type="range" id="m" min="1" max="2500" step="1"></div>
+      </div>
+      <div style="display:grid;gap:12px;align-content:start" aria-live="polite">
+        <div><div class="eyebrow">Cỡ mẫu hiệu dụng mỗi nhóm</div><div class="out-big" id="p-eff"></div><div id="p-verdict" style="margin-top:8px" class="row"></div></div>
+        <div class="meter"><div class="fill" id="p-fill"></div><div class="ref" id="p-ref"></div></div>
+        <div class="out-grid">
+          <div><span class="k">Cần mỗi nhóm</span><span class="v" id="p-need"></span></div>
+          <div><span class="k">Hệ số thiết kế</span><span class="v" id="p-de"></span></div>
+          <div><span class="k">Trần c ÷ ICC</span><span class="v" id="p-cap"></span></div>
+          <div><span class="k">Power nếu tác động 5 điểm</span><span class="v" id="p-pw"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">Lịch rollout</div><h2>10% → 25% → 50% nhân viên, chỉ số chính chỉ đo ở bước 50%</h2></header>
+    <div class="card timeline">
+      <div class="tl-track">${segs.map((g, i) => `<div class="tl-seg" style="left:${pos(g.a)}%;width:calc(${pos(g.b) - pos(g.a) + 100 / span}% - 2px);opacity:${0.55 + i * 0.22}"${tipAttr(g.s)}>${g.n}</div>`).join('')}
+        <div class="tl-mark" style="left:${pos(fz)}%"${tipAttr('Chốt dữ liệu: ' + sc.data_freeze)}></div><div class="tl-mark" style="left:calc(${pos(tEnd)}% + ${100 / span}% - 2px)"${tipAttr('Ngày quyết định ' + pl.decision_date)}></div></div>
+      <div class="tl-axis">${[t0, segs[1].a, segs[2].a].map(dt => `<span style="left:${pos(dt)}%">${fd(dt)}</span>`).join('')}<span style="left:calc(100% - 22px)">${fd(tEnd)}</span></div>
+      <dl class="kv">${segs.map(g => `<dt>Bước ${g.n}</dt><dd>${esc(g.s)}</dd>`).join('')}<dt>Chốt dữ liệu</dt><dd>${esc(sc.data_freeze)}</dd><dt>Xem lại</dt><dd>${md(pl.review_plan)}</dd></dl>
+    </div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">Luật dừng · viết trước</div><h2>${pl.stop_rules_tach.length} luật đủ bốn vế NẾU – TRONG – THÌ – KHÔNG THÌ</h2></header>
+    <div class="rules">${pl.stop_rules_tach.map(r => `<div class="rule">
+      <div><span class="k">NẾU</span>${md(r.neu)}</div><div><span class="k">TRONG</span>${md(r.trong)}</div><div><span class="k">THÌ</span>${md(r.thi)}</div><div><span class="k">KHÔNG THÌ</span>${md(r.khong_thi)}</div></div>`).join('')}</div>
+  </div>
+
+  <div class="block">
+    <header><div class="eyebrow">D2 · Tách được tác động</div><h2>Phạm vi, đối chứng, rollback</h2><p class="muted">Nguồn: <code>report/team/pilot_plan.yaml</code></p></header>
+    <div class="card"><dl class="kv">
+      <dt>Người có quyền dừng</dt><dd>${esc(pl.owner)}</dd>
+      <dt>Phạm vi</dt><dd>${md(pl.scope)}</dd>
+      <dt>Phân nhóm</dt><dd>Đơn vị <code>${esc(pl.assignment.unit)}</code>, đối chứng ${pct(pl.assignment.control_share, 0)}, ${esc(pl.assignment.method)}</dd>
+      <dt>Đối chứng cùng lúc</dt><dd>${esc(pl.identifiability.concurrent_control)}</dd>
+      <dt>Tràn tác động</dt><dd>${esc(pl.identifiability.spillover_risk)}</dd>
+      <dt>Đăng ký trước</dt><dd>${esc(pl.identifiability.predeclared)}</dd>
+      <dt>Xem giữa chừng</dt><dd>${esc(pl.interim_looks)}</dd>
+      <dt>Rollback</dt><dd>${esc(pl.rollback)}</dd>
+    </dl></div>
+  </div>`;
+}
+function bindPilot() {
+  const ids = ['mde', 'icc', 'c', 'm'];
+  const sync = () => { ids.forEach(id => $('#' + id).value = P[id]); render(); };
+  const render = () => {
+    const need = coMau(0.70, 0.70 + P.mde / 100), de = 1 + (P.m - 1) * P.icc, eff = P.c * P.m / de;
+    const cap = P.icc > 0 ? P.c / P.icc : Infinity, ok = eff >= need, du20 = P.c >= 20;
+    $('#o-mde').textContent = P.mde + ' điểm'; $('#o-icc').textContent = nf(P.icc, 3);
+    $('#o-c').textContent = nf(P.c); $('#o-m').textContent = nf(P.m);
+    $('#p-eff').textContent = nf(eff);
+    $('#p-verdict').innerHTML = `${ok ? '<span class="chip ok">đủ mẫu</span>' : '<span class="chip bad">thiếu mẫu</span>'} ${du20 ? '<span class="chip ok">≥ 20 cụm mỗi nhóm</span>' : '<span class="chip bad">dưới 20 cụm</span>'}${!ok && cap < need ? ' <span class="chip bad">trần thấp hơn mức cần, tăng m cũng không đủ</span>' : ''}`;
+    const mx = Math.max(eff, need) * 1.15;
+    $('#p-fill').style.width = (eff / mx * 100) + '%'; $('#p-fill').style.background = ok ? 'var(--accent)' : 'var(--up)';
+    $('#p-ref').style.left = (need / mx * 100) + '%';
+    $('#p-need').textContent = nf(need); $('#p-de').textContent = nf(de, 2);
+    $('#p-cap').textContent = isFinite(cap) ? nf(cap) : '∞';
+    $('#p-pw').textContent = nf(power(0.70, 0.75, eff), 2);
+  };
+  ids.forEach(id => $('#' + id).addEventListener('input', e => { P[id] = +e.target.value; render(); }));
+  const PZ = { yc: { c: 1251, m: 1, mde: 5 }, nv: { c: 20, m: D.d1.m_min, mde: 6 }, dp: { c: 6, m: 2000, mde: 5 } };
+  document.querySelectorAll('#dz button').forEach(b => b.onclick = () => { P = { ...P, icc: D.d1.icc, ...PZ[b.dataset.p] }; sync(); });
+  sync();
+}
+
+// ---------- Chỉ số ----------
+function viewChiSo() {
+  const t = D.e1.toan_mau, p = D.e1.pham_vi;
+  const tile = (ten, a, b, note) => `<div class="kpi"><div class="eyebrow">${ten}</div><div class="v">${pct(a[0] / a[1], 2)}</div><div class="d">${nf(a[0])}/${nf(a[1])} toàn mẫu · phạm vi pilot <b class="num">${pct(b[0] / b[1], 2)}</b> (${nf(b[0])}/${nf(b[1])})</div><div class="d muted">${note}</div></div>`;
+  return `
+  <div class="block">
+    <header><div class="eyebrow">E1 · Ba chỉ số tính thử</div><h2>Chỉ số trong đợt chạy thử, chưa có nhóm đối chứng</h2></header>
+    <div class="kpis">
+      ${tile('Chính · đóng 24 giờ, không mở lại 7 ngày', [t.chinh, t.n], [p.chinh, p.n], 'Không viết “trợ lý đã nâng chỉ số từ 0,70”')}
+      ${tile('Dùng · tỉ lệ bỏ qua gợi ý (sửa + bỏ)', [t.bo_qua, t.xem], [p.bo_qua, p.xem], 'Trên số yêu cầu được xem lại')}
+      ${tile('An toàn · mở lại trong 7 ngày', [t.mo_lai, t.n], [p.mo_lai, p.n], `Hàng nặng riêng ${pct(D.a3[1].mo_lai, 2)}`)}
+    </div>
+  </div>
+  <div class="block">
+    <header><div class="eyebrow">Event · ${D.su_kien.length} loại, mỗi event có trace_id</div><h2>Mọi chỉ số đều tính được từ danh sách event</h2><p class="muted">Nguồn: <code>report/team/chi_so.md</code></p></header>
+    <div class="tbl"><table><thead><tr><th>Event</th><th>Ai tạo</th><th>Thuộc tính chính</th><th>Thời điểm</th></tr></thead><tbody>
+      ${D.su_kien.map(r => `<tr><td>${md(r[0])}</td><td>${md(r[1])}</td><td style="min-width:240px">${md(r[2])}</td><td>${md(r[3])}</td></tr>`).join('')}</tbody></table></div>
+  </div>
+  <div class="block">
+    <header><div class="eyebrow">E2 · Rủi ro kinh tế</div><h2>Số lấy từ bảng độ nhạy, mỗi rủi ro có dấu hiệu và người phụ trách</h2></header>
+    <div class="tbl"><table><thead><tr><th>Rủi ro</th><th>Tác động đã tính</th><th>Dấu hiệu theo dõi</th><th>Hành động</th><th>Người phụ trách</th></tr></thead><tbody>
+      ${D.rui_ro.map(r => `<tr><td style="min-width:160px"><b>${md(r[0])}</b></td><td style="min-width:220px">${md(r[1])}</td><td style="min-width:200px">${md(r[2])}</td><td style="min-width:180px">${md(r[3])}</td><td>${md(r[4])}</td></tr>`).join('')}</tbody></table></div>
+  </div>`;
+}
+
+// ---------- router ----------
+const RENDER = { 'tong-quan': [viewTongQuan], 'chi-phi': [viewChiPhi], 'do-nhay': [viewDoNhay, bindDoNhay], 'bang-loi': [viewBangLoi], 'pilot': [viewPilot, bindPilot], 'chi-so': [viewChiSo] };
+function show() {
+  let v = location.hash.slice(1); if (!RENDER[v]) v = 'tong-quan';
+  const [view, bind] = RENDER[v];
+  $('#app').innerHTML = `<section class="view">${view()}</section>`;
+  document.querySelectorAll('#tabs a').forEach(a => a.dataset.v === v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  document.querySelectorAll('[data-go]').forEach(el => { const go = () => { location.hash = el.dataset.go; }; el.onclick = go; el.onkeydown = e => { if (e.key === 'Enter') go(); }; });
+  if (bind) bind();
+}
+window.addEventListener('hashchange', () => { show(); window.scrollTo({ top: 0 }); });
+show();
+
+// ---------- tooltip ----------
+const tip = $('#tip');
+document.addEventListener('pointermove', e => {
+  const el = e.target.closest('[data-tip]');
+  if (!el) { tip.hidden = true; return; }
+  tip.textContent = el.dataset.tip; tip.hidden = false;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = e.clientY + 16 + tip.offsetHeight > innerHeight ? e.clientY - tip.offsetHeight - 10 : e.clientY + 16;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+document.addEventListener('pointerleave', () => tip.hidden = true);
+</script>
