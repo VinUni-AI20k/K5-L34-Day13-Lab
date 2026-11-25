@@ -5,7 +5,10 @@ Dữ liệu trong hai file CSV là giả lập.
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+from statistics import NormalDist
 import pandas as pd
+from statsmodels.stats.proportion import proportion_effectsize
+from statsmodels.stats.power import NormalIndPower
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
@@ -283,12 +286,115 @@ def in_phan_b(ket_qua):
           'và mức có thể giảm xem lại an toàn.')
 
 
+# ---------- Nhiệm vụ D · Cỡ mẫu và tỉ lệ mở lại hiện tại ----------
+def co_mau(p1, p2, alpha=0.05, power=0.80):
+    """Cỡ mẫu mỗi nhóm khi so sánh hai tỉ lệ p1, p2 (kiểm định hai phía)."""
+    za = NormalDist().inv_cdf(1 - alpha / 2)
+    zb = NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil(
+        (za * math.sqrt(2 * pb * (1 - pb))
+         + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+        / (p2 - p1) ** 2
+    )
+
+
+def phan_tich_co_mau(reqs, p1=0.70, mde_5=0.05, mde_6=0.06,
+                     alpha=0.05, power=0.80, icc=0.02,
+                     m_hien_tai=75, c_nhan_vien=20, c_depot=6):
+    """Tính 5 câu D1, power thực tế nếu hiệu ứng thật là 5 điểm, và tỉ lệ mở lại 7 ngày."""
+    n_5 = co_mau(p1, p1 + mde_5, alpha=alpha, power=power)
+    de_75 = 1 + (m_hien_tai - 1) * icc
+    n_75 = math.ceil(n_5 * de_75)
+    nv_moi_nhom = math.ceil(n_75 / m_hien_tai)
+
+    eff_max_nv = c_nhan_vien / icc
+    eff_max_depot = c_depot / icc
+
+    n_6 = co_mau(p1, p1 + mde_6, alpha=alpha, power=power)
+    m_min_6 = math.ceil(n_6 * (1 - icc) / (c_nhan_vien - n_6 * icc))
+    de_6 = 1 + (m_min_6 - 1) * icc
+
+    # Power khi thiết kế cho 6 điểm (n_eff = n_6) nhưng tác động thật chỉ 5 điểm
+    es_5 = proportion_effectsize(p1 + mde_5, p1)
+    power_neu_5 = NormalIndPower().power(effect_size=es_5, nobs1=n_6,
+                                         alpha=alpha, ratio=1.0)
+
+    pham_vi = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    mo_lai_toan_mau = reqs['mo_lai_trong_7_ngay'].mean()
+    mo_lai_pham_vi = pham_vi['mo_lai_trong_7_ngay'].mean()
+
+    return dict(
+        n_5=n_5, de_75=de_75, n_75=n_75, nv_moi_nhom=nv_moi_nhom,
+        eff_max_nv=eff_max_nv, eff_max_depot=eff_max_depot,
+        n_6=n_6, m_min_6=m_min_6, de_6=de_6, power_neu_5=power_neu_5,
+        mo_lai_toan_mau=mo_lai_toan_mau,
+        so_mo_lai_toan_mau=int(reqs['mo_lai_trong_7_ngay'].sum()),
+        n_toan_mau=len(reqs),
+        mo_lai_pham_vi=mo_lai_pham_vi,
+        so_mo_lai_pham_vi=int(pham_vi['mo_lai_trong_7_ngay'].sum()),
+        n_pham_vi=len(pham_vi),
+    )
+
+
+def in_phan_d(kq):
+    """In kết quả D1 và tỉ lệ mở lại 7 ngày hiện tại."""
+    print('\nD1 · Cỡ mẫu pilot (p1=0,70; alpha=0,05; power=0,80; ICC=0,02)')
+    print(f'a) Chia theo yêu cầu (MDE +5 điểm): {kq["n_5"]:,} yêu cầu/nhóm')
+    print(f'b) Theo nhân viên, m=75 (DE={kq["de_75"]:.2f}): '
+          f'{kq["n_75"]:,} yêu cầu/nhóm → {kq["nv_moi_nhom"]} nhân viên/nhóm '
+          f'(tổng {kq["nv_moi_nhom"] * 2} > 40: không đủ người)')
+    print(f'c) 20 nhân viên/nhóm: cỡ mẫu hiệu dụng tối đa = '
+          f'{kq["eff_max_nv"]:,.0f} < {kq["n_5"]:,} (không đạt 5 điểm)')
+    print(f'd) 6 depot/nhóm: cỡ mẫu hiệu dụng tối đa = '
+          f'{kq["eff_max_depot"]:,.0f} < {kq["n_5"]:,} (không đạt)')
+    print(f'e) MDE +6 điểm ({kq["n_6"]:,}/nhóm), 20 nhân viên/nhóm: '
+          f'm ≥ {kq["m_min_6"]} yêu cầu/người (DE={kq["de_6"]:.2f})')
+    print(f'   Lưu ý bất lợi: nếu tác động thật chỉ +5 điểm với n={kq["n_6"]}, '
+          f'power còn {kq["power_neu_5"]:.2f}')
+    print(f'Tỉ lệ mở lại trong 7 ngày hiện tại: '
+          f'toàn mẫu {kq["mo_lai_toan_mau"]:.2%} '
+          f'({kq["so_mo_lai_toan_mau"]}/{kq["n_toan_mau"]}); '
+          f'phạm vi noi_dia+hang_nang {kq["mo_lai_pham_vi"]:.2%} '
+          f'({kq["so_mo_lai_pham_vi"]}/{kq["n_pham_vi"]})')
+
+
+# ---------- Nhiệm vụ E · Ba chỉ số tính thử từ dữ liệu ----------
+def tinh_chi_so_e(reqs):
+    """Tính 3 chỉ số (chính, dùng, an toàn) trên 1.200 yêu cầu chạy thử."""
+    chinh_mask = (reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    bo_qua_mask = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo'])
+    an_toan_mask = reqs['mo_lai_trong_7_ngay'] == 1
+    return dict(
+        chinh=chinh_mask.mean(),
+        chinh_tu=int(chinh_mask.sum()),
+        chinh_mau=len(reqs),
+        bo_qua=bo_qua_mask.mean(),
+        bo_qua_tu=int(bo_qua_mask.sum()),
+        bo_qua_mau=len(xem),
+        an_toan=an_toan_mask.mean(),
+        an_toan_tu=int(an_toan_mask.sum()),
+        an_toan_mau=len(reqs),
+    )
+
+
+def in_phan_e(kq):
+    """In 3 chỉ số E1 (lưu ý chưa có đối chứng nên không kết luận nâng chỉ số)."""
+    print('\nE1 · Ba chỉ số tính thử trên 1.200 yêu cầu (chỉ số trong đợt chạy thử)')
+    print(f'- Chính (% đóng trong 24h và không mở lại 7 ngày): '
+          f'{kq["chinh"]:.2%} ({kq["chinh_tu"]}/{kq["chinh_mau"]})')
+    print(f'- Dùng (tỉ lệ bỏ qua gợi ý = (sua+bo)/được xem lại): '
+          f'{kq["bo_qua"]:.2%} ({kq["bo_qua_tu"]}/{kq["bo_qua_mau"]})')
+    print(f'- An toàn (% mở lại trong 7 ngày): '
+          f'{kq["an_toan"]:.2%} ({kq["an_toan_tu"]}/{kq["an_toan_mau"]})')
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
     kiem_tra_dap_an_biet_truoc()
     in_phan_a(runs, reqs)
     in_phan_b(phan_tich_do_nhay(runs, reqs))
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    in_phan_d(phan_tich_co_mau(reqs))
+    in_phan_e(tinh_chi_so_e(reqs))
