@@ -1,9 +1,9 @@
-# Báo cáo cá nhân — NguyenMinhPhuc-MSSV
+# Báo cáo cá nhân — NguyenMinhPhuc-2A202603894
 
 ## 1. Thông tin thành viên
 
 - Họ tên: Nguyễn Minh Phúc
-- MSSV:
+- MSSV: 2A202603894
 - Email:
 - Vai trong nhóm: người kiểm số (Thành viên 3 theo bảng phân công của nhóm)
 
