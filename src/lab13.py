@@ -73,6 +73,35 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
                 hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs))
 
 
+def bang_do_nhay(runs, reqs):
+    """Tính B1 và B2 bằng cách đổi tham số của mô hình A2."""
+    kich_ban = {
+        'Token gap doi': dict(gia_vao=52, gia_ra=260),
+        'Token giam nua': dict(gia_vao=13, gia_ra=65),
+        'Xem lai gap doi': dict(he_so_xem_lai=2),
+        'Xem lai giam nua': dict(he_so_xem_lai=0.5),
+        'Lam lai gap doi': dict(he_so_lam_lai=2),
+        'Lam lai giam nua': dict(he_so_lam_lai=0.5),
+        'Luong tang 25%': dict(luong_phut=2500),
+        'Toi da 2 lan chay': dict(max_lan_chay=2),
+        'Toi da 1 lan chay': dict(max_lan_chay=1),
+        'Token va xem lai gap doi': dict(gia_vao=52, gia_ra=260, he_so_xem_lai=2),
+    }
+    goc = mo_hinh(runs, reqs)['cps']
+    return {ten: (cps, (cps / goc - 1) * 100)
+            for ten, tham_so in kich_ban.items()
+            for cps in [mo_hinh(runs, reqs, **tham_so)['cps']]}
+
+
+def xem_lai_tat_ca(runs, reqs, phut_lam_lai=9):
+    """B4: xem lại 5 phút mỗi yêu cầu có ít nhất một lần chạy ok."""
+    pham_vi = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])].copy()
+    co_ok = runs.loc[runs['status'] == 'ok', 'request_id']
+    pham_vi['phut_xem_lai_simulated'] = pham_vi['request_id'].isin(co_ok).astype(int) * 5
+    pham_vi['phut_lam_lai_simulated'] = (pham_vi['ket_qua'] == 'lam_lai').astype(int) * phut_lam_lai
+    return mo_hinh(runs, pham_vi)
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
@@ -83,7 +112,24 @@ if __name__ == '__main__':
         so_chu_so = 1 if ten == 'hoa_don_moi_yc' else 0
         print(f'{ten:14s} {gia_tri:>14,.{so_chu_so}f}{nhan}')
     # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
+    print('\nB1-B2: chi phi moi viec thanh cong [simulated]')
+    for ten, (cps, thay_doi) in bang_do_nhay(runs, reqs).items():
+        print(f'{ten:26s} {cps:>10,.0f} d  {thay_doi:>+6.1f}%')
+
+    print('\nB3: chi phi ca he thong [simulated]')
+    for gioi_han in (1, 2, 3):
+        ket_qua = mo_hinh(runs, reqs, max_lan_chay=gioi_han)
+        khong_thanh_cong = len(reqs) - ket_qua['thanh_cong']
+        ca_he_thong = ket_qua['tong'] + BASELINE * khong_thanh_cong
+        print(f"{gioi_han} lan: tro ly {ket_qua['tong']:,.0f} d; "
+              f"khong thanh cong {khong_thanh_cong}; ca he thong {ca_he_thong:,.0f} d; "
+              f"moi viec thanh cong {ket_qua['cps']:,.0f} d")
+
+    print('\nB4: xem lai tat ca [simulated]')
+    for phut in (9, 15.3):
+        ket_qua = xem_lai_tat_ca(runs, reqs, phut_lam_lai=phut)
+        print(f"Lam lai {phut} phut/ca: {ket_qua['cps']:,.0f} d/viec thanh cong; "
+              f"{ket_qua['cps'] / BASELINE:.2f} lan 12,000 d")
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
     #   from statsmodels.stats.proportion import proportion_effectsize
     #   from statsmodels.stats.power import NormalIndPower
