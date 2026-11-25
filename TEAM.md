@@ -14,7 +14,7 @@
 |   1 | Võ Thị Phương Nhung       |      |       |        |         |
 |   2 | Nguyễn Tiến Đạt      |      |       |        |         |
 |   3 | Nguyễn Minh Phúc       |      |       |        |         |
-
+|   4 | Nguyễn Đức Hải       |      |       |        |         |
 Bốn vai của lab:
 
 - **Người viết code:** viết và chạy `src/lab13.py`.
