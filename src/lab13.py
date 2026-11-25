@@ -73,6 +73,24 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
                 hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs))
 
 
+def chi_phi_theo_loai(runs, reqs):
+    """A3: tính chi phí và tỉ lệ thành công cuối cùng cho từng loại yêu cầu."""
+    ket_qua = []
+    for loai, nhom in reqs.groupby('loai', sort=False):
+        mo_hinh_nhom = mo_hinh(runs, nhom)
+        so_yeu_cau = len(nhom)
+        so_lan_chay = runs['request_id'].isin(nhom['request_id']).sum()
+        ket_qua.append({
+            'loai': loai,
+            'so_yeu_cau': so_yeu_cau,
+            'ti_le_thanh_cong': mo_hinh_nhom['thanh_cong'] / so_yeu_cau,
+            'lan_chay_moi_yeu_cau': so_lan_chay / so_yeu_cau,
+            'chi_phi_moi_viec': mo_hinh_nhom['cps'],
+            'so_voi_baseline': mo_hinh_nhom['cps'] / BASELINE,
+        })
+    return ket_qua
+
+
 def bang_do_nhay(runs, reqs):
     """Tính B1 và B2 bằng cách đổi tham số của mô hình A2."""
     kich_ban = {
@@ -111,7 +129,18 @@ if __name__ == '__main__':
         nhan = ' [simulated]' if ten in ('xem_lai', 'lam_lai', 'tong', 'cps') else ''
         so_chu_so = 1 if ten == 'hoa_don_moi_yc' else 0
         print(f'{ten:14s} {gia_tri:>14,.{so_chu_so}f}{nhan}')
-    # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
+    print('\nA3: theo loai yeu cau; chi phi va so voi baseline [simulated]')
+    print(f"{'Loai':12s} {'Yeu cau':>8s} {'Thanh cong':>11s} {'Lan chay/YC':>12s} "
+          f"{'Chi phi/viec':>14s} {'So voi 12,000 d':>16s}")
+    for dong in chi_phi_theo_loai(runs, reqs):
+        print(f"{dong['loai']:12s} {dong['so_yeu_cau']:>8d} "
+              f"{dong['ti_le_thanh_cong']:>10.1%} {dong['lan_chay_moi_yeu_cau']:>12.2f} "
+              f"{dong['chi_phi_moi_viec']:>14,.0f} {dong['so_voi_baseline']:>15.2f}x")
+    runs_quoc_te = runs[runs['request_id'].isin(reqs.loc[reqs['loai'] == 'quoc_te', 'request_id'])]
+    print('A3 quoc_te: ti le lan chay co trang thai ok theo lan thu')
+    for lan_thu, nhom in runs_quoc_te.groupby('attempt'):
+        so_ok = (nhom['status'] == 'ok').sum()
+        print(f'Lan {lan_thu}: {so_ok}/{len(nhom)} = {so_ok / len(nhom):.1%}')
     print('\nB1-B2: chi phi moi viec thanh cong [simulated]')
     for ten, (cps, thay_doi) in bang_do_nhay(runs, reqs).items():
         print(f'{ten:26s} {cps:>10,.0f} d  {thay_doi:>+6.1f}%')
