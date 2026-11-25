@@ -2,7 +2,7 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
+- Tên nhóm: 25112026
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-DAY13-25112026-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
 - URL repo, nhánh nộp, commit chốt:
@@ -11,10 +11,10 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Phạm ĐứcVinh   | 2A202603849     | 26ai.vinhpd@vinuni.edu.vn      |  vindpd203      | Người viết code (trước giải lao) |
+|   1 | Phạm Đức Vinh | 2A202603849     | 26ai.vinhpd@vinuni.edu.vn      |  vindpd203      | Người viết code (trước giải lao) |
 |   2 | Ngô Duy Khánh | 2A202603870 | | | Người kiểm số (sau giải lao nhận viết code) |
-|   3 | Bảo    |      |       |        | Người gắn nhãn 1 |
-|   4 | Huy    |      |       |        | Người gắn nhãn 2, kiêm giữ hồ sơ |
+|   3 | Nguyễn Thế Bảo | 2A202603825 |       |        | Người gắn nhãn 1 |
+|   4 | Đặng Nhật Huy | 2A202603822 | 26ai.huydn@vinuni.edu.vn |  huydn8816      | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
@@ -73,6 +73,45 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - Commit `b9a5f93` trên nhánh `vinh` (merge vào `main` qua pull request #1).
 - Code trong [src/lab13.py](src/lab13.py), số trong [report/team/bang_chi_phi.md](report/team/bang_chi_phi.md) và báo cáo cá nhân [report/team/2A202603849_PhamDucVinh.md](report/team/2A202603849_PhamDucVinh.md).
+
+## DangNhatHuy-2A202603822
+
+### Phần việc phụ trách
+
+- **Chính:** CP5 · Nhiệm vụ E (`report/team/ho_so_launch_v0.md`, chỉ số tự đề xuất và rủi ro kinh tế E2 trong `report/team/chi_so.md`) và duyệt chéo Gate 2a (`report/team/phieu_cham.md`).
+- **Phụ:** CP1–CP4 (điền dần hồ sơ launch v0 sau mỗi checkpoint), CP3 (người gắn nhãn 2, gắn độc lập 20 ca lỗi), báo cáo nhóm `report/team/group_report.md`.
+
+### Đóng góp cụ thể
+
+- Lập danh sách đầu mục và bảng phân công 4 người theo checkpoint trong [PhanCong.md](PhanCong.md).
+- Hoàn thiện hồ sơ launch v0 đủ 7 mục, mỗi mục có con số chính, trạng thái và vai trò phụ trách; đề xuất **Go có điều kiện** cho pilot `noi_dia` + `hang_nang` (4.599 đ = 0,38× [simulated]), nêu 3 con số bất lợi (xem lại 100% = 0,98× [simulated], power 0,64 ở mức 5 điểm, mở lại hiện tại 4,25%) và 5 điều kiện có người phụ trách, ngày kiểm tra.
+- Đề xuất 2 chỉ số (tỉ lệ nhân viên mở gợi ý; tỉ lệ đơn hoàn sai tiền qua kiểm tra mẫu hằng tuần) và 3 dòng rủi ro kinh tế lấy số từ bảng độ nhạy.
+- Gắn nhãn độc lập 20 ca lỗi (đồng thuận 20/20 với người gắn nhãn 1); hoàn thiện bảng khắc phục 5 ca và bổ sung 2 event `handoff_to_staff`, `input_validation_failed`.
+- Thêm phần tính power (0,64 khi tác động thật 5 điểm, n = 859/nhóm) vào `src/lab13.py`; viết mục 1–3 báo cáo nhóm.
+
+### Bằng chứng
+
+- File [report/team/ho_so_launch_v0.md](report/team/ho_so_launch_v0.md), [report/team/chi_so.md](report/team/chi_so.md) (E1 hai dòng tự đề xuất, E2), [report/team/bang_loi.md](report/team/bang_loi.md) (cột nhãn người 2, bảng khắc phục), [report/team/group_report.md](report/team/group_report.md), [PhanCong.md](PhanCong.md).
+- Báo cáo cá nhân [report/team/2A202603822_DangNhatHuy.md](report/team/2A202603822_DangNhatHuy.md).
+
+## NguyenTheBao-2A202603825
+
+### Phần việc phụ trách
+
+- **Chính:** CP3 · Nhiệm vụ C (người gắn nhãn 1, `report/team/bang_loi.md`).
+- **Phụ:** CP1 (theo dõi điều kiện "Xong khi", kiểm tra nhãn `simulated`), CP4 (phối hợp ba luật dừng, `identifiability`, `rollback`), CP5 và duyệt chéo (đối chiếu chỉ số với danh sách event có `trace_id`).
+
+### Đóng góp cụ thể
+
+- Gắn nhãn độc lập đủ 20/20 ca ở cột "Nhãn người 1" (Do người dùng 4 · Hệ thống 5 · Ngữ cảnh 4 · Giới hạn hệ thống 4 · Ngầm 3).
+- Đối chiếu ba luật dừng với tỉ lệ mở lại hiện tại (4,25% toàn mẫu, 3,97% trong phạm vi `noi_dia` + `hang_nang`): luật an toàn so với đối chứng +2 điểm, trần 6%, cửa sổ 3 ngày; luật chi phí 8.000 đ [simulated] trong 2 tuần; luật mức dùng 40% bỏ qua gợi ý trong 1 tuần.
+- Kiểm tra chéo từng chỉ số E1 với event có `trace_id` và lọc lại CSV để đối chiếu tử số, mẫu số 994/1.200, 48/177, 51/1.200.
+
+### Bằng chứng
+
+- Commit `86d3d06` (gán nhãn) với 20 dòng ở cột "Nhãn người 1" trong [report/team/bang_loi.md](report/team/bang_loi.md).
+- [report/team/pilot_plan.yaml](report/team/pilot_plan.yaml) (luật dừng, `identifiability`, `rollback`), [report/team/chi_so.md](report/team/chi_so.md) (kiểm tra chéo chỉ số ↔ event).
+- Báo cáo cá nhân [report/team/2A202603825_NguyenTheBao.md](report/team/2A202603825_NguyenTheBao.md).
 
 ## HoVaTen-MSSV
 

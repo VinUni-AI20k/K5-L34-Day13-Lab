@@ -7,8 +7,8 @@
 | Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | 82,83% (994/1.200 yêu cầu) |
 | Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | 27,12% (48/177 yêu cầu được xem lại) |
 | An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | 4,25% (51/1.200 yêu cầu) |
-| Dùng | Nhóm tự đề xuất: % yêu cầu của nhóm can thiệp được mở bằng trợ lý | Số yêu cầu có event `agent_suggestion_shown` chia tổng yêu cầu nhận được của nhóm can thiệp | Không cần tính |
-| An toàn | Nhóm tự đề xuất: % đơn hoàn sai tiền qua kiểm tra mẫu hàng tuần | Số đơn phát hiện sai lệch số tiền qua kiểm tra mẫu kế toán chia tổng số đơn kiểm tra ngẫu nhiên | Không cần tính |
+| Dùng | Nhóm tự đề xuất: Tỉ lệ nhân viên mở gợi ý của trợ lý | Số yêu cầu thuộc nhóm dùng trợ lý có event `agent_suggestion_shown` (theo `staff_id`), chia tổng số yêu cầu được giao cho nhóm dùng trợ lý (`refund_request_created` có `arm = tro_ly`) | Không cần tính |
+| An toàn | Nhóm tự đề xuất: Tỉ lệ đơn hoàn sai tiền qua kiểm tra mẫu hằng tuần | Số đơn trong mẫu kiểm tra có `so_tien_da_hoan` khác `so_tien_dung` (event `audit_sample_checked`), chia số đơn được kiểm tra trong tuần. Bắt được cả lỗi sai tiền mà khách không mở lại, nên chỉ số "mở lại 7 ngày" không thấy | Không cần tính |
 
 *Ghi chú:* Chỉ số trong đợt chạy thử là 82,83% (đóng trong 24h và không mở lại trong 7 ngày); không viết "trợ lý đã nâng chỉ số từ 0,70" vì đợt chạy thử không có nhóm đối chứng.
 
@@ -27,13 +27,15 @@
 | `ticket_closed` | Hệ thống ticket | `ticket_id`, `closed_at`, `trace_id` | Khi ticket yêu cầu được đóng |
 | `ticket_reopened` | Khách | `ticket_id`, `reopened_at`, `reason`, `trace_id` | Khi khách mở lại ticket trong 7 ngày |
 | `audit_sample_checked` | Kế toán | `sample_id`, `so_tien_da_hoan`, `so_tien_dung`, `trace_id` | Định kỳ hàng tuần khi kiểm toán mẫu |
+| `handoff_to_staff` | Agent | `reason` (vd. `thieu_du_lieu`, `ngoai_pham_vi`), `tom_tat`, `trace_id` | Khi agent chuyển yêu cầu cho nhân viên |
+| `input_validation_failed` | Agent | `reason` (vd. `ma_khong_hop_le`), `truong_loi`, `trace_id` | Khi đầu vào của khách không hợp lệ |
 
 **Kiểm tra chéo:** với mỗi chỉ số ở bảng E1, ghi event dùng để tính. Chỉ số nào không tính được từ danh sách event thì chưa đo được.
 
-- Chỉ số chính (% đóng trong 24h không mở lại 7 ngày): tính từ `ticket_closed` (đo mốc 24h) và `ticket_reopened` (xác định không mở lại trong 7 ngày) theo từng `trace_id`.
+- Chỉ số chính (% đóng trong 24h không mở lại 7 ngày): tính từ `ticket_closed` (`closed_at` trừ thời điểm `refund_request_created` cùng `trace_id` không quá 24 giờ) và `ticket_reopened` (xác định không mở lại trong 7 ngày) theo từng `trace_id`.
 - Tỉ lệ bỏ qua gợi ý: tính từ event `staff_review_decision` (đếm quyết định là `sua` hoặc `bo` chia tổng số quyết định).
 - Tỉ lệ lỗi lọt đến khách: tính từ event `ticket_reopened` (mở lại trong 7 ngày) chia tổng số event `refund_request_created`.
-- Chỉ số dùng đề xuất: tính từ tỉ lệ giữa số event `agent_suggestion_shown` và số event `refund_request_created` của nhóm can thiệp.
+- Chỉ số dùng đề xuất: tính từ tỉ lệ giữa số event `agent_suggestion_shown` và số event `refund_request_created` có `arm = tro_ly` (nhóm can thiệp).
 - Chỉ số an toàn đề xuất: tính từ event `audit_sample_checked` (tỉ lệ các bản ghi có `so_tien_da_hoan != so_tien_dung`).
 
 ## E2 · Rủi ro kinh tế
@@ -42,6 +44,6 @@
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
-| Số ca làm lại tăng gấp đôi | Chi phí mỗi việc thành công tăng +51,8%, lên 6.787 đ [simulated] | Tỉ lệ làm lại theo tuần > 7% (đợt chạy thử: 4,9% trong phạm vi) | Thu hẹp phạm vi về riêng `noi_dia`, rà soát 20 trace ca làm lại gần nhất | PM trợ lý hoàn phí |
-| Phải duy trì xem lại 100% kéo dài | Đạt 11.743 đ = 0,98× (12.414 đ = 1,03× nếu làm lại 15,3 phút như dữ liệu) [simulated], triệt tiêu lợi ích kinh tế | Tỉ lệ yêu cầu cần xem lại vẫn > 50% ở cuối bước rollout 0.25 | Thực hiện giảm xem lại theo bậc khi tỉ lệ sửa + bỏ < 15% | Trưởng nhóm CSKH |
-| Khối lượng xử lý thực tế thấp hơn dự kiến | Chi phí cố định 40 triệu/tháng làm tăng chi phí mỗi việc: +1.185 đ ở 45.000 yc/tháng và +2.370 đ nếu khối lượng giảm còn một nửa [simulated] | Số việc thành công hàng tuần đạt < 50% chỉ tiêu kế hoạch | Tạm dừng mở rộng pilot, đàm phán lại hợp đồng chi phí cố định với đối tác | PM trợ lý hoàn phí |
+| Số ca làm lại tăng gấp đôi | Chi phí mỗi việc thành công 4.472 đ → 6.787 đ (+51,8%), yếu tố nhạy nhất ở B2 [simulated] | Tỉ lệ ca làm lại theo tuần (event `staff_rework_completed` ÷ số yêu cầu nhóm dùng trợ lý) vượt 7% (đợt chạy thử: 48/982 = 4,9% trong phạm vi noi_dia + hang_nang) | Thu hẹp phạm vi về riêng `noi_dia` (rẻ nhất ở A3: 0,22×) [simulated]; rà 20 trace làm lại gần nhất để tìm nguyên nhân gốc | PM trợ lý hoàn phí |
+| Tỉ lệ xem lại không giảm được (phải xem lại gần 100%) | Xem lại gấp đôi: 4.472 đ → 6.292 đ (+40,7%); xem lại 100% (noi_dia + hang_nang): 11.743 đ = 0,98× của 12.000 đ, hoặc 12.415 đ = 1,03× nếu làm lại 15,3 phút/ca [simulated] | % yêu cầu được xem lại (event `staff_review_decision`) còn trên 50% ở cuối bước rollout 0,25; phút xem lại đo thật trung bình vượt mức hoà vốn 5,1 phút (4,8 phút nếu làm lại 15,3 phút/ca) [simulated] | Giảm xem lại theo bậc khi tỉ lệ sửa + bỏ dưới 15% (đợt chạy thử: 27,12%); rút gọn màn hình xem lại để giảm phút mỗi lần | Trưởng nhóm CSKH |
+| Khối lượng thấp hơn dự kiến làm chi phí cố định tăng | Cố định 40 triệu đ/tháng: 1.185 đ/việc ở 45.000 yêu cầu/tháng (tổng 4.599 đ = 0,38×), 2.370 đ/việc nếu còn một nửa (tổng 5.784 đ = 0,48×) [simulated] | Số việc thành công theo tuần (event `ticket_closed` không có `ticket_reopened` trong 7 ngày) dưới 50% kế hoạch | Tạm dừng mở rộng pilot; đàm phán lại hợp đồng chi phí cố định 40 triệu đ/tháng | Giám đốc vận hành |
