@@ -41,7 +41,8 @@ def kiem_tra_dap_an_biet_truoc():
 
 
 # ---------- Nhiệm vụ A2 · Mô hình chi phí từ trace ----------
-# TODO CP1: viết mo_hinh; CP2 gọi lại hàm này với tham số giá và hệ số đã đổi.
+# CP1: mô hình chi phí theo docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md.
+# CP2 có thể gọi lại với tham số khác.
 def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
             he_so_xem_lai=1.0, he_so_lam_lai=1.0, max_lan_chay=None):
     """Trả về dict gồm: token, tool, xem_lai, lam_lai, tong, thanh_cong, cps (chi phí mỗi việc thành công).
@@ -50,7 +51,26 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
     - thanh_cong: số yêu cầu có ket_qua == 'thanh_cong'.
     - Các tham số giá/hệ số/max_lan_chay dùng cho Nhiệm vụ B (độ nhạy, giới hạn số lần chạy); giữ mặc định ở A2.
     """
-    raise NotImplementedError('VIẾT Ở ĐÂY')
+    reqs = reqs.copy()
+    runs = runs[runs['request_id'].isin(reqs['request_id'])]
+    if max_lan_chay is not None:
+        runs = runs[runs['attempt'] <= max_lan_chay]
+        vuot = reqs['so_lan_chay'] > max_lan_chay
+        reqs.loc[vuot, 'ket_qua'] = 'chuyen_nhan_vien'
+        reqs.loc[vuot, ['phut_xem_lai_simulated', 'phut_lam_lai_simulated']] = 0
+
+    tien_token = runs['tokens_in'] / 1000 * gia_vao + runs['tokens_out'] / 1000 * gia_ra
+    tien_tool = runs['tool_calls'] * gia_tool
+    xem_lai = reqs['phut_xem_lai_simulated'].sum() * luong_phut * he_so_xem_lai
+    lam_lai = reqs['phut_lam_lai_simulated'].sum() * luong_phut * he_so_lam_lai
+    tong = tien_token.sum() + tien_tool.sum() + xem_lai + lam_lai
+    thanh_cong = (reqs['ket_qua'] == 'thanh_cong').sum()
+
+    return dict(token=tien_token.sum(), tool=tien_tool.sum(),
+                chay_lai=(tien_token + tien_tool)[runs['attempt'] > 1].sum(),
+                xem_lai=xem_lai, lam_lai=lam_lai, tong=tong,
+                thanh_cong=thanh_cong, cps=tong / thanh_cong,
+                hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs))
 
 
 if __name__ == '__main__':
@@ -59,7 +79,9 @@ if __name__ == '__main__':
     kiem_tra_dap_an_biet_truoc()
     ket_qua = mo_hinh(runs, reqs)
     for ten, gia_tri in ket_qua.items():
-        print(f'{ten:12s} {gia_tri:>14,.0f}')
+        nhan = ' [simulated]' if ten in ('xem_lai', 'lam_lai', 'tong', 'cps') else ''
+        so_chu_so = 1 if ten == 'hoa_don_moi_yc' else 0
+        print(f'{ten:14s} {gia_tri:>14,.{so_chu_so}f}{nhan}')
     # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
     # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
