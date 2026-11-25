@@ -3,7 +3,7 @@
 ## Thông tin nhóm
 
 - Tên nhóm: LuckyTeam
-- Lớp: [Điền L3A hoặc L3B]
+- Lớp: L3B
 - Repo nhóm: `K5-L3A-DAY13-LuckyTeam-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
 - URL repo, nhánh nộp, commit chốt: [Điền trước khi nộp]
 
