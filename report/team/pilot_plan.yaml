@@ -1,51 +1,77 @@
 # Lab 13 · Nhiệm vụ D · Kế hoạch pilot trợ lý hoàn phí LogiX-VN (Gate 2a)
-# Điền mọi chỗ có dấu hỏi. Khi nộp, ngoài các dòng chú thích không còn dấu hỏi nào.
+# Người giữ file: Thành viên 4. Số do src/tv4_tinh_so.py (cp4_pilot) và src/tv3_tinh_so.py (cp4_d1e) in ra.
 # Kiểm tra đọc được: python -c "import yaml; yaml.safe_load(open('../report/team/pilot_plan.yaml'))"
 #
 # D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02)
-#   a) Chia theo yêu cầu:
-#   b) Theo nhân viên, m = 75:
-#   c) 20 nhân viên mỗi nhóm:
-#   d) 6 depot mỗi nhóm:
-#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm:
+#   a) Chia theo yêu cầu: co_mau(0,70; 0,75) = 1.251 yêu cầu mỗi nhóm (DE = 1).
+#   b) Theo nhân viên, m = 75: DE = 1 + 74 × 0,02 = 2,48 → 1.251 × 2,48 = 3.103 mỗi nhóm → 42 người mỗi nhóm, tổng 84 > 40 nhân viên: không đủ người.
+#   c) 20 nhân viên mỗi nhóm: cỡ mẫu hiệu dụng tối đa c / ICC = 20 / 0,02 = 1.000 < 1.251: không đạt mức 5 điểm dù mỗi người xử lý bao nhiêu yêu cầu.
+#   d) 6 depot mỗi nhóm: tối đa 6 / 0,02 = 300 < 1.251: không đạt, và chỉ có 6 cụm mỗi nhóm (dưới 20).
+#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm: 20m / (1 + (m − 1) × 0,02) ≥ 859 → m ≥ 299 yêu cầu mỗi người, DE = 6,96.
+#      Trong phạm vi có ≈ 1.228 yêu cầu/ngày = 30,7 yêu cầu/nhân viên/ngày → cần ≈ 10 ngày ở bước 0.50 để mỗi người đủ 299.
 #
-# D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (mỗi câu một dòng):
-#   1. Đối chứng chạy cùng thời gian:
-#   2. Chia ngẫu nhiên hay do người chọn:
-#   3. Ảnh hưởng gián tiếp và cách giảm:
-#   4. Chỉ số chính, ngưỡng, ngày quyết định đã viết trước:
-#   5. Ít nhất 20 cụm mỗi nhóm:
+# D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (theo nhân viên, 20 + 20):
+#   1. Đối chứng chạy cùng thời gian: có, 20 nhân viên đối chứng làm cùng tuần, cùng depot, cùng loại yêu cầu với 20 nhân viên dùng trợ lý.
+#   2. Chia ngẫu nhiên hay do người chọn: bốc thăm bằng code với seed ghi trước, phân tầng theo 12 depot; trưởng nhóm không được tự chọn.
+#   3. Ảnh hưởng gián tiếp và cách giảm: nhân viên cùng depot có thể chia sẻ câu trả lời của trợ lý; cấp quyền theo tài khoản, log lượt mở trợ lý theo staff_id, mục tiêu 0% lượt mở từ nhóm đối chứng.
+#   4. Chỉ số chính, ngưỡng, ngày quyết định đã viết trước: có, chỉ số chính, MDE 6 điểm, 4 luật dừng và ngày quyết định 2027-01-18 được commit trước ngày bắt đầu 2026-12-07.
+#   5. Ít nhất 20 cụm mỗi nhóm: có, đúng 20 nhân viên mỗi nhóm.
 #
-# Đánh đổi đã chấp nhận (nếu cách chia chưa đạt cả hai điều kiện):
+# Đánh đổi đã chấp nhận: chia theo nhân viên chỉ đạt mức chênh 6 điểm, không đạt 5 điểm (trần 1.000 < 1.251).
+#   Con số bất lợi: nếu tác động thật chỉ 5 điểm thì với 859 yêu cầu mỗi nhóm, power chỉ còn ≈ 0,64 (statsmodels NormalIndPower).
+#   Giám đốc vận hành ký chấp nhận đánh đổi này trước ngày bắt đầu. Chia theo yêu cầu đủ mẫu nhưng tràn tác động cao; chia theo depot chỉ 6 cụm.
 #
 # Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn:
+#   Toàn mẫu 4,25% (51/1.200); phạm vi noi_dia + hang_nang 3,97% (39/982): noi_dia 3,16%, hang_nang 8,23%.
+#   Ngưỡng tuyệt đối 3% sẽ làm pilot dừng ngay tuần đầu. Chọn so với nhóm đối chứng (chênh ≥ 2 điểm) kèm trần tuyệt đối 6% cho cả nhóm trợ lý.
+#   hang_nang đã ở mức 8,23% trong đợt chạy thử, nên hang_nang được so riêng với hang_nang của nhóm đối chứng, không áp trần 6% riêng.
+#
+# Giả định đề cho (không phải số giả lập): baseline 0,70; alpha 0,05; power 0,8; ICC 0,02; 40 nhân viên; 12 depot; 1.500 yêu cầu/ngày.
 
 pilot:
-  owner: "?"                      # một người có tên vai trò, không ghi "cả đội"
-  scope: "?"                      # loại yêu cầu nào, depot nào; dựa vào kết quả A3
+  owner: "Giám đốc vận hành LogiX-VN"
+  scope: "Chỉ yêu cầu noi_dia và hang_nang (982/1.200 yêu cầu của mẫu), cả 12 depot, 40 nhân viên CSKH. noi_dia 2.696 đ/việc = 0,22× và hang_nang 8.221 đ/việc = 0,69× so với 12.000 đ [simulated]. Loại quoc_te (22.515 đ = 1,88×, thành công 27,3%) và doi_tac (10.215 đ = 0,85×, có điều khoản riêng) [simulated]."
   assignment:
-    unit: "?"                     # request | staff | depot
+    unit: "staff"
     control_share: 0.5
     randomized: true
-  rollout: [0.10, 0.25, 0.50]     # mỗi bước một tuần
+    method: "Bốc thăm bằng code, seed ghi trước ngày bắt đầu, phân tầng theo 12 depot"
+  rollout: [0.10, 0.25, 0.50]     # 4 → 10 → 20 nhân viên dùng trợ lý; bước 0.10 và 0.25 mỗi bước một tuần, bước 0.50 kéo dài 3 tuần
+  schedule:
+    start_date: "2026-12-07"
+    step_010: "2026-12-07 đến 2026-12-13, xem lại 100% câu trả lời"
+    step_025: "2026-12-14 đến 2026-12-20"
+    step_050: "2026-12-21 đến 2027-01-10; chỉ số chính chỉ đo trong bước này, mỗi nhân viên cần ≥ 299 yêu cầu (≈ 10 ngày làm việc)"
+    data_freeze: "2027-01-17, đủ 7 ngày theo dõi mở lại cho yêu cầu cuối cùng"
   primary_metric:
     name: dong_trong_24h_khong_mo_lai_7_ngay
     baseline: 0.70
-    mde: 0.05
+    mde: 0.06                     # đánh đổi đã chấp nhận: 5 điểm không đạt với 20 cụm mỗi nhóm
     alpha: 0.05
     power: 0.80
-    n_per_arm: "?"
-    design_effect: "?"            # 1 nếu chia theo yêu cầu
-    clusters_per_arm: "?"         # để trống nếu chia theo yêu cầu
+    n_per_arm: 859
+    design_effect: 6.96
+    clusters_per_arm: 20
+    requests_per_cluster: 299
+    power_if_effect_is_5_points: 0.64
   identifiability:
-    concurrent_control: "?"
-    spillover_risk: "?"
-    predeclared: "?"
+    concurrent_control: "Có: 20 nhân viên đối chứng làm cùng tuần, cùng 12 depot, cùng loại yêu cầu (noi_dia + hang_nang) với 20 nhân viên dùng trợ lý"
+    spillover_risk: "Nhân viên cùng depot có thể chia sẻ câu trả lời của trợ lý. Giảm bằng cấp quyền theo tài khoản và log lượt mở trợ lý theo staff_id; mục tiêu 0% lượt mở từ nhóm đối chứng, kiểm tra hằng tuần"
+    predeclared: "Có: chỉ số chính, MDE 6 điểm, 4 luật dừng, kế hoạch giảm xem lại và decision_date 2027-01-18 được commit vào repo trước ngày bắt đầu 2026-12-07"
   stop_rules:
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-    - "NẾU ? TRONG ? THÌ ? KHÔNG THÌ ?"
-  interim_looks: "chỉ kiểm tra chỉ số an toàn"
-  rollback: "?"                   # ai bấm, mất bao lâu, khách được phục vụ bằng gì
-  decision_date: "?"
-  simulated_inputs: ["?"]         # liệt kê mọi con số giả lập đã dùng
+    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn nhóm đối chứng ≥ 2 điểm, hoặc vượt trần 6% (đợt chạy thử: 3,97% trong phạm vi) TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành bấm cờ tắt trợ lý trong 30 phút và Kỹ sư trưởng agent rà 20 trace mở lại gần nhất trong 2 ngày KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
+    - "NẾU có ≥ 1 ca hoàn trùng cho cùng một đơn, hoặc ≥ 1 tin nhắn 'đã hoàn' không có bản ghi sổ cái ok cùng trace_id (ca 20, ca 7) TRONG bất kỳ lần đối soát mỗi giờ nào THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và Kế toán trưởng thu hồi hoặc bù tiền trong 24 giờ KHÔNG THÌ không được bật lại trợ lý trước khi Kỹ sư trưởng agent sửa và kiểm tra lại khoá chống trùng"
+    - "NẾU chi phí mỗi việc thành công, tính với phút xem lại và làm lại đo thật, > 8.000 đ (cộng cố định 1.185 đ là 0,77× của 12.000 đ; đợt chạy thử 3.414 đ [simulated]) TRONG 7 ngày liên tiếp tính từ bước 0.25 THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn tối đa 2 lần chạy (B3: rẻ nhất cho cả hệ thống) KHÔNG THÌ không được mở bước 0.50 cho hang_nang"
+    - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo trên số yêu cầu được xem lại) > 40% (đợt chạy thử: 21,1% trong phạm vi) TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên nhóm trợ lý trong 3 ngày và PM trợ lý hoàn phí sửa luồng gợi ý KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
+  review_plan: "Bước 0.10 xem lại 100% (B4: 11.743 đ/việc = 0,98× [simulated], gần như không tiết kiệm). Từ bước 0.25 giảm còn 50%, rồi 25%, chỉ khi tỉ lệ sua + bo < 15% (đợt chạy thử: 21,1%). Mục tiêu mỗi lần xem lại ≤ 5 phút (hoà vốn 5,1 phút; 4,8 phút nếu làm lại 15,3 phút [simulated]). Phút xem lại đo thật bằng event staff_review_decision"
+  interim_looks: "Hằng ngày chỉ kiểm tra chỉ số an toàn (mở lại 7 ngày, hoàn trùng, đối soát sổ cái) và chi phí mỗi việc thành công. Không so chỉ số chính giữa hai nhóm trước 2027-01-18, để không dừng sớm vì nhìn kết quả giữa chừng"
+  rollback: "Giám đốc vận hành bấm cờ tắt trợ lý, hiệu lực trong 30 phút. Yêu cầu đang mở chuyển cho nhân viên kèm tóm tắt từ trace. Khách được phục vụ bằng luồng nhân viên tự làm như trước pilot (6 phút, 12.000 đ/yêu cầu)"
+  decision_date: "2027-01-18"
+  simulated_inputs:
+    - "Hai cột phut_xem_lai_simulated và phut_lam_lai_simulated"
+    - "Chi phí mỗi việc thành công trong phạm vi 3.414 đ; noi_dia 2.696 đ = 0,22×; hang_nang 8.221 đ = 0,69× (A3) [simulated]"
+    - "quoc_te 22.515 đ = 1,88×; doi_tac 10.215 đ = 0,85× (A3, lý do thu hẹp phạm vi) [simulated]"
+    - "Cộng chi phí cố định: 4.599 đ = 0,38× ở 45.000 yêu cầu/tháng; 5.784 đ = 0,48× ở một nửa khối lượng (A4) [simulated]"
+    - "Xem lại 100%: 11.743 đ = 0,98×; 12.415 đ = 1,03× nếu làm lại 15,3 phút; hoà vốn 5,1 và 4,8 phút (B4) [simulated]"
+    - "Giới hạn 2 lần chạy rẻ nhất cho cả hệ thống: 6.901.220 đ (B3) [simulated]"
+    - "Ngưỡng chi phí 8.000 đ trong luật dừng thứ ba, đặt dựa trên 3.414 đ và 1.185 đ ở trên [simulated]"

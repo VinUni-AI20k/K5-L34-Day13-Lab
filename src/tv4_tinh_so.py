@@ -171,6 +171,64 @@ def cp3_nguong(runs, reqs):
     print()
 
 
+# ---------- CP4 · Số cho pilot_plan.yaml ----------
+ICC = 0.02
+NHAN_VIEN, DEPOT = 40, 12
+
+
+def co_mau(p1, p2, alpha=0.05, power=0.8):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ (công thức trong docs/du_lieu_va_cong_thuc.md)."""
+    import math
+    from statistics import NormalDist
+    za, zb = NormalDist().inv_cdf(1 - alpha / 2), NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                      + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+
+
+def cp4_pilot(runs, reqs):
+    import math
+    from statsmodels.stats.power import NormalIndPower
+    from statsmodels.stats.proportion import proportion_effectsize
+
+    print('=== CP4 · Số cho pilot_plan.yaml ===')
+    # Đối chiếu D1 (a–d do TV1/TV2 tính, e do TV3 tính)
+    n5 = co_mau(0.70, 0.75)
+    de75 = 1 + (75 - 1) * ICC
+    n_b = math.ceil(n5 * de75)
+    nv_b = math.ceil(n_b / 75)
+    n6 = co_mau(0.70, 0.76)
+    m_min = math.ceil(n6 * (1 - ICC) / (20 - n6 * ICC))
+    de_e = 1 + (m_min - 1) * ICC
+    print(f'D1 đối chiếu: a {n5}/nhóm · b DE {so(de75, 2)}, {d(n_b)}/nhóm = {nv_b} người/nhóm, '
+          f'tổng {2 * nv_b} > {NHAN_VIEN} · c trần {d(20 / ICC)} < {d(n5)} · d trần {d(6 / ICC)} · '
+          f'e {n6}/nhóm, m ≥ {m_min}, DE {so(de_e, 2)}')
+    pw5 = NormalIndPower().power(effect_size=proportion_effectsize(0.75, 0.70), nobs1=n6, alpha=0.05)
+    print(f'Power nếu tác động thật chỉ 5 điểm với {n6}/nhóm: {so(pw5, 2)}')
+
+    # Thời gian cần để mỗi nhân viên đạt m yêu cầu trong phạm vi
+    pv = reqs[reqs['loai'].isin(PHAM_VI)]
+    yc_ngay_pv = 1500 * len(pv) / len(reqs)
+    moi_nv = yc_ngay_pv / NHAN_VIEN
+    print(f'Yêu cầu trong phạm vi mỗi ngày ≈ {d(yc_ngay_pv)} → {so(moi_nv)} yêu cầu/nhân viên/ngày; '
+          f'đạt m = {m_min} sau ≈ {math.ceil(m_min / moi_nv)} ngày ở bước 0.50 (20 + 20 nhân viên)')
+
+    # Mức hiện tại để đặt luật dừng
+    mo_lai = reqs['mo_lai_trong_7_ngay']
+    print(f"Mở lại 7 ngày: toàn mẫu {so(mo_lai.mean() * 100, 2)}% ({int(mo_lai.sum())}/{len(reqs)}) · "
+          f"phạm vi {so(pv['mo_lai_trong_7_ngay'].mean() * 100, 2)}% · "
+          + ' · '.join(f"{k} {so(v * 100, 2)}%" for k, v in pv.groupby('loai')['mo_lai_trong_7_ngay'].mean().items()))
+    xem = pv[pv['duoc_xem_lai'] == 1]
+    print(f"Tỉ lệ bỏ qua gợi ý (sua + bo) trong phạm vi: {so(xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).mean() * 100)}% "
+          f"({int(xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).sum())}/{len(xem)})")
+    chinh = ((pv['dong_trong_24h'] == 1) & (pv['mo_lai_trong_7_ngay'] == 0)).mean()
+    print(f'Chỉ số chính trong đợt chạy thử (phạm vi, không có đối chứng): {so(chinh * 100, 2)}%')
+    cps_pv = mo_hinh(runs, pv)['cps']
+    print(f'Ngưỡng chi phí 8.000 đ + cố định 1.185 đ = {lan((8000 + 1185) / BASELINE)}; '
+          f'hiện tại trong phạm vi {d(cps_pv)} đ [simulated]')
+    print()
+
+
 if __name__ == '__main__':
     runs, reqs = doc_du_lieu()
     cp1_a4(runs, reqs)
@@ -178,3 +236,4 @@ if __name__ == '__main__':
     cp2_b4(runs, reqs)
     cp2_rui_ro(runs, reqs)
     cp3_nguong(runs, reqs)
+    cp4_pilot(runs, reqs)
