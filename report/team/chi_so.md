@@ -4,11 +4,11 @@
 
 | Loại | Chỉ số | Công thức | Tính thử trên 1.200 yêu cầu |
 | --- | --- | --- | --- |
-| Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | ... |
-| Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | ... |
-| An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | ... |
-| Dùng | Nhóm tự đề xuất: ... | ... | Không cần tính |
-| An toàn | Nhóm tự đề xuất: ... | ... | Không cần tính |
+| Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | Chỉ số trong đợt chạy thử: **82,83%** (994/1.200) |
+| Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | Chỉ số trong đợt chạy thử: **27,12%** (48/177) |
+| An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | Chỉ số trong đợt chạy thử: **4,25%** (51/1.200); riêng phạm vi `noi_dia + hang_nang`: **3,97%** (39/982) |
+| Dùng | Nhóm tự đề xuất: % yêu cầu của nhóm can thiệp có mở gợi ý trợ lý | Số yêu cầu phát sinh `agent_suggestion_shown` chia tổng số yêu cầu `arm = treatment` trong `refund_request_created` | Không cần tính |
+| An toàn | Nhóm tự đề xuất: % đơn hoàn sai tiền phát hiện qua kiểm tra mẫu hằng tuần | Số bản ghi `lech_tien == 1` trong `audit_sample_checked` chia tổng số đơn kiểm tra mẫu (100 đơn/tuần) | Không cần tính |
 
 Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý đã nâng chỉ số": đợt chạy thử không có nhóm đối chứng.
 
@@ -44,5 +44,6 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
-| ... | ... | ... | ... | ... |
-| ... | ... | ... | ... | ... |
+| Số ca làm lại tăng gấp đôi | `+51,8%`, chi phí mỗi việc thành công tăng từ `4.472 đ` lên `6.787 đ` (`simulated`) | Tỉ lệ `lam_lai` theo tuần vượt `7%` (đợt chạy thử trong phạm vi `noi_dia + hang_nang` là `4,89%`, 48/982) | Thu hẹp phạm vi về chỉ `noi_dia`, rà soát 20 trace làm lại gần nhất và giới hạn tối đa 2 lần chạy | PM trợ lý hoàn phí |
+| Phải xem lại 100% kéo dài | `11.743 đ = 0,98×` (9 phút làm lại) hoặc `12.415 đ = 1,03×` (15,3 phút làm lại) so với `12.000 đ` (`simulated`) — hết lợi thế chi phí | Tỉ lệ yêu cầu được xem lại vẫn > `50%` cuối bước `0.25` hoặc thời gian xem lại đo thật > `4,8–5,1` phút/lần | Giảm tỉ lệ xem lại theo bậc khi tỉ lệ `sua + bo < 15%` và rút gọn giao diện tóm tắt để hạ thời gian xem lại | Trưởng nhóm CSKH |
+| Khối lượng yêu cầu thấp hơn dự kiến | Chi phí cố định `40 triệu đ/tháng` tăng từ `1.185 đ/việc` (45.000 yc/tháng, tổng `4.599 đ = 0,38×`, `simulated`) lên `2.370 đ/việc` khi còn một nửa khối lượng (tổng `5.784 đ = 0,48×`, `simulated`) | Số việc thành công hằng tuần thấp hơn `50%` kế hoạch | Tạm dừng mở rộng quy mô pilot và xem lại cấu trúc hợp đồng chi phí cố định | PM trợ lý hoàn phí |
