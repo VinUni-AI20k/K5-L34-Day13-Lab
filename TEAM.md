@@ -2,32 +2,42 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: QMMQ
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-QMMQ-LaunchEconomics`
+- URL repo: [Repo nhóm trên GitHub](https://github.com/qwerty12321434/K5-L3B-DAY13-QMMQ-LaunchEconomics)
+- Nhánh nộp và commit chốt: Điền khi chốt bản nộp.
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | TranQuangMinh | 2A202603929 | Chưa bổ sung | Chưa bổ sung | Người viết code — mô hình chi phí và độ nhạy A–B |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 |    Trần Quang Minh    |  2A202603929    |  tqminhnh04@gmail.com     |        | Chi phí và độ nhạy (A–B) |
+|   2 |     Nguyễn Hải Quang   |  2A202603936    |    quangnh2004@gmail.com   | qwerty12321434 | Phân tích lỗi, gắn nhãn bộ 1 và kiểm số (C) |
+|   3 |    Trần Duy Thành    |   2A202603919   |       |        | Thiết kế pilot và gắn nhãn bộ 2 (D) |
+|   4 |    Lương Đức Anh    |   2A202603931   |       |        | Chỉ số, hồ sơ launch, duyệt chéo và nộp bài (E) |
 
-Bốn vai của lab:
+## Phân công
 
-- **Người viết code:** viết và chạy `src/lab13.py`.
-- **Người kiểm số:** tính tay một con số để đối chiếu, điền bảng.
-- **Người gắn nhãn 1:** đọc đề, theo dõi điều kiện "Xong khi"; gắn nhãn 20 ca độc lập ở CP3.
-- **Người gắn nhãn 2, kiêm giữ hồ sơ:** điền `report/team/ho_so_launch_v0.md` từ đầu buổi; gắn nhãn 20 ca độc lập ở CP3.
+| Người | Việc phụ trách | File phụ trách |
+| --- | --- | --- |
+| **1 · Chi phí và độ nhạy** | Viết mô hình chi phí, chạy 3 phép thử A1, tính theo 4 loại yêu cầu và cộng chi phí cố định. Chạy các kịch bản độ nhạy, so giới hạn chạy lại và tính trường hợp xem lại 100%. | [`src/lab13.py`](src/lab13.py) (A–B), [`bang_chi_phi.md`](report/team/bang_chi_phi.md) |
+| **2 · Lỗi và kiểm chứng** | Gắn nhãn độc lập 20 ca (bộ 1). Tính độ đồng thuận, viết quy tắc cho ca bất đồng và lập bảng khắc phục 5 ca. Tự tính và đối chiếu các kết quả A1, A2, B3 và B4. | [`bang_loi.md`](report/team/bang_loi.md) |
+| **3 · Thiết kế pilot** | Gắn nhãn độc lập 20 ca (bộ 2). Tính cỡ mẫu và hiệu ứng chia cụm, trả lời D1–D2, chọn cách chia nhóm, chốt thời lượng, viết ít nhất 3 luật dừng và kiểm tra YAML. | [`src/lab13.py`](src/lab13.py) (D1), [`pilot_plan.yaml`](report/team/pilot_plan.yaml) |
+| **4 · Chỉ số và quyết định** | Tính chỉ số, đặc tả ít nhất 6 event, tổng hợp rủi ro kinh tế và hồ sơ launch v0. Ghi phiếu chấm nhóm khác, tổng hợp báo cáo nhóm và kiểm tra bản nộp. | [`chi_so.md`](report/team/chi_so.md), [`ho_so_launch_v0.md`](report/team/ho_so_launch_v0.md), [`phieu_cham.md`](report/team/phieu_cham.md), [`group_report.md`](report/team/group_report.md), [`TEAM.md`](TEAM.md) |
 
-Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
+## Thứ tự và mốc bàn giao
+
+1. **Bắt đầu song song.** Người 1 chạy A1 rồi tính A2–A4. Người 2 chuẩn bị bảng lỗi và tự tính số để kiểm chứng từ CSV. Người 3 tính cỡ mẫu và dựng khung YAML. Người 4 tính chỉ số, thiết kế event và dựng khung hồ sơ 7 mục.
+2. **Bàn giao A–B theo từng phần.** Người 1 gửi A1–A2 cho người 2 đối chiếu ngay khi có. Khi xong B, người 1 gửi B3–B4 cho người 2 kiểm số, gửi kết quả độ nhạy cho người 3 chốt phạm vi và ngưỡng chi phí của pilot, và cho người 4 viết mục rủi ro kinh tế.
+3. **Đối chiếu nhãn ở CP3.** Người 2 và 3 chốt riêng đủ 20 nhãn mỗi người trước khi trao đổi. Người 2 tính tỷ lệ đồng thuận trên hai bộ nhãn đã chốt, cùng người 3 thống nhất quy tắc cho các ca bất đồng, rồi gửi tỷ lệ đồng thuận và bảng khắc phục 5 ca cho người 4.
+4. **Chốt hồ sơ trước 17:00 theo lịch lớp mẫu.** Người 3 gửi kế hoạch pilot đã kiểm tra YAML. Người 4 ghép kết quả A–D với phần E. Cả nhóm đối chiếu bằng chứng và chốt một đề xuất Go, Go có điều kiện hoặc No-go trước khi duyệt chéo.
+
+Sau giờ giải lao, người 3 tiếp nhận lượt viết code cho D1. Người 1 phụ trách phần A–B, còn người 2 tự tính chi phí để kiểm chứng. Người 1 và 3 trao đổi trước khi ghép các phần vào `src/lab13.py`.
 
 ## Cá nhân
 
-Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/` theo dạng:
+Mỗi thành viên tạo một báo cáo riêng trong `report/team/` theo dạng:
 
 ```text
 report/team/MSSV_HoTen.md
@@ -35,20 +45,28 @@ report/team/MSSV_HoTen.md
 
 Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
-Sao chép mục dưới đây cho từng thành viên.
+Mỗi người ghi phần việc và cập nhật đóng góp, bằng chứng sau khi hoàn thành. Bằng chứng có thể là file, commit hoặc kết quả kiểm chứng do mình thực hiện.
 
-## TranQuangMinh — 2A202603929
+### Trần Quang Minh — 2A202603929
 
-### Phần việc phụ trách
+#### Phần việc phụ trách
 
 - Nhiệm vụ A1–A4: kinh tế chạy lại, mô hình chi phí từ trace, tách theo loại yêu cầu và chi phí cố định.
 - Nhiệm vụ B1–B4: độ nhạy, xếp hạng yếu tố, giới hạn chạy lại và xem lại 100%.
 
-### Đóng góp cụ thể
+#### Đóng góp cụ thể
 
 - Sử dụng Codex hỗ trợ triển khai phần A–B trong `src/lab13.py` và sinh `report/team/bang_chi_phi.md` từ dữ liệu CSV; ghi nhãn `simulated` cho kết quả dùng phút giả lập.
 - Chạy lại `python lab13.py` trên máy cá nhân; output có ba phép thử A1 đạt và đầy đủ các bảng A–B.
 
-### Bằng chứng
+#### Bằng chứng
 
 - [Code A–B](src/lab13.py), [bảng chi phí](report/team/bang_chi_phi.md), [báo cáo cá nhân](report/team/2A202603929_TranQuangMinh.md).
+
+### Đóng góp của các thành viên còn lại
+
+| Thành viên | Phần việc phụ trách | Đóng góp cụ thể | Bằng chứng |
+| --- | --- | --- | --- |
+| Người 2 | Phân tích lỗi C, bộ nhãn 1 và kiểm chứng A–B | | |
+| Người 3 | Thiết kế pilot D và bộ nhãn 2 | | |
+| Người 4 | Chỉ số E, hồ sơ launch, duyệt chéo và tổng hợp bài nộp | | |
