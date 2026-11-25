@@ -51,7 +51,7 @@ Tỉ lệ lần chạy đạt `ok` theo lần thử (đo từ trace):
 
 - **quoc_te không đáng để trợ lý xử lý**: 22.515 đ, bằng 1,88 lần 12.000 đ, chỉ 27,3% thành công [simulated].
 - Chạy lại tới 3 lần không giúp loại này. Lần 2 chỉ đúng 11,4%, lần 3 chỉ 2,2%: lỗi lặp lại trên cùng yêu cầu, nên các lần chạy độc lập p = 0,8 trong A1 không còn đúng.
-- doi_tac sát ngưỡng (0,85×) và có điều khoản riêng, nên cũng để ngoài phạm vi pilot.
+- doi_tac sát ngưỡng (0,85×) [simulated] và có điều khoản riêng, nên cũng để ngoài phạm vi pilot.
 
 ## A4 · Chi phí cố định (phạm vi noi_dia + hang_nang)
 
@@ -86,7 +86,7 @@ Tự kiểm tra: mỗi kịch bản "giảm một nửa" giảm đúng bằng n�
 ## B2 · Đổi một cặp và xếp hạng
 
 - Giá token gấp đôi cùng lúc tỉ lệ xem lại gấp đôi: **6.543 đ (+46,3%)** [simulated], đúng bằng tổng hai tác động riêng (+5,6% và +40,7%) vì mô hình cộng tuyến tính.
-- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. **số ca làm lại** (±51,8%) · 2. **tỉ lệ xem lại** (±40,7%) · 3. **lương nhân viên** (+23,1% khi tăng 25%). Giá token xếp cuối (+5,6%).
+- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. **số ca làm lại** (+51,8% / −25,9%) · 2. **tỉ lệ xem lại** (+40,7% / −20,3%) · 3. **lương nhân viên** (+23,1% khi tăng 25%). Giá token xếp cuối (+5,6% / −2,8%) [simulated].
 
 ## B3 · Giới hạn chạy lại có thật sự rẻ hơn
 
@@ -99,7 +99,7 @@ Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu 
 | 3 lần | 4.373.585 đ | 222 | 7.037.585 đ | 4.472 đ |
 
 - Giới hạn **2 lần** rẻ nhất cho công ty: 6.901.220 đ, thấp hơn 3 lần 136.365 đ [simulated].
-- Không trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất (1 lần, 4.111 đ). Giới hạn 1 lần đẩy thêm 85 yêu cầu sang nhân viên so với 2 lần (319 so với 234).
+- Không trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất (1 lần, 4.111 đ) [simulated]. Giới hạn 1 lần đẩy thêm 85 yêu cầu sang nhân viên so với 2 lần (319 so với 234).
 
 ## B4 · Nếu phải xem lại tất cả
 
