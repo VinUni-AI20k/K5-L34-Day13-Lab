@@ -9,12 +9,12 @@
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub | Vai trò |
-| --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 | Dong Huu Nguyen Khoa | 2A202604000 |       | lit1numyt | Người gắn nhãn 2, kiêm giữ hồ sơ |
+| STT | Họ tên              | MSSV        | Email | GitHub    | Vai trò                                 |
+| --: | --------------------- | ----------- | ----- | --------- | ---------------------------------------- |
+|   1 | Nguyen Duc Khuong Lam | 2A202604020 |       |           | Người gắn nhãn 1                     |
+|   2 | Chu Nguyen Tung Duong | 2A202604016 |       |           | Người code                             |
+|   3 | Tu Huy Bao            | 2A202604021 |       |           | Người kiếm số                       |
+|   4 | Dong Huu Nguyen Khoa  | 2A202604000 |       | lit1numyt | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
@@ -41,15 +41,9 @@ Sao chép mục dưới đây cho từng thành viên.
 
 ### Phần việc phụ trách
 
--
-
 ### Đóng góp cụ thể
 
--
-
 ### Bằng chứng
-
--
 
 ## DongHuuNguyenKhoa-2A202604000
 
