@@ -11,3 +11,9 @@ venv/
 example.zip
 example/
 __MACOSX/
+
+# Claude Code & skills
+.claude/
+CLAUDE.md
+skills/
+skills-lock.json
