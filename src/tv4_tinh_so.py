@@ -6,7 +6,7 @@ Mọi số tính từ cột *_simulated đều ghi nhãn [simulated].
 """
 import pandas as pd
 
-from lab13 import mo_hinh, BASELINE, LUONG_PHUT   # dùng đúng mô hình của Thành viên 1
+from lab13 import mo_hinh, BASELINE, LUONG_PHUT, GIA_VAO, GIA_RA, GIA_TOOL   # dùng đúng mô hình của Thành viên 1
 
 CO_DINH_THANG = 40_000_000     # chi phí cố định của trợ lý, đ / tháng
 YC_THANG = 45_000              # yêu cầu hoàn phí mỗi tháng (1.500 / ngày)
@@ -150,9 +150,31 @@ def cp2_rui_ro(runs, reqs):
     print()
 
 
+# ---------- CP3 · Mức nền để đặt ngưỡng phát hiện trong bảng khắc phục ----------
+def cp3_nguong(runs, reqs):
+    print('=== CP3 · Mức nền từ đợt chạy thử để đặt ngưỡng phát hiện ===')
+    pv = reqs[reqs['loai'].isin(PHAM_VI)]
+    chuyen = (reqs['ket_qua'] == 'chuyen_nhan_vien').groupby(reqs['loai']).mean()
+    print('- Tỉ lệ chuyen_nhan_vien theo loại: '
+          + ' · '.join(f'{k} {so(v * 100)}%' for k, v in chuyen.items())
+          + f" · phạm vi {so((pv['ket_qua'] == 'chuyen_nhan_vien').mean() * 100)}% (đo từ dữ liệu)")
+    print(f"- Mở lại 7 ngày trong phạm vi: {so(pv['mo_lai_trong_7_ngay'].mean() * 100, 2)}% "
+          f"({int(pv['mo_lai_trong_7_ngay'].sum())}/{len(pv)})")
+
+    r = runs.merge(reqs[['request_id', 'depot']], on='request_id')
+    r['tien'] = r['tokens_in'] / 1000 * GIA_VAO + r['tokens_out'] / 1000 * GIA_RA + r['tool_calls'] * GIA_TOOL
+    theo_depot = r.groupby('depot')['tien'].sum() / reqs.groupby('depot').size()
+    trung_vi = theo_depot.median()
+    print('- Token + tool mỗi yêu cầu theo depot: '
+          + ' · '.join(f'{k} {d(v)} đ' for k, v in theo_depot.items())
+          + f' → trung vị {d(trung_vi)} đ, cao nhất {so(theo_depot.max() / trung_vi, 2)}× trung vị (đo từ trace)')
+    print()
+
+
 if __name__ == '__main__':
     runs, reqs = doc_du_lieu()
     cp1_a4(runs, reqs)
     cp2_b2(runs, reqs)
     cp2_b4(runs, reqs)
     cp2_rui_ro(runs, reqs)
+    cp3_nguong(runs, reqs)
