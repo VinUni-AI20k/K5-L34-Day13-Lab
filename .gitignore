@@ -11,3 +11,6 @@ venv/
 example.zip
 example/
 __MACOSX/
+
+# Phân công nội bộ của nhóm
+PHAN_CONG_CONG_VIEC.md
