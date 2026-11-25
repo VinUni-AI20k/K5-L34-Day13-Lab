@@ -155,15 +155,95 @@ def bang_b4(runs, reqs):
     print(f'(yc có ≥1 lần ok: {co_ok}; ca lam_lai: {n_lam_lai}; việc thành công: {thanh_cong})')
 
 
+PHAM_VI_PILOT = ['noi_dia', 'hang_nang']
+CO_DINH_THANG = 40_000_000   # chi phí cố định của trợ lý, đ/tháng
+YC_THANG = 45_000            # yêu cầu hoàn phí mỗi tháng ở quy mô đầy đủ
+
+
+def bang_a4(runs, reqs):
+    """Cộng chi phí cố định 40 triệu đ/tháng vào cps của phạm vi noi_dia + hang_nang."""
+    kq = mo_hinh(runs, reqs[reqs['loai'].isin(PHAM_VI_PILOT)])
+    print(f'\n== A4 · Chi phí cố định, phạm vi noi_dia + hang_nang [simulated] ==')
+    print(f'cps phạm vi = {kq["tong"]:,.0f} / {kq["thanh_cong"]} = {kq["cps"]:,.0f} đ')
+    for nhan, he_so in (('45.000 yc/tháng', 1), ('một nửa khối lượng', 0.5)):
+        viec_thang = YC_THANG * he_so * kq['thanh_cong'] / len(reqs)   # tỉ lệ thành công trong phạm vi / toàn mẫu
+        co_dinh = CO_DINH_THANG / viec_thang
+        tong = kq['cps'] + co_dinh
+        print(f'{nhan:20s} việc TC/tháng {viec_thang:8,.0f}  cố định/việc {co_dinh:6,.0f} đ  '
+              f'cps + cố định {tong:6,.0f} đ = {tong / BASELINE:.2f}×')
+
+
+# ---------- Nhiệm vụ D1 · Cỡ mẫu ----------
+P_GOC, MUC_TIEU, ICC = 0.70, 0.05, 0.02
+
+
+def co_mau(p1, p2, alpha=0.05, power=0.8):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ (công thức 4 trong docs/du_lieu_va_cong_thuc.md)."""
+    from statistics import NormalDist
+    za, zb = NormalDist().inv_cdf(1 - alpha / 2), NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                      + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+
+
+def he_so_thiet_ke(m, icc=ICC):
+    return 1 + (m - 1) * icc
+
+
+def bang_d1():
+    from statsmodels.stats.proportion import proportion_effectsize
+    from statsmodels.stats.power import NormalIndPower
+    print('\n== D1 · Cỡ mẫu (baseline 0,70; +5 điểm; alpha 0,05; power 0,8; ICC 0,02) ==')
+    n5 = co_mau(P_GOC, P_GOC + MUC_TIEU)
+    print(f'a) chia theo yêu cầu: {n5:,} yêu cầu mỗi nhóm')
+    de75 = he_so_thiet_ke(75)
+    n_nv = math.ceil(n5 * de75)   # cỡ mẫu làm tròn lên
+    print(f'b) theo nhân viên, m = 75: DE = {de75:.2f}; n = {n_nv:,.0f} mỗi nhóm → '
+          f'{math.ceil(n_nv / 75)} người mỗi nhóm, tổng {2 * math.ceil(n_nv / 75)} > 40: không đủ người')
+    print(f'c) 20 nhân viên mỗi nhóm: n hiệu dụng tối đa = 20 / {ICC} = {20 / ICC:,.0f} < {n5:,}: không đạt')
+    print(f'd) 6 depot mỗi nhóm: n hiệu dụng tối đa = 6 / {ICC} = {6 / ICC:,.0f}')
+    n6 = co_mau(P_GOC, P_GOC + 0.06)
+    c = 20
+    m = n6 * (1 - ICC) / (c - n6 * ICC)        # giải c·m / (1 + (m−1)·ICC) ≥ n6
+    m = math.ceil(m)
+    print(f'e) mức chênh 6 điểm: n = {n6} mỗi nhóm; 20 người mỗi nhóm cần m ≥ {m} yêu cầu/người '
+          f'(DE {he_so_thiet_ke(m):.2f}; n hiệu dụng {c * m / he_so_thiet_ke(m):,.0f})')
+    es = proportion_effectsize(P_GOC + MUC_TIEU, P_GOC)
+    pw = NormalIndPower().power(effect_size=es, nobs1=n6, alpha=0.05, ratio=1)
+    print(f'Đánh đổi: thiết kế cho 6 điểm (n = {n6}) mà tác động thật chỉ 5 điểm thì power ≈ {pw:.2f}')
+
+
+def ti_le_mo_lai(reqs):
+    toan_bo = reqs['mo_lai_trong_7_ngay'].mean()
+    pv = reqs[reqs['loai'].isin(PHAM_VI_PILOT)]
+    print(f'\n== Tỉ lệ mo_lai_trong_7_ngay hiện tại ==')
+    print(f'toàn mẫu: {toan_bo:.2%} ({reqs["mo_lai_trong_7_ngay"].sum()}/{len(reqs)}) · '
+          f'phạm vi noi_dia + hang_nang: {pv["mo_lai_trong_7_ngay"].mean():.2%} '
+          f'({pv["mo_lai_trong_7_ngay"].sum()}/{len(pv)})')
+
+
+# ---------- Nhiệm vụ E1 · Tính thử ba chỉ số ----------
+def bang_e1(reqs):
+    chinh = (reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    bo_qua = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo'])
+    an_toan = reqs['mo_lai_trong_7_ngay'] == 1
+    print('\n== E1 · Ba chỉ số trong đợt chạy thử (chưa có đối chứng) ==')
+    print(f'Chính   · đóng trong 24h và không mở lại 7 ngày: {chinh.mean():.2%} ({chinh.sum()}/{len(reqs)})')
+    print(f'Dùng    · bỏ qua gợi ý (sua + bo) / được xem lại: {bo_qua.mean():.2%} ({bo_qua.sum()}/{len(xem)})')
+    print(f'An toàn · mở lại trong 7 ngày: {an_toan.mean():.2%} ({an_toan.sum()}/{len(reqs)})')
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
     kiem_tra_dap_an_biet_truoc()
     bang_a2(runs, reqs)
     bang_a3(runs, reqs)
+    bang_a4(runs, reqs)
     bang_b1(runs, reqs)
     bang_b3(runs, reqs)
     bang_b4(runs, reqs)
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu (P2 viết sau giải lao).
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    bang_d1()
+    ti_le_mo_lai(reqs)
+    bang_e1(reqs)
