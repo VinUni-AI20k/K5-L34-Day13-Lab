@@ -24,7 +24,7 @@ Phụ trách Nhiệm vụ C (CP3). Công việc gồm phân loại 20 ca lỗi l
 
 ## 5. Công cụ AI đã dùng
 
-Codex hỗ trợ đọc đề, gợi ý nhãn lần đầu, đối chiếu bảng và soạn báo cáo. Phần kiểm tra gồm so hai cột nhãn theo từng ca để đếm 17 dòng trùng, đọc lại mô tả và hướng dẫn cho các ca 8, 13, 15, rồi kiểm tra bảng khắc phục đủ năm loại lỗi. [Hướng dẫn Nhiệm vụ C](../../docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md#nhiệm-vụ-c--bảng-lỗi-và-cách-khắc-phục-30-phút)
+Codex hỗ trợ đọc đề, đối chiếu bảng và soạn báo cáo. Phần kiểm tra gồm so sánh hai cột nhãn theo từng ca để đếm 17 dòng trùng, đọc lại mô tả và hướng dẫn cho các ca 8, 13, 15, rồi kiểm tra bảng khắc phục đủ năm loại lỗi. 
 
 ## 6. Tự đánh giá
 
