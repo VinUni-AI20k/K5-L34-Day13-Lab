@@ -10,7 +10,7 @@
 | Dùng | Tỉ lệ mở trợ lý trên nhóm can thiệp | Số yêu cầu nhóm can thiệp có event `agent_suggestion_shown` chia tổng số yêu cầu nhóm can thiệp | Không cần tính |
 | An toàn | Tỉ lệ đơn hoàn sai tiền qua kiểm tra mẫu | Số đơn lệch tiền trong `audit_sample_checked` chia tổng số đơn được kiểm tra mẫu hằng tuần | Không cần tính |
 
-Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý đã nâng chỉ số": đợt chạy thử không có nhóm đối chứng.
+Chỉ số chính trong đợt chạy thử là **82,83%** (994/1.200), tỉ lệ bỏ qua gợi ý là **27,12%** (48/177) và tỉ lệ lỗi lọt đến khách là **4,25%** (51/1.200); không viết "trợ lý đã nâng chỉ số" vì đợt chạy thử không có nhóm đối chứng.
 
 ## Danh sách event
 
@@ -18,7 +18,7 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 | Event | Ai tạo | Thuộc tính chính | Thời điểm |
 | --- | --- | --- | --- |
-| `refund_request_created` | App khách | `request_id`, `loai`, `so_tien_vnd`, `arm`, `trace_id` | Khi khách gửi yêu cầu hoàn phí |
+| `refund_request_created` | App khách | `request_id`, `loai`, `so_tien_vnd`, `arm`, `created_at`, `trace_id` | Khi khách gửi yêu cầu hoàn phí |
 | `agent_run_completed` | Agent | `attempt`, `tokens_in`, `tokens_out`, `tool_calls`, `status`, `trace_id` | Sau mỗi lần chạy, kể cả lần lỗi |
 | `agent_suggestion_shown` | Giao diện nhân viên | `staff_id`, `so_tien_de_xuat`, `trace_id` | Khi gợi ý của trợ lý hiện ra cho nhân viên |
 | `staff_review_decision` | Nhân viên | `quyet_dinh` (`giu`/`sua`/`bo`), `phut_xem_lai`, `trace_id` | Khi nhân viên bấm gửi, sửa hoặc bỏ |
