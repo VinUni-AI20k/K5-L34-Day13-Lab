@@ -44,6 +44,6 @@ Số lấy từ `bang_chi_phi.md`, mọi số chi phí là [simulated].
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
 | Số ca làm lại tăng gấp đôi | +51,8%, từ 4.472 đ lên 6.787 đ mỗi việc thành công (B1) | Tỉ lệ `lam_lai` theo tuần > 7% (đợt chạy thử: 4,9% trong phạm vi noi_dia + hang_nang) | Thu hẹp về noi_dia, rà 20 trace làm lại | PM trợ lý hoàn phí |
-| Phải xem lại 100% kéo dài | 11.743 đ = 0,98× của 12.000 đ (12.414 đ = 1,03× nếu làm lại 15,3 phút như dữ liệu) (B4) | % yêu cầu được xem lại còn > 50% sau bước 0.25 | Giảm xem lại theo bậc khi tỉ lệ sửa + bỏ < 15% | Trưởng nhóm CSKH |
+| Phải xem lại 100% kéo dài | 11.743 đ = 0,98× của 12.000 đ (12.415 đ = 1,03× nếu làm lại 15,3 phút như dữ liệu) (B4) | % yêu cầu được xem lại còn > 50% sau bước 0.25 | Giảm xem lại theo bậc khi tỉ lệ sửa + bỏ < 15% | Trưởng nhóm CSKH |
 | Khối lượng thấp hơn dự kiến | Cố định 40 triệu/tháng: +1.185 đ/việc ở 45.000 yêu cầu/tháng, +2.370 đ/việc nếu còn một nửa; tổng 5.784 đ = 0,48× (A4) | Số việc thành công theo tuần < 50% kế hoạch | Không mở rộng pilot, xem lại hợp đồng chi phí cố định | PM trợ lý hoàn phí |
 | Nhân viên bỏ qua gợi ý nhiều hơn dự kiến | Tỉ lệ xem lại gấp đôi: +40,7% (6.292 đ) (B1) | Tỉ lệ bỏ qua gợi ý (sua + bo) > 40% (hiện 27,12%) | Rà gợi ý bị bỏ theo loại yêu cầu, sửa prompt hoặc thu hẹp phạm vi | Trưởng nhóm CSKH |

@@ -89,7 +89,7 @@ Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu 
 
 Phạm vi `noi_dia` + `hang_nang` (982 yêu cầu), 948 yêu cầu có ít nhất một lần `ok` × 5 phút xem lại, 48 ca làm lại.
 
-- Với 9 phút làm lại (đề bài): tổng 10.568.513 đ ÷ 900 = **11.743 đ = 0,98×** của 12.000 đ [simulated]. Với 15,3 phút làm lại (trung bình thật của 74 ca `lam_lai` trong dữ liệu): **12.414 đ = 1,03×** [simulated] (dùng trung bình 15,3 thay cho 9).
+- Với 9 phút làm lại (đề bài): tổng 10.568.513 đ ÷ 900 = **11.743 đ = 0,98×** của 12.000 đ [simulated]. Với 15,3 phút làm lại (trung bình thật của 74 ca `lam_lai` trong dữ liệu): **12.415 đ = 1,03×** [simulated] (dùng trung bình 15,3 thay cho 9).
 - Nói gì về thứ pilot cần học: xem lại 100% gần như xoá hết tiết kiệm (tiền xem lại ≈ 90% chi phí); hoà vốn khi mỗi lần xem lại ≤ 5,1 phút (làm lại 9 phút) hoặc ≤ 4,8 phút (làm lại 15,3 phút). Pilot phải học được có giảm tỉ lệ xem lại an toàn được không và xem lại ngắn hơn 5 phút được không.
 
 ## Kiểm số tay (người kiểm số)
