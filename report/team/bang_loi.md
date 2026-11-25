@@ -6,7 +6,7 @@
 
 **Nhãn người 1:** P3 (họ tên: Vũ Đình Thắng) · **Nhãn người 2:** P4 (họ tên: Nguyễn Hữu Thịnh)
 
-Cột **Nhãn thống nhất** ghi nhãn đề xuất để P3 và P4 xác nhận.
+P3 và P4 gắn nhãn độc lập (8 phút, không trao đổi) rồi mới so. Hai bộ nhãn trùng cả 20 ca nên **Nhãn thống nhất** lấy theo nhãn chung.
 
 |  Ca | Nhãn người 1      | Nhãn người 2      | Trùng? | Nhãn thống nhất   |
 | --: | ----------------- | ----------------- | ------ | ----------------- |
@@ -33,11 +33,11 @@ Cột **Nhãn thống nhất** ghi nhãn đề xuất để P3 và P4 xác nhậ
 
 **Độ khớp của P3 với nhãn tham khảo:** 20/20 (100%).
 
-**Đồng thuận giữa hai người gắn nhãn độc lập:** Chờ bộ nhãn gốc của P4 để tính.
+**Đồng thuận giữa hai người gắn nhãn độc lập:** 20 / 20 = **100%** (đạt ngưỡng 80%).
 
 ## Quy tắc phân biệt cho các ca không trùng
 
-Khi đối chiếu hai bộ nhãn độc lập, ghi một câu quy tắc cho mỗi ca lệch. Nếu đồng thuận dưới 80%, ghi lại định nghĩa đã làm rõ.
+Không có ca lệch: hai bộ nhãn trùng 20/20, nên không cần quy tắc phân biệt hay viết lại định nghĩa.
 
 ## Bảng khắc phục cho 5 ca, mỗi loại một ca
 

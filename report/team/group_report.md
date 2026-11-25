@@ -16,7 +16,7 @@ Nhóm đánh giá chi phí, mức độ sử dụng và an toàn của trợ lý
 
 - **A · Chi phí:** Cộng chi phí token và tool với chi phí lao động quy đổi từ phút xem lại và làm lại. Chia tổng chi phí cho số yêu cầu thành công, rồi tính riêng theo loại yêu cầu. [Bảng chi phí](bang_chi_phi.md#a2--mô-hình-chi-phí-từ-trace)
 - **B · Độ nhạy:** Thay đổi từng yếu tố chi phí, so ba giới hạn chạy và kiểm tra kịch bản xem lại 100%. [Bảng độ nhạy](bang_chi_phi.md#b1--đổi-từng-yếu-tố)
-- **C · Lỗi:** Đối chiếu nhãn P3 với bảng tham khảo của lab và đề xuất cách phát hiện, khắc phục cho một ca ở mỗi loại lỗi. [Bảng lỗi](bang_loi.md)
+- **C · Lỗi:** P3 và P4 gắn nhãn độc lập 20 ca, đồng thuận **20/20 (100%)**, rồi đề xuất cách phát hiện, khắc phục cho một ca ở mỗi loại lỗi. [Bảng lỗi](bang_loi.md)
 - **D · Pilot:** Bản kế hoạch chia ngẫu nhiên theo nhân viên với đối chứng đồng thời. Mỗi nhóm có **20 nhân viên**, cần ít nhất **5.980 yêu cầu thực tế**, tương ứng **859 quan sát hiệu dụng** cho mức chênh **6 điểm phần trăm**. [Kế hoạch pilot](pilot_plan.yaml) · [PR #3](https://github.com/ddkhoa2605/K5-L3B-DAY13-MKTT-LaunchEconomics/pull/3/files)
 - **E · Đo lường:** Tính thử ba chỉ số, đề xuất hai chỉ số bổ sung, lập danh sách event và hành động cho hai rủi ro kinh tế. [Đặc tả chỉ số và rủi ro](chi_so.md)
 
@@ -36,7 +36,7 @@ P1 triển khai mô hình chi phí và độ nhạy. P2 đối chiếu số và 
 
 ## 7. Hạn chế và hướng cải thiện
 
-Dữ liệu chạy thử là giả lập và thiếu đối chứng đồng thời, nên các tỷ lệ quan sát chỉ mô tả mẫu. Trong pilot, nhóm cần đo phút xem lại và làm lại thực tế, theo dõi mở lại đủ bảy ngày và ghi nhận hoàn tiền trùng. Thiết kế có power khoảng **64%** nếu tác động thực là **5 điểm phần trăm**. Mẫu phân loại hiện cho biết P3 khớp bảng tham khảo **20/20**. Đồng thuận độc lập còn chờ bộ nhãn gốc của P4. [Chỉ số và event](chi_so.md) · [Kế hoạch pilot](pilot_plan.yaml) · [Bảng lỗi](bang_loi.md)
+Dữ liệu chạy thử là giả lập và thiếu đối chứng đồng thời, nên các tỷ lệ quan sát chỉ mô tả mẫu. Trong pilot, nhóm cần đo phút xem lại và làm lại thực tế, theo dõi mở lại đủ bảy ngày và ghi nhận hoàn tiền trùng. Thiết kế có power khoảng **64%** nếu tác động thực là **5 điểm phần trăm**. Bảng lỗi mới dựa trên 20 ca; khi pilot có ca thật cần gắn nhãn lại và kiểm tra định nghĩa năm loại lỗi. [Chỉ số và event](chi_so.md) · [Kế hoạch pilot](pilot_plan.yaml) · [Bảng lỗi](bang_loi.md)
 
 ## 8. Tài liệu tham khảo
 
