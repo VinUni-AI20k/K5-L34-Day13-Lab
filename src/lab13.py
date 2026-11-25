@@ -141,7 +141,17 @@ if __name__ == '__main__':
         print(f"{kl:>7,d} yc/tháng: {a4['tc_thang']:>8,.0f} việc TC, cố định {a4['co_dinh_moi_viec']:>6,.0f} đ/việc, "
               f"{a4['cps_pham_vi']:,.0f} + cố định = {a4['cps_cong_co_dinh']:,.0f} đ = {a4['so_voi_baseline']:.2f}×")
 
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
+    # Nhiệm vụ B (Người 2): kiểm số độc lập A1–A2, độ nhạy B1–B4, số liệu E2.
+    from cp2_do_nhay import kiem_tra_a1_a2_doc_lap, chay_do_nhay
+    print()
+    kiem_tra_a1_a2_doc_lap(runs, reqs, mo_hinh=mo_hinh)
+    chay_do_nhay(mo_hinh, runs, reqs)
+
+    # Nhiệm vụ E1 (Người 4): ba chỉ số chính, dùng, an toàn.
+    from cp5_chi_so import chay_chi_so
+    print()
+    chay_chi_so(reqs)
+
+    # TODO CP4 · Nhiệm vụ D: cỡ mẫu (chờ nhánh p3-CD, module cp4_co_mau).
     #   from statsmodels.stats.proportion import proportion_effectsize
     #   from statsmodels.stats.power import NormalIndPower
