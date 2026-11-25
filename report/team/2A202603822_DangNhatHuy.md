@@ -30,7 +30,8 @@
 Commit, file, bảng hoặc con số do bạn làm.
 
 - [ho_so_launch_v0.md](ho_so_launch_v0.md) (7 mục và đề xuất), [chi_so.md](chi_so.md) (E1 hai dòng tự đề xuất, E2, 2 event bổ sung), [bang_loi.md](bang_loi.md) (cột nhãn người 2, quy tắc phân biệt, bảng khắc phục), [group_report.md](group_report.md), [PhanCong.md](../../PhanCong.md), phần power trong [src/lab13.py](../../src/lab13.py).
-- ... (bổ sung link commit)
+- Commit `965b383` trên nhánh `huydn` ("CP3, CP5: hồ sơ launch v0, chỉ số, bảng lỗi, báo cáo nhóm và cá nhân"): toàn bộ phần việc ở trên.
+- Commit `07864f7` / `0c703c9`: bảng phân công [PhanCong.md](../../PhanCong.md).
 
 ## 5. Công cụ AI đã dùng
 
