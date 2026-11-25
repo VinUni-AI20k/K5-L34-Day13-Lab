@@ -18,10 +18,10 @@
 
 - **Đã triển khai (đến hiện tại):**
   - Hoàn thành **Nhiệm vụ C (`report/team/bang_loi.md`)**: giữ nguyên 2 bộ nhãn độc lập (Bảo vs Hùng từ `hungvt`), tính đồng thuận **12/20 = 60%**, viết lại định nghĩa 5 loại (vì < 80%), viết 8 câu quy tắc phân biệt cho các ca không trùng và chốt bảng khắc phục 5 ca (khớp phạm vi loại `quoc_te` từ A3).
-  - Sau khi pull kết quả A–B của Minh và Hải (`bang_chi_phi.md`), đã điền `scope` và luật dừng chi phí vào `report/team/pilot_plan.yaml` (cùng 5 câu D2, `owner`, `assignment`, `rollout`, `identifiability`, `rollback`, `decision_date`).
-  - Hoàn thiện bảng **E2 · Rủi ro kinh tế** (3 dòng lấy số từ `bang_chi_phi.md`), 2 chỉ số tự đề xuất, 10 event có `trace_id` và phần kiểm tra chéo event–chỉ số trong `report/team/chi_so.md`.
-- **Đang chờ output đồng đội để hoàn tất:**
-  - Chờ Hải hoàn thiện code D1 + `mo_lai_trong_7_ngay` (Lượt 6) và 3 chỉ số E1 (Lượt 8) để điền các số liệu còn lại vào `pilot_plan.yaml` và `chi_so.md`.
+  - Hoàn thành **Nhiệm vụ D (`report/team/pilot_plan.yaml`)**: sau khi pull và chạy `src/lab13.py` của Hải, đã điền đủ D1 (`1.251`, `3.103 / 42 người`, `1.000`, `300`, `m >= 299 / DE = 6,96`, power `0,64` ở mức 5 điểm), D2, `scope`, `rollout`, 3 `stop_rules` đủ 4 vế (dựa trên `mo_lai_trong_7_ngay` 4,25% toàn mẫu / 3,97% phạm vi pilot), `rollback`, `decision_date` và `simulated_inputs`.
+  - Hoàn thành **Nhiệm vụ E1–E2 (`report/team/chi_so.md`)**: điền đủ 3 chỉ số tính thử từ `src/lab13.py` (`82,83%`, `27,12%`, `4,25%`), 2 chỉ số tự đề xuất, 10 event có `trace_id`, kiểm tra chéo event–chỉ số và bảng **E2 · Rủi ro kinh tế** (3 dòng từ `bang_chi_phi.md`).
+- **Bước tiếp theo:**
+  - Tham gia bảo vệ & chấm chéo **Gate 2a** cùng nhóm và cập nhật bằng chứng duyệt chéo vào báo cáo cá nhân & `TEAM.md`.
 
 ## 4. Bằng chứng
 
