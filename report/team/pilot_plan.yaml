@@ -20,9 +20,16 @@
 # 859 là cỡ mẫu HIỆU DỤNG; số yêu cầu thô tối thiểu là 20 * 299 = 5.980 mỗi nhóm.
 # Chỉ tính mẫu chính ở bước 0.50, đủ 20 cụm mỗi nhóm; không cộng mẫu các bước 0.10/0.25.
 # Nếu cỡ cụm không bằng nhau, kiểm tra lại DE theo cỡ cụm thực tế; không chỉ dựa vào tổng 5.980.
+# Thu mẫu: 1.500 / 40 = 37,5 yêu cầu/người/ngày -> cần 8 ngày nếu nhận mọi loại.
+# Phạm vi pilot chiếm 982/1.200 -> khoảng 30,69 yêu cầu/người/ngày -> cần khoảng 10 ngày.
+# Đây là ngoại suy chia đều việc; phải kiểm tra số thực tế từng người, không suy ra đủ mẫu chỉ từ số ngày.
+# Theo dõi mở lại 7 ngày là cửa sổ riêng của từng yêu cầu, không thay cho thời gian thu mẫu.
 #
 # Tỉ lệ mở lại hiện tại: toàn mẫu 4,25% (51/1.200), phạm vi 3,97% (39/982).
-# Ngưỡng đề xuất: cao hơn đối chứng >= 2 điểm hoặc vượt 6% trong 3 lần đánh giá hằng ngày liên tiếp, chỉ dùng cohort đủ 7 ngày; 1 ca hoàn trùng dừng ngay, không chờ 3 ngày.
+# D3 theo slide bổ sung: hoàn trùng/báo hoàn sai và trần mở lại 6% áp dụng mọi bước;
+# luật chênh đối chứng >= 2 điểm chỉ áp dụng từ bước 10 người, trên cohort đủ 7 ngày.
+# Ngưỡng 8.000 đ chỉ dùng CPS biến đổi (token + tool + xem lại + làm lại) / số việc thành công;
+# 40 triệu đ/tháng theo dõi riêng ở E2, không cộng vào chỉ số kích hoạt luật dừng này.
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
@@ -36,6 +43,7 @@ pilot:
   rollout: [0.10, 0.25, 0.50]     # 4 -> 10 -> 20 người dùng trợ lý / tổng 40; đối chứng luôn 20 người
   start_date: "2026-12-15"        # ngày đề xuất, phụ thuộc điều kiện tiền pilot
   stage_days: [7, 7, 14]          # kéo dài bước cuối để đạt mẫu; chưa đủ mẫu thì chưa ra quyết định
+  rollout_gate: "Chỉ tăng bước khi Giám đốc vận hành xác nhận không có luật dừng đang vi phạm và đủ dữ liệu an toàn của bước hiện tại; 7/7/14 ngày là lịch tối thiểu đề xuất. Nếu phải giữ bước, dịch lịch đo chính, kết thúc thu mẫu và quyết định theo thực tế."
   measurement:
     start_date: "2026-12-29"
     enrollment_end_date: "2027-01-11"
@@ -57,12 +65,22 @@ pilot:
     concurrent_control: "20 nhân viên đối chứng chạy song song cùng thời gian, cùng depot"
     spillover_risk: "Nhân viên cùng depot có thể trao đổi; giảm bằng phân quyền theo tài khoản và log staff_id"
     predeclared: "Chốt chỉ số, ngưỡng, seed, lịch và điều kiện đủ mẫu trước ngày 2026-12-15; quyết định dự kiến 2027-01-20 sau khi dữ liệu đủ theo dõi"
+  monitoring:
+    population: "Chỉ noi_dia + hang_nang; tách arm và bước rollout, cùng cửa sổ thời gian cho can thiệp và đối chứng; đếm request_id phân biệt. Không gộp mẫu 4/10 người vào phép đo tác động chính ở bước 20 người."
+    safety_absolute: "Áp dụng cả bước 4, 10 và 20 người. Hoàn trùng hoặc thông báo đã hoàn khi sổ cái không thành công được xử lý ngay; trần mở lại 6% được đánh giá hằng ngày trên cohort đã đủ 7 ngày theo dõi."
+    safety_relative_min_treatment_staff: 10
+    safety_relative: "Chỉ áp dụng luật chênh >= 2 điểm phần trăm từ bước 10 người, đối chứng luôn 20 người; đánh giá hằng ngày trên cohort cùng thời gian đã đủ 7 ngày. Đây là giám sát an toàn, không phải kiểm định hiệu quả sớm."
+    variable_cps: "Tổng token, tool của mọi run và phút xem lại/làm lại đo thật nhân 2.000 đ/phút, chia số yêu cầu thành công trong cùng cohort; chưa cộng cố định. Chốt CPS tuần khi kết quả đã đủ theo dõi; không có việc thành công thì ghi vô hạn, chưa đủ kết quả thì giữ bước và không coi chi phí bằng 0."
+    variable_cps_limit_vnd: 8000
+    fixed_cost: "Theo dõi riêng 40 triệu đ/tháng và CPS cộng cố định theo khối lượng thực tế trong E2; vượt 8.000 đ chỉ do phân bổ cố định không kích hoạt luật CPS biến đổi. PM đánh giá ngân sách và hợp đồng trước khi mở rộng."
+    adoption: "Số yêu cầu có quyết định sửa hoặc bỏ / số yêu cầu có quyết định xem lại, trong tuần; không có lượt xem lại thì ghi chưa có dữ liệu và chưa tăng bước."
   stop_rules:
-    - "NẾU phát hiện >= 1 ca hoàn trùng TRONG bất kỳ thời điểm nào của pilot THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút và chuyển nhân viên xử lý KHÔNG THÌ không được tiếp tục tự động hoàn tiền"
-    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn đối chứng >= 2 điểm phần trăm hoặc vượt 6% TRONG 3 lần đánh giá hằng ngày liên tiếp trên cohort đã đủ 7 ngày THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
-    - "NẾU chi phí mỗi việc thành công > 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở rộng sang hang_nang"
+    - "NẾU phát hiện >= 1 ca hoàn trùng hoặc >= 1 thông báo đã hoàn khi giao dịch sổ cái không thành công TRONG bất kỳ bước rollout nào THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút, đối soát và chuyển nhân viên xử lý KHÔNG THÌ không được tiếp tục tự động hoàn tiền"
+    - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý vượt 6% TRONG một lần đánh giá hằng ngày trên cohort đã đủ 7 ngày ở bất kỳ bước rollout nào THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
+    - "NẾU đang ở bước ít nhất 10 người dùng trợ lý và tỉ lệ mở lại cao hơn đối chứng >= 2 điểm phần trăm TRONG 3 lần đánh giá hằng ngày liên tiếp trên cohort cùng thời gian đã đủ 7 ngày THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp"
+    - "NẾU CPS biến đổi (token + tool + xem lại + làm lại, chưa gồm chi phí cố định) > 8.000 đ TRONG 2 tuần liên tiếp đã đủ theo dõi THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở rộng sang hang_nang"
     - "NẾU tỉ lệ bỏ qua gợi ý > 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày KHÔNG THÌ không được chuyển bước rollout"
-  interim_looks: "Theo dõi an toàn hằng ngày, chi phí và mức sử dụng hằng tuần để áp dụng luật dừng; không kiểm định sớm chỉ số chính. Tỉ lệ mở lại chỉ dùng cohort đủ 7 ngày; chưa đủ dữ liệu an toàn thì giữ bước rollout hiện tại."
+  interim_looks: "Theo dõi sự cố hoàn tiền ngay khi xảy ra, tỉ lệ mở lại hằng ngày và chi phí/mức sử dụng hằng tuần. Chênh +2 điểm chỉ xét từ 10 người; chỉ số chính chỉ phân tích sau bước 20 người đủ mẫu và theo dõi, không kiểm định sớm. Chưa đủ dữ liệu an toàn thì giữ bước hiện tại và lùi lịch tương ứng."
   rollback: "Giám đốc vận hành bấm cờ tắt, hiệu lực trong 30 phút; khách được phục vụ bằng luồng nhân viên tự làm"
   decision_date: "2027-01-20"
   simulated_inputs:

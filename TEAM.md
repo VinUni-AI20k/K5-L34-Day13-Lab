@@ -75,6 +75,7 @@ Mỗi người copy mẫu `report/team/MSSV_HoTen.md` thành file cá nhân đú
 
 - Đã hoàn thiện các hàm A1, mô hình chi phí A2–A4 và code B1–B4; chạy kiểm tra với dữ liệu lab và bộ nhỏ tính tay, bàn giao cho Hải.
 - Đã rà soát bản tích hợp A–E, bổ sung báo cáo cá nhân, tổng hợp báo cáo nhóm và đóng góp, hoàn thiện lịch/cỡ mẫu/luật dừng pilot, đối chiếu hồ sơ với `SUBMISSION.md`. Chưa trình bày Gate 2a vì nhóm chưa duyệt chéo.
+- Đã hoàn thiện CP4–CP5 theo slide bổ sung: luật dừng theo bước 4/10/20 người, CPS biến đổi tách cố định; bổ sung ngoại suy thời gian thu mẫu, bảng kinh tế rollout, 13 event, 4 rủi ro và đồng bộ hồ sơ launch. Điểm và quyết định hội đồng vẫn chưa có.
 
 ### Bằng chứng
 

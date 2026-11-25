@@ -26,6 +26,7 @@
 - B3 xác định giới hạn **2 lần chạy** có tổng chi phí thấp nhất **6.901.220,23 đ**, còn **1 lần chạy** có CPS thấp nhất **4.110,99 đ** nhưng chuyển thêm **85** yêu cầu sang nhân viên (simulated cho các chi phí).
 - B4 đếm mỗi yêu cầu có run `ok` một lần: **948** lượt xem lại, **48** ca làm lại, **900** việc thành công. CPS là **11.742,79 đ** với 9 phút làm lại/ca và **12.414,79 đ** với 15,3 phút/ca (simulated).
 - Rà soát bản tích hợp A–E; hoàn thiện báo cáo và làm rõ kế hoạch pilot về cỡ mẫu hiệu dụng, thời gian theo dõi 7 ngày, luật dừng và trạng thái chưa duyệt chéo.
+- Hoàn thiện CP4–CP5 theo slide bổ sung: chênh mở lại +2 điểm chỉ từ bước 10 người, xử lý hoàn trùng/báo hoàn sai ở mọi bước; ngưỡng 8.000 đ dùng CPS biến đổi. Bổ sung code tính số mẫu thô, ngày thu mẫu và chi phí cố định khi mở 4/10/20 người; đồng bộ 13 event, 4 rủi ro và hồ sơ launch. Phần chấm điểm, duyệt và hỏi–đáp hội đồng tiếp tục ghi chưa thực hiện.
 
 ## 4. Bằng chứng
 
@@ -36,6 +37,7 @@
 | Code B1–B4 | Commit `43891a3`, các hàm `phan_tich_do_nhay`, `in_phan_b` |
 | Kết quả và bàn giao | [bang_chi_phi.md](bang_chi_phi.md); Hải hoàn thiện bảng và code D1/E1 ở `9f0ccd3`, `a8bebf9` |
 | Tích hợp hồ sơ | [group_report.md](group_report.md), [ho_so_launch_v0.md](ho_so_launch_v0.md), [pilot_plan.yaml](pilot_plan.yaml) và phần đóng góp thực tế trong `TEAM.md` |
+| Hoàn thiện CP4–CP5 | Hàm `phan_tich_co_mau`, `kinh_te_rollout`; mục đo luật dừng và rủi ro tại [chi_so.md](chi_so.md); phiếu chấm giữ trạng thái chưa duyệt |
 
 ## 5. Công cụ và cách kiểm tra
 

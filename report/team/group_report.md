@@ -17,8 +17,8 @@
 | A · Chi phí | Cộng token, tool của mọi lần chạy và giờ xem lại/làm lại; chia số việc thành công; tách theo loại, cộng cố định — [code](../../src/lab13.py), [bảng A](bang_chi_phi.md). |
 | B · Độ nhạy | 9 kịch bản, một cặp yếu tố, giới hạn 1–3 lần chạy, xem lại 100%; tính phần nhân viên làm thay — [bảng B](bang_chi_phi.md). |
 | C · Lỗi | Giữ hai bộ nhãn gốc, tính đồng thuận; viết lại định nghĩa và quy tắc cho 8 ca lệch; 5 cách khắc phục — [bảng lỗi](bang_loi.md). |
-| D · Pilot | So cỡ mẫu theo yêu cầu/nhân viên/depot; chọn 20 + 20 nhân viên, MDE +6 điểm; viết luật dừng và rollback — [pilot](pilot_plan.yaml). |
-| E · Hồ sơ | 3 chỉ số tính thử, 2 chỉ số đề xuất, event nối qua trace_id, rủi ro kinh tế — [chỉ số](chi_so.md), [launch v0](ho_so_launch_v0.md). |
+| D · Pilot | Tính đủ 5 câu D1 và trả lời 5 câu D2; chọn 20 + 20 nhân viên, MDE +6 điểm; 5 luật dừng theo bước rollout và rollback — [pilot](pilot_plan.yaml). |
+| E · Hồ sơ | 3 chỉ số tính thử, 2 chỉ số đề xuất, 13 event nối qua trace_id, 4 rủi ro kinh tế; hồ sơ 7 mục — [chỉ số](chi_so.md), [launch v0](ho_so_launch_v0.md). |
 
 ## 4. Kết quả
 
@@ -33,6 +33,7 @@
 - Đồng thuận ban đầu **12/20 = 60%**, dưới mục tiêu 80%: giữ nguyên hai bộ nhãn, viết lại định nghĩa và quy tắc phân biệt; không thay kết quả ban đầu bằng nhãn thống nhất.
 - Với 20 nhân viên/nhóm, cỡ mẫu hiệu dụng dưới **1.000**, không đủ phát hiện +5 điểm cần **1.251**. Chọn +6 điểm cần **859** hiệu dụng, tương ứng tối thiểu **299 yêu cầu/người**; power còn **0,64** nếu hiệu ứng thật chỉ +5 điểm.
 - Xem lại 100% cho CPS **11.743–12.415 đ** (simulated): bổ sung độ nhạy theo phút làm lại và kế hoạch giảm xem lại có kiểm soát. Lịch pilot dành đủ cửa sổ theo dõi mở lại 7 ngày.
+- Theo slide bổ sung D1/D3, chênh mở lại **+2 điểm** chỉ dùng từ bước **10 người**; hoàn trùng/báo hoàn sai và trần **6%** áp dụng mọi bước khi đủ dữ liệu. Ngưỡng **8.000 đ** chỉ tính CPS biến đổi; 4 người gánh toàn bộ cố định cho CPS cộng cố định **15.266 đ** (simulated) được xem xét riêng về ngân sách.
 
 ## 6. Tổng hợp đóng góp
 
@@ -46,3 +47,4 @@ Dữ liệu và phút lao động là giả lập; cần đo thật trước khi
 
 - [Dữ liệu và công thức](../../docs/du_lieu_va_cong_thuc.md), [hướng dẫn A–E](../../docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md), [rubric](../../RUBRIC.md), [yêu cầu nộp](../../SUBMISSION.md).
 - Đề gốc docs/Ngay13_Lab13_De_bai_hoc_vien.docx: 20 ca lỗi và khung pilot; slide Ngày 13: Cost-of-Pass, Google PAIR và thiết kế thử nghiệm.
+- Slide bổ sung `slide-d1-ba-cach-chia.html`: ba cách phân nhóm, thời gian thu mẫu, luật dừng theo bước và phân biệt CPS biến đổi với cố định.
