@@ -2,19 +2,18 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: 3boy
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-3boy-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/hoan11052004/K5-L3B-DAY13-3boy-LaunchEconomics, nhánh `main` (nhánh làm việc: `AnhQuanHANU`)
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 | Nguyễn Anh Quân | 2A202603892 | 2A202603892@vinuni.edu.vn | AnhQuanHANU | Người giữ hồ sơ, Phụ trách Kế hoạch Pilot (D) & Hồ sơ Launch v0 (E) |
+|   2 | Thành viên 2 | (cập nhật) | (cập nhật) | (cập nhật) | Người viết code (A, B) |
+|   3 | Thành viên 3 | (cập nhật) | (cập nhật) | (cập nhật) | Người kiểm số & Gắn nhãn lỗi PAIR (C) |
 
 Bốn vai của lab:
 
@@ -37,16 +36,19 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## HoVaTen-MSSV
+## NguyenAnhQuan-2A202603892
 
 ### Phần việc phụ trách
 
--
+- Phụ trách toàn diện Nhiệm vụ D (Kế hoạch Pilot, cỡ mẫu, luật dừng) và Nhiệm vụ E (Chỉ số, Rủi ro kinh tế, Hồ sơ Launch v0).
 
 ### Đóng góp cụ thể
 
--
+- Tính toán 5 bài toán cỡ mẫu D1 và giải bất phương trình $m \ge 299$, chứng minh tính không khả thi của MDE 5% với 40 nhân viên và đề xuất đánh đổi MDE 6% ($n = 859$).
+- Hoàn thiện `report/team/pilot_plan.yaml` với 3 luật dừng chuẩn cú pháp `NẾU – TRONG – THÌ – KHÔNG THÌ`.
+- Soạn thảo `report/team/chi_so.md` (3 chỉ số từ dữ liệu, 2 chỉ số đề xuất mới, 10 trace events có `trace_id`, 3 rủi ro kinh tế).
+- Đóng gói bản Hồ sơ Launch v0 1 trang tại `report/team/ho_so_launch_v0.md` với đề xuất Go có điều kiện (5 điều kiện cụ thể).
 
 ### Bằng chứng
 
--
+- File `report/team/pilot_plan.yaml`, `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`, `report/team/2A202603892_NguyenAnhQuan.md`.
