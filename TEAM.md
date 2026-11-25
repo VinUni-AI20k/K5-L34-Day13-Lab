@@ -2,19 +2,19 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- Tên nhóm: Rua
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-Rua-LaunchEconomics`
 - URL repo, nhánh nộp, commit chốt:
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 | Vũ Nam Khánh | 2A202604112 | 26ai.khanhvn@vinuni.edu.vn | khanhvnm | Người viết code |
+|   2 | Phạm Duy Thành | 2A202604075 |       |        | Người kiểm số |
+|   3 | Nguyễn Tuấn Anh | 2A202604089 |       |        | Người gắn nhãn 1 |
+|   4 | Đào Hồng Thắng | 2A202604076 |       |        | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
@@ -25,19 +25,50 @@ Bốn vai của lab:
 
 Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
 
-## Cá nhân
 
-Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/` theo dạng:
+## VuNamKhanh-2A202604112
 
-```text
-report/team/MSSV_HoTen.md
-```
+### Phần việc phụ trách
 
-Ví dụ: `report/team/20241234_NguyenVanAn.md`.
+-
 
-Sao chép mục dưới đây cho từng thành viên.
+### Đóng góp cụ thể
 
-## HoVaTen-MSSV
+-
+
+### Bằng chứng
+
+-
+
+## PhamDuyThanh-2A202604075
+
+### Phần việc phụ trách
+
+-
+
+### Đóng góp cụ thể
+
+-
+
+### Bằng chứng
+
+-
+
+## NguyenTuanAnh-2A202604089
+
+### Phần việc phụ trách
+
+-
+
+### Đóng góp cụ thể
+
+-
+
+### Bằng chứng
+
+-
+
+## DaoHongThang-2A202604076
 
 ### Phần việc phụ trách
 

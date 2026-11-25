@@ -73,9 +73,9 @@ Các mốc giờ trong [CHECKPOINTS.md](CHECKPOINTS.md) là checkpoint tại l�
 
 ## Checklist
 
-- [ ] Đổi tên repo theo đúng quy ước `K5-L3A-DAY13-…` (hoặc `K5-L3B-DAY13-…`).
-- [ ] Điền `TEAM.md` ở root: thông tin nhóm, thành viên, vai, đóng góp.
-- [ ] Mỗi thành viên có file báo cáo đã đổi tên đúng định dạng `report/team/MSSV_HoTen.md`.
+- [x] Đổi tên repo theo đúng quy ước `K5-L3A-DAY13-…` (hoặc `K5-L3B-DAY13-…`).
+- [x] Điền `TEAM.md` ở root: thông tin nhóm, thành viên, vai, đóng góp.
+- [x] Mỗi thành viên có file báo cáo đã đổi tên đúng định dạng `report/team/MSSV_HoTen.md`.
 - [ ] `cd src && python3 lab13.py` chạy hết trên một máy khác trong nhóm; ba phép thử A1 in ĐẠT (1,20 · 1,25 · 1,25).
 - [ ] Đủ sáu file hồ sơ trong `report/team/`, đúng tên.
 - [ ] Mọi con số từ cột `_simulated` có nhãn `simulated`.
