@@ -4,7 +4,12 @@ Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TO
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+import sys
 import pandas as pd
+
+# Đảm bảo các thông báo tiếng Việt in được trong terminal Windows không dùng UTF-8.
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
@@ -156,8 +161,12 @@ if __name__ == '__main__':
     total_review_all = trace_cost['tong'] + review_cost + rework_cost
     print('5-min-review_9-min-rework', f"{total_review_all:,.0f}",
           f"CPS={total_review_all / trace_cost['thanh_cong']:,.2f} [simulated]")
-    rework_observed = pham_vi.loc[pham_vi['ket_qua'] == 'lam_lai',
-                                  'phut_lam_lai_simulated'].sum() * LUONG_PHUT
+    # Hướng dẫn dùng mức trung bình 15,3 phút/ca trên toàn bộ ca làm lại,
+    # áp dụng cho số ca làm lại trong phạm vi pilot.
+    rework_cases_scope = (pham_vi['ket_qua'] == 'lam_lai').sum()
+    rework_mean_all = round(reqs.loc[reqs['ket_qua'] == 'lam_lai',
+                                     'phut_lam_lai_simulated'].mean(), 1)
+    rework_observed = rework_cases_scope * rework_mean_all * LUONG_PHUT
     print('using observed simulated rework minutes',
           f"CPS={(trace_cost['tong'] + review_cost + rework_observed) / trace_cost['thanh_cong']:,.2f}")
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
