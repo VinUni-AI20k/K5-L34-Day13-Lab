@@ -2,10 +2,10 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: ToiYeuVinFast
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-ToiYeuVinFast-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/lit1numyt/K5-L3B-DAY13-ToiYeuVinFast-LaunchEconomics · `main` · (chốt khi nộp)
 
 ## Thành viên
 
@@ -14,7 +14,7 @@
 |   1 |        |      |       |        |         |
 |   2 |        |      |       |        |         |
 |   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   4 | Dong Huu Nguyen Khoa | 2A202604000 |       | lit1numyt | Người gắn nhãn 2, kiêm giữ hồ sơ |
 
 Bốn vai của lab:
 
@@ -50,3 +50,18 @@ Sao chép mục dưới đây cho từng thành viên.
 ### Bằng chứng
 
 -
+
+## DongHuuNguyenKhoa-2A202604000
+
+### Phần việc phụ trách
+
+- Người gắn nhãn 2 (CP3): gắn nhãn độc lập 20 ca lỗi, so nhãn với người gắn nhãn 1, bảng khắc phục 5 ca trong `report/team/bang_loi.md`.
+- Người giữ hồ sơ (CP5): `report/team/ho_so_launch_v0.md`, danh sách event trong `report/team/chi_so.md`.
+
+### Đóng góp cụ thể
+
+- (cập nhật cuối buổi)
+
+### Bằng chứng
+
+- (link commit / PR, cập nhật cuối buổi)
