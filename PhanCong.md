@@ -5,7 +5,7 @@ Nhóm 4 người, mỗi người một vai theo [TEAM.md](TEAM.md). Các checkpo
 | Người | Vai | Họ tên |
 | --- | --- | --- |
 | Người 1 | Người viết code (trước giải lao) | Vinh |
-| Người 2 | Người kiểm số (sau giải lao nhận viết code) | Khánh |
+| Người 2 | Người kiểm số (sau giải lao nhận viết code) | Ngô Duy Khánh (2A202603870) |
 | Người 3 | Người gắn nhãn 1 | Bảo |
 | Người 4 | Người gắn nhãn 2 kiêm giữ hồ sơ | Huy |
 
@@ -47,15 +47,15 @@ Tóm tắt: **Người 1** chính ở CP1, CP2 và nộp bài · **Người 2** 
 
 **Chính:** CP4 · **Phụ:** CP1, CP2, CP3, CP5
 
-- [ ] **CP1:** tính tay ít nhất một con số mỗi bảng để đối chiếu (ví dụ tổng chi phí ÷ số việc thành công).
-- [ ] **CP1:** điền A1, A2, A3, A4 và hai câu trả lời vào [report/team/bang_chi_phi.md](report/team/bang_chi_phi.md); nhãn `simulated` ở dòng xem lại, làm lại.
-- [ ] **CP2:** điền B1–B4; tự kiểm "giảm một nửa = nửa mức tăng của gấp đôi"; mỗi câu ≤ 3 dòng, có số.
-- [ ] **CP3:** soát lại `bang_chi_phi.md` (lệch ≤ 2% so với slide chữa).
-- [ ] **Sau giải lao nhận viết code.**
-- [ ] **CP4 · D1:** tính 5 câu cỡ mẫu (theo yêu cầu, theo nhân viên m = 75, 20 nhân viên mỗi nhóm, 6 depot mỗi nhóm, mức chênh 6 điểm) trong `lab13.py`.
-- [ ] **CP4:** tính tỉ lệ `mo_lai_trong_7_ngay` hiện tại trước khi đặt luật an toàn.
-- [ ] **CP4:** chủ trì [report/team/pilot_plan.yaml](report/team/pilot_plan.yaml): chú thích D1, D2, đánh đổi, các trường số, `simulated_inputs`.
-- [ ] **CP5 · E1:** tính 3 chỉ số (chính, bỏ qua gợi ý, lỗi lọt đến khách), đưa vào [report/team/chi_so.md](report/team/chi_so.md).
+- [x] **CP1:** tính tay ít nhất một con số mỗi bảng để đối chiếu (ví dụ tổng chi phí ÷ số việc thành công).
+- [x] **CP1:** điền A1, A2, A3, A4 và hai câu trả lời vào [report/team/bang_chi_phi.md](report/team/bang_chi_phi.md); nhãn `simulated` ở dòng xem lại, làm lại.
+- [x] **CP2:** điền B1–B4; tự kiểm "giảm một nửa = nửa mức tăng của gấp đôi"; mỗi câu ≤ 3 dòng, có số.
+- [x] **CP3:** soát lại `bang_chi_phi.md` (lệch ≤ 2% so với slide chữa).
+- [x] **Sau giải lao nhận viết code.**
+- [x] **CP4 · D1:** tính 5 câu cỡ mẫu (theo yêu cầu, theo nhân viên m = 75, 20 nhân viên mỗi nhóm, 6 depot mỗi nhóm, mức chênh 6 điểm) trong `lab13.py`.
+- [x] **CP4:** tính tỉ lệ `mo_lai_trong_7_ngay` hiện tại trước khi đặt luật an toàn.
+- [x] **CP4:** chủ trì [report/team/pilot_plan.yaml](report/team/pilot_plan.yaml): chú thích D1, D2, đánh đổi, các trường số, `simulated_inputs`.
+- [x] **CP5 · E1:** tính 3 chỉ số (chính, bỏ qua gợi ý, lỗi lọt đến khách), đưa vào [report/team/chi_so.md](report/team/chi_so.md).
 
 ## 4. Người 3 · Người gắn nhãn 1
 

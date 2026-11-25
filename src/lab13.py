@@ -153,6 +153,49 @@ if __name__ == '__main__':
         hoa_von = (BASELINE * m_pv['thanh_cong'] - token_tool - so_lam_lai * phut_lam_lai * LUONG_PHUT) / (so_xem * LUONG_PHUT)
         print(f'  làm lại {phut_lam_lai:.1f} phút/ca: tổng {tong:,.0f} đ → {cps:,.0f} đ = {cps / BASELINE:.2f}×'
               f' [simulated]; hoà vốn khi xem lại ≤ {hoa_von:.1f} phút')
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # ---------- CP4 · Nhiệm vụ D: Cỡ mẫu & Tỉ lệ mở lại ----------
+    from statistics import NormalDist
+
+    def co_mau(p1, p2, alpha=0.05, power=0.8):
+        za, zb = NormalDist().inv_cdf(1 - alpha / 2), NormalDist().inv_cdf(power)
+        pb = (p1 + p2) / 2
+        return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                          + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+
+    n_yc = co_mau(0.70, 0.75)
+    de_75 = 1 + (75 - 1) * 0.02
+    n_staff_75 = math.ceil(n_yc * de_75)
+    staff_per_arm_75 = math.ceil(n_staff_75 / 75)
+    max_eff_20 = 20 / 0.02
+    max_eff_6 = 6 / 0.02
+    n_6pt = co_mau(0.70, 0.76)
+    # 20 * m / (1 + (m - 1) * 0.02) >= n_6pt => 20m >= n_6pt * 0.98 + n_6pt * 0.02m
+    m_req = math.ceil((n_6pt * 0.98) / (20 - n_6pt * 0.02))
+    de_6pt = 1 + (m_req - 1) * 0.02
+
+    print('\nCP4 · D1 Cỡ mẫu (baseline 0.70, delta=0.05, alpha=0.05, power=0.8, ICC=0.02):')
+    print(f'  a) Chia theo yêu cầu: {n_yc:,} yêu cầu/nhóm')
+    print(f'  b) Theo nhân viên (m=75, DE={de_75:.2f}): {n_staff_75:,} yêu cầu/nhóm → {staff_per_arm_75} người/nhóm (tổng {staff_per_arm_75*2} > 40: không đủ)')
+    print(f'  c) 20 nhân viên/nhóm: c/ICC = {max_eff_20:,.0f} < {n_yc:,} (không đạt cho mức 5 điểm)')
+    print(f'  d) 6 depot/nhóm: c/ICC = {max_eff_6:,.0f} (tối đa 300, không đạt)')
+    print(f'  e) Mức chênh 6 điểm (cần {n_6pt:,}/nhóm), 20 nhân viên/nhóm: m ≥ {m_req} yêu cầu/người (DE = {de_6pt:.2f})')
+
+    tl_molai_all = reqs['mo_lai_trong_7_ngay'].mean()
+    tl_molai_pv = pham_vi['mo_lai_trong_7_ngay'].mean()
+    print(f'\nTỉ lệ mo_lai_trong_7_ngay hiện tại:')
+    print(f'  Toàn bộ 1.200 yc: {tl_molai_all:.2%} ({(reqs["mo_lai_trong_7_ngay"] == 1).sum()}/{len(reqs)})')
+    print(f'  Phạm vi noi_dia + hang_nang: {tl_molai_pv:.2%} ({(pham_vi["mo_lai_trong_7_ngay"] == 1).sum()}/{len(pham_vi)})')
+
+    # ---------- CP5 · Nhiệm vụ E1: Ba chỉ số tính thử ----------
+    chinh = ((reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)).mean()
+    so_chinh = ((reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)).sum()
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    bo_qua = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).mean()
+    so_bo_qua = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).sum()
+    an_toan = (reqs['mo_lai_trong_7_ngay'] == 1).mean()
+    so_an_toan = (reqs['mo_lai_trong_7_ngay'] == 1).sum()
+
+    print('\nCP5 · E1 Tính thử 3 chỉ số trên 1.200 yêu cầu:')
+    print(f'  Chính (% đóng trong 24h & không mở lại trong 7 ngày): {chinh:.2%} ({so_chinh}/{len(reqs)})')
+    print(f'  Dùng (Tỉ lệ bỏ qua gợi ý): {bo_qua:.2%} ({so_bo_qua}/{len(xem)})')
+    print(f'  An toàn (Tỉ lệ lỗi lọt đến khách - mở lại trong 7 ngày): {an_toan:.2%} ({so_an_toan}/{len(reqs)})')
