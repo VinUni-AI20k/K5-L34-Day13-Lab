@@ -19,7 +19,7 @@ Người gắn nhãn 1: Nguyễn Ánh Dương (Error & Metrics Analyst) · Ngư�
 |   9 | Do người dùng     | Do người dùng     | Có     | Do người dùng     |
 |  10 | Ngữ cảnh          | Ngữ cảnh          | Có     | Ngữ cảnh          |
 |  11 | Giới hạn hệ thống | Giới hạn hệ thống | Có     | Giới hạn hệ thống |
-|  12 | Ngầm              | Hệ thống          | Không  | Hệ thống          |
+|  12 | Ngầm              | Hệ thống          | Không  | Ngầm              |
 |  13 | Giới hạn hệ thống | Hệ thống          | Không  | Giới hạn hệ thống |
 |  14 | Do người dùng     | Do người dùng     | Có     | Do người dùng     |
 |  15 | Giới hạn hệ thống | Hệ thống          | Không  | Hệ thống          |
@@ -37,7 +37,7 @@ Mỗi ca không trùng một câu. Đồng thuận dưới 80% thì ghi định 
 
 - **Ca 6 → Do người dùng:** gốc lỗi là khách chọn mục "giao trễ" cho đơn hàng vỡ. Không phải Ngầm, vì khách bị từ chối và thấy ngay. Việc trợ lý nên đối chiếu mô tả với mục đã chọn ghi ở cột khắc phục.
 - **Ca 7 → Hệ thống:** API sổ cái lỗi 503 là sự cố bên ngoài, nhưng trợ lý báo "đã hoàn tiền thành công" khi chưa ghi sổ là vi phạm thiết kế. Việc ghi sổ nằm trong phạm vi trợ lý, nên không phải Giới hạn.
-- **Ca 12 → Hệ thống:** *(cần nhóm xác nhận)* Theo định nghĩa nhóm đã viết lại ("Ngầm chỉ khi 0 người nhận ra cho tới lúc kiểm tra mẫu"), ca này "suốt 3 tuần mà không ai thấy", tức là khớp với Ngầm. Bảng khắc phục bên dưới cũng đang dùng ca 12 cho dòng Ngầm. Nhóm cần chốt lại nhãn thống nhất và viết câu quy tắc tương ứng.
+- **Ca 12 → Ngầm:** kết quả hoàn tiền vẫn đúng, nhưng tiền token của depot D05 gấp 3 lần depot khác suốt 3 tuần mà không ai thấy. Sai ở đây là sai về chi phí và chỉ lộ ra khi kiểm tra, nên là Ngầm, không phải Hệ thống.
 - **Ca 13 → Giới hạn hệ thống:** bảo hiểm hàng hoá là sản phẩm của đối tác, ngoài phạm vi trợ lý. Ngoài phạm vi thì là Giới hạn, kể cả khi trợ lý trả lời chung chung thay vì nói rõ.
 - **Ca 15 → Hệ thống:** chính sách ghi trễ 24–48 giờ hoàn 50%, trợ lý tính 100%, tức là vi phạm chính sách. Trợ lý có đủ dữ liệu để tính đúng nên không phải Giới hạn, và nhân viên đã bắt được nên không phải Ngầm.
 - **Ca 17 → Ngầm:** lệch 1.000–2.000 đ trên 212 đơn trong 9 ngày, không ai mở lại và không cảnh báo nào kích, chỉ lộ ra khi kiểm tra.
