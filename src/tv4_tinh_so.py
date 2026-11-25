@@ -229,6 +229,29 @@ def cp4_pilot(runs, reqs):
     print()
 
 
+# ---------- CP5 · E1: ba chỉ số tính thử ----------
+def cp5_chi_so(reqs):
+    print('=== CP5 · E1 · Ba chỉ số tính thử (đợt chạy thử, không có đối chứng) ===')
+    pv = reqs[reqs['loai'].isin(PHAM_VI)]
+    for ten, df in [('Toàn mẫu', reqs), ('Phạm vi noi_dia + hang_nang', pv)]:
+        chinh = (df['dong_trong_24h'] == 1) & (df['mo_lai_trong_7_ngay'] == 0)
+        xem = df[df['duoc_xem_lai'] == 1]
+        bo_qua = xem['quyet_dinh_xem_lai'].isin(['sua', 'bo'])
+        an_toan = df['mo_lai_trong_7_ngay'] == 1
+        print(f"{ten}: chính {so(chinh.mean() * 100, 2)}% ({int(chinh.sum())}/{len(df)}) · "
+              f"bỏ qua gợi ý {so(bo_qua.mean() * 100, 2)}% ({int(bo_qua.sum())}/{len(xem)}) · "
+              f"mở lại 7 ngày {so(an_toan.mean() * 100, 2)}% ({int(an_toan.sum())}/{len(df)})")
+    # Chỉ số an toàn đề xuất của TV3: mở lại 7 ngày theo trạng thái xem lại
+    khong_xem = reqs[reqs['duoc_xem_lai'] == 0]
+    giu = reqs[reqs['quyet_dinh_xem_lai'] == 'giu']
+    print(f"Mở lại 7 ngày ở ca không được xem lại: {so(khong_xem['mo_lai_trong_7_ngay'].mean() * 100, 2)}% "
+          f"({int(khong_xem['mo_lai_trong_7_ngay'].sum())}/{len(khong_xem)}) · ở ca xem lại và giữ nguyên: "
+          f"{so(giu['mo_lai_trong_7_ngay'].mean() * 100, 2)}% ({int(giu['mo_lai_trong_7_ngay'].sum())}/{len(giu)})")
+    mo_lai = reqs[reqs['mo_lai_trong_7_ngay'] == 1]
+    print(f"Ca mở lại theo ket_qua: " + ' · '.join(f'{k} {v}' for k, v in mo_lai['ket_qua'].value_counts().items()))
+    print()
+
+
 if __name__ == '__main__':
     runs, reqs = doc_du_lieu()
     cp1_a4(runs, reqs)
@@ -237,3 +260,4 @@ if __name__ == '__main__':
     cp2_rui_ro(runs, reqs)
     cp3_nguong(runs, reqs)
     cp4_pilot(runs, reqs)
+    cp5_chi_so(reqs)
