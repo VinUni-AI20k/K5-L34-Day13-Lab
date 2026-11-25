@@ -84,7 +84,7 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 - [Link commit / output `src/cp4_co_mau.py` & `yaml.safe_load`]
 
-## [Nguoi4-HoVaTen-MSSV]
+## VuQuangHai-2A202603935
 
 ### Phần việc phụ trách
 
