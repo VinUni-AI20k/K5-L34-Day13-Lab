@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Mai Danh Hiếu | 2A202603948 |       |        | Người viết code (CP1–CP2) |
+|   1 | Mai Danh Hiếu | 2A202603948 |       |        | Người viết code (CP1–CP2) kiêm Người gắn nhãn 1 |
 |   2 | Lê Tuấn Đạt |      |       |        | Người gắn nhãn 2 kiêm giữ hồ sơ |
 |   3 |        |      |       |        |         |
 |   4 |        |      |       |        |         |
