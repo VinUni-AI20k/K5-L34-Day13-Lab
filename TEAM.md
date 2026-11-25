@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Vinh   |      |       |        | Người viết code (trước giải lao) |
+|   1 | Phạm ĐứcVinh   | 2A202603849     | 26ai.vinhpd@vinuni.edu.vn      |  vindpd203      | Người viết code (trước giải lao) |
 |   2 | Ngô Duy Khánh | 2A202603870 | | | Người kiểm số (sau giải lao nhận viết code) |
 |   3 | Bảo    |      |       |        | Người gắn nhãn 1 |
 |   4 | Huy    |      |       |        | Người gắn nhãn 2, kiêm giữ hồ sơ |
@@ -55,6 +55,24 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - Code CP4 (D1) và CP5 (E1) trong [src/lab13.py](src/lab13.py).
 - File [report/team/bang_chi_phi.md](report/team/bang_chi_phi.md), [report/team/pilot_plan.yaml](report/team/pilot_plan.yaml), [report/team/chi_so.md](report/team/chi_so.md) và báo cáo cá nhân [report/team/2A202603870_NgoDuyKhanh.md](report/team/2A202603870_NgoDuyKhanh.md).
+
+## PhamDucVinh-2A202603849
+
+### Phần việc phụ trách
+
+- **Chính:** chuẩn bị môi trường, CP1 · Nhiệm vụ A, CP2 · Nhiệm vụ B (code trong `src/lab13.py`), đóng gói và nộp bài.
+- **Phụ:** CP3 (hoàn thiện B), CP4 (soát `pilot_plan.yaml`), CP5 (chạy lại `lab13.py` trên máy khác), bàn giao code cho Người 2.
+
+### Đóng góp cụ thể
+
+- Viết 3 hàm A1 (ba phép thử ĐẠT: 1,20 · 1,25 · 1,25) và `mo_hinh()` A2: chi phí mỗi việc thành công 4.472 đ [simulated], gấp 16,3 lần hoá đơn chia số yêu cầu.
+- Tính A3 theo loại (`quoc_te` 1,88× [simulated], chạy lại không giúp) và A4 cộng chi phí cố định (4.599 đ = 0,38× ở 45.000 yêu cầu/tháng [simulated]).
+- Viết B1–B4: 9 kịch bản độ nhạy, một cặp (+46,3%), giới hạn 2 lần rẻ nhất cho công ty (6.901.220 đ [simulated]), xem lại 100% = 0,98×–1,03× [simulated].
+
+### Bằng chứng
+
+- Commit `b9a5f93` trên nhánh `vinh` (merge vào `main` qua pull request #1).
+- Code trong [src/lab13.py](src/lab13.py), số trong [report/team/bang_chi_phi.md](report/team/bang_chi_phi.md) và báo cáo cá nhân [report/team/2A202603849_PhamDucVinh.md](report/team/2A202603849_PhamDucVinh.md).
 
 ## HoVaTen-MSSV
 
