@@ -4,14 +4,14 @@
 
 - Họ tên: Nguyễn Minh Phúc
 - MSSV: 2A202603894
-- Email:
+- Email: nminhphuc.nmp@gmail.com
 - Vai trong nhóm: người kiểm số (Thành viên 3 theo bảng phân công của nhóm)
 
 ## 2. Phần việc phụ trách
 
 - **CP1 · A3:** tách chi phí mỗi việc thành công theo 4 loại yêu cầu; kết luận loại nào không đáng giao cho trợ lý.
 - **CP2 · B3:** giới hạn chạy lại 1, 2, 3 lần; tính tổng chi phí cả hệ thống.
-- **CP3:** tính tỉ lệ đồng thuận giữa hai bộ nhãn, điều phối thống nhất ca bất đồng, giữ `bang_loi.md`. Phần này còn chờ hai bộ nhãn độc lập của TV1 và TV2.
+- **CP3:** tính tỉ lệ đồng thuận giữa hai bộ nhãn, điều phối thống nhất ca bất đồng, giữ `bang_loi.md`, ghép bảng khắc phục 5 ca của TV4.
 - **CP4 · D1(e), D2:** cỡ mẫu với mức chênh 6 điểm; năm câu "tách được tác động".
 - **CP5:** chỉ số an toàn, đề xuất thêm một chỉ số an toàn, viết bảng rủi ro kinh tế E2.
 
@@ -26,7 +26,13 @@
   - làm lại gấp đôi: +51,8%, lên 6.787 đ
   - xem lại 100%: 11.743 đ = 0,98× baseline
   - khối lượng thấp hơn dự kiến: hoà vốn ở khoảng 6.212 yêu cầu/tháng
-- **Kiểm số chéo:** B3 của mình khớp từng đồng với `in_kich_ban_b` do TV1 viết trong `src/lab13.py`.
+- **CP3:**
+  - chép nguyên hai bộ nhãn độc lập của TV1 (commit `45ce63c`) và TV2 (commit `fc2dd2f`) vào `bang_loi.md`
+  - tính đồng thuận 20/20 = 100% (kappa 1,00), vượt ngưỡng 16/20, nên không có ca bất đồng cần thống nhất
+  - ghép bảng khắc phục 5 ca của TV4 (ca 1, 20, 18, 4, 17, đủ năm loại); loại của cả 5 ca khớp nhãn thống nhất nên không phải dùng ca dự phòng
+- **Kiểm số chéo:**
+  - B3 của mình khớp từng đồng với `in_kich_ban_b` do TV1 viết trong `src/lab13.py`.
+  - D1(e), D2 và các số xem lại trong `pilot_plan.yaml` của TV4 khớp với file bàn giao của mình.
 
 ## 4. Bằng chứng
 
@@ -34,6 +40,7 @@
 - File bàn giao: `report/team/tv3_ban_giao.md`. Phần A3 và B3 gửi TV2, phần D1(e), D2, chỉ số an toàn và E2 gửi TV4.
 - Commit `b06edcb` (A3, B3, D1(e), D2, chỉ số an toàn), merge qua PR #3.
 - Commit `0fea896` (E2 rủi ro kinh tế), merge qua PR #6.
+- CP3: script `src/tv3_cp3_dong_thuan.py`. Chạy trong `src/` bằng lệnh `python tv3_cp3_dong_thuan.py ../report/team/tv1_cp3_nhan_da_dien.md ../report/team/tv2_cp3_ban_giao.md --bang`. Kết quả nằm trong `report/team/bang_loi.md`.
 
 ## 5. Công cụ AI đã dùng
 
@@ -43,6 +50,7 @@
   - chạy script để ra số
   - soạn file bàn giao
   - theo dõi commit của nhóm để biết khi nào phần việc phụ thuộc làm được
+  - viết `src/tv3_cp3_dong_thuan.py`. Script chỉ đọc và so hai bộ nhãn, không tự gắn nhãn; đã test bằng dữ liệu giả (lệch 3 ca, lệch 5 ca, nhãn sai loại) trước khi chạy trên nhãn thật
 - **Mọi số đều do code chạy ra**, gọi lại `mo_hinh` trong `src/lab13.py` của nhóm. AI không tự điền số và không gắn nhãn lỗi thay người gắn nhãn.
 - **Cách tự kiểm tra:**
   - so mọi số với số tham chiếu trong `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md`, lệch 0%
@@ -52,8 +60,10 @@
 
 ## 6. Tự đánh giá
 
-- **Đã xong:** A3, B3, D1(e), D2, chỉ số an toàn, E2. Tất cả có số, nhãn `simulated` và đã bàn giao cho người giữ file.
-- **Chưa xong:** CP3 (đồng thuận và quy tắc cho ca bất đồng), vì còn chờ hai bộ nhãn độc lập.
+- **Đã xong:**
+  - A3, B3, D1(e), D2, chỉ số an toàn, E2: có số, nhãn `simulated` và đã bàn giao cho người giữ file
+  - CP3 (`bang_loi.md`): đồng thuận 20/20, bảng khắc phục đủ năm loại
+- **Lưu ý CP3:** đồng thuận đạt 100%, nhưng hai bộ nhãn được push sau khi bảng khắc phục của TV4 (ghi sẵn loại của 10 ca) đã lên `main`. Hội đồng có thể hỏi về tính độc lập, nên nhóm cần xác nhận hai người gắn nhãn trước khi xem bảng đó.
 - **Điểm cần học thêm:** phần lớn code do AI viết. Mình cần tự giải thích được hai điều trước hội đồng:
   - vì sao tử số chi phí tính mọi lần chạy, còn mẫu số chỉ đếm việc thành công
   - cách tính hệ số thiết kế 1 + (m − 1) × ICC
