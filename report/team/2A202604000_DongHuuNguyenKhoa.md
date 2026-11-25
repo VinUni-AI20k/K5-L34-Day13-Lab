@@ -26,7 +26,7 @@ Commit, file, bảng hoặc con số do bạn làm.
 
 Công cụ nào, dùng vào việc gì, bạn tự kiểm tra kết quả ra sao.
 
-- Claude Code: đọc đề, dựng khung hồ sơ và danh sách event, commit theo checkpoint. Nhãn 20 ca lỗi do tôi tự gắn, không dùng AI. Con số trong hồ sơ lấy từ `lab13.py` và bảng của nhóm, tôi tự đối chiếu với file nguồn.
+- Claude Code: đọc đề, dựng khung hồ sơ và danh sách event, commit theo checkpoint. Gắn nhãn 20 ca lỗi (CP3) với hỗ trợ của Claude Code, được giảng viên cho phép lúc 14:50 vì lớp bắt đầu muộn; tôi đọc lại từng ca theo định nghĩa năm loại và chốt nhãn trước khi so với người gắn nhãn 1. Con số trong hồ sơ lấy từ `lab13.py` và bảng của nhóm, tôi tự đối chiếu với file nguồn.
 
 ## 6. Tự đánh giá
 
