@@ -158,6 +158,58 @@ if __name__ == '__main__':
         print(f'làm lại {phut:5.1f} phút/ca: tổng {tong:11,.0f} · cps {tong / n_tc:8,.0f} = '
               f'{tong / n_tc / BASELINE:.2f}x ({co_ok} yc được xem, {n_lam_lai} ca làm lại, {n_tc} thành công)')
 
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # ---------- D1 · Cỡ mẫu (CP4) ----------
+    from statistics import NormalDist
+    from statsmodels.stats.proportion import proportion_effectsize
+    from statsmodels.stats.power import NormalIndPower
+
+    def co_mau(p1, p2, alpha=0.05, power=0.80):
+        za = NormalDist().inv_cdf(1 - alpha / 2)
+        zb = NormalDist().inv_cdf(power)
+        pb = (p1 + p2) / 2
+        return math.ceil(
+            (za * math.sqrt(2 * pb * (1 - pb))
+             + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+            / (p2 - p1) ** 2
+        )
+
+    print('\n== D1 · Cỡ mẫu pilot (p1=0.70, alpha=0.05, power=0.80, ICC=0.02) ==')
+    icc = 0.02
+    n_yc = co_mau(0.70, 0.75)
+    n_yc_sm = math.ceil(NormalIndPower().solve_power(
+        effect_size=proportion_effectsize(0.75, 0.70), alpha=0.05, power=0.80
+    ))
+    print(f'a) Chia theo yêu cầu (+5 điểm): {n_yc:,} yêu cầu/nhóm (statsmodels: {n_yc_sm:,})')
+
+    m_b = 75
+    de_b = 1 + (m_b - 1) * icc
+    n_nv_b = math.ceil(n_yc * de_b)
+    so_nv_nhom = math.ceil(n_nv_b / m_b)
+    print(f'b) Theo nhân viên (m={m_b}): DE={de_b:.2f} · n={n_nv_b:,}/nhóm · '
+          f'cần {so_nv_nhom} người/nhóm (tổng {so_nv_nhom * 2} > 40 → không đủ người)')
+
+    max_20_nv = 20 / icc
+    print(f'c) 20 nhân viên/nhóm: n_hiệu_dụng tối đa = {max_20_nv:,.0f} (< {n_yc:,} → không đạt 5 điểm)')
+
+    max_6_depot = 6 / icc
+    print(f'd) 6 depot/nhóm: n_hiệu_dụng tối đa = {max_6_depot:,.0f} (< {n_yc:,} → không đạt)')
+
+    n_6pt = co_mau(0.70, 0.76)
+    m_e = 1
+    while 20 * m_e / (1 + (m_e - 1) * icc) < n_6pt:
+        m_e += 1
+    de_e = 1 + (m_e - 1) * icc
+    print(f'e) Mức chênh 6 điểm (n={n_6pt:,}/nhóm), 20 người/nhóm: '
+          f'm >= {m_e} yêu cầu/người (DE={de_e:.2f}, tổng {20 * m_e:,} yc/nhóm)')
+
+    power_5pt = NormalIndPower().power(
+        effect_size=proportion_effectsize(0.75, 0.70), nobs1=n_6pt, alpha=0.05
+    )
+    print(f'Bonus · Power khi chênh thật 5 điểm nhưng thiết kế 6 điểm (n={n_6pt:,}): {power_5pt:.2f}')
+
+    mo_lai_all = reqs['mo_lai_trong_7_ngay'].mean()
+    mo_lai_pv = pv['mo_lai_trong_7_ngay'].mean()
+    print(f'Tỉ lệ mo_lai_trong_7_ngay toàn mẫu: {mo_lai_all:.2%} '
+          f'({int(reqs["mo_lai_trong_7_ngay"].sum())}/{len(reqs)})')
+    print(f'Tỉ lệ mo_lai_trong_7_ngay (noi_dia + hang_nang): {mo_lai_pv:.2%} '
+          f'({int(pv["mo_lai_trong_7_ngay"].sum())}/{len(pv)})')
