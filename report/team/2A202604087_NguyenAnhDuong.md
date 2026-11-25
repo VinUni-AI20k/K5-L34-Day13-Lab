@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Ánh Dương
 - MSSV: 2A202604087
-- Email:
+- Email: <anhduongn724@gmail.com>
 - Vai trong nhóm (người viết code, người kiểm số, người gắn nhãn 1, người gắn nhãn 2 kiêm giữ hồ sơ): người gắn nhãn 1 · Error & Metrics Analyst
 
 ## 2. Phần việc phụ trách
@@ -20,25 +20,22 @@
 - Phát hiện cả 51 ca mở lại trong 7 ngày đều là ca `lam_lai` (69% số ca làm lại), nên giảm làm lại là đòn bẩy chính cho chỉ số an toàn.
 - Tính thử 3 chỉ số: chính 82,83% (994/1.200), bỏ qua gợi ý 27,12% (48/177), lỗi lọt đến khách 4,25% (51/1.200); kèm số trong phạm vi noi_dia + hang_nang (92,26%, 21,09%, 3,97%).
 - Đề xuất 4 chỉ số bổ sung (2 dùng, 2 an toàn), thiết kế 10 event, kiểm tra chéo để mọi chỉ số đều tính được từ event.
-- Gắn nhãn độc lập 20 ca: đồng thuận với người gắn nhãn 2 là [điền sau] / 20.
+- E2: ghép 4 dòng rủi ro kinh tế theo bàn giao của Nguyễn Văn Hải Quân (làm lại gấp đôi, xem lại 100%, khối lượng thấp, lương tăng 25%), số khớp `bang_chi_phi.md`.
+- Gắn nhãn độc lập 20 ca bằng tay: sau khi so, bộ nhãn của tôi khớp nhãn tham khảo 17/20 (lệch ca 7, 15, 20). Đồng thuận với người gắn nhãn 2 ghi trong `bang_loi.md`.
 
 ## 4. Bằng chứng
 
-Commit, file, bảng hoặc con số do bạn làm.
-
-- `report/team/bang_loi.md`: hai bộ nhãn, tỉ lệ đồng thuận, quy tắc phân biệt, bảng "Tác động định lượng của lỗi", bảng khắc phục 5 ca.
-- `report/team/chi_so.md`: bảng E1 (7 chỉ số), bảng 10 event, mục kiểm tra chéo, bảng E2 (3 rủi ro).
-- Commit: [điền hash sau khi push].
+- `report/team/bang_loi.md`: cột nhãn người 1, quy tắc phân biệt, bảng "Tác động định lượng của lỗi", bảng khắc phục 5 ca (ca 1, 2, 3, 11, 12).
+- `report/team/chi_so.md`: bảng E1 (7 chỉ số), bảng 10 event, mục kiểm tra chéo, bảng E2 (4 rủi ro).
+- Commit trên nhánh `feat/cp3-cp5-anhduong` (PR #2): `02d0f79` (bản đầu) và commit hoàn thiện theo góp ý của trưởng nhóm.
 
 ## 5. Công cụ AI đã dùng
 
-Công cụ nào, dùng vào việc gì, bạn tự kiểm tra kết quả ra sao.
-
 - Claude Code: đọc đề và tài liệu trong repo, viết script nháp pandas (để ngoài repo, không commit) để tính các chỉ số, soạn khung bảng event và bảng khắc phục.
-- Không dùng AI để gắn nhãn 20 ca: nhãn của tôi được gắn tay, độc lập, trước khi so với người gắn nhãn 2.
-- Tự kiểm tra: đối chiếu từng con số với số tham chiếu trong `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md` (994/1.200, 48/177, 51/1.200, 4.472 đ, B4 11.743 đ), tất cả khớp.
+- Không dùng AI để gắn nhãn 20 ca: nhãn của tôi được gắn tay, độc lập, trước khi so với người gắn nhãn 2 và với nhãn tham khảo.
+- Tự kiểm tra: đối chiếu từng con số với số tham chiếu trong `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md` và `bang_chi_phi.md` (994/1.200, 48/177, 51/1.200, 4.472 đ [simulated], B4 11.743 đ [simulated], 12.415 đ [simulated]), tất cả khớp.
 
 ## 6. Tự đánh giá
 
 - Làm tốt: các chỉ số đều có con số và event để đo; bảng lỗi nối được với chi phí (làm lại chiếm 51,8% tổng chi phí [simulated]).
-- Cần cải thiện: [điền sau buổi duyệt chéo, ví dụ câu hỏi của hội đồng mà mình trả lời chưa tốt].
+- Cần cải thiện: tôi nhầm Giới hạn hệ thống với Hệ thống ở 3/20 ca (7, 15, 20). Bài học: nếu sửa code hoặc quy trình là làm đúng được thì đó là lỗi Hệ thống, không phải Giới hạn.

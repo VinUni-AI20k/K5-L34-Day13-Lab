@@ -8,26 +8,26 @@ Người gắn nhãn 1: Nguyễn Ánh Dương (Error & Metrics Analyst) · Ngư�
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
-| 1 | ... | ... | ... | ... |
-| 2 | ... | ... | ... | ... |
-| 3 | ... | ... | ... | ... |
-| 4 | ... | ... | ... | ... |
-| 5 | ... | ... | ... | ... |
-| 6 | ... | ... | ... | ... |
-| 7 | ... | ... | ... | ... |
-| 8 | ... | ... | ... | ... |
-| 9 | ... | ... | ... | ... |
-| 10 | ... | ... | ... | ... |
-| 11 | ... | ... | ... | ... |
-| 12 | ... | ... | ... | ... |
-| 13 | ... | ... | ... | ... |
-| 14 | ... | ... | ... | ... |
-| 15 | ... | ... | ... | ... |
-| 16 | ... | ... | ... | ... |
-| 17 | ... | ... | ... | ... |
-| 18 | ... | ... | ... | ... |
-| 19 | ... | ... | ... | ... |
-| 20 | ... | ... | ... | ... |
+| 1 | Do người dùng | ... | ... | ... |
+| 2 | Hệ thống | ... | ... | ... |
+| 3 | Ngữ cảnh | ... | ... | ... |
+| 4 | Giới hạn hệ thống | ... | ... | ... |
+| 5 | Ngầm | ... | ... | ... |
+| 6 | Do người dùng | ... | ... | ... |
+| 7 | Giới hạn hệ thống | ... | ... | ... |
+| 8 | Hệ thống | ... | ... | ... |
+| 9 | Do người dùng | ... | ... | ... |
+| 10 | Ngữ cảnh | ... | ... | ... |
+| 11 | Giới hạn hệ thống | ... | ... | ... |
+| 12 | Ngầm | ... | ... | ... |
+| 13 | Giới hạn hệ thống | ... | ... | ... |
+| 14 | Do người dùng | ... | ... | ... |
+| 15 | Giới hạn hệ thống | ... | ... | ... |
+| 16 | Ngữ cảnh | ... | ... | ... |
+| 17 | Ngầm | ... | ... | ... |
+| 18 | Ngữ cảnh | ... | ... | ... |
+| 19 | Giới hạn hệ thống | ... | ... | ... |
+| 20 | Giới hạn hệ thống | ... | ... | ... |
 
 **Tỉ lệ đồng thuận:** ... / 20 = ...%
 
@@ -62,8 +62,8 @@ Cách phát hiện phải đo được (event, ngưỡng, tần suất). Ngườ
 
 | Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
 | --: | --- | --- | --- | --- |
-| ... | Do người dùng | ... | ... | ... |
-| ... | Hệ thống | ... | ... | ... |
-| ... | Ngữ cảnh | ... | ... | ... |
-| ... | Giới hạn hệ thống | ... | ... | ... |
-| ... | Ngầm | ... | ... | ... |
+| 1 | Do người dùng | Event `refund_ledger_write` có `ket_qua = bank_rejected` theo `trace_id`; cảnh báo khi quá 1% số yêu cầu/ngày (khoảng 15/1.500) | Kiểm tra độ dài số tài khoản theo ngân hàng và hiện tên chủ tài khoản cho khách xác nhận trước khi tạo lệnh; ngân hàng từ chối thì mời khách sửa, không đóng ticket | PM trợ lý hoàn phí |
+| 2 | Hệ thống | Kiểm tra mỗi ngày: lần gọi tool tra giá có `loai_hang = thuong` trong khi vận đơn ghi hàng nặng (28 kg); ngưỡng 0 ca; kèm `ticket_reopened` có `reason = hoan_thieu` theo tuần | Agent lấy loại hàng và cân nặng từ dữ liệu vận đơn, không tự suy; chặn gọi tool khi tham số lệch vận đơn; đối soát số tiền hoàn với bảng giá trước khi gửi | Kỹ sư trưởng agent |
+| 3 | Ngữ cảnh | Event `ticket_reopened` có `reason = chua_nhan_tien` trong khi sổ cái đã ghi ok về ví; theo tuần, cảnh báo khi quá 0,5% số yêu cầu | Hỏi khách chọn nhận về ví (5 phút) hay ngân hàng (1–3 ngày) trước khi hoàn; tin nhắn luôn ghi kênh nhận và thời gian tiền về | Trưởng nhóm CSKH |
+| 11 | Giới hạn hệ thống | Event `handoff_to_staff` có `reason = dau_vao_khong_ho_tro` (âm thanh), đếm theo tuần; quá 2% số yêu cầu thì đưa xử lý thoại vào lộ trình | Nói rõ "chưa nghe được tin nhắn thoại", đưa 3 nút lý do hoàn phổ biến và ô gõ chữ; khách vẫn cần thoại thì chuyển nhân viên kèm file, không cụt đường | PM trợ lý hoàn phí |
+| 12 | Ngầm | Báo cáo tuần chi phí token + tool mỗi yêu cầu theo depot từ `agent_run_completed`; cảnh báo khi một depot > 1,5× trung vị (đợt chạy thử: 259–287 đ/yêu cầu, chênh tối đa 11%) | Tool tra đơn kiểm tra đủ trường và trả lỗi rõ thay vì để agent gọi lại; ghi `depot` và số lần gọi tool vào trace để chia nhỏ chi phí | Kỹ sư trưởng agent |
