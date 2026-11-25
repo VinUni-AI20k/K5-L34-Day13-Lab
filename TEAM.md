@@ -69,6 +69,7 @@ Sao chép mục dưới đây cho từng thành viên.
   - In tỉ lệ mở lại hiện tại: 4,25% toàn mẫu, 3,97% trong phạm vi.
 - Điền `pilot_plan.yaml`: chia theo nhân viên 20 + 20, mde 0,06, n 859, DE 6,96; trả lời 5 câu D2; ghi rõ đánh đổi đã chấp nhận.
 - Viết 4 luật dừng theo mẫu NẾU – TRONG – THÌ – KHÔNG THÌ: an toàn (mở lại), an toàn (hoàn trùng / sổ cái), chi phí, mức độ sử dụng.
+- Kiểm số Nhiệm vụ A: tính tay từ tổng các cột CSV. Token 245.585 đ; tool 84.000 đ; phần lần chạy 2–3 là 93.804 đ; tổng 4.373.585 đ (simulated); chi phí mỗi việc thành công 4.373.585 ÷ 978 = 4.472 đ (simulated); hoá đơn chia số yêu cầu 274,7 đ. Cả sáu số khớp code của Lâm.
 - Đối chiếu số A3, A4 trong `pilot_plan.yaml` với output code A của Lâm: khớp.
 - Kiểm tra chéo luật dừng với nhãn ca 7, 20 trong `bang_loi.md` và danh sách event trong `chi_so.md`.
 

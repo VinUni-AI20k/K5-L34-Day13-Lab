@@ -32,7 +32,16 @@
   - Vì vậy dùng ngưỡng so với nhóm đối chứng (+2 điểm), kèm trần tuyệt đối 6%.
   - Viết 4 luật dừng theo mẫu NẾU – TRONG – THÌ – KHÔNG THÌ: an toàn (mở lại), an toàn (hoàn trùng hoặc sổ cái), chi phí (8.000 đ, simulated), mức độ sử dụng (bỏ qua gợi ý 40%).
 - **Phần còn lại của file:** điền rollout, rollback, decision_date và danh sách `simulated_inputs`.
-- **Kiểm số Nhiệm vụ A:** [cần điền: con số đã tính tay, cách tính, kết quả so với code]
+- **Kiểm số Nhiệm vụ A:** cộng thẳng các cột trong hai file CSV (không dùng `mo_hinh`) rồi tính tay, đối chiếu với output `lab13.py` của người viết code. Cả sáu số khớp.
+
+  | Khoản | Cách tính tay | Kết quả | Code |
+  | --- | --- | ---: | ---: |
+  | Token | 5.771.712 token vào ÷ 1.000 × 26 = 150.064,5; 734.774 token ra ÷ 1.000 × 130 = 95.520,6 | 245.585 đ | 245.585 |
+  | Tool | 5.600 lần gọi × 15 | 84.000 đ | 84.000 |
+  | Phần lần chạy 2 và 3 | 1.815.168 × 0,026 + 190.424 × 0,13 + 1.457 × 15 | 93.804 đ | 93.804 |
+  | Tổng chi phí | 245.585 + 84.000 + 890 phút × 2.000 + 1.132 phút × 2.000 | 4.373.585 đ (simulated) | 4.373.585 |
+  | Chi phí mỗi việc thành công | 4.373.585 ÷ 978 | 4.472 đ (simulated) | 4.472 |
+  | Hoá đơn token + tool chia số yêu cầu | 329.585 ÷ 1.200 | 274,7 đ, tức 4.472 gấp 16,3 lần | 274,7 |
 
 ## 4. Bằng chứng
 
@@ -41,7 +50,8 @@
   - Đọc được bằng `yaml.safe_load`.
   - `grep -v '^ *#' ../report/team/pilot_plan.yaml | grep -n '?'` không in gì.
   - Có 4 luật dừng đủ bốn vế.
-- Commit: [cần điền mã commit sau khi push]
+- Commit trên nhánh `nhiem-vu-D-Vinh` (PR #4): `615f021` (phần D và báo cáo này), `c17dc12` (`TEAM.md`).
+- Kiểm số: bảng tính tay ở mục 3, đối chiếu với output `python lab13.py`.
 
 ## 5. Công cụ AI đã dùng
 
@@ -51,6 +61,7 @@
   - Góp ý phân công nhóm.
   - Viết code D1 trong `src/lab13.py`.
   - Soạn bản nháp `pilot_plan.yaml` và báo cáo này.
+  - Cộng tổng các cột trong CSV (token, tool, phút) cho phần kiểm số; tôi đối chiếu lại từng phép nhân, chia trong bảng ở mục 3 với output `lab13.py`.
 - **Cách tự kiểm tra:**
   - Đối chiếu năm số D1 với công thức trong `docs/du_lieu_va_cong_thuc.md`.
   - Tính tay câu e: 20m ≥ 859 × (0,98 + 0,02m) → m ≥ 298,5 → 299.
