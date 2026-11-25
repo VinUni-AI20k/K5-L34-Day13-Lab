@@ -2,18 +2,21 @@
 
 Một trang. Cột trạng thái chỉ nhận: **Xong, có bằng chứng · Chưa · Giả lập**. Mục nào dựa trên cột `_simulated` ghi Giả lập. Người phụ trách là một vai trò, không ghi "cả đội". Gate 2a chỉ duyệt kế hoạch pilot: không viết như thể trợ lý đã được duyệt chạy chính thức (xem quy tắc 5 trong `README.md`).
 
-Nhóm: ... · Lớp: ...
+Nhóm: AAA · Lớp: L3B
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |
-| 1 · Chi phí mỗi việc thành công | ... | ... | ... |
-| 2 · Ba yếu tố nhạy nhất | ... | ... | ... |
-| 3 · So với nhân viên tự làm | ... | ... | ... |
-| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | ... | ... | ... |
-| 5 · Bảng lỗi và cách khắc phục | ... | ... | ... |
-| 6 · Pilot plan | ... | ... | ... |
-| 7 · Rủi ro kinh tế | ... | ... | ... |
+| 1 · Chi phí mỗi việc thành công | Toàn mẫu: `4.472 đ/việc TC` (`simulated`), gấp `16,3×` hoá đơn token+tool/yêu cầu (`274,7 đ`); giờ nhân viên chiếm `92,5%` (làm lại `51,8%`, xem lại `40,7%`). Phạm vi `noi_dia + hang_nang`: `3.414 đ` biến đổi; cộng cố định `40 triệu đ/tháng` thành `4.599 đ` (`0,38×` ở 45.000 yc/tháng) hoặc `5.784 đ` (`0,48×` ở nửa khối lượng) (`simulated`). | Giả lập | PM trợ lý hoàn phí |
+| 2 · Ba yếu tố nhạy nhất | `1. Số ca làm lại` (`+51,8%` / `−25,9%`) · `2. Tỉ lệ xem lại` (`+40,7%` / `−20,3%`) · `3. Lương nhân viên` (`+23,1%` khi tăng 25%) (`simulated`). Giá token ×2 chỉ `+5,6%`; cặp token ×2 + xem lại ×2 = `6.543 đ` (`+46,3%`, `simulated`). | Giả lập | PM trợ lý hoàn phí |
+| 3 · So với nhân viên tự làm | Toàn mẫu (cộng đủ 222 ca không TC × `12.000 đ`): `5.865 đ/yêu cầu = 0,49×` của `12.000 đ` (`simulated`). Theo loại (`simulated`): `noi_dia` `0,22×` (`2.696 đ`), `hang_nang` `0,69×` (`8.221 đ`); loại `quoc_te` (`1,88×`, TC `27,3%`) và `doi_tac` (`0,85×`, điều khoản riêng). Giới hạn rẻ nhất cả hệ thống: `2 lần` (`6.901.220 đ`, `simulated`), khác mức cps thấp nhất `1 lần` (`4.111 đ`). | Giả lập | Giám đốc vận hành LogiX-VN |
+| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | Chỉ số trong đợt chạy thử (chưa có đối chứng): Chính = `82,83%` (`994/1.200`); Dùng (bỏ qua gợi ý) = `27,12%` (`48/177`); An toàn (`mo_lai_trong_7_ngay`) = `4,25%` toàn mẫu (`3,97%` trong `noi_dia + hang_nang`). Đã đặc tả đủ 2 chỉ số tự đề xuất và 10 event có `trace_id`. | Xong, có bằng chứng | Kỹ sư trưởng agent |
+| 5 · Bảng lỗi và cách khắc phục | Gắn nhãn độc lập 20 ca đạt đồng thuận `20/20` (`100%` ≥ `80%`): 4 Do người dùng, 5 Hệ thống, 4 Ngữ cảnh, 4 Giới hạn, 3 Ngầm. Đủ bảng phát hiện đo được + khắc phục cho 5 loại; cần vá gấp ca 7 (báo hoàn tiền khi sổ cái 503) và ca 20 (hoàn trùng). | Xong, có bằng chứng | Kỹ sư trưởng agent |
+| 6 · Pilot plan | Phạm vi `noi_dia + hang_nang` tại 12 depot; chia ngẫu nhiên theo nhân viên (`20 + 20` cụm, phân tầng depot), rollout `10% → 25% → 50%`. Đánh đổi: không đủ mẫu cho MDE `+5 điểm` (tối đa `1.000 < 1.251`), nâng MDE lên `+6 điểm` (`n = 859/nhóm`, `DE = 6,96`, `m ≥ 299` yc/người; bất lợi: power còn `0,64` nếu tác động thật `+5 điểm`). Đủ 3 luật dừng `NẾU–TRONG–THÌ–KHÔNG THÌ`, rollback 30 phút, quyết định `2027-01-05`. | Xong, có bằng chứng | Giám đốc vận hành LogiX-VN |
+| 7 · Rủi ro kinh tế | Xem lại 100% (5 phút/lần) đẩy chi phí lên `11.743 đ = 0,98×` (9 phút làm lại) hoặc `12.415 đ = 1,03×` (15,3 phút làm lại) (`simulated`), ngưỡng hoà vốn ≤ `4,8–5,1` phút/lần; làm lại ×2 tăng `+51,8%` (`6.787 đ`, `simulated`); giảm nửa khối lượng đẩy chi phí cố định lên `2.370 đ/việc` (`simulated`). | Giả lập | PM trợ lý hoàn phí |
 
-**Đề xuất:** Go · Go có điều kiện · No-go (giữ một). Go có điều kiện: ghi từng điều kiện, người phụ trách, ngày kiểm tra. No-go: ghi việc phải làm để quay lại cổng.
+**Đề xuất:** **Go có điều kiện** cho kế hoạch pilot phạm vi `noi_dia + hang_nang` (loại `quoc_te` và `doi_tac`), chỉ bắt đầu khi đáp ứng đủ 4 điều kiện sau:
 
-- ...
+- Bổ sung khoá chống trùng (`idempotency_key`, ca 20) và chặn gửi thông báo "đã hoàn tiền" khi `refund_ledger_write` chưa trả `ok`, kèm đối soát mỗi giờ (ca 7) — **Người phụ trách:** Kỹ sư trưởng agent — **Ngày kiểm tra:** `2026-12-01` (trước khi mở pilot).
+- Ký chấp nhận đánh đổi thiết kế pilot MDE `+6 điểm` (`20 + 20` nhân viên, `m ≥ 299` yêu cầu/người; chấp nhận power giảm còn `0,64` nếu tác động thật chỉ là `+5 điểm`) — **Người phụ trách:** Giám đốc vận hành LogiX-VN — **Ngày kiểm tra:** `2026-12-01`.
+- Bật đủ 10 event có `trace_id` (đặc biệt `staff_review_decision` và `staff_rework_completed`) để thay thế toàn bộ số liệu phút `simulated` bằng thời gian đo thực tế ngay sau tuần 1 rollout (`0.10`) — **Người phụ trách:** Kỹ sư trưởng agent — **Ngày kiểm tra:** `2026-12-08`.
+- Thiết lập lộ trình giảm tỉ lệ xem lại theo bậc (khi tỉ lệ `sua + bo < 15%`) và rút thời gian xem lại xuống dưới `4,8–5,1` phút/lần vì xem lại 100% làm mất lợi thế chi phí (`0,98×–1,03×`, `simulated`) — **Người phụ trách:** Trưởng nhóm CSKH — **Ngày kiểm tra:** `2026-12-15` (cuối bước `0.25`).
