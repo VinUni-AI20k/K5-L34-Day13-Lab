@@ -17,6 +17,8 @@
 
 ## 4. Bằng chứng
 
+- Bộ nhãn đã chốt được lưu tại commit `5527354`. Sau khi đối chiếu, hai bộ trùng 20/20 ca (100%). [Bảng đối chiếu nhãn](bang_loi.md)
+
 ### Bộ nhãn CP3
 
 P3 đã rà và chốt bộ nhãn trước khi đối chiếu với P4.
@@ -57,4 +59,4 @@ P3 đã rà và chốt bộ nhãn trước khi đối chiếu với P4.
 
 ## 6. Tự đánh giá
 
-...
+- Ca 12 là lỗi ngầm vì chi phí bất thường kéo dài 3 tuần mà không ai phát hiện. Ca 15 là lỗi hệ thống vì tính sai mức hoàn và đã bị nhân viên phát hiện trước khi gửi.
