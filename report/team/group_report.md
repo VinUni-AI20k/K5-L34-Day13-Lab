@@ -5,7 +5,7 @@ Báo cáo ngắn, tối đa 2 trang. Số liệu chi tiết nằm trong các fil
 ## 1. Thông tin nhóm
 
 - Tên nhóm: LuckyTeam
-- Lớp: [Điền L3A hoặc L3B]
+- Lớp: L3B
 - Thành viên: xem [TEAM.md](../../TEAM.md)
 
 ## 2. Mục tiêu và cách tiếp cận
@@ -24,12 +24,14 @@ Nhóm phân công 4 thành viên làm song song theo [PHAN_CONG.md](../../PHAN_C
 
 ## 4. Kết quả
 
+- **Mô hình chi phí (A1–A4):** qua cả 3 phép thử A1 (1,20 · 1,25 · 1,25). Chi phí mỗi việc thành công là **4.472 đ** (`simulated`), gấp **16,3 lần** hoá đơn token + tool (274,7 đ/yc); làm lại chiếm 51,8% và xem lại 40,7%. Chi phí cả hệ thống (gồm 222 ca nhân viên làm thay) là **5.865 đ/yc = 0,49×** của 12.000 đ (`simulated`). Phạm vi pilot `noi_dia` (0,22×) + `hang_nang` (0,69×), loại `quoc_te` (1,88×, tỉ lệ ok tụt 30,0% → 11,4% → 2,2%) và `doi_tac` (0,85×). Cộng cố định 40 triệu đ/tháng: **4.599 đ = 0,38×** ở 45.000 yc/tháng và **5.784 đ = 0,48×** ở 1/2 khối lượng (`simulated`).
+- **Độ nhạy và rủi ro kinh tế (B1–B4, E2):** top 3 yếu tố nhạy nhất là số ca làm lại (+51,8%), tỉ lệ xem lại (+40,7%), lương nhân viên (+23,1%) (`simulated`). Giới hạn **2 lần chạy** rẻ nhất cho cả hệ thống (**6.901.220 đ**, `simulated`). Nếu phải xem lại 100% trong phạm vi pilot (B4), chi phí tăng lên **11.743 đ = 0,98×** (9 phút làm lại) hoặc **12.415 đ = 1,03×** (15,3 phút thực tế, `simulated`), đòi hỏi lộ trình giảm xem lại theo bậc.
 - **Chỉ số đợt chạy thử (E1, 1.200 yêu cầu):**
   - Chỉ số chính (% đóng trong 24 giờ và không mở lại trong 7 ngày): **82,83%** (994/1.200); trong phạm vi `noi_dia` + `hang_nang`: **92,26%** (906/982).
   - Chỉ số dùng (tỉ lệ bỏ qua gợi ý): **27,12%** (48/177); trong phạm vi pilot: **21,09%** (27/128).
   - Chỉ số an toàn (tỉ lệ lỗi lọt đến khách — mở lại 7 ngày): **4,25%** (51/1.200); trong phạm vi pilot: **3,97%** (39/982).
-- **Chi phí, độ nhạy, bảng lỗi và pilot plan (A–D):** [Điền các con số chính sau khi merge `p1-A`, `p2-B`, `p3-CD`; ghi rõ nhãn `simulated` với mọi số tính từ cột `_simulated`].
-- **Đề xuất Gate 2a:** **Go có điều kiện** (chi tiết 4 điều kiện, người phụ trách và ngày kiểm tra tại [ho_so_launch_v0.md](ho_so_launch_v0.md)).
+- **Bảng lỗi và pilot plan (C–D):** [Điền sau khi merge `p3-CD`].
+- **Đề xuất Gate 2a:** **Go có điều kiện** cho pilot `noi_dia` + `hang_nang` (chi tiết 4 điều kiện, người phụ trách và ngày kiểm tra tại [ho_so_launch_v0.md](ho_so_launch_v0.md)).
 - **Kết quả duyệt chéo hội đồng:** [Điền sau phiên duyệt chéo Gate 2a].
 
 ## 5. Khó khăn và cách xử lý

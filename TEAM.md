@@ -4,8 +4,8 @@
 
 - Tên nhóm: LuckyTeam
 - Lớp: L3B
-- Repo nhóm: `K5-L3A-DAY13-LuckyTeam-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: [Điền trước khi nộp]
+- Repo nhóm: `K5-L3B-DAY13-LuckyTeam-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: `https://github.com/ndhai255/K5-L3B-DAY13-LuckyTeam-LaunchEconomics` · nhánh `main` · commit chốt: [Điền trước khi nộp]
 
 ## Thành viên
 
@@ -101,4 +101,6 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Bằng chứng
 
-- `src/cp5_chi_so.py`, `report/team/chi_so.md`, `report/team/ho_so_launch_v0.md`, `TEAM.md`, `report/team/group_report.md`.
+- Nhánh `haivq`, commit `ffdcd4e` (phần việc Người 4) và merge `ad5178f` vào `main`.
+- File: `src/cp5_chi_so.py`, `report/team/chi_so.md` (E1 & 10 event), `report/team/ho_so_launch_v0.md`, `TEAM.md`, `report/team/group_report.md`.
+- Báo cáo cá nhân: [report/team/2A202603935_VuQuangHai.md](report/team/2A202603935_VuQuangHai.md).
