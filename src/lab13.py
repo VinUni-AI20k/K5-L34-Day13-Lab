@@ -4,7 +4,12 @@ Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TO
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+import sys
 import pandas as pd
+
+# Đảm bảo các thông báo tiếng Việt in được trong terminal Windows không dùng UTF-8.
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26        # đồng cho 1.000 token đầu vào
@@ -115,7 +120,55 @@ if __name__ == '__main__':
               f'co_dinh/viec={co_dinh_moi_viec:,.0f} '
               f'tong_cps={cps_co_dinh:,.0f} '
               f'so_voi_12k={cps_co_dinh / BASELINE:.2f}x [simulated]')
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
+    # B1 · Độ nhạy từng yếu tố
+    print('\nB1 · Độ nhạy (CPS, thay đổi so với cơ sở)')
+    base = ket_qua['cps']
+    cases = {
+        'token_x2': mo_hinh(runs, reqs, gia_vao=52, gia_ra=260),
+        'token_x0.5': mo_hinh(runs, reqs, gia_vao=13, gia_ra=65),
+        'review_x2': mo_hinh(runs, reqs, he_so_xem_lai=2),
+        'review_x0.5': mo_hinh(runs, reqs, he_so_xem_lai=.5),
+        'rework_x2': mo_hinh(runs, reqs, he_so_lam_lai=2),
+        'rework_x0.5': mo_hinh(runs, reqs, he_so_lam_lai=.5),
+        'wage_2500': mo_hinh(runs, reqs, luong_phut=2500),
+        'cap_2': mo_hinh(runs, reqs, max_lan_chay=2),
+        'cap_1': mo_hinh(runs, reqs, max_lan_chay=1),
+    }
+    for name, result in cases.items():
+        print(name, f"{result['cps']:,.2f}",
+              f"{(result['cps'] / base - 1) * 100:+.2f}%")
+    paired = mo_hinh(runs, reqs, gia_vao=52, gia_ra=260, he_so_xem_lai=2)
+    print('token_x2_and_review_x2', f"{paired['cps']:,.2f}",
+          f"{(paired['cps'] / base - 1) * 100:+.2f}%")
+
+    # B3 · So sánh chi phí toàn hệ thống sau khi chuyển ca lỗi cho nhân viên.
+    print('\nB3 · Giới hạn chạy lại (tổng trợ lý, lỗi, tổng hệ thống, CPS)')
+    for cap in (1, 2, 3):
+        result = mo_hinh(runs, reqs, max_lan_chay=cap)
+        failed = len(reqs) - result['thanh_cong']
+        system = result['tong'] + failed * BASELINE
+        print(cap, f"{result['tong']:,.0f}", failed,
+              f"{system:,.0f}", f"{result['cps']:,.2f}")
+
+    # B4 · 100% review theo giả định của hướng dẫn; các phút là simulated.
+    print('\nB4 · Xem lại 100% trong noi_dia + hang_nang')
+    pham_vi = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    runs_pham_vi = runs[runs['request_id'].isin(pham_vi['request_id'])]
+    trace_cost = mo_hinh(runs_pham_vi, pham_vi, luong_phut=0)
+    ok_ids = set(runs_pham_vi.loc[runs_pham_vi['status'] == 'ok', 'request_id'])
+    review_cost = len(ok_ids) * 5 * LUONG_PHUT
+    rework_cost = (pham_vi['ket_qua'] == 'lam_lai').sum() * 9 * LUONG_PHUT
+    total_review_all = trace_cost['tong'] + review_cost + rework_cost
+    print('5-min-review_9-min-rework', f"{total_review_all:,.0f}",
+          f"CPS={total_review_all / trace_cost['thanh_cong']:,.2f} [simulated]")
+    # Hướng dẫn dùng mức trung bình 15,3 phút/ca trên toàn bộ ca làm lại,
+    # áp dụng cho số ca làm lại trong phạm vi pilot.
+    rework_cases_scope = (pham_vi['ket_qua'] == 'lam_lai').sum()
+    rework_mean_all = round(reqs.loc[reqs['ket_qua'] == 'lam_lai',
+                                     'phut_lam_lai_simulated'].mean(), 1)
+    rework_observed = rework_cases_scope * rework_mean_all * LUONG_PHUT
+    print('using observed simulated rework minutes',
+          f"CPS={(trace_cost['tong'] + review_cost + rework_observed) / trace_cost['thanh_cong']:,.2f}")
     # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
     #   from statsmodels.stats.proportion import proportion_effectsize
     #   from statsmodels.stats.power import NormalIndPower
