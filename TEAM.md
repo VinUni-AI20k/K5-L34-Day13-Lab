@@ -2,19 +2,22 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: 5AE
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-5AE-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo: https://github.com/truclamld/K5-L3B-DAY13-5AE-LaunchEconomics
+- Nhánh nộp:
+- Commit chốt: 
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub | Vai trò |
-| --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+| STT | Họ tên          | MSSV        | Email                     | GitHub    | Vai trò         |
+|----:|-----------------|-------------|---------------------------|-----------|-----------------|
+|   1 | Lê Đức Trúc Lâm | 2A202603787 | 26ai.lamldt@vinuni.edu.vn | truclamld | Người viết code |
+|   2 |                 |             |                           |           |                 |
+|   3 |                 |             |                           |           |                 |
+|   4 |                 |             |                           |           |                 |
+|   5 |                 |             |                           |           |                 |
 
 Bốn vai của lab:
 
