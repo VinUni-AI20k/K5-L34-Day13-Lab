@@ -16,13 +16,13 @@
 
 ## 3. Đóng góp cụ thể
 
-- **Đã triển khai (trước khi nhận output từ đồng đội):**
-  - Hoàn thành gắn nhãn độc lập 20 ca lỗi (`Nhãn người 1`) và chuẩn bị bản nháp bảng khắc phục 5 ca trong `report/team/bang_loi.md`.
-  - Hoàn thiện trước các phần không phụ thuộc số liệu của `report/team/pilot_plan.yaml`: 5 câu kiểm tra D2, `owner`, `assignment`, `rollout`, `identifiability`, `rollback`, `decision_date` và khung 3 luật dừng.
-  - Hoàn thiện 2 chỉ số tự đề xuất, 10 event có `trace_id` và phần kiểm tra chéo event–chỉ số trong `report/team/chi_so.md`.
+- **Đã triển khai (đến hiện tại):**
+  - Hoàn thành gắn nhãn độc lập 20 ca lỗi (`Nhãn người 1`) và bản nháp bảng khắc phục 5 ca trong `report/team/bang_loi.md` (khớp phạm vi loại `quoc_te` từ A3).
+  - Sau khi pull kết quả A–B của Minh và Hải (`bang_chi_phi.md`), đã điền `scope` và luật dừng chi phí vào `report/team/pilot_plan.yaml` (cùng 5 câu D2, `owner`, `assignment`, `rollout`, `identifiability`, `rollback`, `decision_date`).
+  - Hoàn thiện bảng **E2 · Rủi ro kinh tế** (3 dòng lấy số từ `bang_chi_phi.md`), 2 chỉ số tự đề xuất, 10 event có `trace_id` và phần kiểm tra chéo event–chỉ số trong `report/team/chi_so.md`.
 - **Đang chờ output đồng đội để hoàn tất:**
-  - Chờ Hùng gắn nhãn độc lập 20 ca để so nhãn và chốt `bang_loi.md`.
-  - Chờ Hải hoàn thiện `bang_chi_phi.md` (Lượt 4) và code D1 / chỉ số E (Lượt 6, Lượt 8) để điền các số liệu còn lại vào `pilot_plan.yaml` và `chi_so.md`.
+  - Chờ Hùng gắn nhãn độc lập 20 ca để so nhãn, tính đồng thuận và chốt `bang_loi.md` (Lượt 5).
+  - Chờ Hải hoàn thiện code D1 + `mo_lai_trong_7_ngay` (Lượt 6) và 3 chỉ số E1 (Lượt 8) để điền các số liệu còn lại vào `pilot_plan.yaml` và `chi_so.md`.
 
 ## 4. Bằng chứng
 

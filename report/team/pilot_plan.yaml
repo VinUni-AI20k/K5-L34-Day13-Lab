@@ -22,7 +22,7 @@
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
-  scope: "?"                      # chờ kết quả A3 từ bang_chi_phi.md của Hải
+  scope: "Chỉ noi_dia (2.696 đ = 0,22×, thành công 95,0%) và hang_nang (8.221 đ = 0,69×, thành công 74,1%) [simulated]; loại quoc_te (22.515 đ = 1,88×, thành công 27,3%) và doi_tac (10.215 đ = 0,85×, điều khoản riêng)"
   assignment:
     unit: "staff"
     control_share: 0.5
@@ -43,7 +43,7 @@ pilot:
     predeclared: "Chốt trước chỉ số chính, ngưỡng dừng và ngày quyết định 2027-01-05 trước khi bắt đầu"
   stop_rules:
     - "NẾU ? TRONG ? THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút KHÔNG THÌ không được sang bước rollout tiếp" # chờ Hải tính mo_lai_trong_7_ngay hiện tại để chốt ngưỡng an toàn
-    - "NẾU ? TRONG ? THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn 2 lần chạy KHÔNG THÌ không được mở rộng phạm vi" # chờ số A3/B từ Hải để chốt ngưỡng chi phí
+    - "NẾU chi phí mỗi việc thành công > 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về noi_dia và giới hạn tối đa 2 lần chạy (6.901.220 đ cả hệ thống, simulated) KHÔNG THÌ không được mở rộng sang hang_nang"
     - "NẾU tỉ lệ bỏ qua gợi ý > 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày KHÔNG THÌ không được chuyển bước rollout"
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
   rollback: "Giám đốc vận hành bấm cờ tắt, hiệu lực trong 30 phút; khách được phục vụ bằng luồng nhân viên tự làm"
