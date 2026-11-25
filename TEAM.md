@@ -3,7 +3,7 @@
 ## Thông tin nhóm
 
 - Tên nhóm:
-- Lớp: L3A hoặc L3B
+- Lớp: L3B
 - Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
 - URL repo, nhánh nộp, commit chốt:
 
@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
+|   1 | Cao Trung Hiếu | 2A202603993 | 26ai.hieuct@vinuni.edu.vn | HieuCaoTlu | Người gắn nhãn 1 |
 |   2 |        |      |       |        |         |
 |   3 |        |      |       |        |         |
 |   4 |        |      |       |        |         |
@@ -37,16 +37,17 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## HoVaTen-MSSV
+## Cao Trung Hiếu - 2A202603993
 
 ### Phần việc phụ trách
 
--
+- Người gắn nhãn 1: gắn nhãn 20 ca lỗi (CP3) và theo dõi điều kiện "Xong khi" của các checkpoint.
 
 ### Đóng góp cụ thể
 
--
+- Gắn nhãn 20 ca lỗi theo 5 loại Google PAIR, ghi căn cứ cho từng ca.
+- Soạn bảng khắc phục 5 ca (đủ 5 loại) với cách phát hiện đo được và vai trò phụ trách.
 
 ### Bằng chứng
 
--
+- `report/team/bang_loi.md`, `report/team/2A202603993_CaoTrungHieu.md`.
