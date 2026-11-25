@@ -50,10 +50,10 @@ pilot:
     #   So với đối chứng thay vì ngưỡng tuyệt đối 3% (sẽ dừng oan ngay tuần đầu); trần 6% ≈ 1,5 lần mức hiện tại.
     - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn nhóm đối chứng từ 2 điểm trở lên, hoặc vượt 6%, hoặc phát sinh từ 1 ca hoàn tiền trùng TRONG bất kỳ cửa sổ 7 ngày nào (tính trên yêu cầu đã đủ 7 ngày theo dõi; ca hoàn trùng tính ngay khi phát hiện) THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và rà lại toàn bộ ca hoàn của nhóm trợ lý trong 2 ngày KHÔNG THÌ không được bật lại trợ lý và không được sang bước rollout tiếp theo"
     # Chi phí · mốc: cps phạm vi noi_dia + hang_nang 3.414 đ, cộng cố định 1.185 đ = 4.599 đ = 0,38× (A4, simulated).
-    #   Ngưỡng 6.000 đ = cps tăng 76%, vượt kịch bản xấu nhất của B1 (làm lại gấp đôi +51,8%) → có vấn đề ngoài mô hình;
+    #   Ngưỡng 6.000 đ so với 3.414 đ (chưa gồm chi phí cố định; nếu cộng cố định thì ≈ 7.185 đ) = cps tăng 76%, vượt kịch bản xấu nhất của B1 (làm lại gấp đôi +51,8%) → có vấn đề ngoài mô hình;
     #   hành động dựa trên B3 (giới hạn 2 lần chạy rẻ nhất cho cả hệ thống: 6.901.220 đ) và A3 (noi_dia rẻ nhất: 2.696 đ = 0,22×).
     #   Theo dõi thêm phút xem lại/ca: B4 cho thấy xem lại 100% chỉ hoà vốn nếu ≤ 5,1 phút/ca (11.743 đ = 0,98×).
-    - "NẾU chi phí mỗi việc thành công trong phạm vi (token + tool + chạy lại + xem lại + làm lại) vượt 6.000 đ TRONG 2 tuần liên tiếp THÌ PM giới hạn trợ lý tối đa 2 lần chạy và thu hẹp về chỉ noi_dia trong 3 ngày làm việc KHÔNG THÌ không được sang bước rollout tiếp theo và không được đưa hang_nang trở lại"
+    - "NẾU chi phí mỗi việc thành công trong phạm vi (token + tool + xem lại + làm lại, đã gồm chi phí chạy lại, chưa gồm chi phí cố định) vượt 6.000 đ TRONG 2 tuần liên tiếp THÌ PM giới hạn trợ lý tối đa 2 lần chạy và thu hẹp về chỉ noi_dia trong 3 ngày làm việc KHÔNG THÌ không được sang bước rollout tiếp theo và không được đưa hang_nang trở lại"
     # Mức độ sử dụng · mốc: tỉ lệ bỏ qua gợi ý (sua + bo) trên ca được xem lại hiện tại 27,12% (48/177), simulated.
     #   Ngưỡng 40% ≈ cao hơn mức hiện tại 13 điểm: nhân viên không tin gợi ý thì trợ lý chỉ thêm chi phí.
     - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo trên số ca được xem lại) của nhóm trợ lý vượt 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn ít nhất 5 nhân viên nhóm trợ lý trong 3 ngày và gửi PM danh sách loại gợi ý bị bỏ KHÔNG THÌ không được sang bước rollout tiếp theo"
@@ -65,7 +65,7 @@ pilot:
     - "Chi phí mỗi việc thành công toàn bộ (A2): 4.472 đ; chi phí nhân viên 12.000 đ/yêu cầu"
     - "Phạm vi noi_dia + hang_nang (A4): cps 3.414 đ; cố định 1.185 đ/việc; cps + cố định 4.599 đ = 0,38×; khối lượng 45.000 yêu cầu/tháng"
     - "Giới hạn số lần chạy (B3): chi phí cả hệ thống 1/2/3 lần = 7.449.781 / 6.901.220 / 7.037.585 đ"
-    - "Xem lại 100% (B4): 11.743 đ = 0,98×; với 15,3 phút xem lại/ca theo dữ liệu: 12.415 đ = 1,03×"
+    - "Xem lại 100% (B4): 11.743 đ = 0,98×; với 15,3 phút làm lại/ca theo dữ liệu: 12.415 đ = 1,03×"
     - "Baseline chỉ số chính 0,70; ICC 0,02; m = 299 yêu cầu/người"
     - "Tỉ lệ mở lại 7 ngày hiện tại 4,25% (3,97% trong phạm vi)"
     - "Tỉ lệ bỏ qua gợi ý hiện tại 27,12% (48/177)"
