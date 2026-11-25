@@ -8,41 +8,50 @@ Người gắn nhãn 1: Nguyễn Ánh Dương (Error & Metrics Analyst) · Ngư�
 
 |  Ca | Nhãn người 1      | Nhãn người 2      | Trùng? | Nhãn thống nhất   |
 | --: | ----------------- | ----------------- | ------ | ----------------- |
-|   1 | Do người dùng     | Do người dùng     | ...    | ...               |
-|   2 | Hệ thống          | Hệ thống          | ...    | ...               |
-|   3 | Ngữ cảnh          | Ngữ cảnh          | ...    | ...               |
-|   4 | Giới hạn hệ thống | Giới hạn hệ thống | ...    | ...               |
-|   5 | Ngầm              | Ngầm              | ...    | ...               |
-|   6 | Do người dùng     | Ngầm              | ...    | Do người dùng     |
-|   7 | Giới hạn hệ thống | Hệ thống          | ...    | Hệ thống          |
-|   8 | Hệ thống          | Hệ thống          | ...    | ...               |
-|   9 | Do người dùng     | Do người dùng     | ...    | ...               |
-|  10 | Ngữ cảnh          | Ngữ cảnh          | ...    | ...               |
-|  11 | Giới hạn hệ thống | Giới hạn hệ thống | ...    | ...               |
-|  12 | Ngầm              | Hệ thống          | ...    | Hệ thống          |
-|  13 | Giới hạn hệ thống | Hệ thống          | ...    | Giới hạn hệ thống |
-|  14 | Do người dùng     | Do người dùng     | ...    | ...               |
-|  15 | Giới hạn hệ thống | Hệ thống          | ...    | Hệ thống          |
-|  16 | Ngữ cảnh          | Ngữ cảnh          | ...    | ...               |
-|  17 | Ngầm              | Hệ thống          | ...    | Ngầm              |
-|  18 | Ngữ cảnh          | Ngầm              | ...    | Ngữ cảnh          |
-|  19 | Giới hạn hệ thống | Giới hạn hệ thống | ...    | ...               |
-|  20 | Giới hạn hệ thống | Hệ thống          | ...    | Hệ thống          |
+|   1 | Do người dùng     | Do người dùng     | Có     | Do người dùng     |
+|   2 | Hệ thống          | Hệ thống          | Có     | Hệ thống          |
+|   3 | Ngữ cảnh          | Ngữ cảnh          | Có     | Ngữ cảnh          |
+|   4 | Giới hạn hệ thống | Giới hạn hệ thống | Có     | Giới hạn hệ thống |
+|   5 | Ngầm              | Ngầm              | Có     | Ngầm              |
+|   6 | Do người dùng     | Ngầm              | Không  | Do người dùng     |
+|   7 | Giới hạn hệ thống | Hệ thống          | Không  | Hệ thống          |
+|   8 | Hệ thống          | Hệ thống          | Có     | Hệ thống          |
+|   9 | Do người dùng     | Do người dùng     | Có     | Do người dùng     |
+|  10 | Ngữ cảnh          | Ngữ cảnh          | Có     | Ngữ cảnh          |
+|  11 | Giới hạn hệ thống | Giới hạn hệ thống | Có     | Giới hạn hệ thống |
+|  12 | Ngầm              | Hệ thống          | Không  | Hệ thống          |
+|  13 | Giới hạn hệ thống | Hệ thống          | Không  | Giới hạn hệ thống |
+|  14 | Do người dùng     | Do người dùng     | Có     | Do người dùng     |
+|  15 | Giới hạn hệ thống | Hệ thống          | Không  | Hệ thống          |
+|  16 | Ngữ cảnh          | Ngữ cảnh          | Có     | Ngữ cảnh          |
+|  17 | Ngầm              | Hệ thống          | Không  | Ngầm              |
+|  18 | Ngữ cảnh          | Ngầm              | Không  | Ngữ cảnh          |
+|  19 | Giới hạn hệ thống | Giới hạn hệ thống | Có     | Giới hạn hệ thống |
+|  20 | Giới hạn hệ thống | Hệ thống          | Không  | Hệ thống          |
 
-**Tỉ lệ đồng thuận:** ... / 20 = ...%
+**Tỉ lệ đồng thuận:** 12 / 20 = 60%. Dưới ngưỡng 80% (16/20), nên nhóm đã viết lại định nghĩa (mục bên dưới) trước khi thống nhất 8 ca không trùng: 6, 7, 12, 13, 15, 17, 18, 20.
 
 ## Quy tắc phân biệt cho các ca không trùng
 
 Mỗi ca không trùng một câu. Đồng thuận dưới 80% thì ghi định nghĩa đã viết lại.
 
-- ...
+- **Ca 6 → Do người dùng:** gốc lỗi là khách chọn mục "giao trễ" cho đơn hàng vỡ. Không phải Ngầm, vì khách bị từ chối và thấy ngay. Việc trợ lý nên đối chiếu mô tả với mục đã chọn ghi ở cột khắc phục.
+- **Ca 7 → Hệ thống:** API sổ cái lỗi 503 là sự cố bên ngoài, nhưng trợ lý báo "đã hoàn tiền thành công" khi chưa ghi sổ là vi phạm thiết kế. Việc ghi sổ nằm trong phạm vi trợ lý, nên không phải Giới hạn.
+- **Ca 12 → Hệ thống:** *(cần nhóm xác nhận)* Theo định nghĩa nhóm đã viết lại ("Ngầm chỉ khi 0 người nhận ra cho tới lúc kiểm tra mẫu"), ca này "suốt 3 tuần mà không ai thấy", tức là khớp với Ngầm. Bảng khắc phục bên dưới cũng đang dùng ca 12 cho dòng Ngầm. Nhóm cần chốt lại nhãn thống nhất và viết câu quy tắc tương ứng.
+- **Ca 13 → Giới hạn hệ thống:** bảo hiểm hàng hoá là sản phẩm của đối tác, ngoài phạm vi trợ lý. Ngoài phạm vi thì là Giới hạn, kể cả khi trợ lý trả lời chung chung thay vì nói rõ.
+- **Ca 15 → Hệ thống:** chính sách ghi trễ 24–48 giờ hoàn 50%, trợ lý tính 100%, tức là vi phạm chính sách. Trợ lý có đủ dữ liệu để tính đúng nên không phải Giới hạn, và nhân viên đã bắt được nên không phải Ngầm.
+- **Ca 17 → Ngầm:** lệch 1.000–2.000 đ trên 212 đơn trong 9 ngày, không ai mở lại và không cảnh báo nào kích, chỉ lộ ra khi kiểm tra.
+- **Ca 18 → Ngữ cảnh:** số tiền đúng chính sách (30.000 đ × 50% = 15.000 đ). Lỗi nằm ở giả định "khách hiểu cách tính". Không phải Ngầm, vì khách đã mở lại yêu cầu.
+- **Ca 20 → Hệ thống:** hoàn hai lần vì lệnh thứ hai không có khoá chống trùng là thiếu sót thiết kế mà trợ lý phải xử lý được. Việc khách gửi lại sau 10 phút là hành vi bình thường, không làm lỗi thành Giới hạn hay Do người dùng.
 
-Bốn câu hỏi nhóm dùng khi thống nhất nhãn (theo nguyên nhân gốc):
+Định nghĩa đã viết lại, dùng khi thống nhất nhãn (theo nguyên nhân gốc):
 
 - **Do người dùng hay Hệ thống:** đầu vào của khách sai thì là Do người dùng, kể cả khi trợ lý xử lý kém; phần "trợ lý nên gợi ý" ghi ở cột khắc phục.
 - **Hệ thống hay Ngầm:** sai đã lộ ra (khách mở lại, nhân viên bắt được, trích dẫn nhìn thấy) là Hệ thống; Ngầm chỉ khi 0 người nhận ra cho tới lúc kiểm tra mẫu.
 - **Hệ thống hay Ngữ cảnh:** vi phạm thiết kế/chính sách là Hệ thống; làm đúng 100% thiết kế nhưng giả định lệch hoàn cảnh của khách là Ngữ cảnh.
 - **Giới hạn hệ thống:** thiếu dữ liệu, ngoài phạm vi hoặc dạng đầu vào không đọc được thì là Giới hạn, kể cả khi trợ lý báo giới hạn đó kém.
+- **Hệ thống hay Giới hạn hệ thống** (ca 7, 15, 20): việc nằm trong phạm vi trợ lý được thiết kế để làm (tính tiền, ghi sổ, chống trùng) mà làm sai là Hệ thống, kể cả khi nguyên nhân trực tiếp là một dịch vụ bên ngoài lỗi. Chỉ là Giới hạn khi trợ lý không thể làm được dù có cố.
+- **Ngầm hay loại khác** (ca 6, 18): nếu khách đã phản ứng (bị từ chối, mở lại yêu cầu) thì lỗi đã lộ ra, không phải Ngầm. Khi đó xét tiếp theo nguyên nhân gốc: đầu vào của khách sai, hay giả định không khớp hoàn cảnh.
 
 ## Tác động định lượng của lỗi trong đợt chạy thử
 
