@@ -1,6 +1,6 @@
 """Lab 13 · Định giá agent và lập kế hoạch pilot (Gate 2a) — bài làm của nhóm (file nộp).
 Chạy trong thư mục src/: python3 lab13.py   (cần pandas; Nhiệm vụ D cần thêm statsmodels)
-Không cần khoá API. Phần A tính chi phí, phần B phân tích độ nhạy; phần D ở TODO CP4.
+Không cần khoá API. In kết quả A–B, cỡ mẫu D1 và ba chỉ số E1.
 Dữ liệu trong hai file CSV là giả lập.
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
