@@ -14,7 +14,7 @@
 | STT | Họ tên          | MSSV        | Email                     | GitHub    | Vai trò         |
 |----:|-----------------|-------------|---------------------------|-----------|-----------------|
 |   1 | Lê Đức Trúc Lâm | 2A202603787 | 26ai.lamldt@vinuni.edu.vn | truclamld | Người viết code |
-|   2 |                 |             |                           |           |                 |
+|   2 | Hoàng Dương Anh Quân | 2A202603735 | 26ai.quanhda@vinuniversity.edu.vn | HoangQuan23112004 | Người gắn nhãn 1 |
 |   3 |                 |             |                           |           |                 |
 |   4 |                 |             |                           |           |                 |
 |   5 |                 |             |                           |           |                 |
@@ -53,3 +53,19 @@ Sao chép mục dưới đây cho từng thành viên.
 ### Bằng chứng
 
 -
+
+## Hoàng Dương Anh Quân — 2A202603735
+
+### Phần việc phụ trách
+
+- Nhiệm vụ C (CP3), vai trò người gắn nhãn 1 cho bộ 20 ca lỗi của trợ lý hoàn phí.
+
+### Đóng góp cụ thể
+
+- Đối chiếu nhãn lần 1 với bộ nhãn của Hiếu, ghi nhận 17/20 ca trùng (85%) và giải thích nhãn thống nhất cho các ca 8, 13 và 15.
+- Đề xuất cách phát hiện, biện pháp khắc phục và vai trò phụ trách cho 5 ca đại diện thuộc 5 loại lỗi.
+
+### Bằng chứng
+
+- [Bảng đối chiếu và biện pháp khắc phục](report/team/bang_loi.md)
+- [Báo cáo cá nhân](report/team/2A202603735_HoangDuongAnhQuan.md)
