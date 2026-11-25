@@ -80,3 +80,15 @@ Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu 
 - Hiện tại: 4,99% (51/1.023) ở ca không được xem lại, so với 0,00% (0/129) ở ca đã xem lại và nhân viên giữ nguyên. Cả 51 ca mở lại đều có `ket_qua = lam_lai`.
 - Lý do cần chỉ số này: giảm tỉ lệ xem lại là đòn bẩy chi phí lớn thứ hai ở B1. Chỉ số này cho biết giảm xem lại có làm lỗi lọt đến khách tăng không.
 - Cách đo: nối event `review_completed` với `case_reopened` qua `trace_id`.
+
+## CP5 · E2: Rủi ro kinh tế (gửi Thành viên 4 để chép vào `chi_so.md`)
+
+Nguồn số: B1/B2/B4 do `in_kich_ban_b` của Thành viên 1 in ra (nhánh `nhungvo`, `src/lab13.py`); A4 do `src/tv4_tinh_so.py` in ra; tỉ lệ đợt chạy thử tính từ `logix_requests.csv` trong phạm vi noi_dia + hang_nang (982 yêu cầu).
+
+| Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
+| --- | --- | --- | --- | --- |
+| Số ca làm lại tăng gấp đôi (yếu tố mạnh nhất ở B1) | +51,8%, chi phí mỗi việc thành công lên 6.787 đ [simulated] | Tỉ lệ `lam_lai` theo tuần > 7% (đợt chạy thử: 4,89% = 48/982) | Thu hẹp về noi_dia, rà 20 trace làm lại gần nhất | PM trợ lý hoàn phí |
+| Phải xem lại 100% kéo dài (B4) | 11.743 đ/việc = 0,98× baseline; 12.415 đ = 1,03× nếu làm lại 15,3 phút như dữ liệu [simulated]; hoà vốn khi xem lại ≤ 4,8–5,1 phút/ca [simulated] | % yêu cầu được xem lại > 50% vào cuối bước rollout 25% (đợt chạy thử: 13,0%) | Giảm xem lại theo bậc khi tỉ lệ `sua` + `bo` < 15% (đợt chạy thử: 21,1%) | Trưởng nhóm CSKH |
+| Khối lượng thấp hơn dự kiến (A4) | Chi phí cố định 40 triệu/tháng: +1.185 đ/việc ở 45.000 yêu cầu/tháng, +2.370 đ/việc nếu còn một nửa [simulated]; hoà vốn ở ≈ 6.212 yêu cầu/tháng [simulated] | Số việc thành công theo tuần < 50% kế hoạch | Không mở rộng pilot, đàm phán lại chi phí cố định | PM trợ lý hoàn phí |
+
+- Kiểm tra tuyến tính: token ×2 + xem lại ×2 = +46,3% = +5,6% + +40,7% (B2), nên mỗi dòng rủi ro có thể cộng dồn khi xảy ra cùng lúc.
