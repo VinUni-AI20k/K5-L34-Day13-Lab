@@ -2,20 +2,19 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- Tên nhóm: GREEN
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-GREEN-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
 - URL repo, nhánh nộp, commit chốt:
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
-
+|   1 | Võ Thị Phương Nhung       |      |       |        |         |
+|   2 | Nguyễn Tiến Đạt      |      |       |        |         |
+|   3 | Nguyễn Minh Phúc       |      |       |        |         |
+|   4 | Nguyễn Đức Hải       |      |       |        |         |
 Bốn vai của lab:
 
 - **Người viết code:** viết và chạy `src/lab13.py`.
