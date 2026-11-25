@@ -1,0 +1,36 @@
+# Báo cáo cá nhân — Lê Tuấn Đạt
+
+## 1. Thông tin thành viên
+
+- Họ tên: Lê Tuấn Đạt
+- MSSV: *(Điền MSSV của bạn vào đây)*
+- Email: *(Điền Email của bạn vào đây)*
+- Vai trong nhóm: Người gắn nhãn 2 kiêm giữ hồ sơ
+
+## 2. Phần việc phụ trách
+
+- Gắn nhãn độc lập 20 ca lỗi chạy thử theo 5 nhóm nguyên nhân gốc của Google PAIR (Nhiệm vụ C).
+- Cùng Người gắn nhãn 1 đối chiếu, tính tỉ lệ đồng thuận và hoàn thiện bảng khắc phục 5 ca lỗi đại diện trong `report/team/bang_loi.md`.
+- Trực tiếp giữ và điền hồ sơ 1 trang `report/team/ho_so_launch_v0.md` xuyên suốt buổi lab để chuẩn bị cho vòng duyệt chéo Gate 2a.
+
+## 3. Đóng góp cụ thể
+
+- Độc lập phân loại chuẩn xác 20 ca lỗi dựa trên nguyên nhân gốc (thay vì vị trí sửa lỗi), đảm bảo phân tách rõ giữa lỗi hệ thống (đã lộ ra), lỗi người dùng, lỗi ngữ cảnh, giới hạn hệ thống và lỗi ngầm (như ca 5, 12, 17).
+- Cùng đồng đội xây dựng 5 giải pháp phòng ngừa đo lường được (idempotency key chống hoàn trùng, kiểm tra mẫu ngẫu nhiên tuần, template làm rõ cách tính tiền).
+- Tổng hợp toàn bộ các kết quả từ CP1 (mô hình chi phí), CP2 (độ nhạy), CP3 (bảng lỗi), CP4 (kế hoạch pilot) và CP5 (chỉ số vận hành) vào `ho_so_launch_v0.md`, đảm bảo chuẩn định dạng: gắn nhãn `simulated`, ghi rõ vai trò phụ trách duy nhất và đề xuất Go có điều kiện kèm 4 điều kiện cụ thể.
+
+## 4. Bằng chứng
+
+- File nhãn lỗi: `report/team/bang_loi.md` (cột Nhãn người 2 và bảng khắc phục 5 ca lỗi).
+- File hồ sơ tổng hợp Gate 2a: `report/team/ho_so_launch_v0.md`.
+- Lịch sử commit trên repo nhóm: các commit cập nhật `bang_loi.md` và `ho_so_launch_v0.md`.
+
+## 5. Công cụ AI đã dùng
+
+- Công cụ: Antigravity Assistant.
+- Mục đích: Tra cứu và chuẩn hóa định nghĩa 5 loại lỗi của Google PAIR; hỗ trợ rà soát logic phân biệt các ca biên (boundary cases) giữa lỗi Hệ thống vs Lỗi ngầm, Lỗi người dùng vs Lỗi hệ thống.
+- Tự kiểm tra: Tự đọc kỹ mô tả 20 ca lỗi từ đề bài gốc `Ngay13_Lab13_De_bai_hoc_vien.docx`, tự đưa ra nhận định nguyên nhân gốc trước khi so sánh với tài liệu đối chiếu của nhóm.
+
+## 6. Tự đánh giá
+
+- Hoàn thành đầy đủ trách nhiệm của Người gắn nhãn 2 và Người giữ hồ sơ, nộp hồ sơ đúng thời hạn 17:00 phục vụ phản biện chéo Gate 2a.
