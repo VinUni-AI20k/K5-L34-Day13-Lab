@@ -19,8 +19,8 @@
 ### CP3 · Bộ nhãn 20 ca lỗi
 
 - Đã ghi đủ **20/20 nhãn** ở cột “Nhãn người 1”. Bộ nhãn gồm 4 ca Do người dùng, 5 ca Hệ thống, 4 ca Ngữ cảnh, 4 ca Giới hạn hệ thống và 3 ca Ngầm.
-- Bảng nhóm đang chờ bộ nhãn của Người 4. Khi có đủ hai bộ nhãn, tỉ lệ đồng thuận bằng số ca trùng chia 20. Mốc đạt là **16/20 ca (80%)**. Mỗi ca lệch cần một câu quy tắc phân biệt. Nếu dưới mốc, cần rà lại định nghĩa và giữ nguyên hai cột nhãn ban đầu.
-- Bảng khắc phục trong hồ sơ nhóm còn trống. Mỗi dòng cần chỉ rõ event phát hiện, ngưỡng, tần suất kiểm tra, cách xử lý và một vai trò phụ trách.
+- Đối chiếu với bộ nhãn độc lập của Người 4: trùng **20/20 ca (100%)**, vượt mốc 16/20 (80%). Không có ca lệch; nhóm vẫn ghi quy tắc phân biệt cho các ca dễ lẫn (6, 9, 13, 8, 15, 12, 18).
+- Bảng khắc phục 5 ca (ca 9, 7, 18, 4, 17, mỗi loại một ca) đã có trong `bang_loi.md`, mỗi dòng có event phát hiện, ngưỡng, tần suất, cách xử lý và một vai trò phụ trách.
 
 ### CP4 · Đối chiếu luật dừng và phương án quay lui
 
@@ -29,7 +29,7 @@
 
 ### CP5 · Đối chiếu chỉ số với event
 
-Đặc tả nhóm có **9 event chứa `trace_id`**. Bảng dưới đây ghi các event dùng để tính từng chỉ số.
+Đặc tả nhóm có **11 event chứa `trace_id`** (thêm `handoff_to_staff` và `input_validation_failed` để đo cách phát hiện trong bảng khắc phục). Bảng dưới đây ghi các event dùng để tính từng chỉ số.
 
 | Chỉ số | Event và cách tính |
 | --- | --- |
@@ -52,5 +52,5 @@
 
 ## 6. Tự đánh giá
 
-- Phần gắn nhãn cá nhân đã đủ 20 ca. Phần cần hoàn tất ở CP3 là đối chiếu với Người 4 và chốt 5 ca khắc phục có tiêu chí phát hiện đo được.
+- Phần gắn nhãn cá nhân đã đủ 20 ca và đồng thuận 20/20 với Người 4; bảng khắc phục 5 ca đã đủ năm loại, mỗi dòng có tiêu chí phát hiện đo được.
 - Khi phân loại, em cần làm rõ dấu hiệu giúp phân biệt lỗi hệ thống đã lộ ra và lỗi ngầm chỉ được phát hiện khi kiểm tra. Khi kiểm tra chỉ số, em cần đối chiếu cả mốc thời gian và mẫu số với event tương ứng.

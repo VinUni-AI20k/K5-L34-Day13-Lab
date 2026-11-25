@@ -180,6 +180,23 @@ if __name__ == '__main__':
     print(f'  d) 6 depot/nhóm: c/ICC = {max_eff_6:,.0f} (tối đa 300, không đạt)')
     print(f'  e) Mức chênh 6 điểm (cần {n_6pt:,}/nhóm), 20 nhân viên/nhóm: m ≥ {m_req} yêu cầu/người (DE = {de_6pt:.2f})')
 
+    # Đánh đổi: thiết kế cho mức chênh 6 điểm (n = 859/nhóm), nếu tác động thật chỉ 5 điểm thì power còn bao nhiêu?
+    # Cohen's h + kiểm định z hai phía: cùng cách tính với statsmodels NormalIndPower + proportion_effectsize.
+    def power_hai_ti_le(p1, p2, n, alpha=0.05):
+        h = 2 * math.asin(math.sqrt(p2)) - 2 * math.asin(math.sqrt(p1))
+        za = NormalDist().inv_cdf(1 - alpha / 2)
+        return NormalDist().cdf(abs(h) * math.sqrt(n / 2) - za) + NormalDist().cdf(-abs(h) * math.sqrt(n / 2) - za)
+
+    power_5_tai_859 = power_hai_ti_le(0.70, 0.75, n_6pt)
+    print(f'  Power nếu tác động thật chỉ 5 điểm với n = {n_6pt:,}/nhóm: {power_5_tai_859:.2f}')
+    try:
+        from statsmodels.stats.proportion import proportion_effectsize
+        from statsmodels.stats.power import NormalIndPower
+        power_sm = NormalIndPower().power(proportion_effectsize(0.75, 0.70), nobs1=n_6pt, alpha=0.05)
+        print(f'    (đối chiếu statsmodels NormalIndPower: {power_sm:.2f})')
+    except ImportError:
+        pass
+
     tl_molai_all = reqs['mo_lai_trong_7_ngay'].mean()
     tl_molai_pv = pham_vi['mo_lai_trong_7_ngay'].mean()
     print(f'\nTỉ lệ mo_lai_trong_7_ngay hiện tại:')
