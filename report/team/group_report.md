@@ -4,38 +4,53 @@ Báo cáo ngắn, tối đa 2 trang. Số liệu chi tiết nằm trong các fil
 
 ## 1. Thông tin nhóm
 
-- Tên nhóm:
-- Lớp:
-- Thành viên: xem `TEAM.md`
+- Tên nhóm: LuckyTeam
+- Lớp: [Điền L3A hoặc L3B]
+- Thành viên: xem [TEAM.md](../../TEAM.md)
 
 ## 2. Mục tiêu và cách tiếp cận
 
-...
+Mục tiêu của bài lab là định giá trợ lý hoàn phí LogiX-VN từ dữ liệu trace chạy thử (1.200 yêu cầu, 1.624 lần chạy) và lập bộ hồ sơ launch v0 cho hội đồng duyệt chéo Gate 2a nhằm trả lời bốn câu hỏi: chi phí thực mỗi việc thành công có đáng chạy không, nhân viên có dùng không, khi lỗi xảy ra thì phát hiện/khắc phục thế nào, và kế hoạch pilot phải thiết kế ra sao để tách được tác động.
+
+Nhóm phân công 4 thành viên làm song song theo [PHAN_CONG.md](../../PHAN_CONG.md): mỗi người giữ module code và file báo cáo riêng trên nhánh riêng (`p1-A`, `p2-B`, `p3-CD`, `p4-E`), gắn nhãn lỗi độc lập rồi mới so đồng thuận ở nhiệm vụ C, sau đó merge về `main` để chốt số vào hồ sơ Gate 2a.
 
 ## 3. Giải pháp
 
-Tóm tắt cách nhóm làm từng nhiệm vụ A–E và link tới file hồ sơ tương ứng.
-
-...
+- **Nhiệm vụ A (Mô hình chi phí):** kiểm tra 3 phép thử đáp án biết trước, xây dựng `mo_hinh` tính chi phí mỗi việc thành công (tử số tính mọi lần chạy kể cả lỗi, mẫu số chỉ đếm `thanh_cong`), tách theo 4 loại yêu cầu và cộng chi phí cố định 40 triệu đ/tháng. Chi tiết: [bang_chi_phi.md](bang_chi_phi.md), `src/lab13.py`.
+- **Nhiệm vụ B (Phân tích độ nhạy):** chạy 9 kịch bản đổi từng yếu tố, 1 kịch bản đổi cặp, so sánh chi phí cả hệ thống theo giới hạn 1/2/3 lần chạy và kiểm tra kịch bản xem lại 100% cho `noi_dia` + `hang_nang`. Chi tiết: [bang_chi_phi.md](bang_chi_phi.md), `src/cp2_do_nhay.py`.
+- **Nhiệm vụ C (Phân loại lỗi & khắc phục):** hai người gắn nhãn độc lập 20 ca theo 5 loại Google PAIR (theo nguyên nhân gốc), so tỉ lệ đồng thuận, ghi quy tắc cho các ca lệch và lập bảng khắc phục 5 ca đủ 5 loại. Chi tiết: [bang_loi.md](bang_loi.md).
+- **Nhiệm vụ D (Kế hoạch pilot):** tính cỡ mẫu và hệ số thiết kế cho 3 cách chia (theo yêu cầu, theo nhân viên, theo depot), đánh giá 5 câu hỏi tách tác động và viết luật dừng theo mẫu NẾU – TRONG – THÌ – KHÔNG THÌ. Chi tiết: [pilot_plan.yaml](pilot_plan.yaml), `src/cp4_co_mau.py`.
+- **Nhiệm vụ E (Chỉ số, event, rủi ro & hồ sơ Gate 2a):** tính 3 chỉ số E1 từ `src/logix_requests.csv` bằng `src/cp5_chi_so.py`, đề xuất thêm 1 chỉ số dùng và 1 chỉ số an toàn, đặc tả 10 event có `trace_id` kèm kiểm tra chéo, tổng hợp rủi ro kinh tế từ bài B và đóng gói hồ sơ một trang 7 mục. Chi tiết: [chi_so.md](chi_so.md), [ho_so_launch_v0.md](ho_so_launch_v0.md), [phieu_cham.md](phieu_cham.md).
 
 ## 4. Kết quả
 
-Con số chính (ghi nhãn `simulated` khi cần) và đề xuất cuối của `ho_so_launch_v0.md`. Kết quả duyệt chéo nhóm nhận được từ hội đồng.
-
-...
+- **Chỉ số đợt chạy thử (E1, 1.200 yêu cầu):**
+  - Chỉ số chính (% đóng trong 24 giờ và không mở lại trong 7 ngày): **82,83%** (994/1.200); trong phạm vi `noi_dia` + `hang_nang`: **92,26%** (906/982).
+  - Chỉ số dùng (tỉ lệ bỏ qua gợi ý): **27,12%** (48/177); trong phạm vi pilot: **21,09%** (27/128).
+  - Chỉ số an toàn (tỉ lệ lỗi lọt đến khách — mở lại 7 ngày): **4,25%** (51/1.200); trong phạm vi pilot: **3,97%** (39/982).
+- **Chi phí, độ nhạy, bảng lỗi và pilot plan (A–D):** [Điền các con số chính sau khi merge `p1-A`, `p2-B`, `p3-CD`; ghi rõ nhãn `simulated` với mọi số tính từ cột `_simulated`].
+- **Đề xuất Gate 2a:** **Go có điều kiện** (chi tiết 4 điều kiện, người phụ trách và ngày kiểm tra tại [ho_so_launch_v0.md](ho_so_launch_v0.md)).
+- **Kết quả duyệt chéo hội đồng:** [Điền sau phiên duyệt chéo Gate 2a].
 
 ## 5. Khó khăn và cách xử lý
 
-...
+- **Rủi ro xung đột khi 4 người làm song song:** xử lý bằng cách tách code B, D, E ra các module riêng (`cp2_do_nhay.py`, `cp4_co_mau.py`, `cp5_chi_so.py`) và chia quyền sở hữu file theo từng mục.
+- **Đọc dữ liệu CSV bị lỗi `NaN`:** cột `quyet_dinh_xem_lai` có ô trống cho các yêu cầu không xem lại; nhóm thống nhất dùng `pd.read_csv(..., keep_default_na=False)` trong mọi script.
+- **Dữ liệu thời gian nhân viên là giả lập (`_simulated`):** mọi con số chi phí phụ thuộc hai cột này đều gắn nhãn `simulated` và được đưa vào điều kiện thay bằng đo thật (`phut_xem_lai_thuc`, `phut_lam_lai_thuc`) sau tuần 1 pilot.
+- **Đợt chạy thử không có nhóm đối chứng:** nhóm diễn giải chặt chẽ là "chỉ số trong đợt chạy thử là 82,83%", không khẳng định trợ lý đã nâng chỉ số.
 
 ## 6. Tổng hợp đóng góp
 
-Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md`.
+Chi tiết phân vai, đóng góp và bằng chứng của từng thành viên nằm trong [TEAM.md](../../TEAM.md).
 
 ## 7. Hạn chế và hướng cải thiện
 
-...
+- Thời gian xem lại và làm lại hiện là dữ liệu `simulated`; cần thu thập từ event `staff_review_decision` và `staff_rework_completed` ngay tuần đầu pilot để tính lại chi phí thực.
+- Các lỗi ngầm (như hoàn sai tiền do bảng giá cũ hoặc mã giảm giá) không tạo yêu cầu mở lại; cần duy trì kiểm tra mẫu 100 đơn/tuần qua event `audit_sample_checked` và đối soát sổ cái hằng giờ.
+- Khi thiết kế pilot chia cụm theo nhân viên với 40 nhân viên, cần theo dõi sát rủi ro tràn tác động trong cùng depot và kiểm soát lộ trình giảm tỉ lệ xem lại để đảm bảo hiệu quả kinh tế.
 
 ## 8. Tài liệu tham khảo
 
-...
+- Đề bài và hướng dẫn buổi chiều Lab 13 (`docs/Ngay13_Lab13_De_bai_hoc_vien.docx`, `docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md`).
+- Tài liệu dữ liệu và công thức (`docs/du_lieu_va_cong_thuc.md`).
+- Phân loại lỗi hệ thống AI theo khung Google PAIR (5 loại: Do người dùng, Hệ thống, Ngữ cảnh, Giới hạn hệ thống, Ngầm).
