@@ -14,7 +14,7 @@
 | STT | Họ tên          | MSSV        | Email                     | GitHub    | Vai trò         |
 |----:|-----------------|-------------|---------------------------|-----------|-----------------|
 |   1 | Lê Đức Trúc Lâm | 2A202603787 | 26ai.lamldt@vinuni.edu.vn | truclamld | Người viết code |
-|   2 |                 |             |                           |           |                 |
+|   2 | Phạm Lê Chuẩn                 |   2A202603784          | 26ai.chuanpl@vinuni.edu.vn                          | 22520160          | Người viết code                |
 |   3 |                 |             |                           |           |                 |
 |   4 |                 |             |                           |           |                 |
 |   5 |                 |             |                           |           |                 |
@@ -40,16 +40,20 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 Sao chép mục dưới đây cho từng thành viên.
 
-## HoVaTen-MSSV
+## PhamLeChuan-2A202603784
 
 ### Phần việc phụ trách
 
--
+- Người viết code: phụ trách `src/lab13.py`; tập trung hoàn thiện tính chi phí cố định A4 và phân tích độ nhạy, giới hạn chạy lại ở nhiệm vụ B.
 
 ### Đóng góp cụ thể
 
--
+- Hoàn thiện mô hình tính chi phí theo trace và các kịch bản B1–B4; phối hợp dùng ChatGPT/Codex để triển khai phép tính, rồi rà soát kết quả và các giả định trong báo cáo.
+- Hoàn thiện bảng A4 cho phạm vi `noi_dia` + `hang_nang`, gồm mức 45.000 và 22.500 yêu cầu/tháng; rà soát để báo cáo không còn phần mẫu B1–B4 bị lặp.
+- Đối chiếu chi phí giới hạn chạy lại 1/2/3 lần; ghi nhận giới hạn 2 lần có tổng chi phí hệ thống thấp nhất, khoảng 6,901 triệu đồng.
 
 ### Bằng chứng
 
--
+- `src/lab13.py`: các phép tính A4, B1, B3, B4 và kịch bản kết hợp B2.
+- `report/team/bang_chi_phi.md`: bảng A4, B1–B4 và kết luận về giới hạn 2 lần.
+- Các phép tính có thành phần phút `*_simulated`; cần chạy lại `python lab13.py` với đủ thư viện và kiểm tra đầu ra trước khi nộp.
