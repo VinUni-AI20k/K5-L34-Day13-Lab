@@ -36,7 +36,7 @@
 
 - **Công cụ:** Antigravity (trợ lý AI trong IDE).
 - **Mục đích sử dụng:** Rà soát checklist yêu cầu của lab, trích xuất danh sách 20 ca lỗi từ file `.docx`, hỗ trợ cấu trúc hóa bảng 10 event có `trace_id`, định dạng `pilot_plan.yaml` và kiểm tra các quy tắc cấm từ hoặc thiếu dấu hỏi.
-- **Cách tự kiểm tra:** Đối chiếu trực tiếp mọi con số D1 (`1.251`, `DE = 2,48`, `n_hiệu_dụng = 1.000`, `m ≥ 299`, `DE = 6,96`, power `0,64`) và tỉ lệ mở lại (`4,25%` / `3,97%`) từ kết quả P2 bàn giao; đối chiếu nhãn lỗi 20 ca với định nghĩa 5 loại Google PAIR và so chéo với P4; chạy kiểm tra tự động đảm bảo `0` dấu `?` ngoài dòng chú thích trong `pilot_plan.yaml` và `0` từ `"production"` trong toàn bộ `report/team/`.
+- **Cách tự kiểm tra:** Đối chiếu trực tiếp mọi con số D1 (`1.251`, `DE = 2,48`, `n_hiệu_dụng = 1.000`, `m ≥ 299`, `DE = 6,96`, power `0,64`) và tỉ lệ mở lại (`4,25%` / `3,97%`) từ kết quả P2 bàn giao; đối chiếu nhãn lỗi 20 ca với định nghĩa 5 loại Google PAIR và so chéo với P4; chạy kiểm tra tự động đảm bảo `0` dấu `?` ngoài dòng chú thích trong `pilot_plan.yaml` và `0` từ cấm theo quy tắc 5 trong toàn bộ `report/team/`.
 
 ## 6. Tự đánh giá
 
