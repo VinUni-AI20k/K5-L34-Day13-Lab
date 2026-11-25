@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người viết code (trước giải lao) — Nhiệm vụ A |
+|   1 | Nguyễn Đức Hải | 2A202603943 | [Điền email] | ndhai255 | Người viết code (trước giải lao) — Nhiệm vụ A |
 |   2 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người kiểm số — Nhiệm vụ B & E2 |
 |   3 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người gắn nhãn 1, viết code sau giải lao — Nhiệm vụ C & D |
 |   4 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người gắn nhãn 2 kiêm giữ hồ sơ — Nhiệm vụ C (nhãn 2), E1, event & hồ sơ |
@@ -35,19 +35,26 @@ report/team/MSSV_HoTen.md
 
 Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
-## [Nguoi1-HoVaTen-MSSV]
+## NguyenDucHai-2A202603943
 
 ### Phần việc phụ trách
 
-- Nhiệm vụ A (A1–A4) trong `src/lab13.py` và `report/team/bang_chi_phi.md`; nối module và chạy kiểm tra cuối buổi.
+- Người viết code trước giải lao: nhiệm vụ A (CP1) trong `src/lab13.py` và phần A1–A4 của `report/team/bang_chi_phi.md`.
+- Merge các nhánh `p1-A` → `p2-B` → `p3-CD` → `p4-E`, nối module vào `src/lab13.py` để chạy hết từ đầu đến cuối.
+- Duyệt chéo Gate 2a cùng Người 2, chấm vào `report/team/phieu_cham.md`.
 
 ### Đóng góp cụ thể
 
-- [Cập nhật sau khi hoàn thành nhánh `p1-A`]
+- A1: ba hàm kinh tế của việc chạy lại, qua ba phép thử 1,20 · 1,25 · 1,25.
+- A2: `mo_hinh` (có nhánh `max_lan_chay`, trả thêm `chay_lai`, `hoa_don_moi_yc`); chi phí mỗi việc thành công 4.472 đ [simulated], gấp 16,3 lần hoá đơn token chia số yêu cầu.
+- A3: tách theo 4 loại và tỉ lệ ok theo `attempt`; chỉ ra `quoc_te` không đáng xử lý (1,88× của 12.000 đ [simulated], tỉ lệ ok 30,0% → 11,4% → 2,2%).
+- A4: cộng chi phí cố định 40 triệu đ/tháng cho `noi_dia` + `hang_nang`: 4.599 đ = 0,38× ở 45.000 yc/tháng, 5.784 đ = 0,48× ở một nửa khối lượng [simulated].
 
 ### Bằng chứng
 
-- [Link commit / output `src/lab13.py`]
+- Nhánh `p1-A`, commit `5e91a4b` (A1–A4) và `1bd58d8` (báo cáo cá nhân).
+- `cd src && python lab13.py` in `Ba phép thử đáp án biết trước: ĐẠT` và các bảng A2, A3, A4.
+- Báo cáo cá nhân: [report/team/2A202603943_NguyenDucHai.md](report/team/2A202603943_NguyenDucHai.md).
 
 ## [Nguoi2-HoVaTen-MSSV]
 
