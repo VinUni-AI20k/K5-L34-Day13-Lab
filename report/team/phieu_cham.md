@@ -2,8 +2,8 @@
 
 Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo bằng chứng trong hồ sơ, không theo cách trình bày: một đề xuất No-go có lý do bằng số được điểm cao hơn một đề xuất Go bỏ qua con số bất lợi.
 
-- Nhóm chấm (hội đồng): ...
-- Nhóm được chấm: ...
+- Nhóm chấm (hội đồng): MKTT · L3B
+- Nhóm được chấm: Chờ phân công duyệt chéo.
 
 | Tiêu chí | 0 điểm | 5 điểm | 10 điểm | Điểm | Lý do (có số) |
 | --- | --- | --- | --- | ---: | --- |
@@ -16,6 +16,6 @@ Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo b
 
 **Lý do:** ...
 
-**Một câu hỏi cho đội trình:** ...
+**Câu hỏi đề xuất cho đội trình:** Khi chỉ số an toàn vượt ngưỡng, ai có quyền dừng, dừng trong bao lâu và bằng chứng nào cần có trước khi bật lại?
 
 **Câu trả lời của đội trình (ghi lại tại buổi):** ...
