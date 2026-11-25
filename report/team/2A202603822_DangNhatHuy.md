@@ -23,8 +23,6 @@
 - Chốt đề xuất **Go có điều kiện** cho pilot `noi_dia` + `hang_nang`, nêu 3 con số bất lợi (xem lại 100% = 0,98× [simulated], power 0,64, mở lại hiện tại 4,25%) và 5 điều kiện có người phụ trách, ngày kiểm tra.
 - Thêm phần tính power vào `src/lab13.py` (0,64 khi tác động thật 5 điểm, n = 859/nhóm).
 - Gộp conflict khi merge `main` (`chi_so.md`, `TEAM.md`); cập nhật `TEAM.md` và báo cáo nhóm mục 1–5, 7, 8.
-- ... (bổ sung sau 17:00: phiếu chấm nhóm n + 1, kết quả duyệt chéo)
-
 ## 4. Bằng chứng
 
 Commit, file, bảng hoặc con số do bạn làm.
