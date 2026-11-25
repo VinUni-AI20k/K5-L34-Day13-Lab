@@ -1,5 +1,5 @@
 # Lab 13 · Nhiệm vụ D · Kế hoạch pilot trợ lý hoàn phí LogiX-VN (Gate 2a)
-# Điền mọi chỗ có dấu hỏi. Khi nộp, ngoài các dòng chú thích không còn dấu hỏi nào.
+# Bản đề xuất từ PR #3 của P3 tại e5195a7, dùng để đối chiếu hồ sơ launch và E2.
 # Kiểm tra đọc được: python -c "import yaml; yaml.safe_load(open('../report/team/pilot_plan.yaml', encoding='utf-8'))"
 #
 # D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02)
@@ -7,7 +7,7 @@
 #   b) Theo nhân viên, m = 75: DE = 1 + 74 × 0,02 = 2,48 → 1.251 × 2,48 = 3.103 mỗi nhóm → 42 người/nhóm, tổng 84 > 40: không đủ người
 #   c) 20 nhân viên mỗi nhóm: n hiệu dụng tối đa = 20 / 0,02 = 1.000 < 1.251: không đạt mức chênh 5 điểm
 #   d) 6 depot mỗi nhóm: n hiệu dụng tối đa = 6 / 0,02 = 300, chỉ 6 cụm < 20: loại
-#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm: 20m / (1 + (m − 1) × 0,02) ≥ 859 → m ≥ 299 yêu cầu/người, DE = 6,96
+#   e) Mức chênh 6 điểm cần 859 quan sát hiệu dụng mỗi nhóm. Với 20 nhân viên mỗi nhóm và DE = 6,96, cần ít nhất 299 yêu cầu/người, tức 5.980 yêu cầu thực tế mỗi nhóm.
 #
 # D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (mỗi câu một dòng):
 #   1. Đối chứng chạy cùng thời gian: Có, 20 nhân viên đối chứng xử lý noi_dia + hang_nang cùng tuần, cùng 12 depot với 20 nhân viên dùng trợ lý, nên mùa vụ và khối lượng tác động như nhau lên hai nhóm.
@@ -22,7 +22,7 @@
 #
 # Tỉ lệ mo_lai_trong_7_ngay hiện tại và ngưỡng an toàn đã chọn:
 #   Hiện tại 4,25% (51/1.200); trong phạm vi noi_dia + hang_nang 3,97% (simulated).
-#   Ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu → chọn so với đối chứng (+2 điểm) kèm trần tuyệt đối 6%.
+#   Ngưỡng tuyệt đối 3% thấp hơn tỉ lệ đã quan sát trong phạm vi. Đề xuất so với đối chứng (+2 điểm phần trăm) kèm trần tuyệt đối 6%.
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
@@ -38,7 +38,7 @@ pilot:
     mde: 0.06                     # đánh đổi đã chấp nhận (5 điểm không đủ mẫu với 40 nhân viên)
     alpha: 0.05
     power: 0.80
-    n_per_arm: 859
+    n_per_arm: 859                # cỡ mẫu hiệu dụng, tương ứng ít nhất 5.980 yêu cầu thực tế mỗi nhóm
     design_effect: 6.96           # m = 299, ICC 0,02
     clusters_per_arm: 20
   identifiability:
@@ -46,6 +46,7 @@ pilot:
     spillover_risk: "Trung bình: nhân viên cùng depot có thể chép gợi ý cho nhau; chỉ tài khoản nhóm trợ lý mở được trợ lý, log theo staff_id + trace_id, kiểm hằng tuần lượt gọi từ tài khoản đối chứng phải bằng 0"
     predeclared: "Có: chỉ số chính, MDE 0,06, 3 luật dừng, khung đo 2026-12-21 đến 2027-01-03 và ngày quyết định 2027-01-12 chốt trước ngày bắt đầu 2026-12-07; bốc thăm 40 staff_id bằng code seed 2026, phân tầng theo depot"
   stop_rules:
+    # Vế KHÔNG THÌ nêu giới hạn áp dụng khi biện pháp nêu sau THÌ chưa hoàn tất.
     # An toàn · mốc: mở lại 7 ngày hiện tại 3,97% trong phạm vi (4,25% toàn mẫu), simulated.
     #   So với đối chứng thay vì ngưỡng tuyệt đối 3% (sẽ dừng oan ngay tuần đầu); trần 6% ≈ 1,5 lần mức hiện tại.
     - "NẾU tỉ lệ mở lại 7 ngày của nhóm trợ lý cao hơn nhóm đối chứng từ 2 điểm trở lên, hoặc vượt 6%, hoặc phát sinh từ 1 ca hoàn tiền trùng TRONG bất kỳ cửa sổ 7 ngày nào (tính trên yêu cầu đã đủ 7 ngày theo dõi; ca hoàn trùng tính ngay khi phát hiện) THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và rà lại toàn bộ ca hoàn của nhóm trợ lý trong 2 ngày KHÔNG THÌ không được bật lại trợ lý và không được sang bước rollout tiếp theo"
@@ -59,7 +60,7 @@ pilot:
     - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo trên số ca được xem lại) của nhóm trợ lý vượt 40% TRONG 1 tuần THÌ Trưởng nhóm CSKH phỏng vấn ít nhất 5 nhân viên nhóm trợ lý trong 3 ngày và gửi PM danh sách loại gợi ý bị bỏ KHÔNG THÌ không được sang bước rollout tiếp theo"
   interim_looks: "chỉ kiểm tra chỉ số an toàn, chi phí và mức độ sử dụng hằng tuần để áp luật dừng; không xem chỉ số chính trước ngày quyết định"
   rollback: "Giám đốc vận hành bấm cờ tắt trợ lý, hiệu lực trong 30 phút; khách được phục vụ bằng luồng nhân viên tự làm như trước pilot"
-  decision_date: "2027-01-12"   # yêu cầu cuối khung đo (03/01) cần đủ 7 ngày theo dõi mở lại → 10/01, cộng 2 ngày tổng hợp
+  decision_date: "2027-01-12"   # chốt khi lô đo cuối có đủ 7 ngày theo dõi kể từ lần đóng đầu
   simulated_inputs:
     - "Chi phí mỗi việc thành công theo loại (A3): noi_dia 2.696 đ, hang_nang 8.221 đ, quoc_te 22.515 đ, doi_tac 10.215 đ"
     - "Chi phí mỗi việc thành công toàn bộ (A2): 4.472 đ; chi phí nhân viên 12.000 đ/yêu cầu"
