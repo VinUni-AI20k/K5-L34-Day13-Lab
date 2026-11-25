@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Đức Hải | 2A202603943 | [Điền email] | ndhai255 | Người viết code (trước giải lao) — Nhiệm vụ A |
+|   1 | Nguyễn Đức Hải | 2A202603943 | ndhai255.work@gmail.com | ndhai255 | Người viết code (trước giải lao) — Nhiệm vụ A |
 |   2 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người kiểm số — Nhiệm vụ B & E2 |
 |   3 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người gắn nhãn 1, viết code sau giải lao — Nhiệm vụ C & D |
 |   4 | [Điền họ tên] | [Điền MSSV] | [Điền email] | [Điền GitHub] | Người gắn nhãn 2 kiêm giữ hồ sơ — Nhiệm vụ C (nhãn 2), E1, event & hồ sơ |

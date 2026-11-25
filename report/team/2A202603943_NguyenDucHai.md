@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Đức Hải
 - MSSV: 2A202603943
-- Email: ...
+- Email: ndhai255.work@gmail.com
 - Vai trong nhóm: Người viết code (trước giải lao), Người 1 trong [PHAN_CONG.md](../../PHAN_CONG.md). Phụ trách nhiệm vụ A và nối các module vào `src/lab13.py` cuối buổi.
 
 ## 2. Phần việc phụ trách
