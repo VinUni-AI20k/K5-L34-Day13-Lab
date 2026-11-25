@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Minh Phúc
 - MSSV: 2A202603894
-- Email:
+- Email: nminhphuc.nmp@gmail.com
 - Vai trong nhóm: người kiểm số (Thành viên 3 theo bảng phân công của nhóm)
 
 ## 2. Phần việc phụ trách
