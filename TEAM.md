@@ -11,10 +11,10 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Võ Thị Phương Nhung       |      |       |        |         |
-|   2 | Nguyễn Tiến Đạt      |      |       |        |         |
-|   3 | Nguyễn Minh Phúc       |      |       |        |         |
-|   4 | Nguyễn Đức Hải       |      |       |        |         |
+|   1 | Võ Thị Phương Nhung       | 2A202603918    |       |        |         |
+|   2 | Nguyễn Tiến Đạt      | 2A202603922  |       |        |         |
+|   3 | Nguyễn Minh Phúc       | 2A202603894      |       |        |         |
+|   4 | Nguyễn Đức Hải       | 2A202603899      |       |        |         |
 Bốn vai của lab:
 
 - **Người viết code:** viết và chạy `src/lab13.py`.
