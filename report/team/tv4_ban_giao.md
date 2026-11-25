@@ -6,6 +6,7 @@ Mọi số do `src/tv4_tinh_so.py` in ra (chạy trong `src/`: `python tv4_tinh_
 | --- | --- | --- |
 | A4, B2, B4 | Thành viên 2 (người giữ) | `report/team/bang_chi_phi.md` |
 | Số cho rủi ro kinh tế | Thành viên 3 (viết rủi ro) · Thành viên 4 (giữ) | `report/team/chi_so.md` (E2), `report/team/ho_so_launch_v0.md` (mục 7) |
+| Bảng khắc phục 5 ca | Thành viên 3 (người giữ) | `report/team/bang_loi.md` (mục "Bảng khắc phục") |
 
 ## CP1 · A4: Chi phí cố định (phạm vi noi_dia + hang_nang)
 
@@ -56,3 +57,37 @@ Cách tính (đề bài: mỗi lần xem lại 5 phút, mỗi ca làm lại 9 ph
 | Tỉ lệ xem lại tăng gấp đôi | 6.292 đ, +40,7% [simulated] (B1) | Tỉ lệ được xem lại trong phạm vi: 13,0% |
 | Phải xem lại 100% kéo dài | 11.743 đ = 0,98× (12.415 đ = 1,03× nếu làm lại 15,3 phút) [simulated] (B4) | Phút xem lại thật phải ≤ 5,1 phút |
 | Khối lượng thấp hơn dự kiến | Cố định +1.185 đ/việc ở 45.000 yc/tháng, +2.370 đ/việc nếu còn một nửa; hoà vốn ở ~6.212 yc/tháng [simulated] (A4) | Số việc thành công theo tuần so với kế hoạch (33.750/tháng) |
+
+## CP3 · Bảng khắc phục 5 ca, mỗi loại một ca
+
+> **Gửi cho TV3 sau khi TV1 và TV2 đã chốt hai bộ nhãn độc lập.** Bảng dưới có ghi loại cho từng ca, nên không để người gắn nhãn xem trước.
+> Loại ở đây là loại dự kiến theo định nghĩa Google PAIR. Nếu nhãn thống nhất của nhóm xếp ca chính vào loại khác, dùng ca dự phòng của loại đó.
+
+Mức nền từ đợt chạy thử dùng để đặt ngưỡng (`cp3_nguong` trong `src/tv4_tinh_so.py`, đo từ dữ liệu):
+- Chuyển nhân viên: 3,5% trong phạm vi noi_dia + hang_nang; quoc_te 60,7%.
+- Mở lại 7 ngày trong phạm vi: 3,97% (39/982).
+- Token + tool mỗi yêu cầu theo depot: trung vị 273 đ, depot cao nhất chỉ 1,05× trung vị.
+
+### Bảng chính (chọn ca có nhãn rõ nhất cho mỗi loại)
+
+| Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
+| --: | --- | --- | --- | --- |
+| 1 | Do người dùng | Event `refund_ledger_write` có `ket_qua = loi_tai_khoan` (ngân hàng từ chối), nối theo `trace_id`; đếm theo ngày, cảnh báo khi > 1% số lệnh hoàn trong ngày | Kiểm tra độ dài số tài khoản theo ngân hàng và tra tên chủ tài khoản, hỏi khách xác nhận trước khi tạo lệnh; sai thì yêu cầu nhập lại, không tạo lệnh | PM trợ lý hoàn phí |
+| 20 | Hệ thống | Đối soát mỗi giờ trên `refund_ledger_write`: hơn 1 bản ghi `ok` cho cùng mã đơn; ngưỡng 0 ca, có 1 ca là kích luật dừng an toàn của pilot | Khoá chống trùng `idempotency_key` = mã đơn + loại hoàn; yêu cầu gửi lại khi đang xử lý thì gộp vào trace cũ và báo "đang xử lý"; thu hồi khoản hoàn thừa | Kỹ sư trưởng agent |
+| 18 | Ngữ cảnh | `ticket_reopened` với `reason = so_tien` mà `audit_sample_checked` xác nhận số tiền đúng; tính theo tuần, cảnh báo khi > 0,5% số yêu cầu (mở lại hiện tại 3,97% trong phạm vi) | Mẫu tin nhắn luôn ghi cách tính và điều khoản: "30.000 đ × 50% (trễ 24–48 giờ) = 15.000 đ" | Trưởng nhóm CSKH |
+| 4 | Giới hạn hệ thống | `handoff_to_staff` với `reason = thieu_du_lieu`, theo loại yêu cầu, theo tuần; cảnh báo khi tỉ lệ chuyển trong phạm vi pilot > 7% (gấp đôi mức 3,5% hiện tại) | Nhận diện chặng do hãng nước ngoài giao ngay ở bước đầu, chuyển nhân viên kèm tóm tắt, không chạy lại (quoc_te: lần 2 chỉ đúng 11,4%, lần 3 đúng 2,2%); đưa quoc_te ra khỏi pilot | PM trợ lý hoàn phí |
+| 17 | Ngầm | Kiểm tra mẫu 100 đơn/tuần (`audit_sample_checked`) so với bảng giá hiện hành, ngưỡng > 1% đơn lệch; thêm cảnh báo khi phiên bản bảng giá ghi trong trace khác phiên bản hiện hành, ngưỡng 0 ca | Xoá bộ nhớ đệm khi có bảng giá mới; ghi `bang_gia_version` vào trace; tính lại và bù phần lệch cho 212 đơn | Kỹ sư trưởng agent |
+
+### Ca dự phòng (dùng khi nhãn thống nhất khác loại dự kiến)
+
+| Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
+| --: | --- | --- | --- | --- |
+| 9 | Do người dùng | Event `input_validation_failed` với `ly_do = ma_khong_hop_le`; cảnh báo khi > 2% số yêu cầu mỗi ngày | Nhận diện mã đơn của sàn thương mại điện tử và tra sang mã vận đơn; không tra được thì hướng dẫn kèm ảnh chỗ lấy mã vận đơn | PM trợ lý hoàn phí |
+| 7 | Hệ thống | Đối soát mỗi giờ: tin nhắn "đã hoàn" không có bản ghi `refund_ledger_write` `ok` cùng `trace_id`; ngưỡng 0 ca | Chỉ báo "đã hoàn" khi sổ cái trả `ok`; lỗi 503 sau 3 lần thì báo "đang xử lý" và chuyển nhân viên | Kỹ sư trưởng agent |
+| 3 | Ngữ cảnh | `ticket_reopened` với `reason = chua_nhan_tien` trong khi sổ cái ghi hoàn vào ví `ok`; theo tuần, cảnh báo khi > 0,5% số yêu cầu | Hỏi khách muốn nhận qua ví LogiX hay ngân hàng trước khi hoàn; tin nhắn ghi rõ "đã hoàn vào ví LogiX" | Trưởng nhóm CSKH |
+| 19 | Giới hạn hệ thống | `handoff_to_staff` với `reason = ngoai_12_thang`; đếm theo tuần, theo dõi thời gian nhân viên xử lý ca chuyển (đo bằng `staff_rework_completed`) | Giữ cách chuyển kèm tóm tắt; nói rõ ngay câu đầu là đơn quá 12 tháng | PM trợ lý hoàn phí |
+| 12 | Ngầm | Tiền token + tool mỗi yêu cầu theo depot, theo ngày (từ `agent_run_completed`); cảnh báo khi một depot > 1,5× trung vị các depot 3 ngày liền (hiện cao nhất 1,05×) | Sửa tool tra đơn của D05 để trả đủ trường; giới hạn số lần gọi tool mỗi lần chạy | Kỹ sư trưởng agent |
+
+### Liên kết sang CP4 và CP5
+- Ca 20 và ca 7 là điều kiện của đề xuất "Go có điều kiện": phải sửa khoá chống trùng và đối soát sổ cái trước ngày bắt đầu pilot.
+- Các event dùng ở đây (`refund_ledger_write`, `ticket_reopened`, `handoff_to_staff`, `audit_sample_checked`, `agent_run_completed`, `input_validation_failed`, `staff_rework_completed`) cần có trong danh sách event ở `chi_so.md`, mỗi event có `trace_id`.
