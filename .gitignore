@@ -14,3 +14,6 @@ __MACOSX/
 
 # Phân công nội bộ của nhóm
 PHAN_CONG_CONG_VIEC.md
+
+# Cấu hình Claude Code cá nhân (luật, hook, plan)
+.claude/
